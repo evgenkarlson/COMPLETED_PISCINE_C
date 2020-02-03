@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
 void	sort_int_tab(int *tab, unsigned int size)
 {
 	int				temp;
@@ -31,5 +32,30 @@ void	sort_int_tab(int *tab, unsigned int size)
 			j += 1;
 		}
 		i += 1;
+	}
+}
+
+void	sort_int_tab(int *tab, unsigned int size)
+{
+	int i;
+	int j;
+	int temp;
+
+	i = 0;
+	j = 0;
+	while (i < size - 1)
+	{
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (tab[j] > tab[j + 1])
+			{
+				temp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = temp;
+			}
+			j++;
+		}
+		i++;
 	}
 }

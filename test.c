@@ -56,6 +56,18 @@ void	ft_putnbr(int nb)
 	}
 }
 
+
+void ft_putnbrtab(int *tab, int n)
+{
+	int i = 0;
+	while(i < n)
+	{
+		ft_putnbr(tab[i]);
+		ft_putchar('-');
+		i++;
+	}
+}
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -115,12 +127,42 @@ void	ft_print_words_tables(char **tab)
 	}
 }
 
+
+void	sort_int_tab(int *tab, unsigned int size)
+{
+	int i;
+	int j;
+	int temp;
+
+	i = 0;
+	j = 0;
+	while (i < size - 1)
+	{
+		j = 0;
+		while (j < size - i - 1)
+		{
+			if (tab[j] > tab[j + 1])
+			{
+				temp = tab[j];
+				tab[j] = tab[j + 1];
+				tab[j + 1] = temp;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 int 	main(void)
 {
 	// int r;
 	char *t[4] = {"sdfsd","sdfsdfds","44556"};
+	int f[] = {5,7,6,21,45,17};
 
-	ft_print_words_tables(&t[0]);
+	sort_int_tab(f, 6);
+
+	ft_putnbrtab(f, 6);
+	//ft_print_words_tables(&t[0]);
 	// r = ft_is_prime(4);
 	// ft_putnbr(r);
 
@@ -129,5 +171,5 @@ int 	main(void)
 	// r = ft_find_next_prime(4);
 	// ft_putnbr(r);
 
-	return 0;
+	return (0);
 }
