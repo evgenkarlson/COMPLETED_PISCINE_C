@@ -148,21 +148,7 @@ char	*ft_strcat(char *dest, char *src)
 
 int 	main(void)
 {
-	// int r;
-	char t[50] = {"sdfsd"};
-	char r[6] = {"44556"};
 
-	ft_strcat(t, r);
-
-	ft_putstr(t);
-	//ft_print_words_tables(&t[0]);
-	// r = ft_is_prime(4);
-	// ft_putnbr(r);
-
-	// ft_putchar(' ');
-
-	// r = ft_find_next_prime(4);
-	// ft_putnbr(r);
 
 	return (0);
 }
