@@ -127,41 +127,34 @@ void	ft_print_words_tables(char **tab)
 	}
 }
 
-
-void	sort_int_tab(int *tab, unsigned int size)
+char	*ft_strcat(char *dest, char *src)
 {
 	int i;
-	int j;
-	int temp;
+	int x;
 
 	i = 0;
-	j = 0;
-	while (i < size - 1)
-	{
-		j = 0;
-		while (j < size - i - 1)
-		{
-			if (tab[j] > tab[j + 1])
-			{
-				temp = tab[j];
-				tab[j] = tab[j + 1];
-				tab[j + 1] = temp;
-			}
-			j++;
-		}
+	x = 0;
+	while (dest[i] != '\0')
 		i++;
+	while (src[x] != '\0')
+	{
+		dest[i] = src[x];
+		i++;
+		x++;
 	}
+	dest[i] = '\0';
+	return (dest);
 }
 
 int 	main(void)
 {
 	// int r;
-	char *t[4] = {"sdfsd","sdfsdfds","44556"};
-	int f[] = {5,7,6,21,45,17};
+	char t[50] = {"sdfsd"};
+	char r[6] = {"44556"};
 
-	sort_int_tab(f, 6);
+	ft_strcat(t, r);
 
-	ft_putnbrtab(f, 6);
+	ft_putstr(t);
 	//ft_print_words_tables(&t[0]);
 	// r = ft_is_prime(4);
 	// ft_putnbr(r);
