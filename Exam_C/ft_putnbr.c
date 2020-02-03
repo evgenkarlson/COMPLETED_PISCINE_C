@@ -16,20 +16,23 @@ void	ft_putchar(char c);
 
 void	ft_putnbr(int nb)
 {
-	unsigned int num;
+	int	temp;
+	int	size;
 
+	size = 1;
 	if (nb < 0)
 	{
-		ft_putchar(45);
-		num = -nb;
+		ft_putchar('-');
+		nb = -nb;
 	}
-	else
-		num = nb;
-	if (num >= 10)
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
 	{
-		ft_putnbr(num / 10);
-		ft_putnbr(num % 10);
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
 	}
-	else
-		ft_putchar(num + '0');
 }
