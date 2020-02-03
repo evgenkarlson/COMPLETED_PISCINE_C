@@ -41,7 +41,7 @@ void	ft_sort_integer_table(int *tab, int size)
 /* ************************************************************************** */
 
 
-void	sort_int_tab(int *tab, unsigned int size)
+void	sort_int_tab(int *tab, int size)
 {
 	int				temp;
 	unsigned int 	i;
