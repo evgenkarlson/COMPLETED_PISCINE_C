@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "stdarg.h": "c",
-        "cstdarg": "c",
-        "stdio.h": "c",
-        "c++config.h": "c",
-        "*.tcc": "c"
-    }
-}
