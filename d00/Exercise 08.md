@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    print_groups.sh                                    :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lkinzel <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/07/04 11:29:27 by lkinzel           #+#    #+#              #
-#    Updated: 2017/07/04 12:07:16 by lkinzel          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
 
  - Create a file called z that returns "Z", followed by a new line, whenever the command cat is used on it.

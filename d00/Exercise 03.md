@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    print_groups.sh                                    :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lkinzel <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/07/04 11:29:27 by lkinzel           #+#    #+#              #
-#    Updated: 2017/07/04 12:07:16 by lkinzel          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
  - Make sure you have a valid (non-expired) Kerberos ticket. If you  don’t have one yet, get one. Once you’ve got at least one Kerberos ticket, write a list of all your tickets into a file named klist.txt
 

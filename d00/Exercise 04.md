@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    print_groups.sh                                    :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lkinzel <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/07/04 11:29:27 by lkinzel           #+#    #+#              #
-#    Updated: 2017/07/04 12:07:16 by lkinzel          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
  - Now that you have a Kerkebos ticket, it’s time to find out who you are! As you may already know, all users at the school are on LDAP: some sort of rudimentary digital phonebook - for those who remember what a phonebook is... In a file called who_am_i.sh, type in the command that will return only the value of the distinguished name.
 

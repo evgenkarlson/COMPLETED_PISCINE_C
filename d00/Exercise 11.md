@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    print_groups.sh                                    :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lkinzel <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/07/04 11:29:27 by lkinzel           #+#    #+#              #
-#    Updated: 2017/07/04 12:07:16 by lkinzel          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
  - Create a magic file called ft_magic that will be formatted appropriately to detect files of 42 file type, built with a "42" string at the 42nd byte.
 

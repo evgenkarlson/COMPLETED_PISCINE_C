@@ -1,14 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    print_groups.sh                                    :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lkinzel <marvin@42.fr>                     +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/07/04 11:29:27 by lkinzel           #+#    #+#              #
-#    Updated: 2017/07/04 12:07:16 by lkinzel          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
 
  - In a file called clean place the command line that will search for all files - in the current directory as well as in its sub-directories - ending by ~, and/or all files that start or end by #. The command line will show and erase all files found. Only one command is allowed: no ’;’ or ’&&’ or other shenanigans.
 
