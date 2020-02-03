@@ -45,9 +45,7 @@ int	main(void)
 {
 	int i;
 	char a;
-	char b;
-
-	b = '\n';
+	
 	i = 57;
 	while (i >= 48)
 	{
@@ -55,7 +53,7 @@ int	main(void)
 		write(1, &a, 1);
 		i--;
 	}
-	write(1, &b, 1);
+	write(1, "\n", 1);
 	return (0);
 }
 

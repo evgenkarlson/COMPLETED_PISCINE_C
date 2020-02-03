@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maff_alpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: exam <jaleman@student.42.us.org>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/01 19:28:35 by jaleman           #+#    #+#             */
-/*   Updated: 2016/09/01 19:31:55 by jaleman          ###   ########.fr       */
+/*   Created: 2016/09/01 19:28:35 by exam              #+#    #+#             */
+/*   Updated: 2016/09/01 19:31:55 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,7 @@ int	main(void)
 {
 	int i;
 	char a;
-	char b;
-
-	b = '\n';
+	
 	i = 0;
 	while (i <= 25)
 	{
@@ -63,7 +61,7 @@ int	main(void)
 			i++;
 		}
 	}
-	write(1, &b, 1);
+	write(1, "\n", 1);
 	return (0);
 }
 
