@@ -148,9 +148,16 @@ char	*ft_strcat(char *dest, char *src)
 	return (dest);
 }
 
-int 	main(void)
-{
-	
 
+int		main(int argc, char **argv)
+{
+	char **thxgcc;
+
+	thxgcc = argv;
+	if (argc == 1) 
+		ft_putchar(48);
+	else
+		ft_putchar(argc - 1 + 48);
+	ft_putchar('\n');
 	return (0);
 }
