@@ -41,7 +41,7 @@ int		main(int argc, char *argv[])
 		{
 			rstr_capitalizer(argv[i]);
 			write(1, "\n", 1);
-			i += 1;
+			i++;
 		}
 	}
 	return (0);
