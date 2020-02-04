@@ -74,9 +74,9 @@ int		main(int argc, char *argv[])
 		while (argv[1][i])
 		{
 			letter = 0;
-			if (argv[1][i] >= 'A' && 'Z' >= argv[1][i])
+			if (argv[1][i] >= 'A' && argv[1][i] <='Z')
 				letter = argv[1][i] - 63;
-			else if (argv[1][i] >= 'a' && 'z' >= argv[1][i])
+			else if (argv[1][i] >= 'a' && argv[1][i] <= 'z')
             {
 				letter = argv[1][i] - 95;
 				while (--letter)
