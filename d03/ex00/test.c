@@ -24,7 +24,7 @@ void	ft_putnbr(int nb)     		 /* Функция вывода числа */
 	temp = nb;
 	while (size)
 	{
-		ft_putchar((char)((temp / size)) + '0');
+		ft_putchar((char)(temp / size) + '0');
 		temp %= size;
 		size /= 10;
 	}
