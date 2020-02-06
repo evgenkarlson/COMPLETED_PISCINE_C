@@ -25,14 +25,19 @@ Allowed functions: write
 Write a program that takes a string, and displays this string with exactly one
 space between words, with no spaces or tabs either at the beginning or the end,
 followed by a \n.
+Напишите программу, которая принимает строку и отображает эту строку с ровно одним пробелом между словами, без пробелов и табуляции ни в начале, ни в конце, за которым следует \ n.
 
 A "word" is defined as a part of a string delimited either by spaces/tabs, or
 by the start/end of the string.
+«Слово» определяется как часть строки, разделенная пробелами / табуляцией или началом / концом строки.
 
 If the number of arguments is not 1, or if there are no words to display, the
 program displays \n.
+Если количество аргументов не равно 1 или нет слов для отображения, программа отображает \ n.
 
 Example:
+Пример:
+
 
 $> ./epur_str "vous voyez c'est facile d'afficher la meme chose" | cat -e
 vous voyez c'est facile d'afficher la meme chose$

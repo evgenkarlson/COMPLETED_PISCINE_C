@@ -10,9 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include <unistd.h>
 
-void	ft_putchar(char c);
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 void	ft_putstr(char *str)
 {
@@ -30,7 +33,7 @@ void	ft_print_words_tables(char **tab)
 
 	i = 0;
 	l = 0;
-	while (tab[l] != NULL)
+	while (tab[l] != '\0')
 		l++;
 	while (i < l)
 	{

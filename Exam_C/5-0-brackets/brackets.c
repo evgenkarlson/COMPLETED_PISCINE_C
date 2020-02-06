@@ -26,17 +26,30 @@ Write a program that takes an undefined number of strings in arguments. For each
 argument, the program prints on the standard output "OK" followed by a newline
 if the expression is correctly bracketed, otherwise it prints "Error" followed by
 a newline.
+Напишите программу, которая принимает неопределенное количество строк в
+аргументах. Для каждого аргумента программа выводит на стандартный вывод «OK»,
+ за которым следует символ новой строки, если выражение правильно заключено в
+ скобки, в противном случае выводится «Ошибка», за которым следует символ новой строки.
 
 Symbols considered as 'brackets' are brackets '(' and ')', square brackets '['
 and ']'and braces '{' and '}'. Every other symbols are simply ignored.
+Символы, рассматриваемые как «квадратные скобки», представляют собой квадратные
+скобки «(» и «)», квадратные скобки «[» и «]» и фигурные скобки «{» и «}». Все
+остальные символы просто игнорируются.
 
 An opening bracket must always be closed by the good closing bracket in the
 correct order. A string which not contains any bracket is considered as a
 correctly bracketed string.
+Открывающая скоба всегда должна быть закрыта хорошей закрывающей скобкой в
+​​правильном порядке. Строка, которая не содержит скобок, считается строкой в
+​​правильных скобках.
 
 If there is no arguments, the program must print only a newline.
+Если аргументов нет, программа должна вывести только новую строку.
 
 Examples :
+Примеры :
+
 
 $> ./brackets '(johndoe)' | cat -e
 OK$

@@ -28,6 +28,11 @@ The code will always be valid, with no more than 4096 operations.
 Brainfuck is a minimalist language. It consists of an array of bytes
 (in our case, let's say 2048 bytes) initialized to zero,
 and a pointer to its first byte.
+Напишите программу интерпретатора Brainfuck.
+Исходный код будет указан в качестве первого параметра.
+Код всегда будет действительным, не более 4096 операций.
+Brainfuck - это минималистский язык. Он состоит из массива байтов(в нашем случае,
+скажем, 2048 байтов), инициализированных нулем, и указателя на его первый байт.
 
 Every operator consists of a single character :
 - '>' increment the pointer ;
@@ -37,10 +42,21 @@ Every operator consists of a single character :
 - '.' print the pointed byte on standard output ;
 - '[' go to the matching ']' if the pointed byte is 0 (while start) ;
 - ']' go to the matching '[' if the pointed byte is not 0 (while end).
+Каждый оператор состоит из одного символа:
+- '>' увеличить указатель;
+- «<» уменьшить указатель;
+- '+' увеличить указанный байт;
+- '-' уменьшить указанный байт;
+- '.' вывести указанный байт на стандартный вывод;
+- '[' перейти к соответствующему ']', если указанный байт равен 0 (при запуске);
+- ']' перейти к соответствующему '[', если указанный байт не равен 0 (в конце).
 
 Any other character is a comment.
+Любой другой персонаж - это комментарий.
 
 Examples:
+Примеры:
+
 
 $>./brainfuck "++++++++++[>+++++++>++++++++++>+++>+<<<<-]
 >++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>." | cat -e

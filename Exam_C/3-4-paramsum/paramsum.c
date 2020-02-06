@@ -24,10 +24,15 @@ Allowed functions: write
 
 Write a program that displays the number of arguments passed to it, followed by
 a newline.
+Напишите программу, которая отображает количество аргументов, переданных ей, а затем
+новая строка.
 
 If there are no arguments, just display a 0 followed by a newline.
+Если аргументов нет, просто отобразите 0 с новой строкой.
 
 Example:
+Пример:
+
 
 $>./paramsum 1 2 3 5 7 24
 6

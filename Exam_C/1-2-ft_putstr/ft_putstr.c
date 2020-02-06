@@ -22,11 +22,15 @@ Allowed functions: write
 --------------------------------------------------------------------------------
 
 Write a function that displays a string on the standard output.
+Напишите функцию, которая отображает строку в стандартном выводе.
 
 The pointer passed to the function contains the address of the string's first
 character.
+Указатель, переданный функции, содержит адрес первого символа строки.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 void	ft_putstr(char *str);
 

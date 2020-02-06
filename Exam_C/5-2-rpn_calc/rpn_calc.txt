@@ -6,27 +6,41 @@ Allowed functions: atoi, printf, write, malloc, free
 Write a program that takes a string which contains an equation written in
 Reverse Polish notation (RPN) as its first argument, evaluates the equation, and
 prints the result on the standard output followed by a newline.
+Напишите программу, которая принимает строку, которая содержит уравнение, написанное
+в обратной польской записи (RPN), в качестве первого аргумента, оценивает уравнение
+и печатает результат на стандартном выводе, за которым следует новая строка.
 
 Reverse Polish Notation is a mathematical notation in which every operator
 follows all of its operands. In RPN, every operator encountered evaluates the
 previous 2 operands, and the result of this operation then becomes the first of
 the two operands for the subsequent operator. Operands and operators must be
 spaced by at least one space.
+Обратная польская запись - это математическая запись, в которой каждый оператор
+следует за всеми своими операндами. В RPN каждый встреченный оператор оценивает
+предыдущие 2 операнда, и результат этой операции становится первым из двух
+операндов для последующего оператора. Операнды и операторы должны быть разделены
+хотя бы одним пробелом.
 
 You must implement the following operators : "+", "-", "*", "/", and "%".
+Вы должны реализовать следующие операторы: «+», «-», «*», «/» и «%».
 
 If the string isn't valid or there isn't exactly one argument, you must print
 "Error" on the standard output followed by a newline.
+Если строка недопустима или нет точно одного аргумента, вы должны напечатать
+«Ошибка» на стандартном выводе, за которым следует новая строка.
 
 All the given operands must fit in a "int".
+Все данные операнды должны помещаться в «int».
 
 Examples of formulas converted in RPN:
+Примеры формул, преобразованных в RPN:
 
 3 + 4                   >>    3 4 +
 ((1 * 2) * 3) - 4       >>    1 2 * 3 * 4 -  ou  3 1 2 * * 4 -
 50 * (5 - (10 / 9))     >>    5 10 9 / - 50 *
 
 Here's how to evaluate a formula in RPN:
+Вот как можно оценить формулу в RPN:
 
 1 2 * 3 * 4 -
 2 3 * 4 -
@@ -34,6 +48,7 @@ Here's how to evaluate a formula in RPN:
 2
 
 Or:
+Или:
 
 3 1 2 * * 4 -
 3 2 * 4 -
@@ -41,6 +56,7 @@ Or:
 2
 
 Examples:
+Примеры:
 
 $> ./rpn_calc "1 2 * 3 * 4 +" | cat -e
 10$

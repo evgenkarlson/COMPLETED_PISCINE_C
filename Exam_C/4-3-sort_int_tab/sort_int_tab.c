@@ -22,15 +22,22 @@ Allowed functions:
 --------------------------------------------------------------------------------
 
 Write the following function:
+Напишите следующую функцию:
+
 
 void sort_int_tab(int *tab, unsigned int size);
 
+
 It must sort (in-place) the 'tab' int array, that contains exactly 'size'
 members, in ascending order.
+Он должен отсортировать (на месте) массив int «tab», который содержит
+точно элементы «size», в порядке возрастания.
 
 Doubles must be preserved.
+Двойники должны быть сохранены.
 
 Input is always coherent.
+Ввод всегда последовательный.
 
 
 /* ************************************************************************** */

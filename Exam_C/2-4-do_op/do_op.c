@@ -24,19 +24,33 @@ Allowed functions: atoi, printf, write
 --------------------------------------------------------------------------------
 
 Write a program that takes three strings:
+Напишите программу, которая принимает три строки:
+
 - The first and the third one are representations of base-10 signed integers
   that fit in an int.
+- Первый и третий являются представлениями целых чисел со знаком base-10, которые помещаются в int.
+
 - The second one is an arithmetic operator chosen from: + - * / %
+- Второй - арифметический оператор, выбранный из: + - * /%
+
 
 The program must display the result of the requested arithmetic operation,
 followed by a newline. If the number of parameters is not 3, the program
 just displays a newline.
+Программа должна отображать результат запрошенной арифметической операции,
+за которым следует новая строка. Если количество параметров не равно 3,
+программа просто отображает новую строку.
 
 You can assume the string have no mistakes or extraneous characters. Negative
 numbers, in input or output, will have one and only one leading '-'. The
 result of the operation fits in an int.
+Вы можете предположить, что строка не содержит ошибок или посторонних символов.
+Отрицательные числа на входе или выходе будут иметь один и только один ведущий '-'.
+Результат операции вписывается в int.
 
 Examples:
+Примеры:
+
 
 $> ./do_op "123" "*" 456 | cat -e
 56088$

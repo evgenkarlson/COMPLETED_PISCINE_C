@@ -22,16 +22,21 @@ Allowed functions:
 --------------------------------------------------------------------------------
 
 Write the following function:
+Напишите следующую функцию:
+
 
 int		max(int* tab, unsigned int len);
 
+
 The first parameter is an array of int, the second is the number of elements in
 the array.
+Первый параметр - это массив int, второй - количество элементов в массиве.
 
 The function returns the largest number found in the array.
+Функция возвращает наибольшее число, найденное в массиве.
 
 If the array is empty, the function returns 0.
-
+Если массив пуст, функция возвращает 0.
 
 
 /* ************************************************************************** */

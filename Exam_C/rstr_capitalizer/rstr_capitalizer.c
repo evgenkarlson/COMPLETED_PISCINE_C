@@ -24,13 +24,18 @@ Allowed functions: write
 Write a program that takes one or more strings and, for each argument, puts
 the last character of each word (if it's a letter) in uppercase and the rest
 in lowercase, then displays the result followed by a \n.
+Напишите программу, которая принимает одну или несколько строк и для каждого аргумента помещает последний символ каждого слова (если это буква) в верхний регистр, а остальные - в нижний регистр, а затем отображает результат, сопровождаемый \ n.
 
 A word is a section of string delimited by spaces/tabs or the start/end of the
 string. If a word has a single letter, it must be capitalized.
+Слово - это раздел строки, разделенный пробелами / табуляцией или началом / концом строки. Если слово содержит одну букву, оно должно быть написано заглавными буквами.
 
 If there are no parameters, display \n.
+Если параметров нет, отобразите \ n.
 
 Examples:
+Примеры:
+
 
 $> ./rstr_capitalizer | cat -e
 $

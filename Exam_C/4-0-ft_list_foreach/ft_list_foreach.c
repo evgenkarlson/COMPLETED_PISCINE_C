@@ -23,17 +23,27 @@ Allowed functions:
 
 Write a function that takes a list and a function pointer, and applies this
 function to each element of the list.
+Напишите функцию, которая принимает список и указатель на функцию и применяет эту функцию к каждому элементу списка.
 
 It must be declared as follows:
+Это должно быть объявлено следующим образом:
+
 
 void    ft_list_foreach(t_list *begin_list, void (*f)(void *));
 
+
 The function pointed to by f will be used as follows:
+Функция, на которую указывает f, будет использоваться следующим образом:
+
 
 (*f)(list_ptr->data);
 
+
 You must use the following structure, and turn it in as a file called
 ft_list.h:
+Вы должны использовать следующую структуру и превратить ее в файл с именем
+ft_list.h:
+
 
 typedef struct    s_list
 {

@@ -26,14 +26,23 @@ Write a program that takes one or several strings and, for each argument,
 capitalizes the first character of each word (If it's a letter, obviously),
 puts the rest in lowercase, and displays the result on the standard output,
 followed by a \n.
+Напишите программу, которая принимает одну или несколько строк и, для каждого
+аргумента, заглавные буквы первого символа каждого слова (если это, очевидно,
+буква),помещает остаток в нижний регистр и отображает результат в стандартном
+выводе, после которого следует \ п.
 
 A "word" is defined as a part of a string delimited either by spaces/tabs, or
 by the start/end of the string. If a word only has one letter, it must be
 capitalized.
+«Слово» определяется как часть строки, разделенная пробелами / табуляцией или
+началом / концом строки. Если слово имеет только одну букву, оно должно быть
+написано заглавными буквами.
 
 If there are no arguments, the progam must display \n.
+Если аргументов нет, программа должна отображать \ n.
 
 Example:
+Пример:
 
 $> ./str_capitalizer | cat -e
 $

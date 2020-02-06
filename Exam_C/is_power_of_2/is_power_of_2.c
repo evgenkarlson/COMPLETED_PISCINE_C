@@ -23,10 +23,14 @@ Allowed functions: None
 --------------------------------------------------------------------------------
 
 Write a function that determines if a given number is a power of 2.
+Напишите функцию, которая определяет, является ли данное число степенью 2.
 
 This function returns 1 if the given number is a power of 2, otherwise it returns 0.
+Эта функция возвращает 1, если заданное число является степенью 2, в противном случае возвращает 0.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 int	    is_power_of_2(unsigned int n);
 

@@ -24,13 +24,21 @@ Allowed functions: write
 Write a program that takes two strings and checks whether it's possible to
 write the first string with characters from the second string, while respecting
 the order in which these characters appear in the second string.
+Напишите программу, которая принимает две строки и проверяет, можно ли написать 
+первую строку с символами из второй строки, соблюдая порядок, в котором эти символы
+появляются во второй строке.
 
 If it's possible, the program displays the string, followed by a \n, otherwise
 it simply displays a \n.
+Если это возможно, программа отображает строку, за которой следует \ n, в противном 
+случае просто отображается \ n.
 
 If the number of arguments is not 2, the program displays a \n.
+Если количество аргументов не равно 2, программа отображает \ n.
 
 Examples:
+Примеры:
+
 
 $>./wdmatch "faya" "fgvvfdxcacpolhyghbreda" | cat -e
 faya$

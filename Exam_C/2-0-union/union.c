@@ -24,13 +24,18 @@ Allowed functions: write
 
 Write a program that takes two strings and displays, without doubles, the
 characters that appear in either one of the strings.
+Напишите программу, которая принимает две строки и отображает без двойных символов символы, которые появляются в одной из строк.
 
 The display will be in the order characters appear in the command line, and
 will be followed by a \n.
+Отображение будет в том порядке, в котором символы появляются в командной строке, и за ними последует \ n.
 
 If the number of arguments is not 2, the program displays \n.
+Если количество аргументов не равно 2, программа отображает \ n.
 
 Example:
+Пример:
+
 
 $>./union zpadinton "paqefwtdjetyiytjneytjoeyjnejeyj" | cat -e
 zpadintoqefwjy$

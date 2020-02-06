@@ -24,11 +24,17 @@ Allowed functions: malloc
 
 Write a function that takes a string, splits it into words, and returns them as
 a NULL-terminated array of strings.
+Напишите функцию, которая принимает строку, разбивает ее на слова и возвращает их
+в виде массива строк с нулевым символом в конце.
 
 A "word" is defined as a part of a string delimited either by spaces/tabs/new
 lines, or by the start/end of the string.
+«Слово» определяется как часть строки, разделенная пробелами / табуляциями / новыми 
+строками или началом / концом строки.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 char    **ft_split(char *str);
 

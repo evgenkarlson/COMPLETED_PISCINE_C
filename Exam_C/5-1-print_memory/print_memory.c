@@ -23,8 +23,11 @@ Allowed functions: write
 
 Write a function that takes (const void *addr, size_t size), and displays the
 memory as in the example.
+Напишите функцию, которая принимает (const void * addr, size_t size) и отображает
+память, как в примере.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
 
 void	print_memory(const void *addr, size_t size);
 

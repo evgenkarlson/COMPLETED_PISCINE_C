@@ -24,14 +24,21 @@ Allowed functions: write
 
 Write a program that takes a string and displays it, replacing each of its
 letters by the letter 13 spaces ahead in alphabetical order.
+Напишите программу, которая берет строку и отображает ее, заменяя каждую из
+ее букв на 13 букв вперед в алфавитном порядке.
 
 'z' becomes 'm' and 'Z' becomes 'M'. Case remains unaffected.
+«z» становится «m», а «Z» становится «M». Дело остается без изменений.
 
 The output will be followed by a newline.
+За выходом последует новая строка.
 
 If the number of arguments is not 1, the program displays a newline.
+Если количество аргументов не равно 1, программа отображает новую строку.
 
 Example:
+Пример:
+
 
 $>./rot_13 "abc"
 nop

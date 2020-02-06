@@ -22,13 +22,19 @@ Allowed functions: write
 --------------------------------------------------------------------------------
 
 Write a program that displays a number's multiplication table.
+Напишите программу, которая отображает таблицу умножения чисел.
 
 The parameter will always be a strictly positive number that fits in an int,
 and said number times 9 will also fit in an int.
+Параметр всегда будет строго положительным числом, которое помещается в int,
+и указанное число, умноженное на 9, также будет соответствовать int.
 
 If there are no parameters, the program displays \n.
+Если параметров нет, программа отображает \ n.
 
 Examples:
+Примеры:
+
 
 $>./tab_mult 9
 1 x 9 = 9

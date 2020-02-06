@@ -23,17 +23,27 @@ Allowed functions: None
 
 Write a function that converts the string argument str (base N <= 16)
 to an integer (base 10) and returns it.
+Напишите функцию, которая преобразует строковый аргумент str (основание N <= 16)
+в целое число (основание 10) и возвращает его.
 
 The characters recognized in the input are: 0123456789abcdef
+Символы, распознаваемые на входе: 0123456789abcdef
+
 Those are, of course, to be trimmed according to the requested base. For
 example, base 4 recognizes "0123" and base 16 recognizes "0123456789abcdef".
+Они, конечно, должны быть урезаны в соответствии с запрошенной базой. Например,
+база 4 распознает «0123», а база 16 распознает «0123456789abcdef».
 
 Uppercase letters must also be recognized: "12fdb3" is the same as "12FDB3".
+Прописные буквы также должны распознаваться: «12fdb3» совпадает с «12FDB3».
 
 Minus signs ('-') are interpreted only if they are the first character of the
 string.
+Знаки минус ('-') интерпретируются, только если они являются первым символом строки.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 int	ft_atoi_base(const char *str, int str_base);
 

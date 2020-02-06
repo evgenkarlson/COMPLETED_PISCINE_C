@@ -22,12 +22,18 @@ Allowed functions:
 
 Write a function that takes a byte, swaps its halves (like the example) and
 returns the result.
+Напишите функцию, которая берет байт, меняет свои половины (как в примере) и возвращает результат.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 unsigned char	swap_bits(unsigned char octet);
 
+
 Example:
+Пример:
+
 
   1 byte
 _____________

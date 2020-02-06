@@ -24,10 +24,14 @@ Allowed functions: None
 
 Write a function that converts the string argument str to an integer (type int)
 and returns it.
+Напишите функцию, которая преобразует строковый аргумент str в целое число (тип int) и возвращает его.
 
 It works much like the standard atoi(const char *str) function, see the man.
+Он работает так же, как стандартная функция atoi (const char * str), смотрите man.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 int	ft_atoi(const char *str);
 

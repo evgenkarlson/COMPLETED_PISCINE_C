@@ -24,13 +24,18 @@ Allowed functions: printf, atoi, malloc, free
 
 Write a program that takes two strings representing two strictly positive
 integers that fit in an int.
+Напишите программу, которая принимает две строки, представляющие два строго положительных целых числа, которые помещаются в int.
 
 Display their highest common denominator followed by a newline (It's always a
 strictly positive integer).
+Покажите их наибольший общий знаменатель, за которым следует новая строка (это всегда строго положительное целое число)
 
 If the number of parameters is not 2, display a newline.
+Если количество параметров не равно 2, отобразите новую строку.
 
 Examples:
+Примеры:
+
 
 $> ./pgcd 42 10 | cat -e
 2$

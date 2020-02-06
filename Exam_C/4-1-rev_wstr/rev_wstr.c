@@ -24,18 +24,27 @@ Allowed functions: write, malloc, free
 
 Write a program that takes a string as a parameter, and prints its words in
 reverse order.
+Напишите программу, которая принимает строку в качестве параметра и
+печатает ее слова в обратном порядке.
 
 A "word" is a part of the string bounded by spaces and/or tabs, or the
 begin/end of the string.
+«Слово» - это часть строки, ограниченная пробелами и / или символами
+табуляции, или начало / конец строки.
 
-If the number of parameters is different from 1, the program will display
-'\n'.
+If the number of parameters is different from 1, the program will display '\n'.
+Если количество параметров отличается от 1, программа отобразит '\n'.
 
 In the parameters that are going to be tested, there won't be any "additional"
 spaces (meaning that there won't be additionnal spaces at the beginning or at
 the end of the string, and words will always be separated by exactly one space).
+В параметрах, которые будут проверяться, не будет никаких «дополнительных»
+пробелов (это означает, что в начале или в конце строки не будет дополнительных
+пробелов, а слова всегда будут разделены ровно одним Космос).
 
 Examples:
+Примеры:
+
 
 $> ./rev_wstr "le temps du mepris precede celui de l'indifference" | cat -e
 l'indifference de celui precede mepris du temps le$

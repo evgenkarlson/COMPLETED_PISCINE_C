@@ -24,12 +24,17 @@ Allowed functions: write
 
 Write a function that takes a byte, and prints it in binary WITHOUT A NEWLINE
 AT THE END.
+Напишите функцию, которая берет байт и печатает его в двоичном формате БЕЗ НОВОЙ ЛИНИИ В КОНЦЕ.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 void	print_bits(unsigned char octet);
 
+
 Example, if you pass 2 to print_bits, it will print "00000010"
+Например, если вы передадите 2 в print_bits, будет напечатано «00000010»
 
 
 /* ************************************************************************** */

@@ -21,13 +21,18 @@ Allowed functions: write
 --------------------------------------------------------------------------------
 
 Write a program that takes a string and displays its last word followed by a \n.
+Напишите программу, которая принимает строку и отображает ее последнее слово, за которым следует \ n.
 
 A word is a section of string delimited by spaces/tabs or by the start/end of
 the string.
+Слово - это раздел строки, разделенный пробелами / табуляцией или началом / концом строки.
 
 If the number of parameters is not 1, or there are no words, display a newline.
+Если количество параметров не равно 1 или нет слов, отобразите новую строку.
 
 Example:
+Пример:
+
 
 $> ./last_word "FOR PONY" | cat -e
 PONY$

@@ -23,12 +23,20 @@ Allowed functions: write
 
 Write a program that takes a string and reverses the case of all its letters.
 Other characters remain unchanged.
+Напишите программу, которая принимает строку и меняет регистр всех ее букв.
+Другие персонажи остаются без изменений.
 
 You must display the result followed by a '\n'.
+Вы должны отобразить результат, за которым следует '\ n'.
 
 If the number of arguments is not 1, the program displays '\n'.
+Если количество аргументов не равно 1, программа отображает '\ n'.
+
+
+
 
 Examples :
+Примеры :
 
 $>./ulstr "L'eSPrit nE peUt plUs pRogResSer s'Il staGne et sI peRsIsTent VAnIte et auto-justification." | cat -e
 l'EspRIT Ne PEuT PLuS PrOGrESsER S'iL STAgNE ET Si PErSiStENT vaNiTE ET AUTO-JUSTIFICATION.$

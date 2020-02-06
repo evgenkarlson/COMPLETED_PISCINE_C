@@ -24,13 +24,20 @@ Allowed functions:
 
 Write a function that returns the number of elements in the linked list that's
 passed to it.
+Напишите функцию, которая возвращает количество элементов в связанном списке, который ему передан.
 
 It must be declared as follows:
+Это должно быть объявлено следующим образом:
+
 
 int	ft_list_size(t_list *begin_list);
 
+
 You must use the following structure, and turn it in as a file called
 ft_list.h:
+Вы должны использовать следующую структуру и превратить ее в файл с именем
+ft_list.h:
+
 
 typedef struct    s_list
 {

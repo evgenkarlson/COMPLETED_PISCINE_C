@@ -24,8 +24,11 @@ Allowed functions: malloc
 --------------------------------------------------------------------------------
 
 Reproduce the behavior of the function strdup (man strdup).
+Воспроизведите поведение функции strdup (man strdup).
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
+
 
 char    *ft_strdup(char *src);
 

@@ -23,10 +23,15 @@ Allowed functions: write
 
 Write a program that takes a positive (or zero) number expressed in base 10,
 and displays it in base 16 (lowercase letters) followed by a newline.
+Напишите программу, которая принимает положительное (или нулевое) число, 
+выраженное в базе 10, и отображает ее в базе 16 (строчные буквы), за которой следует новая строка.
 
 If the number of parameters is not 1, the program displays a newline.
+Если количество параметров не равно 1, программа отображает новую строку.
 
 Examples:
+Примеры:
+
 
 $> ./print_hex "10" | cat -e
 a$

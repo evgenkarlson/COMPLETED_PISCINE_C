@@ -24,14 +24,24 @@ Allowed functions: write
 Write a program named hidenp that takes two strings and displays 1
 followed by a newline if the first string is hidden in the second one,
 otherwise displays 0 followed by a newline.
+Напишите программу с именем hidenp, которая принимает две строки и отображает 1,
+за которым следует новая строка, если первая строка скрыта во второй, в противном
+случае отображается 0, за которой следует новая строка.
 
 Let s1 and s2 be strings. We say that s1 is hidden in s2 if it's possible to
 find each character from s1 in s2, in the same order as they appear in s1.
+Пусть s1 и s2 - строки. Мы говорим, что s1 скрыт в s2, если можно найти каждый 
+символ из s1 в s2, в том же порядке, в каком они появляются в s1.
+
 Also, the empty string is hidden in any string.
+Также пустая строка скрыта в любой строке.
 
 If the number of parameters is not 2, the program displays a newline.
+Если количество параметров не равно 2, программа отображает новую строку.
 
 Examples :
+Примеры :
+
 
 $>./hidenp "fgex.;" "tyf34gdgf;'ektufjhgdgex.;.;rtjynur6" | cat -e
 1$

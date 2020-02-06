@@ -23,8 +23,11 @@ Allowed functions: malloc
 
 Write a function that takes an int and converts it to a null-terminated string.
 The function returns the result in a char array that you must allocate.
+Напишите функцию, которая принимает int и преобразует его в строку с нулевымсимволом
+в конце. Функция возвращает результат в массиве char, который вы должны выделить.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
 
 char	*ft_itoa(int nbr);
 

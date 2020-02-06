@@ -22,10 +22,13 @@ Allowed functions:
 --------------------------------------------------------------------------------
 
 Write a function that reverses (in-place) a string.
+Напишите функцию, которая переворачивает (на месте) строку.
 
 It must return its parameter.
+Он должен вернуть свой параметр.
 
 Your function must be declared as follows:
+Ваша функция должна быть объявлена ​​следующим образом:
 
 char    *ft_strrev(char *str);
 
