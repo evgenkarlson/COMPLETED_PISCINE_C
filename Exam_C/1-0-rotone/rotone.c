@@ -23,14 +23,19 @@ Allowed functions: write
 
 Write a program that takes a string and displays it, replacing each of its
 letters by the next one in alphabetical order.
-
 'z' becomes 'a' and 'Z' becomes 'A'. Case remains unaffected.
-
 The output will be followed by a \n.
+	Напишите программу, которая берет строку и отображает ее, заменяя каждую
+из ее букв на следующую в алфавитном порядке.
+«z» становится «a», а «Z» становится «A». Дело остается без изменений.
+За выходом последует \ n.
+
 
 If the number of arguments is not 1, the program displays \n.
+Если количество аргументов не равно 1, программа отображает \ n.
 
 Example:
+Пример:
 
 $>./rotone "abc"
 bcd

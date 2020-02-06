@@ -23,10 +23,14 @@ Allowed functions: write
 
 Write a program that takes a string, and displays the string in reverse
 followed by a newline.
+	Напишите программу, которая принимает строку и отображает строку в обратном
+порядке, за которой следует новая строка.
 
 If the number of parameters is not 1, the program displays a newline.
+Если количество параметров не равно 1, программа отображает новую строку.
 
 Examples:
+Примеры:
 
 $> ./rev_print "zaz" | cat -e
 zaz$
