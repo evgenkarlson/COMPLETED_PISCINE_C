@@ -1,3 +1,8 @@
+/*
+git add .
+git commit -m "Ecole42"
+git push -u ssh master
+*/
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 
 #include <unistd.h>
