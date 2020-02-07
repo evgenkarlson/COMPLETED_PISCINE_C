@@ -21,13 +21,6 @@
 Create a function that returns the next prime number greater or equal to the number given as argument.
 Создайте функцию, которая возвращает следующее простое число, большее или равное числу, указанному в качестве аргумента.
 
-Here’s how it should be prototyped :
-Вот как это должно быть прототипировано:
-
-
-int ft_find_next_prime (int nb);
-
-
 Your function must return its result in less than two seconds.
 Ваша функция должна вернуть свой результат менее чем за две секунды.
 
