@@ -35,13 +35,13 @@ void    ft_putchar(char c);
 
 void	ft_putstr(char *str)
 {
-	int	counter;
+	int	i;
 
-	counter = 0;
-	while (str[counter])
+	i = 0;
+	while (str[i])
 	{
-		ft_putchar(str[counter]);
-		counter++;
+		ft_putchar(str[i]);
+		i++;
 	}
 }
 
