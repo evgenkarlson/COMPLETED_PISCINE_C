@@ -19,7 +19,7 @@
 This function divides parameters a by b and stores the result in the int pointed
 by div. It also stores the remainder of the division of a by b in the int pointed
 by mod.
-Эта функция делит параметров а, B и сохраняет результат в переменной типа int,
+Эта функция делит параметров а, b и сохраняет результат в переменной типа int,
 на который указывает элемент div. Он также хранит остаток деления a на b в int,
 указанном mod.
 
