@@ -42,33 +42,45 @@ void	ft_putstr(char *str)
 	}
 }
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+char	*ft_strstr(char *str, char *to_find)
 {
-	unsigned int i;
+	int	i;
+	int	z;
+	int	to_find_size;
 
 	i = 0;
-	while ((src[i] != '\0') && (i < n))
+	z = 0;
+	to_find_size = 0;
+	while (to_find[to_find_size])
+		to_find_size++;
+	if (to_find_size == 0)
+		return (str);
+	while (str[i])
 	{
-		dest[i] = src[i];
+		while (to_find[z] == str[i + z])
+		{
+			if (z == to_find_size - 1)
+				return (str + i);
+			z++;
+		}
+		z = 0;
 		i++;
 	}
-	while ((dest[i] != '\0') && (i < n))
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+	return (0);
 }
 
 
 int 	main(void)
 {
-	char	r[] = {"Fuck.Fuck.Fuck.Fuck"};
-	char	t[20];
+	char	r[] = {"Fuckin.Good.day.coming"};
+	char	t[20] = {"Good"};
 	char	*p;
 
 
-	p = ft_strncpy(t, r, 20);
+	p = ft_strstr(r, "Good"); 	/* Написать строку в двойных кавычка в аргументах где ожидается адресс массива
+								тоже можно!
+								Всё потому что перед передачей строки в функцию компилятор выделяет для нее 
+								память и уже сам меняет саму эту строку на адрес который хранит строку "Good" */
 
 	ft_putstr(p);
 	return 0;

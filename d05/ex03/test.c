@@ -66,7 +66,7 @@ char	*ft_strcpy(char *dest, char *src)
 
 int 	main(void)
 {
-	char	r[] = {"hello"};
+	char	r[] = {"Fuck"};
 	char	t[7];
 	char	*p;
 
