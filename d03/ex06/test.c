@@ -77,13 +77,13 @@ int		ft_strlen(char *str)
 
 int 	main(void)
 {	
-	int lenght;
+	int lenght;					
 
 	char t[] = {"Hello\n"};
 
 	lenght = ft_strlen(t);
 
-	ft_putstr(lenght);
+	ft_putnbr(lenght);
 
 	return 0;
 }
