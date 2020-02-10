@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evgenkarlson <marvin@42.fr>                +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/08/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2013/08/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 /*	команда для компиляции и одновременного запуска                           */
@@ -28,6 +28,18 @@ int		ft_putchar(char c)
 	write(1, &c, 1);
 
 	return (0);
+}
+
+void	ft_putstr(char *str)		
+{
+	int	i;						
+
+	i = 0;						
+	while (str[i] != '\0')		
+	{
+		ft_putchar(str[i]);		
+		i++;					
+	}
 }
 
 void	ft_putnbr(int nb)
