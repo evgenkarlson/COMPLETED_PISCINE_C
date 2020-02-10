@@ -19,7 +19,7 @@
 
 #include <unistd.h>
 
-int 	ft_putchar(char n)				/* функция вывода символа */
+int 	ft_putchar(char c)				/* функция вывода символа */
 {
 	write(1, &c, 1);
 
