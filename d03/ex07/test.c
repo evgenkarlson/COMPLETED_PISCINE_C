@@ -73,8 +73,8 @@ char		*ft_strrev(char *str)
 
 int 	main(void)
 {
-	char *p;
-	char i[] = {"54321"};
+	char	*p;
+	char	i[] = {"54321"};
 
 	p = ft_strrev(i);
 	ft_put_arr_char(p);

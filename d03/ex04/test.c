@@ -38,6 +38,11 @@ void	ft_putnbr(int nb)     		 /* Функция вывода числа */
 		ft_putchar('-');
 		nb = -nb;
 	}
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
 	temp = nb;
 	while ((temp /= 10) > 0)
 		size *= 10;

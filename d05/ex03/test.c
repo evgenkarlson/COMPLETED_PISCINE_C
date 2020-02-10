@@ -66,12 +66,13 @@ char	*ft_strcpy(char *dest, char *src)
 
 int 	main(void)
 {
-	char r[] = {"hello"};
-	char t[7];
+	char	r[] = {"hello"};
+	char	t[7];
+	char	*p;
 
 
-	ft_strcpy(t, r);
+	p = ft_strcpy(t, r);
 
-	ft_putstr(t);
+	ft_putstr(p);
 	return 0;
 }

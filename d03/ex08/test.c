@@ -43,6 +43,11 @@ void	ft_putnbr(int nb)
 		ft_putchar('-');
 		nb = -nb;
 	}
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
 	temp = nb;
 	while ((temp /= 10) > 0)
 		size *= 10;
@@ -94,8 +99,9 @@ int		ft_atoi(char *str)
 
 int 	main(void)
 {
-	int i;
-	char n[] = {"54321"};
+	int		i;
+	char	n[] = {"54321"};
+
 	i = ft_atoi(n);
 	ft_putnbr(i);
 	return (0);
