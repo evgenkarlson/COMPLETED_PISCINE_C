@@ -23,14 +23,24 @@ int		ft_putchar(char c);
 
 void	ft_putnbr(int nb)
 {
-	if (nb >= 10)
+	int	temp;
+	int	size;
+
+	size = 1;
+	if (nb < 0)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putchar('-');
+		nb = -nb;
 	}
-	else
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
 	{
-		ft_putchar(nb + '0');
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
 	}
 }
 
