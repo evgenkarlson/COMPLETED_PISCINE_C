@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colle01.c                                          :+:      :+:    :+:   */
+/*   rush04.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcourtia <mcourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,7 +40,7 @@ void	firstline(int ix, int x)
 		ft_putchar('B');
 }
 
-void	colle(int x, int y)
+void	rush(int x, int y)
 {
 	int ix;
 	int iy;
