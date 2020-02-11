@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rush00.c                                           :+:      :+:    :+:   */
+/*   rush02.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -29,19 +29,22 @@ int		ft_putchar(char c)
 	return (0);
 }
 
-void	ft_print_line(int width, char begin_and_end_symbol, char middle_symbol)
+void	ft_print_line(int width, char begin_symbol, char middle_symbol, char end_symbol)
 {
 	int		i;
 	
 	i = 1;
 	while(i <= width)
 	{
-		if(i == 1 || i == width)
-			ft_putchar(begin_and_end_symbol);
-		else
+		if(i == 1 )
+			ft_putchar(begin_symbol);
+		if(i <= (width -1))
 			ft_putchar(middle_symbol);
+		if(i == width)
+			ft_putchar(end_symbol);
 		i++;
 	}
+	ft_putchar('\n');
 }
 
 void	rush(int x, int y)
@@ -51,18 +54,19 @@ void	rush(int x, int y)
 	i = 1;
 	while(i <= y)
 	{
-		if (i == 1 || i == y)
-			ft_print_line(x, 'o', '-');
-		else
-			ft_print_line(x, '|', ' ');
-		ft_putchar('\n');
+		if (i == 1)
+			ft_print_line(x, 'o', '-', 'o');
+		if(i <= (y - 1))
+			ft_print_line(x, '|', ' ', '|');
+		if(i == y)
+			ft_print_line(x, 'o', '-', 'o');
 		i++;
 	}
 }
 
 int		main(void)
 {
-	rush(5, 3);
+	rush(12, 6);
 	
 	return (0);
 }
