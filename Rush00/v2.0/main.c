@@ -18,7 +18,7 @@ int		jp_putchar(char c)
 	return (0);
 }
 
-void	colle(int x, int y);
+void	rush(int x, int y);
 
 int		col_atoi(char *str)
 {
@@ -45,6 +45,6 @@ int		col_atoi(char *str)
 int		main(int argc, char **argv)
 {
 	if (argc == 3)
-		colle(col_atoi(argv[1]), col_atoi(argv[2]));
+		rush(col_atoi(argv[1]), col_atoi(argv[2]));
 	return (0);
 }

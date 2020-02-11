@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colle02.c                                          :+:      :+:    :+:   */
+/*   rush02.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,7 +13,7 @@
 int		jp_putchar(char c);
 void	jp_hd_ft(char d, char m, char f, int l);
 
-void	colle(int x, int y)
+void	rush(int x, int y)
 {
 	int i;
 
