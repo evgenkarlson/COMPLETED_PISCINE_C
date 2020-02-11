@@ -3,24 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/16 22:45:16 by jaleman           #+#    #+#             */
-/*   Updated: 2016/08/16 22:45:17 by jaleman          ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_strcmp(char *s1, char *s2)
-{
-	int	i;
 
-	i = 0;
-	while (s1[i] || s2[i])
+int		ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && (*s1 == *s2))
 	{
-		if (s1[i] < s2[i])
-			return (-1);
-		if (s1[i] > s2[i])
-			return (1);
-		i++;
+		s1 += 1;
+		s2 += 1;
 	}
-	return (0);
+	return (*(unsigned char *)s1 - *(unsigned char *)s2);
 }
+
