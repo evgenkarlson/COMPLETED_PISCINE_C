@@ -14,20 +14,7 @@
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
 
-
-#include <unistd.h>
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-int		ft_putchar(char c)
-{
-	write(1, &c, 1);
-
-	return (0);
-}
+int		ft_putchar(char c);
 
 void	ft_print_line(int width, char begin_symbol, char middle_symbol, char end_symbol)
 {
@@ -62,12 +49,5 @@ void	rush(int x, int y)
 		ft_putchar('\n');
 		i++;
 	}
-}
-
-int		main(void)
-{
-	rush(12, 6);
-	
-	return (0);
 }
 
