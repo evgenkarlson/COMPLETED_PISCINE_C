@@ -40,28 +40,16 @@ void	ft_putstr(char *str)
 		i++;					
 	}
 }
-char	*ft_strcapitalize(char *str)
+
+char	*ft_strupcase(char *str)
 {
-	int		i;
-	char	c;
-	int		space;
+	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		space = 1;
-		if (i == 0)
-			c = ';';
-		else
-			c = str[i - 1];
-		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-			space = 0;
-		if (c >= '0' && c <= '9')
-			space = 0;
-		if (space == 1 && str[i] >= 'a' && str[i] <= 122)
+		if ((str[i] >= 'a') && (str[i] <= 'z'))
 			str[i] = str[i] - 32;
-		if (space == 0 && str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
 		i++;
 	}
 	return (str);
@@ -69,11 +57,11 @@ char	*ft_strcapitalize(char *str)
 
 int 	main(void)
 {
-	char	r[] = {"welcome to hogwarts\n"};
+	char	r[] = {"go hard\n"};
 	char	*p;
 
 
-	p = ft_strcapitalize(r);
+	p = ft_strupcase(r); 	
     ft_putstr(p);
 
 	return 0;

@@ -76,7 +76,7 @@ char	*ft_strstr(char *str, char *to_find)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-char		*ft_strstr(char *str, char *to_find)
+char	*ft_strstr(char *str, char *to_find)
 {
 	char	*a;
 	char	*b;
