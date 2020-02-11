@@ -44,7 +44,6 @@ void	ft_print_line(int width, char begin_symbol, char middle_symbol, char end_sy
 			ft_putchar(end_symbol);
 		i++;
 	}
-	ft_putchar('\n');
 }
 
 void	rush(int x, int y)
@@ -60,6 +59,7 @@ void	rush(int x, int y)
 			ft_print_line(x, '*', ' ', '*');
 		if(i == y)
 			ft_print_line(x, '\\', '*', '/');
+		ft_putchar('\n');
 		i++;
 	}
 }
