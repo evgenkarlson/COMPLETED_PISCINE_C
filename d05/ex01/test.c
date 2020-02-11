@@ -98,5 +98,5 @@ int 	main(void)
 {	
 	ft_putnbr(345);					/* тестим эту функцию */
 
-	return 0;
+	return (0);
 }

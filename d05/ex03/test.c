@@ -74,5 +74,5 @@ int 	main(void)
 	p = ft_strcpy(t, r);
 
 	ft_putstr(p);
-	return 0;
+	return (0);
 }

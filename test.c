@@ -29,53 +29,43 @@ int		ft_putchar(char c)
 	return (0);
 }
 
-void	ft_putstr(char *str)		
+void	ft_print_manager(int x, char startchar, char midchar, char endchar)
 {
-	int	i;						
-
-	i = 0;						
-	while (str[i] != '\0')		
+	ft_putchar(startchar);
+	while ((x - 1) > 1)
 	{
-		ft_putchar(str[i]);		
-		i++;					
+		ft_putchar(midchar);
+		x--;
 	}
-}
-char	*ft_strcapitalize(char *str)
-{
-	int		i;
-	char	c;
-	int		space;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		space = 1;
-		if (i == 0)
-			c = ';';
-		else
-			c = str[i - 1];
-		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-			space = 0;
-		if (c >= '0' && c <= '9')
-			space = 0;
-		if (space == 1 && str[i] >= 'a' && str[i] <= 122)
-			str[i] = str[i] - 32;
-		if (space == 0 && str[i] >= 'A' && str[i] <= 'Z')
-			str[i] = str[i] + 32;
-		i++;
-	}
-	return (str);
+	if (x > 1)
+		ft_putchar(endchar);
+	ft_putchar('\n');
 }
 
-int 	main(void)
+void	rush(int x, int y)
 {
-	char	r[] = {"welcome to hogwarts\n"};
-	char	*p;
+	if (x > 0 && y > 0)
+	{
+		ft_print_manager(x, 'o', '-', 'o');
+		y--;
+		while (y > 1)
+		{
+			ft_print_manager(x, '|', ' ', '|');
+			y--;
+		}
+		if (y > 0)
+			ft_print_manager(x, 'o', '-', 'o');
+	}
+	return ;
+}
 
-
-	p = ft_strcapitalize(r);
-    ft_putstr(p);
-
-	return 0;
+int		main(void)
+{
+	rush(5, 3);
+	rush(5, 1);
+	rush(1, 1);
+	rush(1, 5);
+	rush(4, 4);
+	return (0);
 }
 

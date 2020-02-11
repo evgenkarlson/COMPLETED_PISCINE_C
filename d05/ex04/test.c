@@ -71,6 +71,6 @@ int 	main(void)
 	p = ft_strncpy(t, r, 20);
 
 	ft_putstr(p);
-	return 0;
+	return (0);
 }
 
