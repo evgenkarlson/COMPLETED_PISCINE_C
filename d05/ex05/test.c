@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -73,7 +73,6 @@ char	*ft_strstr(char *str, char *to_find)
 int 	main(void)
 {
 	char	r[] = {"Fuckin.Good.day.coming"};
-	char	t[20] = {"Good"};
 	char	*p;
 
 

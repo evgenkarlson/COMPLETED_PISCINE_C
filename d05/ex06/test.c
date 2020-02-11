@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -42,35 +42,35 @@ void	ft_putstr(char *str)
 	}
 }
 
-char	*ft_strncpy(char *dest, char *src, unsigned int n)
+int	ft_strcmp(char *s1, char *s2)
 {
-	unsigned int i;
+	int	i;
 
 	i = 0;
-	while ((src[i] != '\0') && (i < n))
+	while (s1[i] || s2[i])
 	{
-		dest[i] = src[i];
+		if (s1[i] < s2[i])
+			return (-1);
+		if (s1[i] > s2[i])
+			return (1);
 		i++;
 	}
-	while ((dest[i] != '\0') && (i < n))
-	{
-		dest[i] = '\0';
-		i++;
-	}
-	return (dest);
+	return (0);
 }
 
 
 int 	main(void)
 {
-	char	r[] = {"Fuck.Fuck.Fuck.Fuck"};
-	char	t[20];
-	char	*p;
+   // Сравниваемые строки
+   char str1[] = {"1234567890"};
+   char str2[] = {"1234577890"};
+  
+   // Сравниваем первые пять символов двух строк
+   if (ft_strcmp(str1, str2) == 0)
+      ft_putstr("строки идентичны");
+   else
+      ft_putstr("строки отличаются");
 
-
-	p = ft_strncpy(t, r, 20);
-
-	ft_putstr(p);
-	return 0;
+   return (0);
 }
 
