@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,7 +14,11 @@
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
 
-
+/* 
+ * В примере в строке «Fuckin.Good.day.coming», с помощью функции ft_strstr, ищется
+ * первое вхождение строки: «Good». На консоль выводится номер первого элемента 
+ * найденной строки.
+ */
 
 #include <unistd.h>
 
@@ -30,6 +34,34 @@ int		ft_putchar(char c)
 	return (0);
 }
 
+void	ft_putnbr(int nb)
+{
+	int	temp;
+	int	size;
+
+	size = 1;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
+	{
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
+	}
+}
+
 void	ft_putstr(char *str)		
 {
 	int	i;						
@@ -42,17 +74,28 @@ void	ft_putstr(char *str)
 	}
 }
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+char	*ft_strstr(char *str, char *to_find)
 {
-	unsigned int	i;
+	int	i;
+	int	z;
+	int	to_find_size;
 
 	i = 0;
-	while ((s1[i] || s2[i]) && (i < n))
+	z = 0;
+	to_find_size = 0;
+	while (to_find[to_find_size])
+		to_find_size++;
+	if (to_find_size == 0)
+		return (str);
+	while (str[i])
 	{
-		if (s1[i] < s2[i])
-			return (-1);
-		if (s1[i] > s2[i])
-			return (1);
+		while (to_find[z] == str[i + z])
+		{
+			if (z == to_find_size - 1)
+				return (str + i);
+			z++;
+		}
+		z = 0;
 		i++;
 	}
 	return (0);
@@ -61,16 +104,26 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 
 int 	main(void)
 {
-   // Сравниваемые строки
-   char str1[] = {"1234567890"};
-   char str2[] = {"1234467890"};
-  
-   // Сравниваем первые пять символов двух строк
-   if (ft_strncmp(str1, str2, 5) == 0)
-      ft_putstr("Первые пять символов строк идентичны");
-   else
-      ft_putstr("Первые пять символов строк отличаются");
+	char	r[] = {"Fuckin.Good.day.coming"};
+	char	*p;
 
-   return (0);
+
+	p = ft_strstr(r, "Good"); 	/* Написать строку в двойных кавычка в аргументах где ожидается адресс массива
+								 * тоже можно!
+								 * Всё потому что перед передачей строки в функцию компилятор выделяет для нее 
+								 * память и уже сам меняет саму эту строку на адрес который хранит строку "Good" 
+								 */
+
+
+	if ( p == NULL)
+    	ft_putstr("Строка не найдена\n");
+   else
+    {
+		ft_putstr("Искомая строка начинается с символа: ");
+		ft_putnbr(p - r + 1);	/* Так вычислем позицию первого элемента найденной строки. */
+		ft_putchar('\n');
+	}
+
+	return 0;
 }
 

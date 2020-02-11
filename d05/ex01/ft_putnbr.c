@@ -10,9 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* - Create a function that displays the number entered as a parameter. The function has to be able to display all possible values within an int type variable. */
+/* - Create a function that displays the number entered as a parameter. 
+The function has to be able to display all possible values within an int type 
+variable. */
 
-/* - Создайте функцию, которая отображает число, введенное в качестве параметра. Функция должна иметь возможность отображать все возможные значения в переменной типа int. */
+/* - Создайте функцию, которая отображает число, введенное в качестве параметра.
+ Функция должна иметь возможность отображать все возможные значения в переменной 
+ типа int. */
 
 
 /* - Скомпилируй файл тест. В нем можно увидеть как работает эта функция вживую */
