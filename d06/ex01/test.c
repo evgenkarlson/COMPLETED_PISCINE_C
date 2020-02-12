@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_print_program_name.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -28,13 +28,16 @@ int		ft_putchar(char c)
 	return (0);
 }
 
-int 	main(int argc, char *argv[])
+int     main(int argc, char **argv)
 {
-	while (*argv[0] != '\0')
+	int	i;
+
+	i = 0;
+	argc = 0;
+	while (argv[0][i])
 	{
-		ft_putchar(*argv[0]);
-		*argv[0]++;
+		ft_putchar(argv[0][i]);
+		i++;
 	}
-	ft_putchar('\n');
 	return (0);
 }

@@ -82,7 +82,6 @@ char		*ft_strrev(char *str)
 	while (++i < --l)
 	{
 		t = str[i];
-		str[i] = str[l];
 		str[l] = t;
 	}
 	return (str);
