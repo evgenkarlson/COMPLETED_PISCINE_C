@@ -33,9 +33,9 @@ int	main(int argc, char **argv)
 	int	i;
 	int	z;
 
-	i = argc - 1;
+	i = 1;
 	z = 0;
-	while (i > 0)
+	while (i < argc)
 	{
 		while (argv[i][z])
 		{
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 		}
 		ft_putchar('\n');
 		z = 0;
-		i--;
+		i++;
 	}
 	return (0);
 }
