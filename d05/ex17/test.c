@@ -62,34 +62,13 @@ char	*ft_strncat(char *dest, char *src, int nb)
 }
 
 
-int		ft_strlcat(char *dest, char *src, unsigned int size)
-{
-	int				i;
-	unsigned int	dest_size;
-
-	i = 0;
-	dest_size = 0;
-	while (dest[dest_size])
-		dest_size++;
-	while (src[i])
-	{
-		if (dest_size < size - 1)
-			dest[dest_size] = src[i];
-		dest_size++;
-		i++;
-	}
-	dest[dest_size - 1] = '\0';
-	return (dest_size);
-}
-
-
 
 int 	main(void)
 {
 	char	r[] = {"muther_fucker_fucking_fuck\n"};
 	char	t[20] = {"Hello "};
 
-	ft_strlcat(t, r, 10);
+	ft_strncat(t, r, 12);
 	ft_putstr(t);
 	return 0;
 }

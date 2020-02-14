@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -42,55 +42,37 @@ void	ft_putstr(char *str)
 }
 
 
-char	*ft_strncat(char *dest, char *src, int nb)
+int	iss_printable(char c)
 {
-	int		i;
-	int		dest_size;
-
-	i = 0;
-	dest_size = 0;
-	while (dest[dest_size])
-		dest_size++;
-	while (i < nb && src[i])
-	{
-		dest[dest_size] = src[i];
-		dest_size++;
-		i++;
-	}
-	dest[dest_size] = '\0';
-	return (dest);
+	if ((c >= 32) && (c <= 126))
+		return (1);
+	return (0);
 }
 
-
-int		ft_strlcat(char *dest, char *src, unsigned int size)
+int	ft_str_is_printable(char *str)
 {
-	int				i;
-	unsigned int	dest_size;
+	int	i;
 
 	i = 0;
-	dest_size = 0;
-	while (dest[dest_size])
-		dest_size++;
-	while (src[i])
+	while (str[i])
 	{
-		if (dest_size < size - 1)
-			dest[dest_size] = src[i];
-		dest_size++;
+		if (!(iss_printable(str[i])))
+			return (0);
 		i++;
 	}
-	dest[dest_size - 1] = '\0';
-	return (dest_size);
+	return (1);
 }
-
-
 
 int 	main(void)
 {
-	char	r[] = {"muther_fucker_fucking_fuck\n"};
-	char	t[20] = {"Hello "};
+	char	r[] = {"? %-$_#"};
+	int		i;
 
-	ft_strlcat(t, r, 10);
-	ft_putstr(t);
+	i = ft_str_is_printable(r);
+    if (i == 1)
+		ft_putstr("строка содержит только печатные символы");
+	else
+		ft_putstr("строка содержит любой другой символ");
 	return 0;
 }
 
