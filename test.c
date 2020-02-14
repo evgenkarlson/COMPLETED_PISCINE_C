@@ -64,7 +64,7 @@ int 	main(void)
 	char	r[] = {"muther_fucker_fucking_fuck\n"};
 	char	t[20] = {"Hello "};
 
-	ft_strlcat(t, r, 20);
+	ft_strlcpy(t, r, 20);
 	ft_putstr(t);
 	return 0;
 }
