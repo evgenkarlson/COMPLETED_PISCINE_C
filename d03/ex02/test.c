@@ -20,11 +20,9 @@
 
 #include <unistd.h>
 
-int 	ft_putchar(char n)		/* функция вывода символа */
+void	ft_putchar(char c)			/* функция вывода символа */
 {
-	write(1, &n, 1);
-
-	return (0);
+	write(1, &c, 1);
 }
 
 void	ft_putnbr(int nb)     		 /* Функция вывода числа */

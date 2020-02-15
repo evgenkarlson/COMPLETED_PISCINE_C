@@ -34,7 +34,7 @@
 
 #define ABS(a, b)	((a >= b) ? (a - b) : (b - a))
 
-int			ft_putchar(char c);
+void	ft_putchar(char c);
 
 static void	solve_queens_puzzle(int queens, int col, int *board)
 {

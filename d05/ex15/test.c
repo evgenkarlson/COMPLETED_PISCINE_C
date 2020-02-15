@@ -22,11 +22,9 @@
 /* ************************************************************************** */
 
 
-int		ft_putchar(char c)
+void	ft_putchar(char c)			/* функция вывода символа */
 {
 	write(1, &c, 1);
-
-	return (0);
 }
 
 void	ft_putstr(char *str)		
