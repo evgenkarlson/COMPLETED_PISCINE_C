@@ -1,104 +1,172 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-/*	команда для компиляции и одновременного запуска                           */
-/*                                                                            */
-/*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
-/* ************************************************************************** */
 
+# include <unistd.h>
 
-
-#include <unistd.h>
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-void	ft_putchar(char c)			/* функция вывода символа */
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putstr(char *str)		
+void	ft_putstr(char *str)
 {
-	int	i;						
-
-	i = 0;						
-	while (str[i] != '\0')		
+	while (*str != '\0')
 	{
-		ft_putchar(str[i]);		
-		i++;					
+		ft_putchar(*str);
+		str++;
 	}
 }
 
-static int	check_base(char *base)
+void	affichage(char **tab)
 {
-	int	i;
-	int	z;
+	int i;
+	int j;
+
+	i = 1;
+	while (i <= 9)
+	{
+		j = 0;
+		while (tab[i][j] != '\0')
+		{
+			ft_putchar(tab[i][j]);
+			if (j != 8)
+				ft_putchar(' ');
+			j++;
+		}
+		ft_putchar('\n');
+		i++;
+	}
+}
+
+
+int	check_line(char **tab, char nb, int x)
+{
+	int i;
 
 	i = 0;
-	z = 0;
-	if (!base || !base[1])
-		return (0);
-	while (base[i])
+	while (i < 9)
 	{
-		z = i + 1;
-		if (!((base[i] >= '0' && base[i] <= '9') || (base[i] >= 'a' \
-				&& base[i] <= 'z') || (base[i] >= 'A' && base[i] <= 'Z')))
+		if (tab[x][i] == nb)
 			return (0);
-		while (base[z])
-			if (base[i] == base[z++])
-				return (0);
-		i += 1;
+		i++;
 	}
 	return (1);
 }
 
-void		ft_putnbr_base(int nbr, char *base)
+int	check_column(char **tab, char nb, int y)
 {
-	int		i;
-	int		size;
-	int		n[10];
+	int	i;
+
+	i = 1;
+	while (i <= 9)
+	{
+		if (tab[i][y] == nb)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_block(char **tab, int x, int y, char nb)
+{
+	int i;
+	int j;
+
+	i = -1;
+	if (x <= 3)
+		x = 1;
+	else if (x <= 6)
+		x = 4;
+	else if (x <= 9)
+		x = 7;
+	y = y - (y % 3);
+	while (++i < 3)
+	{
+		j = -1;
+		while (++j < 3)
+		{
+			if (tab[x][y] == nb)
+				return (0);
+			y++;
+		}
+		y = y - 3;
+		x++;
+	}
+	return (1);
+}
+
+int	check_grille(char **tab, int n)
+{
+	int i;
+	int j;
 
 	i = 0;
-	size = 0;
-	if (!check_base(base))
-		return ;
-	if (nbr < 0)
+	if (n == 10)
 	{
-		nbr *= -1;
-		ft_putchar('-');
+		while (++i <= 9)
+		{
+			j = 0;
+			while (tab[i][j])
+			{
+				if ((tab[i][j] < 48 || tab[i][j] > 57) && tab[i][j] != 46)
+					return (0);
+				j++;
+			}
+			if (j != 9)
+				return (0);
+		}
+		return (1);
 	}
-	while (base[size])
-		size += 1;
-	while (nbr)
-	{
-		n[i] = nbr % size;
-		nbr /= size;
-		i += 1;
-	}
-	while (i > 0)
-		ft_putchar(base[n[--i]]);
+	else
+		return (0);
 }
 
 
-int 	main(void)
+
+int	sudoku(char **tab, int position)
 {
-	char	r[] = {"657687"};
-	char	t[22];
+	int		x;
+	int		y;
+	char	nb;
+
+	nb = '0';
+	x = position / 9;
+	y = position % 9;
+	if (position == 90)
+		return (1);
+	if (tab[x][y] != '.')
+		return (sudoku(tab, position + 1));
+	while (++nb <= '9')
+	{
+		if (check_line(tab, nb, x) + check_column(tab, nb, y) == 2)
+		{
+			if (check_block(tab, x, y, nb) == 1)
+			{
+				tab[x][y] = nb;
+				if (sudoku(tab, position + 1))
+					return (1);
+			}
+		}
+	}
+	tab[x][y] = '.';
+	return (0);
+}
 
 
-	ft_putnbr_base(t, r, 21);
-
-	ft_putstr(t);
+int		main(int argc, char **argv)
+{
+	if (check_grille(argv, argc))
+	{
+		if (sudoku(argv, 9))
+			affichage(argv);
+		else
+		{
+			ft_putstr("Erreur");
+			ft_putchar('\n');
+		}
+	}
+	else
+	{
+		ft_putstr("Erreur");
+		ft_putchar('\n');
+	}
 	return (0);
 }

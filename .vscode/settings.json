@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "sudoku.h": "c"
     }
 }

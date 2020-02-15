@@ -3,65 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   sudoku.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: adespond <adespond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/21 20:44:48 by jaleman           #+#    #+#             */
-/*   Updated: 2016/08/21 20:44:50 by jaleman          ###   ########.fr       */
+/*   Created: 2015/09/12 17:38:56 by adespond          #+#    #+#             */
+/*   Updated: 2015/09/13 10:31:10 by mfamilar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		validate(int **numbers, int row, int col, int value)
+#include "sudoku.h"
+
+int	sudoku(char **tab, int position)
 {
-	int i;
-	int j;
+	int		x;
+	int		y;
+	char	nb;
 
-	i = 0;
-	j = 0;
-	while (i < 9)
-	{
-		if ((numbers[i][col] == value) || (numbers[row][i] == value))
-			return (0);
-		i += 1;
-	}
-	i = 0;
-	while (i < 3)
-	{
-		j = 0;
-		while (j < 3)
-		{
-			if (numbers[row - (row % 3) + i][col - (col % 3) + j] == value)
-				return (0);
-			j += 1;
-		}
-		i += 1;
-	}
-	return (1);
-}
-
-int		solve_sudoku(int **numbers, int value)
-{
-	int i;
-	int x;
-	int y;
-
-	i = 1;
-	x = value / 9;
-	y = value % 9;
-	if (value == 81)
+	nb = '0';
+	x = position / 9;
+	y = position % 9;
+	if (position == 90)
 		return (1);
-	if (numbers[x][y] != 0)
-		return (solve_sudoku(numbers, value + 1));
-	while (i < 10)
+	if (tab[x][y] != '.')
+		return (sudoku(tab, position + 1));
+	while (++nb <= '9')
 	{
-		if (validate(numbers, x, y, i))
+		if (check_line(tab, nb, x) + check_column(tab, nb, y) == 2)
 		{
-			numbers[x][y] = i;
-			if (solve_sudoku(numbers, value + 1))
-				return (1);
-			else
-				numbers[x][y] = 0;
+			if (check_block(tab, x, y, nb) == 1)
+			{
+				tab[x][y] = nb;
+				if (sudoku(tab, position + 1))
+					return (1);
+			}
 		}
-		i += 1;
 	}
+	tab[x][y] = '.';
 	return (0);
 }
