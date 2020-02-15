@@ -27,6 +27,7 @@ uppercase, and odd letters in lowercase, followed by a newline.
 четными буквами в верхнем регистре и нечетными буквами в нижнем регистре, за которым следует новая строка.
 
 Example:
+Пример:
 
 $> ./maff_revalpha | cat -e
 zYxWvUtSrQpOnMlKjIhGfEdCbA$
