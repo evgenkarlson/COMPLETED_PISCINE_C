@@ -26,7 +26,7 @@ void	ft_putstr(char *str)
 	}
 }
 
-void	affichage(char **tab)
+void	display(char **tab)
 {
 	int i;
 	int j;

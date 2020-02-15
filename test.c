@@ -15,175 +15,182 @@
 /* ************************************************************************** */
 
 
-#include <unistd.h>
+# include <unistd.h>
 
-void		jp_putchar(char c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-int			jp_parse_sudoku_table(int pos[9][9], char **argv)
+void	ft_putstr(char *str)
 {
-	int		ix;
-	int		iy;
-
-	iy = 0;
-	while (iy < 9)
+	while (*str != '\0')
 	{
-		ix = 0;
-		while (ix < 9)
-		{
-			if (argv[iy][ix] >= '0' && argv[iy][ix] <= '9')
-				pos[iy][ix] = argv[iy][ix] - '0';
-			else if (argv[iy][ix] == '.')
-				pos[iy][ix] = 0;
-			else
-				return (0);
-			ix++;
-		}
-		if (argv[iy][ix])
-			return (0);
-		iy++;
+		ft_putchar(*str);
+		str++;
 	}
-	return (1);
 }
 
-void		jp_print_sudoku(int pos[9][9])
+void	display(char **tab)
 {
-	int		i;
-	int		j;
+	int i;
+	int j;
 
-	i = 0;
-	while (i < 9)
+	i = 1;
+	while (i <= 9)
 	{
 		j = 0;
-		while (j < 9)
+		while (tab[i][j] != '\0')
 		{
-			jp_putchar(pos[i][j] + 48);
+			ft_putchar(tab[i][j]);
 			if (j != 8)
-				jp_putchar(' ');
+				ft_putchar(' ');
 			j++;
 		}
-		jp_putchar('\n');
+		ft_putchar('\n');
 		i++;
 	}
 }
 
-void		jp_set_pos(int *pos, int *orig, int i, int check)
+int	check_line(char **tab, char nb, int x)
 {
-	*pos = i;
-	if (check == 0)
-		*orig = i;
-}
+	int i;
 
-int			jp_check_square(int pos[9][9], int x, int y, int nbr)
-{
-	int		xmin;
-	int		xmax;
-	int		ymin;
-	int		ymax;
-	int		i;
-
-	xmin = (x / 3) * 3;
-	xmax = xmin + 3;
-	ymin = (y / 3) * 3;
-	ymax = ymin + 3;
-	while (xmin < xmax)
+	i = 0;
+	while (i < 9)
 	{
-		i = ymin;
-		while (i < ymax)
-		{
-			if (i != y && xmin != x && pos[i][xmin] == nbr)
-				return (0);
-			i++;
-		}
-		xmin++;
+		if (tab[x][i] == nb)
+			return (0);
+		i++;
 	}
 	return (1);
 }
 
-int			jp_check_pos(int pos[9][9], int x, int y, int nbr)
+int	check_column(char **tab, char nb, int y)
 {
-	int		i;
+	int	i;
 
-	i = 0;
-	while (i < 9)
+	i = 1;
+	while (i <= 9)
 	{
-		if (i != x && pos[y][i] == nbr)
+		if (tab[i][y] == nb)
 			return (0);
 		i++;
 	}
-	i = 0;
-	while (i < 9)
-	{
-		if (i != y && pos[i][x] == nbr)
-			return (0);
-		i++;
-	}
-	i = jp_check_square(pos, x, y, nbr);
-	return (i);
+	return (1);
 }
 
-void		jp_put_last_nr(int pos[9][9], int nr, int *check)
+int	check_block(char **tab, int x, int y, char nb)
 {
-	if (jp_check_pos(pos, 8, 8, nr))
+	int i;
+	int j;
+
+	i = -1;
+	if (x <= 3)
+		x = 1;
+	else if (x <= 6)
+		x = 4;
+	else if (x <= 9)
+		x = 7;
+	y = y - (y % 3);
+	while (++i < 3)
 	{
-		if (pos[8][8] == 0)
-			pos[8][8] = nr;
-		*check = *check + 1;
+		j = -1;
+		while (++j < 3)
+		{
+			if (tab[x][y] == nb)
+				return (0);
+			y++;
+		}
+		y = y - 3;
+		x++;
 	}
+	return (1);
 }
 
-void		jp_solve(int pos[9][9], int val, int orig[9][9], int *check)
+/* Проверка задачи которую мы отправили на вход для решения */
+/* Проверяем все ли данные являются цифрами и не превышают они предел от 1 до 9 */
+int	check_grille(char **tab, int n)	/* Принимаем в "указатель на указатель" адресс
+									 *  массива с адрессами строк(массивами символов)) 
+									 * а вдругой аргумент количество аргументов отправленное в программу.
+									 * С учетом самого имени программы их должно быть ровно 10 */
 {
-	int		i;
+	int i;						/* обьявляем счетчик для перемещения от строки к строке
+								 * в которых хранятся данные задачи для проверки */
+
+	int j;						/* обьявляем счетчик для перемещения по самой строке(массиву символов) */
+
+	i = 0;						/* инициализируем счетчик строк нулем по тому что так нужно чтобы 
+								 * начать проверку в цикле уже с единицы 
+								 * т.е tab[1][0] по тому что именно с этого места начинается строка с
+								 * заданием после имени программы в строке котрую мы передалив терминал */
+	if (n == 10)				/* Проверяем равно ли десяти количество аргументов из терминала */
+	{
+		while (++i <= 9)		/* Создаем цикл который проходит по каждой строке начиная с первой(их 9) */
+		{
+			j = 0;				/* инициализируем счетчик для перемещения по строке и проверке каждого символа */
+			while (tab[i][j])	/* создаем цикл который проверит каждый символ [j] каждой строки[i] 
+								 * в массиве строк tab(указателе на указатели хранящем дреса строк(массивы символов)) */
+			{
+				if ((tab[i][j] < 48 || tab[i][j] > 57) && tab[i][j] != 46) /* проверяем каждый символ */
+					return (0);	/* если что то не так возвращаем ноль(т.е данные не корректны) */
+				j++;			/* если прошлый символ прошел проверку то переходим к следующему и т.д до конца строки */
+			}
+			if (j != 9)			/* если количество символов в строке не равно 9 то возвращаем ноль(т.е данные не корректны) */
+				return (0);
+		}						/* если все отлично то переходим к след строке "++i <= 9" и так до самого конца
+								 * пока не проверим последнюю строку или пока не найдем ошибку */
+		return (1);				/* если все отлично и все строки проверены и ошибок нет то возвращаем 1; */
+	}
+	else
+		return (0);				/* если количество аргументов в n не равно десяти то возвращаем 0 */
+}
+
+int	sudoku(char **tab, int position)
+{
 	int		x;
 	int		y;
+	char	nb;
 
-	x = val % 9;
-	y = val / 9;
-	if (pos[y][x] != 0 && (x != 8 || y != 8) && *check < 2)
-		jp_solve(pos, val + 1, orig, check);
-	i = 1;
-	while (i < 10 && *check < 2)
+	nb = '0';
+	x = position / 9;
+	y = position % 9;
+	if (position == 90)
+		return (1);
+	if (tab[x][y] != '.')
+		return (sudoku(tab, position + 1));
+	while (++nb <= '9')
 	{
-		if (x != 8 || y != 8)
+		if (check_line(tab, nb, x) + check_column(tab, nb, y) == 2)
 		{
-			if (jp_check_pos(pos, x, y, i) && pos[y][x] == 0)
+			if (check_block(tab, x, y, nb) == 1)
 			{
-				jp_set_pos(&pos[y][x], &orig[y][x], i, *check);
-				jp_solve(pos, val + 1, orig, check);
-				pos[y][x] = 0;
+				tab[x][y] = nb;
+				if (sudoku(tab, position + 1))
+					return (1);
 			}
 		}
-		else
-			jp_put_last_nr(orig, i, check);
-		i++;
 	}
+	tab[x][y] = '.';
+	return (0);
 }
 
-int			main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	int		pos[9][9];
-	int		orig[9][9];
-	int		check;
-	int		*ptr_check;
-
-	check = 0;
-	ptr_check = &check;
-	if (argc == 10)
+	if (check_grille(argv, argc))	/* проверяем решетку с символами если все норм продолжаем */
 	{
-		jp_parse_sudoku_table(orig, &argv[1]);
-		if (jp_parse_sudoku_table(pos, &argv[1]))
-		{
-			jp_solve(pos, 0, orig, ptr_check);
-			if (check == 1)
-				jp_print_sudoku(orig);
-			else
-				write(1, "Erreur\n", 7);
-		}
+		if (sudoku(argv, 9))		/* Переходим к решению Судоку, если все норм идем дальше */
+			display(argv);			/* Печатаем наше решение*/
 		else
-			write(1, "Erreur\n", 7);
+		{
+			ft_putstr("Erreur");	/* Если судоку не решилось выводим сообщение */
+			ft_putchar('\n');
+		}
+	}
+	else
+	{
+		ft_putstr("Erreur");		/* Если решетка проверку не прошла выводим сообщение */
+		ft_putchar('\n');
 	}
 	return (0);
 }
