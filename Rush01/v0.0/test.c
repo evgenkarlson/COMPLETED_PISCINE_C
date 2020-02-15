@@ -59,6 +59,7 @@ void	display(char **tab)			/* Принимаем в "указатель на у�
 }
 
 /* ШАГ 6 */
+/* Проверка числа в блоке 3х3 */
 int	check_block(char **tab, int x, int y, char nb)
 {
 	int i;
@@ -88,6 +89,7 @@ int	check_block(char **tab, int x, int y, char nb)
 }
 
 /* ШАГ 5 */
+/* Проверка числа по вертикали */
 int	check_column(char **tab, char nb, int y)
 {
 	int	i;
@@ -103,6 +105,7 @@ int	check_column(char **tab, char nb, int y)
 }
 
 /* ШАГ 4 */
+/* Проверка числа по горизонтали */
 int	check_line(char **tab, char nb, int x)
 {
 	int i;
