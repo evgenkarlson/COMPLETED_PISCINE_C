@@ -40,49 +40,64 @@ void	ft_putstr(char *str)
 	}
 }
 
-int		ft_strlcat(char *dest, char *src, unsigned int size)
+static int	check_base(char *base)
 {
-	int				i;
-	unsigned int	dest_size;
+	int	i;
+	int	z;
 
 	i = 0;
-	dest_size = 0;
-	while (dest[dest_size])
-		dest_size++;
-	while (src[i])
+	z = 0;
+	if (!base || !base[1])
+		return (0);
+	while (base[i])
 	{
-		if (dest_size < size - 1)
-			dest[dest_size] = src[i];
-		dest_size++;
-		i++;
+		z = i + 1;
+		if (!((base[i] >= '0' && base[i] <= '9') || (base[i] >= 'a' \
+				&& base[i] <= 'z') || (base[i] >= 'A' && base[i] <= 'Z')))
+			return (0);
+		while (base[z])
+			if (base[i] == base[z++])
+				return (0);
+		i += 1;
 	}
-	dest[dest_size - 1] = '\0';
-	return (dest_size);
+	return (1);
 }
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+void		ft_putnbr_base(int nbr, char *base)
 {
-	unsigned int	i;
+	int		i;
+	int		size;
+	int		n[10];
 
 	i = 0;
-	while (src[i] && (i < size - 1))
+	size = 0;
+	if (!check_base(base))
+		return ;
+	if (nbr < 0)
 	{
-		if (i < size - 1)
-			dest[i] = src[i];
-		i++;
+		nbr *= -1;
+		ft_putchar('-');
 	}
-	dest[i] = '\0';
-	return (i);
+	while (base[size])
+		size += 1;
+	while (nbr)
+	{
+		n[i] = nbr % size;
+		nbr /= size;
+		i += 1;
+	}
+	while (i > 0)
+		ft_putchar(base[n[--i]]);
 }
 
 
 int 	main(void)
 {
-	char	r[] = {"Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck"};
+	char	r[] = {"657687"};
 	char	t[22];
 
 
-	ft_strlcpy(t, r, 21);
+	ft_putnbr_base(t, r, 21);
 
 	ft_putstr(t);
 	return (0);
