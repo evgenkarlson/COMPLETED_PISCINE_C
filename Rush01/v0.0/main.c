@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
 	if (check_grille(argv, argc))
 	{
 		if (sudoku(argv, 9))
-			affichage(argv);
+			display(argv);
 		else
 		{
 			ft_putstr("Erreur");

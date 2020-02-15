@@ -71,10 +71,10 @@ int	check_grille(char **tab, int n)
 	int i;
 	int j;
 
-	i = 0;
+	i = 1;
 	if (n == 10)
 	{
-		while (++i <= 9)
+		while (i <= 9)
 		{
 			j = 0;
 			while (tab[i][j])
@@ -85,6 +85,7 @@ int	check_grille(char **tab, int n)
 			}
 			if (j != 9)
 				return (0);
+		i++;
 		}
 		return (1);
 	}
