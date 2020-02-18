@@ -46,11 +46,11 @@ int	ft_str_is_alpha(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!(iss_alpha(str[i])))
-			return (0);
+		if (iss_alpha(str[i]))
+			return (1);
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 

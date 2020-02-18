@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcapitalize.c                                 :+:      :+:    :+:   */
+/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,62 +40,43 @@ void	ft_putstr(char *str)
 }
 
 
-int		iss_alpha(char c)
+int	iss_alpha(char c)
 {
 	if ((c >= 'a') && (c <= 'z'))
 		return (1);
 	if ((c >= 'A') && (c <= 'Z'))
 		return (1);
-	if ((c >= '0') && (c <= '9'))
-		return (1);
 	return (0);
 }
 
-int		is_maj(char c)
-{
-	if ((c >= 'A') && (c <= 'Z'))
-		return (1);
-	return (0);
-}
-
-char	is_min(char c)
-{
-	if ((c >= 'a') && (c <= 'z'))
-		return (1);
-	return (0);
-}
-
-char	*ft_strcapitalize(char *str)
+int	ft_str_is_alpha(char *str)
 {
 	int	i;
-	int	word_new;
+	int n;
 
+	n = 0;
 	i = 0;
-	word_new = 1;
 	while (str[i])
 	{
-		if (is_min(str[i]) && (word_new == 1))
-			str[i] = str[i] - 32;
-		else if (is_maj(str[i]) && (word_new == 0))
-			str[i] = str[i] + 32;
 		if (iss_alpha(str[i]))
-			word_new = 0;
+			n = 1;
 		else
-			word_new = 1;
+			n = 0;
 		i++;
 	}
-	return (str);
+	return (n);
 }
 
 int 	main(void)
 {
-	char	r[] = {"welcome to hogwarts\n"};
-	char	*p;
+	char	r[] = {"welcome1hogwarts"};
+	int		i;
 
-
-	p = ft_strcapitalize(r);
-    ft_putstr(p);
-
+	i = ft_str_is_alpha(r);
+    if (i == 1)
+		ft_putstr("строка содержит только алфавитные символы");
+	else
+		ft_putstr("строка содержит и другие символы");
 	return 0;
 }
 
