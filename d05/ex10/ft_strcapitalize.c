@@ -46,7 +46,7 @@
 /* ************************************************************************** */
 
 
-int		iss_alpha(char c)
+int		iss_word(char c)
 {
 	if ((c >= 'a') && (c <= 'z'))
 		return (1);
@@ -57,7 +57,7 @@ int		iss_alpha(char c)
 	return (0);
 }
 
-int		is_max(char c)
+int		is_maj(char c)
 {
 	if ((c >= 'A') && (c <= 'Z'))
 		return (1);
@@ -84,7 +84,7 @@ char	*ft_strcapitalize(char *str)
 			str[i] = str[i] - 32;
 		else if ((is_maj(str[i])) && (word == 1))
 			str[i] = str[i] + 32;
-		if (!(iss_alpha(str[i])))
+		if (!(iss_word(str[i])))
 			word = 0;
 		else
 			word = 1;
