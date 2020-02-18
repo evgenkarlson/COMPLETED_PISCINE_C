@@ -156,7 +156,7 @@ char	*ft_strcapitalize(char *str)
 			space = 0;
 		if (c >= '0' && c <= '9')
 			space = 0;
-		if (space == 1 && str[i] >= 'a' && str[i] <= 122)
+		if (space == 1 && str[i] >= 'a' && str[i] <= 'z')
 			str[i] = str[i] - 32;
 		if (space == 0 && str[i] >= 'A' && str[i] <= 'Z')
 			str[i] = str[i] + 32;
