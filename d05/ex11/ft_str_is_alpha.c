@@ -42,15 +42,15 @@ int	iss_alpha(char c)
 int	ft_str_is_alpha(char *str)
 {
 	int	i;
-
+	
 	i = 0;
 	while (str[i])
 	{
-		if (iss_alpha(str[i]))
-			return (1);
+		if (!(iss_alpha(str[i])))
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 

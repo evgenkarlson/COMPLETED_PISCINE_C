@@ -52,19 +52,15 @@ int	iss_alpha(char c)
 int	ft_str_is_alpha(char *str)
 {
 	int	i;
-	int n;
-
-	n = 0;
+	
 	i = 0;
 	while (str[i])
 	{
-		if (iss_alpha(str[i]))
-			n = 1;
-		else
-			n = 0;
+		if (!(iss_alpha(str[i])))
+			return (0);
 		i++;
 	}
-	return (n);
+	return (1);
 }
 
 int 	main(void)
