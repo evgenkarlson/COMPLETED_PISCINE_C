@@ -57,7 +57,7 @@ int		iss_alpha(char c)
 	return (0);
 }
 
-int		is_maj(char c)
+int		is_max(char c)
 {
 	if ((c >= 'A') && (c <= 'Z'))
 		return (1);
