@@ -23,7 +23,7 @@ only alphabetical characters, and 0 if it contains any other character.
 
 
 It should return 1 if str is empty.
-Должен возвращать 1, если str пуст.
+Функция должна возвращать 1, если str пуст.
 
 
   ************************************************************************** */
