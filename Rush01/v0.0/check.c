@@ -79,7 +79,7 @@ int	check_grille(char **tab, int n)
 			j = 0;
 			while (tab[i][j])
 			{
-				if ((tab[i][j] < 48 || tab[i][j] > 57) && tab[i][j] != 46)
+				if ((tab[i][j] < '1' || tab[i][j] > '9') && tab[i][j] != '.')
 					return (0);
 				j++;
 			}

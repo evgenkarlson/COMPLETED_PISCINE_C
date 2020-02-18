@@ -20,13 +20,13 @@ int		main(int argc, char **argv)
 			display(argv);
 		else
 		{
-			ft_putstr("Erreur");
+			ft_putstr("Error");
 			ft_putchar('\n');
 		}
 	}
 	else
 	{
-		ft_putstr("Erreur");
+		ft_putstr("Error");
 		ft_putchar('\n');
 	}
 	return (0);
