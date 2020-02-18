@@ -18,13 +18,13 @@
 # include <unistd.h>
 
 
-void	ft_putchar(char c)
+void	ft_putchar(char c)			/* функция печати символа */
 {
 	write(1, &c, 1);
 }
 
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str)		/* функция печати строки(массива символов) */
 {
 	while (*str != '\0')
 	{
