@@ -74,20 +74,20 @@ char	is_min(char c)
 char	*ft_strcapitalize(char *str)
 {
 	int	i;
-	int	word;
+	int	word_new;
 
 	i = 0;
-	word = 0;
+	word_new = 0;
 	while (str[i])
 	{
-		if ((is_min(str[i])) && (word == 0))
+		if ((is_min(str[i])) && (word_new == 0))
 			str[i] = str[i] - 32;
-		else if ((is_maj(str[i])) && (word == 1))
+		else if ((is_maj(str[i])) && (word_new == 1))
 			str[i] = str[i] + 32;
 		if (!(iss_alpha(str[i])))
-			word = 0;
+			word_new = 0;
 		else
-			word = 1;
+			word_new = 1;
 		i++;
 	}
 	return (str);

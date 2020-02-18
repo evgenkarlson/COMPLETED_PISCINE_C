@@ -40,28 +40,48 @@ void	ft_putstr(char *str)
 }
 
 
+int		iss_alpha(char c)
+{
+	if ((c >= 'a') && (c <= 'z'))
+		return (1);
+	if ((c >= 'A') && (c <= 'Z'))
+		return (1);
+	if ((c >= '0') && (c <= '9'))
+		return (1);
+	return (0);
+}
+
+int		is_maj(char c)
+{
+	if ((c >= 'A') && (c <= 'Z'))
+		return (1);
+	return (0);
+}
+
+char	is_min(char c)
+{
+	if ((c >= 'a') && (c <= 'z'))
+		return (1);
+	return (0);
+}
+
 char	*ft_strcapitalize(char *str)
 {
-	int		i;
-	char	c;
-	int		space;
+	int	i;
+	int	word_new;
 
 	i = 0;
-	while (str[i] != '\0')
+	word_new = 1;
+	while (str[i])
 	{
-		space = 1;
-		if (i == 0)
-			c = ';';
-		else
-			c = str[i - 1];
-		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-			space = 0;
-		if (c >= '0' && c <= '9')
-			space = 0;
-		if (space == 1 && str[i] >= 'a' && str[i] <= 122)
+		if (is_min(str[i]) && (word_new == 1))
 			str[i] = str[i] - 32;
-		if (space == 0 && str[i] >= 'A' && str[i] <= 'Z')
+		else if (is_maj(str[i]) && (word_new == 0))
 			str[i] = str[i] + 32;
+		if (iss_alpha(str[i]))
+			word_new = 0;
+		else
+			word_new = 1;
 		i++;
 	}
 	return (str);
