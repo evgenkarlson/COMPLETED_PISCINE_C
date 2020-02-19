@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_lowercase.c                              :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,6 +13,7 @@
 /*                                                                            */
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
+
 
 
 #include <unistd.h>
@@ -39,31 +40,30 @@ void	ft_putstr(char *str)
 	}
 }
 
-
-int	ft_str_is_lowercase(char *str)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
-	while (str[i])
+	while (src[i] && (i < (size - 1)))
 	{
-		if (!((str[i] >= 'a') && (str[i] <= 'z')))
-			return (0);
+		dest[i] = src[i];
 		i++;
 	}
-	return (1);
+	dest[i] = '\0';
+	return (i);
 }
+
+
 
 int 	main(void)
 {
-	char	r[] = {"sdsdf"};
-	int		i;
+	char	r[] = {"Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck"};
+	char	t[22];
 
-	i = ft_str_is_lowercase(r);
-    if (i == 1)
-		ft_putstr("строка содержит только строчные буквенные символы");
-	else
-		ft_putstr("строка содержит и другие символы");
-	return 0;
+
+	ft_strlcpy(t, r, 22);
+
+	ft_putstr(t);
+	return (0);
 }
-

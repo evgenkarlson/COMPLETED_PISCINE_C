@@ -40,6 +40,7 @@ void	ft_putstr(char *str)
 }
 
 
+
 int		ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	int				i;
@@ -49,14 +50,13 @@ int		ft_strlcat(char *dest, char *src, unsigned int size)
 	dest_size = 0;
 	while (dest[dest_size])
 		dest_size++;
-	while (src[i])
+	while (src[i] && (dest_size < (size - 1)))
 	{
-		if (dest_size < size - 1)
-			dest[dest_size] = src[i];
+		dest[dest_size] = src[i];
 		dest_size++;
 		i++;
 	}
-	dest[dest_size - 1] = '\0';
+	dest[dest_size] = '\0';
 	return (dest_size);
 }
 
