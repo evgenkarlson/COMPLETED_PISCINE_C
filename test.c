@@ -15,55 +15,27 @@
 /* ************************************************************************** */
 
 
-
 #include <unistd.h>
 
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-void	ft_putchar(char c)			/* функция вывода символа */
+int		main(int argc, char *argv[])
 {
-	write(1, &c, 1);
-}
-
-void	ft_putstr(char *str)		
-{
-	int	i;						
-
-	i = 0;						
-	while (str[i] != '\0')		
-	{
-		ft_putchar(str[i]);		
-		i++;					
-	}
-}
-
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
-{
-	unsigned int	i;
-
+	int		i;
+	
 	i = 0;
-	while (src[i] && (i < (size - 1)))
+	if (argc == 2)
 	{
-		dest[i] = src[i];
-		i++;
+		while (argv[1][i])
+		{
+			if (argv[1][i] >= 'A' && argv[1][i] <= 'Y')
+				argv[1][i] += 1;
+			if (argv[1][i] >= 'a' && argv[1][i] <= 'y')
+				argv[1][i] += 1;
+			if (argv[1][i] == 'z' || argv[1][i] == 'Z')
+				argv[1][i] -= 25;
+			write(1, &argv[1][i], 1);
+			i++;
+		}
 	}
-	dest[i] = '\0';
-	return (i);
-}
-
-
-
-int 	main(void)
-{
-	char	r[] = {"Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck.Fuck"};
-	char	t[22];
-
-
-	ft_strlcpy(t, r, 22);
-
-	ft_putstr(t);
+	write(1, "\n", 1);
 	return (0);
 }
