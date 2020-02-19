@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
+#include "../header/bsq.h"
 
 t_grid		create_struct_grid(void)
 {

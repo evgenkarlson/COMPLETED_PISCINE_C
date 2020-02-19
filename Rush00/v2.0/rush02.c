@@ -3,53 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   rush02.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcourtia <mcourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/07/05 09:55:58 by jpucelle          #+#    #+#             */
-/*   Updated: 2014/07/05 11:03:14 by jpucelle         ###   ########.fr       */
+/*   Created: 2015/09/06 14:34:26 by mcourtia          #+#    #+#             */
+/*   Updated: 2015/09/06 17:08:49 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		jp_putchar(char c);
-void	jp_hd_ft(char d, char m, char f, int l);
+void	ft_putchar(char c);
+
+void	midline(int ix, int x)
+{
+	if (ix == 1 || ix == x)
+		ft_putchar('B');
+	else
+		ft_putchar(' ');
+}
+
+void	lastline(int ix, int x)
+{
+	if (ix == 1 || ix == x)
+		ft_putchar('C');
+	else
+		ft_putchar('B');
+}
+
+void	firstline(int ix, int x)
+{
+	if (ix == 1 || ix == x)
+		ft_putchar('A');
+	else
+		ft_putchar('B');
+}
 
 void	rush(int x, int y)
 {
-	int i;
+	int ix;
+	int iy;
 
-	i = 0;
-	if (x > 0 && y > 0)
+	iy = 1;
+	while (iy <= y)
 	{
-		jp_hd_ft('A', 'B', 'A', x);
-		if (y > 2)
+		ix = 1;
+		while (ix <= x)
 		{
-			while (i < (y - 2))
-			{
-				jp_hd_ft('B', ' ', 'B', x);
-				i++;
-			}
+			if (iy == 1)
+				firstline(ix, x);
+			else if (iy == y)
+				lastline(ix, x);
+			else
+				midline(ix, x);
+			ix++;
 		}
-		if (y > 1)
-		{
-			jp_hd_ft('C', 'B', 'C', x);
-		}
+		ft_putchar('\n');
+		iy++;
 	}
-}
-
-void	jp_hd_ft(char d, char m, char f, int l)
-{
-	int i;
-
-	i = 0;
-	jp_putchar(d);
-	while (i < (l - 2))
-	{
-		jp_putchar(m);
-		i++;
-	}
-	if (l > 1)
-	{
-		jp_putchar(f);
-	}
-	jp_putchar('\n');
 }

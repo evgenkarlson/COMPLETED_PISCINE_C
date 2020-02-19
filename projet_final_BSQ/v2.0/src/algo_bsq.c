@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
+#include "../header/bsq.h"
 
 void				adjust_list_mine(t_uns *y, t_coord **list)
 {

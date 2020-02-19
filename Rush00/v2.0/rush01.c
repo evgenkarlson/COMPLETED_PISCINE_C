@@ -3,53 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   rush01.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clseyer <clseyer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mcourtia <mcourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/07/06 18:43:19 by clseyer           #+#    #+#             */
-/*   Updated: 2014/07/06 18:48:39 by clseyer          ###   ########.fr       */
+/*   Created: 2015/09/06 14:34:26 by mcourtia          #+#    #+#             */
+/*   Updated: 2015/09/06 16:42:44 by mcourtia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		jp_putchar(char c);
-void	jp_hd_ft(char d, char m, char f, int l);
+void	ft_putchar(char c);
+
+void	midline(int ix, int x)
+{
+	if (ix == 1 || ix == x)
+		ft_putchar('*');
+	else
+		ft_putchar(' ');
+}
+
+void	lastline(int ix, int x)
+{
+	if (ix == 1)
+		ft_putchar('\\');
+	else if (ix == x)
+		ft_putchar('/');
+	else
+		ft_putchar('*');
+}
+
+void	firstline(int ix, int x)
+{
+	if (ix == 1)
+		ft_putchar('/');
+	else if (ix == x)
+		ft_putchar('\\');
+	else
+		ft_putchar('*');
+}
 
 void	rush(int x, int y)
 {
-	int i;
+	int ix;
+	int iy;
 
-	i = 0;
-	if (x > 0 && y > 0)
+	iy = 1;
+	while (iy <= y)
 	{
-		jp_hd_ft('/', '*', '\\', x);
-		if (y > 2)
+		ix = 1;
+		while (ix <= x)
 		{
-			while (i < (y - 2))
-			{
-				jp_hd_ft('*', ' ', '*', x);
-				i++;
-			}
+			if (iy == 1)
+				firstline(ix, x);
+			else if (iy == y)
+				lastline(ix, x);
+			else
+				midline(ix, x);
+			ix++;
 		}
-		if (y > 1)
-		{
-			jp_hd_ft('\\', '*', '/', x);
-		}
+		ft_putchar('\n');
+		iy++;
 	}
-}
-
-void	jp_hd_ft(char d, char m, char f, int l)
-{
-	int i;
-
-	i = 0;
-	jp_putchar(d);
-	while (i < (l - 2))
-	{
-		jp_putchar(m);
-		i++;
-	}
-	if (l > 1)
-	{
-		jp_putchar(f);
-	}
-	jp_putchar('\n');
 }

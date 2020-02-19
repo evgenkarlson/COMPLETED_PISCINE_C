@@ -3,53 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   rush03.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clseyer <clseyer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mcourtia <mcourtia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/07/06 18:45:20 by clseyer           #+#    #+#             */
-/*   Updated: 2014/07/06 18:46:11 by clseyer          ###   ########.fr       */
+/*   Created: 2015/09/06 14:34:26 by mcourtia          #+#    #+#             */
+/*   Updated: 2015/09/06 17:03:00 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		jp_putchar(char c);
-void	jp_hd_ft(char d, char m, char f, int l);
+void	ft_putchar(char c);
 
-void	colle(int x, int y)
+void	midline(int ix, int x)
 {
-	int i;
-
-	i = 0;
-	if (x > 0 && y > 0)
-	{
-		jp_hd_ft('A', 'B', 'C', x);
-		if (y > 2)
-		{
-			while (i < (y - 2))
-			{
-				jp_hd_ft('B', ' ', 'B', x);
-				i++;
-			}
-		}
-		if (y > 1)
-		{
-			jp_hd_ft('A', 'B', 'C', x);
-		}
-	}
+	if (ix == 1 || ix == x)
+		ft_putchar('B');
+	else
+		ft_putchar(' ');
 }
 
-void	jp_hd_ft(char d, char m, char f, int l)
+void	firstlastline(int ix, int x)
 {
-	int i;
+	if (ix == 1)
+		ft_putchar('A');
+	else if (ix == x)
+		ft_putchar('C');
+	else
+		ft_putchar('B');
+}
 
-	i = 0;
-	jp_putchar(d);
-	while (i < (l - 2))
+void	rush(int x, int y)
+{
+	int ix;
+	int iy;
+
+	iy = 1;
+	while (iy <= y)
 	{
-		jp_putchar(m);
-		i++;
+		ix = 1;
+		while (ix <= x)
+		{
+			if (iy == 1 || iy == y)
+				firstlastline(ix, x);
+			else
+				midline(ix, x);
+			ix++;
+		}
+		ft_putchar('\n');
+		iy++;
 	}
-	if (l > 1)
-	{
-		jp_putchar(f);
-	}
-	jp_putchar('\n');
 }

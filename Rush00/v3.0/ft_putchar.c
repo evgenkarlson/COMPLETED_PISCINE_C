@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
+/*   By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Created: 2014/07/05 09:53:57 by jpucelle          #+#    #+#             */
+/*   Updated: 2014/07/05 09:55:10 by jpucelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	rush(int x, int y);
+#include <unistd.h>
 
-int		main(void)
+int		jp_putchar(char c)
 {
-	rush(5, 3);
+	write(1, &c, 1);
 	return (0);
 }

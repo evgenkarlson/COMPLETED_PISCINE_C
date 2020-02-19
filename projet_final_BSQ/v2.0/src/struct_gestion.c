@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "bsq.h"
+#include "../header/bsq.h"
 
 t_uns			list_length(t_coord **begin)
 {

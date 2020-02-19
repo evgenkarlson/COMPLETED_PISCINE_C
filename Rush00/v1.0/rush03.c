@@ -3,51 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   rush03.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcourtia <mcourtia@student.42.fr>          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/06 14:34:26 by mcourtia          #+#    #+#             */
-/*   Updated: 2015/09/06 17:03:00 by adespond         ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
+int		ft_putchar(char c);
 
-void	midline(int ix, int x)
+void	ft_print_manager(int x, char startchar, char midchar, char endchar)
 {
-	if (ix == 1 || ix == x)
-		ft_putchar('B');
-	else
-		ft_putchar(' ');
-}
-
-void	firstlastline(int ix, int x)
-{
-	if (ix == 1)
-		ft_putchar('A');
-	else if (ix == x)
-		ft_putchar('C');
-	else
-		ft_putchar('B');
+	ft_putchar(startchar);
+	while ((x - 1) > 1)
+	{
+		ft_putchar(midchar);
+		x--;
+	}
+	if (x > 1)
+		ft_putchar(endchar);
+	ft_putchar('\n');
 }
 
 void	rush(int x, int y)
 {
-	int ix;
-	int iy;
-
-	iy = 1;
-	while (iy <= y)
+	if (x > 0 && y > 0)
 	{
-		ix = 1;
-		while (ix <= x)
+		ft_print_manager(x, 'A', 'B', 'C');
+		y--;
+		while (y > 1)
 		{
-			if (iy == 1 || iy == y)
-				firstlastline(ix, x);
-			else
-				midline(ix, x);
-			ix++;
+			ft_print_manager(x, 'B', ' ', 'B');
+			y--;
 		}
-		ft_putchar('\n');
-		iy++;
+		if (y > 0)
+			ft_print_manager(x, 'A', 'B', 'C');
 	}
+	return ;
 }
