@@ -16,9 +16,9 @@ char	*ft_strncat(char *dest, char *src, int nb)
 
 	i = 0;
 	dest_size = 0;
-	while (dest[dest_size])
+	while (dest[dest_size] != '\0')
 		dest_size++;
-	while (i < nb && src[i])
+	while (i < nb && src[i] != '\0')
 	{
 		dest[dest_size] = src[i];
 		dest_size++;
@@ -43,18 +43,15 @@ char	*ft_strncat(char *dest, char *src, int nb)
 
 	i = 0;
 	lenght = 0;
-	while (dest[i] != '\0')
+	while (dest[lenght] != '\0')
+		lenght++;
+	while (i < nb && src[i] != '\0')
 	{
+		dest[lenght] = src[i];
 		lenght++;
 		i++;
 	}
-	i = 0;
-	while (i < nb && src[i] != '\0')
-	{
-		dest[lenght + i] = src[i];
-		i++;
-	}
-	dest[lenght + i] = '\0';
+	dest[lenght] = '\0';
 	return (dest);
 }
 
@@ -95,15 +92,15 @@ char	*ft_strncat(char *dest, char *src, int nb)
 
 	i = 0;
 	j = 0;
-	while (s1[i])
-		i += 1;
-	while ((j < nb) && s2[j])
+	while (dest[i])
+		i++;
+	while ((j < nb) && src[j])
 	{
-		s1[i + j] = s2[j];
-		j += 1;
+		dest[i + j] = src[j];
+		j++;
 	}
-	s1[i + j] = '\0';
-	return (s1);
+	dest[i + j] = '\0';
+	return (dest);
 }
 
 /* ************************************************************************** */

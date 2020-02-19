@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_str_is_lowercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -40,23 +40,14 @@ void	ft_putstr(char *str)
 }
 
 
-int	iss_alpha(char c)
-{
-	if ((c >= 'a') && (c <= 'z'))
-		return (1);
-	if ((c >= 'A') && (c <= 'Z'))
-		return (1);
-	return (0);
-}
-
-int	ft_str_is_alpha(char *str)
+int	ft_str_is_lowercase(char *str)
 {
 	int	i;
-	
+
 	i = 0;
 	while (str[i])
 	{
-		if (!(iss_alpha(str[i])))
+		if (!((str[i] >= 'a') && (str[i] <= 'z')))
 			return (0);
 		i++;
 	}
@@ -65,12 +56,12 @@ int	ft_str_is_alpha(char *str)
 
 int 	main(void)
 {
-	char	r[] = {"welcome1hogwarts"};
+	char	r[] = {"sdsdf"};
 	int		i;
 
-	i = ft_str_is_alpha(r);
+	i = ft_str_is_lowercase(r);
     if (i == 1)
-		ft_putstr("строка содержит только алфавитные символы");
+		ft_putstr("строка содержит только строчные буквенные символы");
 	else
 		ft_putstr("строка содержит и другие символы");
 	return 0;

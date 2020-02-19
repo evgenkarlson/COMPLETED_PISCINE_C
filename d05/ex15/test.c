@@ -27,6 +27,7 @@ void	ft_putchar(char c)			/* функция вывода символа */
 	write(1, &c, 1);
 }
 
+
 void	ft_putstr(char *str)		
 {
 	int	i;						
@@ -40,12 +41,10 @@ void	ft_putstr(char *str)
 }
 
 
-int	iss_printable(char c)
-{
-	if ((c >= 32) && (c <= 126))
-		return (1);
-	return (0);
-}
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
 
 int	ft_str_is_printable(char *str)
 {
@@ -54,12 +53,13 @@ int	ft_str_is_printable(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!(iss_printable(str[i])))
+		if (!((str[i] >= ' ') && (str[i] <= '~')))
 			return (0);
 		i++;
 	}
 	return (1);
 }
+
 
 int 	main(void)
 {

@@ -42,20 +42,20 @@ void	ft_putstr(char *str)
 
 char	*ft_strncat(char *dest, char *src, int nb)
 {
-	int		i;
-	int		dest_size;
+	int i;
+	int lenght;
 
 	i = 0;
-	dest_size = 0;
-	while (dest[dest_size])
-		dest_size++;
+	lenght = 0;
+	while (dest[lenght])
+		lenght++;
 	while (i < nb && src[i])
 	{
-		dest[dest_size] = src[i];
-		dest_size++;
+		dest[lenght] = src[i];
+		lenght++;
 		i++;
 	}
-	dest[dest_size] = '\0';
+	dest[lenght] = '\0';
 	return (dest);
 }
 
