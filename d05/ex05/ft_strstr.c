@@ -50,11 +50,11 @@ to_find – указатель на искомую строку.
 char	*ft_strstr(char *str, char *to_find)
 {
 	int	i;
-	int	z;
+	int	j;
 	int	lenght;
 
 	i = 0;
-	z = 0;
+	j = 0;
 	lenght = 0;
 	while (to_find[lenght])
 		lenght++;
@@ -62,13 +62,13 @@ char	*ft_strstr(char *str, char *to_find)
 		return (str);
 	while (str[i])
 	{
-		while (to_find[z] == str[i + z])
+		while (to_find[j] == str[i + j])
 		{
-			if (to_find[z + 1] == '\0')
+			if (to_find[j + 1] == '\0')
 				return (str + i);
-			z++;
+			j++;
 		}
-		z = 0;
+		j = 0;
 		i++;
 	}
 	return (0);
