@@ -32,8 +32,6 @@ followed by a newline.
 
 Case remains unchanged.
 Дело остается без изменений.
-
-
 If the number of arguments is not 1, just display a newline.
 Если количество аргументов не равно 1, просто отобразите новую строку.
 
@@ -53,7 +51,6 @@ $>
 $>./repeat_alpha "" | cat -e
 $
 $>
-
 
 
    ************************************************************************** */
