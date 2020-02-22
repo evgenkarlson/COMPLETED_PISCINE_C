@@ -24,13 +24,14 @@ Allowed functions: write
 Write a program that takes two strings and displays, without doubles, the
 characters that appear in both strings, in the order they appear in the first
 one.
-Напишите программу, которая принимает две строки и отображает без двойных символов символы, которые появляются в обеих строках, в порядке, в котором они появляются в первой.
+Напишите программу, которая принимает две строки и отображает без двойных символов
+символы, которые появляются в обеих строках, в порядке, в котором они появляются в первой.
 
 The display will be followed by a \n.
 За дисплеем последует \ n.
 
-If the number of arguments is not 2, the program displays \n.
-Если количество аргументов не равно 2, программа отображает \ n.
+If the number of arguments is not 2, the program displays '\n'.
+Если количество аргументов не равно 2, программа отображает '\n'.
 
 Examples:
 Примеры:
@@ -52,31 +53,87 @@ $
 
 #include <unistd.h>
 
-int     iter(char *str, char c, int len)
+int     iter(char *str, char c, int len)    /* Принимаем адресс массива, символ, и порядковый номер символа */
 {
-    int     i;
+    int     i;                              /* обьявим переменную для счетчика */
     
-    i = 0;
+    i = 0;                                  /* инициализируем счетчик нулем */
     while (str[i] && (i < len || len == -1))
         if (str[i++] == c)
             return (1);
     return (0);
 }
 
-int     main(int argc, char *argv[])
+int     main(int argc, char *argv[])    /* здесь принимаем количество строк в массиве и сам массив со строками */
 {
-    int     i;
+    int     i;                          /* обьявим переменную для счетчика */
     
-    if (argc == 3)
+    if (argc == 3)                      /* Проверяем есть ли кроме имени программы в аргументах еще и две нужные нам строки */
     {
-        i = 0;
-        while(argv[1][i])
+        i = 0;                          /* Инициализируем счетчик нулем чтобы начать с нулевой ячейки массива */
+        while(argv[1][i])               /* Запускаем цикл. Он пройдется по строке ища символы из первой строки во второй
+                                         * строке и печатая те что найлет пока не дойдет до конца */
         {
             if (!iter(argv[1], argv[1][i], i) && iter(argv[2], argv[1][i], -1))
                 write(1, &argv[1][i], 1);
-            i += 1;
+            i++;
         }
     }
     write(1, "\n", 1);
     return (0);
+}
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <unistd.h>
+
+int		ft_verif_char(char *str, char c, int index)
+{
+	int		i;
+
+	i = 0;
+	while (i < index)
+	{
+		if (str[i] == c)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	ft_inter(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (s1[i])
+	{
+		if (ft_verif_char(s1, s1[i], i) == 1)
+		{
+			j = 0;
+			while (s2[j])
+			{
+				if (s2[j] == s1[i])
+				{
+					write(1, &s1[i], 1);
+					break ;
+				}
+				j++;
+			}
+		}
+		i++;
+	}
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc == 3)
+		ft_inter(argv[1], argv[2]);
+	write(1, "\n", 1);
+	return (0);
 }

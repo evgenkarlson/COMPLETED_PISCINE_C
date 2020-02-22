@@ -36,14 +36,18 @@ Examples:
 Примеры:
 
 
-$> ./aff_a "abc" | cat -e
-a$
-$> ./aff_a "dubO a POIL" | cat -e
-a$
-$> ./aff_a "zz sent le poney" | cat -e
+$> ./first_word "FOR PONY" | cat -e
+FOR$
+$> ./first_word "this        ...       is sparta, then again, maybe    not" | cat -e
+this$
+$> ./first_word "   " | cat -e
 $
-$> ./aff_a | cat -e
-a$
+$> ./first_word "a" "b" | cat -e
+$
+$> ./first_word "  lorem,ipsum  " | cat -e
+lorem,ipsum$
+$>
+
 
    ************************************************************************** */
 /* ************************************************************************** */
@@ -52,25 +56,32 @@ a$
 
 #include <unistd.h>
 
-int		main(int argc, char *argv[])
+int     iter(char *str, char c, int len)
 {
-	int		i;
+    int     i;
+    
+    i = 0;
+    while (str[i] && (i < len || len == -1))
+        if (str[i++] == c)
+            return (1);
+    return (0);
+}
 
-	i = 0;
-	if (argc != 2)
-		write(1, "a\n", 2);
-	else
-	{
-		while (argv[1][i])
-		{
-			if (argv[1][i] == 'a')
-			{
-				write(1, "a", 1);
-				break ;
-			}
-			i++;
-		}
-		write(1, "\n", 1);
-	}
-	return (0);
+int     main(int argc, char *argv[])    /* здесь принимаем количество строк в массиве и сам массив со строками */
+{
+    int     i;                          /* для начала обьявим переменную для счетчика */
+    
+    if (argc == 3)                      /* Проверяем есть ли кроме имени программы в аргументах еще и две нужные нам строки */
+    {
+        i = 0;                          /* Инициализируем счетчик нулем чтобы начать с нулевой ячейки массива */
+        while(argv[1][i])               /* Запускаем цикл. Он пройдется по строке ища символы из первой строки во второй
+                                         * строке и печатая те что найлет пока не дойдет до конца */
+        {
+            if (!iter(argv[1], argv[1][i], i) && iter(argv[2], argv[1][i], -1))
+                write(1, &argv[1][i], 1);
+            i++;
+        }
+    }
+    write(1, "\n", 1);
+    return (0);
 }
