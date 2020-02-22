@@ -66,7 +66,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int		main(int argc, char *argv[1])
+int		main(int argc, char *argv[])	/* здесь принимаем количество строк в массиве и сам массив со строками */
 {
 	if (argc == 2)
 	{
@@ -109,7 +109,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-char	*ft_rot_13(char *str)	/* Принимаем адресс строки с которой будем работать */
+void	ft_rot_13(char *str)	/* Принимаем адресс строки с которой будем работать */
 {
 	int	i;						/* Обьявляем счетчик */
 
@@ -133,17 +133,14 @@ char	*ft_rot_13(char *str)	/* Принимаем адресс строки с к
 		i++;										/* Увеличиваем счетчик что бы перейти к след ячейке */
 	}
 	ft_putchar('\n');			/* Печатаем символ перехода на новую строку */
-	return (&str[0]);			/* Возвращаем адресс функции и завершаем функцию */
 }
 
-int		main(int argc, char **argv)
+int		main(int argc, char *argv[])/* здесь принимаем количество строк в массиве и сам массив со строками */
 {	
-	char *p;
-
 	if (argc == 2)
-		p = ft_rot_13(argv[1]);
-
-	ft_putchar('\n');
+		ft_rot_13(argv[1]);
+	else
+		ft_putchar('\n');
 
 	return (0);
 }
