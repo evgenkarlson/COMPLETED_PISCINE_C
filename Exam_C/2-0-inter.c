@@ -22,13 +22,14 @@ Allowed functions: write
 --------------------------------------------------------------------------------
 
 Write a program that takes two strings and displays, without doubles, the
-characters that appear in both strings, in the order they appear in the first
-one.
+characters that appear in both strings, in the order they appear in the first one.
 Напишите программу, которая принимает две строки и отображает без двойных символов
 символы, которые появляются в обеих строках, в порядке, в котором они появляются в первой.
 
 The display will be followed by a \n.
-За дисплеем последует \ n.
+За ним последует \ n.
+
+
 
 If the number of arguments is not 2, the program displays '\n'.
 Если количество аргументов не равно 2, программа отображает '\n'.
@@ -50,6 +51,8 @@ $
    ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
+
 #include <unistd.h>
 
 
