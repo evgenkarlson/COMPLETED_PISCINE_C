@@ -51,7 +51,6 @@ $>
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
 #include <unistd.h>
 
 void	fn_word(char *str, int *i)
@@ -80,18 +79,19 @@ void 	ft_last_word(char *str)
 	start = 0;
 	end = 0;
 	while ((str[i] == ' ' || str[i] == '\t') && str[i])
-		i += 1;
+		i++;
 	while (str[i])
 	{
 		start = i;
 		fn_word(str, &i);
 		end = i;
 		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
-			i += 1;
+			i++;
 		if (!str[i])
 			print_word(str, start, end);
 	}
 }
+
 int		main(int argc, char **argv)
 {
 
@@ -102,4 +102,5 @@ int		main(int argc, char **argv)
 	write(1, "\n", 1);
 	return (0);
 }
+
 
