@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   do_op.c                                            :+:      :+:    :+:   */
+/*   last_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: exam <evgenkarlson@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,84 +11,74 @@
 /* ************************************************************************** */
 
 
-
-
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** 
 
-
-Assignment name  : do_op
-Expected files   : *.c, *.h
-Allowed functions: atoi, printf, write
+Assignment name  : last_word
+Expected files   : last_word.c
+Allowed functions: write
 --------------------------------------------------------------------------------
 
-Write a program that takes three strings:
-Напишите программу, которая принимает три строки:
+Write a program that takes a string and displays its last word followed by a \n.
+Напишите программу, которая принимает строку и отображает ее последнее слово, за которым следует \ n.
 
-- The first and the third one are representations of base-10 signed integers
-  that fit in an int.
-- Первый и третий являются представлениями целых чисел со знаком base-10, которые помещаются в int.
+A word is a section of string delimited by spaces/tabs or by the start/end of
+the string.
+Слово - это раздел строки, разделенный пробелами / табуляцией или началом / концом строки.
 
-- The second one is an arithmetic operator chosen from: + - * / %
-- Второй - арифметический оператор, выбранный из: + - * /%
+If the number of parameters is not 1, or there are no words, display a newline.
+Если количество параметров не равно 1 или нет слов, отобразите новую строку.
 
-
-The program must display the result of the requested arithmetic operation,
-followed by a newline. If the number of parameters is not 3, the program
-just displays a newline.
-Программа должна отображать результат запрошенной арифметической операции,
-за которым следует новая строка. Если количество параметров не равно 3,
-программа просто отображает новую строку.
-
-You can assume the string have no mistakes or extraneous characters. Negative
-numbers, in input or output, will have one and only one leading '-'. The
-result of the operation fits in an int.
-Вы можете предположить, что строка не содержит ошибок или посторонних символов.
-Отрицательные числа на входе или выходе будут иметь один и только один ведущий '-'.
-Результат операции вписывается в int.
-
-Examples:
-Примеры:
+Example:
+Пример:
 
 
-$> ./do_op "123" "*" 456 | cat -e
-56088$
-$> ./do_op "9828" "/" 234 | cat -e
-42$
-$> ./do_op "1" "+" "-43" | cat -e
--42$
-$> ./do_op | cat -e
+$> ./last_word "FOR PONY" | cat -e
+PONY$
+$> ./last_word "this        ...       is sparta, then again, maybe    not" | cat -e
+not$
+$> ./last_word "   " | cat -e
 $
+$> ./last_word "a" "b" | cat -e
+$
+$> ./last_word "  lorem,ipsum  " | cat -e
+lorem,ipsum$
+$>
 
 
    ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+#include <unistd.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-
-int		main(int argc, char *argv[])/* Здесь принимаем количество строк в массиве и сам массив со строками */
+int	ft_strcmp(char *s1, char *s2)
 {
-	if (argc == 4)					/* Проверяем есть ли кроме имени программы в аргументах еще и нужные нам строки для вычислений */
+	int i;
+
+	i = 0;
+	while (s1[i] == s2[i])
 	{
-		if (argv[2][0] == '+')								/* если средний аргумент между числами равен знаку '+' */
-			printf("%d", (atoi(argv[1]) + atoi(argv[3])));	/* то складываем два аргумента и печатаем результат */
-
-		if (argv[2][0] == '-')								/* если средний аргумент между числами равен знаку '-' */
-			printf("%d", (atoi(argv[1]) - atoi(argv[3])));	/* то считам разность двух аргументов и печатаем результат */
-			
-		if (argv[2][0] == '*')								/* если средний аргумент между числами равен знаку '*' */
-			printf("%d", (atoi(argv[1]) * atoi(argv[3])));	/* то умножаем два аргумента и печатаем результат */
-
-		if (argv[2][0] == '/')								/* если средний аргумент между числами равен знаку '/' */
-			printf("%d", (atoi(argv[1]) / atoi(argv[3])));	/* то делим два аргумента и печатаем результат */
-
-		if (argv[2][0] == '%')								/* если средний аргумент между числами равен знаку '%' */
-			printf("%d", (atoi(argv[1]) % atoi(argv[3])));	/* то делим по модулю два аргумента и печатаем результат */
+		if (!s1[i] && !s2[i])
+			return (0);
+		i++;
 	}
-	printf("\n");											/* печатаем символ завершающей строки */
-	return (0);												/* И завершаем программу */
+	return (s1[i] - s2[i]);
 }
+
+int		main(int argc, char **argv)
+{
+	int i;
+
+	i = 0;
+	if (argc == 3)
+	{
+		i = '0' + ft_strcmp(argv[1], argv[2]);
+	}
+
+	write(1, &i, 1);
+	return (0);
+}
+
+
