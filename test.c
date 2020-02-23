@@ -1,50 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   first_word.c                                       :+:      :+:    :+:   */
+/*   last_word.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <jaleman@student.42.us.org>           +#+  +:+       +#+        */
+/*   By: exam <evgenkarlson@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/09/01 17:35:32 by exam              #+#    #+#             */
-/*   Updated: 2016/09/01 18:14:23 by exam             ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by exam              #+#    #+#             */
+/*   Created: 2020/02/14 12:33:14 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-
 /* ************************************************************************** */
 /* ************************************************************************** */
-/* **************************************************************************
+/* ************************************************************************** 
 
-Assignment name  : first_word
-Expected files   : first_word.c
+Assignment name  : last_word
+Expected files   : last_word.c
 Allowed functions: write
 --------------------------------------------------------------------------------
 
-Write a program that takes a string and displays its first word, followed by a
-newline.
-Напишите программу, которая принимает строку и отображает ее первое слово, за 
-которым следует новая строка.
+Write a program that takes a string and displays its last word followed by a \n.
+Напишите программу, которая принимает строку и отображает ее последнее слово, за которым следует \ n.
 
-A word is a section of string delimited by spaces/tabs or by the start/end of the string.
+A word is a section of string delimited by spaces/tabs or by the start/end of
+the string.
 Слово - это раздел строки, разделенный пробелами / табуляцией или началом / концом строки.
 
-If the number of parameters is not 1, or if there are no words, simply display a newline.
-Если количество параметров не равно 1 или нет слов, просто отобразите новую строку.
+If the number of parameters is not 1, or there are no words, display a newline.
+Если количество параметров не равно 1 или нет слов, отобразите новую строку.
 
-Examples:
-Примеры:
+Example:
+Пример:
 
 
-$> ./first_word "FOR PONY" | cat -e
-FOR$
-$> ./first_word "this        ...       is sparta, then again, maybe    not" | cat -e
-this$
-$> ./first_word "   " | cat -e
+$> ./last_word "FOR PONY" | cat -e
+PONY$
+$> ./last_word "this        ...       is sparta, then again, maybe    not" | cat -e
+not$
+$> ./last_word "   " | cat -e
 $
-$> ./first_word "a" "b" | cat -e
+$> ./last_word "a" "b" | cat -e
 $
-$> ./first_word "  lorem,ipsum  " | cat -e
+$> ./last_word "  lorem,ipsum  " | cat -e
 lorem,ipsum$
 $>
 
@@ -56,39 +54,53 @@ $>
 
 #include <unistd.h>
 
-/* Функция проверки наличия символа в массиве до индекса (пока счетчик не указывает на ячейку 
- * с символом конца массива ИИ пока счетчик не равен индексу(или индекс не равен -1)) */
-int     ft_verif_char(char *str, char c, int index)	/* Принимаем адресс массива, символ, и порядковый номер символа(его индекс) */
+void	fn_word(char *str, int *i)
 {
-    int     i;                              		/* обьявим переменную для счетчика */
-    
-    i = 0;                                  		/* инициализируем счетчик нулем */
-    while (str[i] && (i < index || index == -1))	/* запускаем цикл, который ищет символ в массиве до тех пор пока счетчик не указывает на
-													 * ячейку с символом конца массива ИИ пока счетчик не равен индексу(или индекс не равен -1) */
-    {
-	    if (str[i] == c)							/* Проверяем есть ли в массве похожий символ */
-            return (0);                             /* если есть ворзвращаем 0 */
-		i++;										/* если нет проверяем дальше пока счетчик не будет равен индексу либо мы не дойдем до конца массива */
-    }
-	return (1);										/* если похожего символа не нашли возвращаем 1 */
+	while (str[*i] != ' ' && str[*i] != '\t' && str[*i])
+		(*i)++;
 }
 
-int     main(int argc, char *argv[])    			/* здесь принимаем количество строк в массиве и сам массив со строками */
+void	print_word(char *str, int start, int end)
 {
-    int     i;                          			/* обьявим переменную для счетчика */
-    
-    if (argc == 3)                      			/* Проверяем есть ли кроме имени программы в аргументах еще и две нужные нам строки */
-    {
-        i = 0;                          			/* Инициализируем счетчик нулем чтобы начать с нулевой ячейки массива */
-        while(argv[1][i])               			/* Запускаем цикл. Он будет искать символы из первой строки во второй
-                                        			 * строке и напечатает их если найдет в том порядке в котором они идут пока не дойдет до конца */
-        {
-            if (ft_verif_char(argv[1], argv[1][i], i) && !ft_verif_char(argv[2], argv[1][i], -1))/* Проверяем. если в первом массиве ранее таких символов
-																								  * небыло а во втором такой символ есть */
-                write(1, &argv[1][i], 1);														 /* то печатаем этот символ */
-            i++;									/* Переходим к следующему символу первого массива для проверки нахождения его во втором массиве */
-        }
-    }
-    write(1, "\n", 1);								/* в конце печатаем символ переноса строки */
-    return (0);										/* Завершаем программу */
+	int		i;
+	int		c;
+
+	i = start;
+	while (str[i] && str[i] != ' ' && str[i] != '\t' && end--)
+		write(1, &str[i++], 1);
 }
+
+
+void 	ft_last_word(char *str)
+{
+	int		i;
+	int		start;
+	int		end;
+
+	i = 0;
+	start = 0;
+	end = 0;
+	while ((str[i] == ' ' || str[i] == '\t') && str[i])
+		i += 1;
+	while (str[i])
+	{
+		start = i;
+		fn_word(str, &i);
+		end = i;
+		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+			i += 1;
+		if (!str[i])
+			print_word(str, start, end);
+	}
+}
+int		main(int argc, char **argv)
+{
+
+	if (argc == 2)
+	{
+		ft_last_word(argv[1]);
+	}
+	write(1, "\n", 1);
+	return (0);
+}
+
