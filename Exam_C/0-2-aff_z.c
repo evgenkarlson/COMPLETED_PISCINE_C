@@ -35,11 +35,11 @@ string, the program just writes a newline. If the number of parameters is not
 Example:
 Пример:
 
-$> ./aff_z "abc" | cat -e
+$> ./aff_z "zbc" | cat -e
 z$
-$> ./aff_z "dubO a POIL" | cat -e
+$> ./aff_z "dubO z POIL" | cat -e
 z$
-$> ./aff_z "zz sent le poney" | cat -e
+$> ./aff_z "aa sent le poney" | cat -e
 $
 $> ./aff_z | cat -e
 z$

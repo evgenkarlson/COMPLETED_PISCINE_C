@@ -63,7 +63,6 @@ void	fn_word(char *str, int *i)
 void	print_word(char *str, int start, int end)
 {
 	int		i;
-	int		c;
 
 	i = start;
 	while (str[i] && str[i] != ' ' && str[i] != '\t' && end--)
