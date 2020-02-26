@@ -53,32 +53,27 @@ $>
 
 #include <unistd.h>
 
-int	ft_strcmp(char *s1, char *s2)
-{
-	int i;
 
-	i = 0;
-	while (s1[i] == s2[i])
+int		ft_strcmp(char *s1, char *s2)
+{
+	while (*s1 && (*s1 == *s2))
 	{
-		if (!s1[i] && !s2[i])
-			return (0);
-		i++;
+		s1++;
+		s2++;
 	}
-	return (s1[i] - s2[i]);
+	return (*s1 - *s2);
 }
 
 int		main(int argc, char **argv)
 {
-	int i;
-
-	i = 0;
 	if (argc == 3)
 	{
-		i = '0' + ft_strcmp(argv[1], argv[2]);
+		if (ft_strcmp(argv[1], argv[2]) == 0)
+			write(1, "строки идентичны. ", 32);
+		else
+			write(1, "строки разные. ", 26);
 	}
-
-	write(1, &i, 1);
-	return (0);
+	write(1, "\n", 1);
+   return 0;
 }
-
 
