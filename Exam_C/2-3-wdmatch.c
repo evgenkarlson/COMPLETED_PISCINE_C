@@ -59,42 +59,87 @@ $
 
 #include <unistd.h>
 
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
 
 void	ft_putstr(char *str)
 {
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
+	while (*str)
 	{
-		ft_putchar(str[i]);
-		i++;
+		write(1, str, 1);
+		str++;
 	}
 }
 
 int		ft_strlen(char *str)
 {
 	int i = 0;
-	while (str[i] != '\0')
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	ft_wdmatch(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (s2[j] && i < ft_strlen(s1))
+	{
+		if (s2[j] == s1[i])
+			i++;
+		j++;
+	}
+	if (i == ft_strlen(s1))
+		ft_putstr(s1);
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 3)
+		ft_wdmatch(argv[1],argv[2]);
+	write(1, "\n", 1);
+	return (0);
+}
+
+
+
+/* ************************************************************************** */
+/* ********************************_OR_THAT_:)******************************* */
+/* ************************************************************************** */
+
+
+#include <unistd.h>
+
+void	ft_putstr(char *str)
+{
+	while (*str)
+	{
+		write(1, str, 1);
+		str++;
+	}
+}
+
+int		ft_strlen(char *str)
+{
+	int i = 0;
+	while (str[i])
 		i++;
 	return (i);
 }
 
 int main(int argc, char **argv)
 {
-	if (argc != 3) {
-		ft_putchar('\n');
+	if (argc != 3)
+	{
+		write(1, "\n", 1);
 		return (0);
 	}
 
 	int i = 0;
 	int j = 0;
 
-	while (argv[2][j] != '\0' && i < ft_strlen(argv[1])) 
+	while (argv[2][j] != '\0' && i < ft_strlen(argv[1]))
 	{
 		if (argv[2][j] == argv[1][i])
 			i++;
@@ -103,10 +148,10 @@ int main(int argc, char **argv)
 	if (i == ft_strlen(argv[1]))
 	{
 		ft_putstr(argv[1]);
-		ft_putchar('\n');
+		write(1, "\n", 1);
 	}
 	else
-		ft_putchar('\n');
+		write(1, "\n", 1);
 	return (0);
 }
 
@@ -120,16 +165,16 @@ int main(int argc, char **argv)
 
 #include <unistd.h>
 
-void	ft_putstr(char const *str)
+void	ft_putstr(char *str)
 {
-	int		i;
-
-	i = 0;
-	while (str[i])
-		write(1, &str[i++], 1);
+	while (*str)
+	{
+		write(1, str, 1);
+		str++;
+	}
 }
 
-int		main(int argc, char const *argv[])
+int		main(int argc, char *argv[])
 {
 	int		i;
 	int		j;

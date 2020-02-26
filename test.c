@@ -11,69 +11,49 @@
 /* ************************************************************************** */
 
 
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** 
-
-Assignment name  : last_word
-Expected files   : last_word.c
-Allowed functions: write
---------------------------------------------------------------------------------
-
-Write a program that takes a string and displays its last word followed by a \n.
-Напишите программу, которая принимает строку и отображает ее последнее слово, за которым следует \ n.
-
-A word is a section of string delimited by spaces/tabs or by the start/end of
-the string.
-Слово - это раздел строки, разделенный пробелами / табуляцией или началом / концом строки.
-
-If the number of parameters is not 1, or there are no words, display a newline.
-Если количество параметров не равно 1 или нет слов, отобразите новую строку.
-
-Example:
-Пример:
-
-
-$> ./last_word "FOR PONY" | cat -e
-PONY$
-$> ./last_word "this        ...       is sparta, then again, maybe    not" | cat -e
-not$
-$> ./last_word "   " | cat -e
-$
-$> ./last_word "a" "b" | cat -e
-$
-$> ./last_word "  lorem,ipsum  " | cat -e
-lorem,ipsum$
-$>
-
-
-   ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
 
 #include <unistd.h>
 
 
-int		ft_strcmp(char *s1, char *s2)
+void	ft_putstr(char *str)
 {
-	while (*s1 && (*s1 == *s2))
+	while (*str)
 	{
-		s1++;
-		s2++;
+		write(1, str, 1);
+		str++;
 	}
-	return (*s1 - *s2);
 }
 
-int		main(int argc, char **argv)
+int		ft_strlen(char *str)
+{
+	int i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void	ft_wdmatch(char *s1, char *s2)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (s2[j] && i < ft_strlen(s1))
+	{
+		if (s2[j] == s1[i])
+			i++;
+		j++;
+	}
+	if (i == ft_strlen(s1))
+		ft_putstr(s1);
+}
+
+int main(int argc, char **argv)
 {
 	if (argc == 3)
-	{
-		if (ft_strcmp(argv[1], argv[2]) == 0)
-			write(1, "строки идентичны. ", 32);
-		else
-			write(1, "строки разные. ", 26);
-	}
+		ft_wdmatch(argv[1],argv[2]);
 	write(1, "\n", 1);
-   return 0;
+	return (0);
 }
 
