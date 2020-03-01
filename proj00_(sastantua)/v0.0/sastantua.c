@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sastantua.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evgenkarlson <RTFM@student.42.us.org>      +#+  +:+       +#+        */
+/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/18 04:12:29 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2015/10/18 23:40:33 by evgenkarlson     ###   ########.fr       */
+/*   Created: 2015/10/18 04:12:29 by jmarin-h          #+#    #+#             */
+/*   Updated: 2015/10/18 23:40:33 by jmarin-h         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,7 @@ void	sastantua(int size)
 		ft_draw_line(i, size, stars[i], stars[NB_LINES(size) - 1] - stars[i]);
 }
 
-int		main(int argc,char **argv)
+int		main(void)
 {
-	if (argc == 2)
-	{	
-		if ((argv[1][0] - '0') <= 0)
-			return (0);
-		if ((argv[1][0] - '0') <= 9)
-			sastantua(argv[1][0] - '0');
-	}
-	return (0);
+	sastantua(5);
 }
