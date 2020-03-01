@@ -118,61 +118,6 @@ int main(int argc, char **argv)			/* Программа принимает в а
 /* ********************************_OR_THAT_:)******************************* */
 /* ************************************************************************** */
 
-
-#include <unistd.h>
-
-void	ft_putstr(char *str)
-{
-	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
-}
-
-int		ft_strlen(char *str)
-{
-	int i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int main(int argc, char **argv)
-{
-	if (argc != 3)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-
-	int i = 0;
-	int j = 0;
-
-	while (argv[2][j] != '\0' && i < ft_strlen(argv[1]))
-	{
-		if (argv[2][j] == argv[1][i])
-			i++;
-		j++;
-	}
-	if (i == ft_strlen(argv[1]))
-	{
-		ft_putstr(argv[1]);
-		write(1, "\n", 1);
-	}
-	else
-		write(1, "\n", 1);
-	return (0);
-}
-
-
-
-/* ************************************************************************** */
-/* ********************************_OR_THAT_:)******************************* */
-/* ************************************************************************** */
-
-
-
 #include <unistd.h>
 
 void	ft_putstr(char *str)
@@ -195,10 +140,45 @@ int		main(int argc, char *argv[])
 		j = 0;
 		while (argv[2][j])
 			if (argv[2][j++] == argv[1][i])
-				i += 1;
+				i++;
 		if (!argv[1][i])
 			ft_putstr(argv[1]);
 	}
 	write(1, "\n", 1);
+	return (0);
+}
+
+
+
+
+/* ************************************************************************** */
+/* ********************************_OR_THAT_:)******************************* */
+/* ************************************************************************** */
+
+
+
+#include <unistd.h>
+
+void	ft_putstr(char *s)
+{
+	while (*s)
+		write(1, s++, 1);
+}
+
+int		main(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (argv[2][j])
+	{
+		if (argv[1][i] == argv[2][j++])
+			i++;
+		if (!argv[1][i])
+			ft_putstr(argv[1]);
+	}
+	ft_putstr("\n");
 	return (0);
 }
