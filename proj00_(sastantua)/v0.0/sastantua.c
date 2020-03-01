@@ -80,4 +80,5 @@ void	sastantua(int size)
 int		main(void)
 {
 	sastantua(5);
+	return (0);
 }
