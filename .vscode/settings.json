@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "unistd.h": "c",
+        "sudoku.h": "c",
+        "limits": "c"
+    }
+}
