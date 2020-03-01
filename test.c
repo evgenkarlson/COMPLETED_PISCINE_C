@@ -1,90 +1,109 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sastantua.c                                        :+:      :+:    :+:   */
+/*   wdmatch.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evgenkarlson <RTFM@student.42.us.org>      +#+  +:+       +#+        */
+/*   By: exam <evgenkarlson@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/10/18 04:12:29 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2015/10/18 23:40:33 by evgenkarlson     ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by exam              #+#    #+#             */
+/*   Created: 2020/02/14 12:33:14 by exam             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* **************************************************************************
+
+
+Assignment name  : wdmatch
+Expected files   : wdmatch.c
+Allowed functions: write
+--------------------------------------------------------------------------------
+
+Write a program that takes two strings and checks whether it's possible to
+write the first string with characters from the second string, while respecting
+the order in which these characters appear in the second string.
+Напишите программу, которая принимает две строки и проверяет, можно ли написать 
+первую строку с символами из второй строки, соблюдая порядок, в котором эти символы
+появляются во второй строке.
+
+If it's possible, the program displays the string, followed by a \n, otherwise
+it simply displays a \n.
+Если это возможно, программа отображает строку, за которой следует \ n, в противном 
+случае просто отображается \ n.
+
+If the number of arguments is not 2, the program displays a \n.
+Если количество аргументов не равно 2, программа отображает \ n.
+
+Examples:
+Примеры:
+
+
+$>./wdmatch "faya" "fgvvfdxcacpolhyghbreda" | cat -e
+faya$
+$>./wdmatch "faya" "fgvvfdxcacpolhyghbred" | cat -e
+$
+$>./wdmatch "quarante deux" "qfqfsudf arzgsayns tsregfdgs sjytdekuoixq " | cat -e
+quarante deux$
+$>./wdmatch "error" rrerrrfiiljdfxjyuifrrvcoojh | cat -e
+$
+$>./wdmatch | cat -e
+$
+
+
+   ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
 #include <unistd.h>
 
-#define SMALL(a, b) ((a < b) ? a : b)
-#define NB_LINES(a) (2 * a + a * (a + 1) / 2)
-#define DOOR_SIZE(a) (a - ((a % 2) ? 0 : 1))
-
-void	ft_putchar(char c)
+int		ft_atoi(char *str)
 {
-	write(1, &c, 1);
-}
-
-void	ft_putnchar(char c, int n)
-{
-	while (n--)
-		ft_putchar(c);
-}
-
-void	ft_draw_line(int line, int size, int stars, int spaces)
-{
-	ft_putnchar(' ', spaces);
-	ft_putchar('/');
-	if (line >= NB_LINES(size) - DOOR_SIZE(size))
-	{
-		ft_putnchar('*', stars - (DOOR_SIZE(size) - 1) / 2);
-		if (size >= 5 && line == NB_LINES(size) - DOOR_SIZE(size) / 2 - 1)
-		{
-			ft_putnchar('|', DOOR_SIZE(size) - 2);
-			ft_putchar('$');
-			ft_putchar('|');
-		}
-		else
-			ft_putnchar('|', DOOR_SIZE(size));
-		ft_putnchar('*', stars - (DOOR_SIZE(size) - 1) / 2);
-	}
-	else
-		ft_putnchar('*', stars * 2 + 1);
-	ft_putchar('\\');
-	ft_putchar('\n');
-}
-
-void	sastantua(int size)
-{
-	int		i;
-	int		star_counter;
-	int		stage;
-	int		line;
-	int		stars[NB_LINES(size)];
+	int	i;
+	int	negativ;
+	int	number;
 
 	i = 0;
-	stage = 1;
-	star_counter = 0;
-	while (stage++ <= size)
+	negativ = 0;
+	number = 0;
+	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
+		|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
+		i++;
+	if (str[i] == '-')
+		negativ = 1;
+	if ((str[i] == '-') || (str[i] == '+'))
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		line = 1;
-		while (line++ < (stage + 2))
-		{
-			stars[i] = star_counter;
-			star_counter++;
-			i++;
-		}
-		star_counter += ((stage % 2) ? (stage - 1) / 2 : stage / 2) + 1;
+		number *= 10;
+		number += ((int)str[i] - 48);
+		i++;
 	}
-	i = -1;
-	while (++i < NB_LINES(size))
-		ft_draw_line(i, size, stars[i], stars[NB_LINES(size) - 1] - stars[i]);
+	if (negativ == 1)
+		return (-number);
+	else
+		return (number);
 }
 
-int		main(int argc,char **argv)
+void	print_bits(unsigned char octet)
 {
-	if (argc == 2)
-	{	
-		if ((argv[1][0] - '0') <= 0)
-			return (0);
-		if ((argv[1][0] - '0') <= 9)
-			sastantua(argv[1][0] - '0');
+	int				i;
+	unsigned char	bit;
+
+	i = 8;
+	while (i--)
+	{
+		bit = (octet >> i & 1) + '0';
+		write(1, &bit, 1);
 	}
+}
+
+int main(int argc, char **argv)
+{
+	if (argc == 2)						
+		print_bits(ft_atoi(argv[1]));
+	write(1, "\n", 1);					
 	return (0);
 }
