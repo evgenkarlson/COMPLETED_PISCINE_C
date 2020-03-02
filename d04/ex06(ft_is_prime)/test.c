@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -42,6 +42,11 @@ void	ft_putnbr(int nb)
 		ft_putchar('-');
 		nb = -nb;
 	}
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
 	temp = nb;
 	while ((temp /= 10) > 0)
 		size *= 10;
@@ -59,30 +64,28 @@ void	ft_putnbr(int nb)
 /* ************************************************************************** */
 
 
-static int	ft_is_prime(int nb)
+int		ft_is_prime(int nb)
 {
 	int i;
 
 	if (nb < 2)
 		return (0);
 	i = 2;
-	if (nb <= 0)
-		return (0);
-	while (i <= (nb / 2))
+	while (i <= nb / i)
 	{
-		if (!(nb % i))
+		if (nb % i == 0)
 			return (0);
 		else
-			i += 1;
+			i++;
 	}
 	return (1);
 }
 
-int			ft_find_next_prime(int nb)
+int		ft_find_next_prime(int nb)
 {
-	nb += 1;
+	nb++;
 	while (!ft_is_prime(nb))
-		nb += 1;
+		nb++;
 	return (nb);
 }
 
@@ -95,13 +98,15 @@ int 	main(void)
 {
 	int r;
 
-	r = ft_is_prime(4);
-	ft_putnbr(r);
-
+	if (ft_is_prime(4))				/* проверяем простое ли число */
+		ft_putnbr(1);				/* если число простое то выведем 1) */
+	else
+		ft_putnbr(0);				/* иначе выведем 0 */
+	
 	ft_putchar(' ');
 
-	r = ft_find_next_prime(4);
-	ft_putnbr(r);
+	r = ft_find_next_prime(4);		/* отправим такое же число в функцию чтобы найти следующее ближайшее простое число */
+	ft_putnbr(r);					/* выведем это самое простое число которое мы нашли */
 
 	return 0;
 }
