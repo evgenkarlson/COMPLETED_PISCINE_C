@@ -28,15 +28,12 @@ void	ft_putchar(char c)			/* функция вывода символа */
 }
 
 
-void	ft_putstr(char *str)		
+void	ft_putstr(char *str)		/* функция печати строки */
 {
-	int	i;						
-
-	i = 0;						
-	while (str[i] != '\0')		
+	while(*str)
 	{
-		ft_putchar(str[i]);		
-		i++;					
+		ft_putchar(*str);
+		str++;
 	}
 }
 
