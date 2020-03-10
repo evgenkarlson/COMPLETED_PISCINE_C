@@ -34,7 +34,7 @@ It should return 1 if str is empty.
 
 
 
-int	ft_str_is_lowercase(char *str)
+int	ft_str_is_uppercase(char *str)
 {
 	int	i;
 
