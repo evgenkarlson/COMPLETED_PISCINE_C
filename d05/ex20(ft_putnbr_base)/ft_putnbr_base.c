@@ -14,7 +14,34 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** 
+• Create a function that displays a number in a base system onscreen.
+• This number is given in the shape of an int, and the radix in the shape of a string of characters.
+• The base-system contains all useable symbols to display that number :
+	◦ 0123456789 is the commonly used base system to represent decimal numbers;
+	◦ 01 is a binary base system ;
+	◦ 0123456789ABCDEF an hexadecimal base system ;
+	◦ poneyvif is an octal base system.
+• The function must handle negative numbers.
+• If there’s an invalid argument, nothing should be displayed. Examples of invalid arguments :
+	◦ base is empty or size of 1;
+	◦ base contains the same character twice ;
+	◦ base contains + or - ;
+	◦ etc.
 
+
+• Создайте функцию, которая отображает число в базовой системе на экране.
+• Это число дается в форме целого числа, а основание - в виде строки символов.
+• Базовая система содержит все используемые символы для отображения этого числа:
+	◦ 0123456789 - широко используемая базовая система для представления десятичных чисел;
+	◦ 01 - двоичная базовая система;
+	◦ 0123456789ABCDEF шестнадцатеричная базовая система;
+	◦ poneyvif - это восьмеричная базовая система.
+• Функция должна обрабатывать отрицательные числа.
+• Если указан неверный аргумент, ничего не должно отображаться. Примеры неверных аргументов:
+	◦ база пуста или имеет размер 1;
+	◦ база содержит один и тот же символ дважды;
+	◦ база содержит + или -;
+	◦ и т. Д.
 
    ************************************************************************** */
 /* ************************************************************************** */
@@ -43,7 +70,7 @@ static int	check_base(char *base)
 		while (base[z])
 			if (base[i] == base[z++])
 				return (0);
-		i += 1;
+		i++;
 	}
 	return (1);
 }
@@ -64,12 +91,12 @@ void		ft_putnbr_base(int nbr, char *base)
 		ft_putchar('-');
 	}
 	while (base[size])
-		size += 1;
+		size++;
 	while (nbr)
 	{
 		n[i] = nbr % size;
 		nbr /= size;
-		i += 1;
+		i++;
 	}
 	while (i > 0)
 		ft_putchar(base[n[--i]]);
