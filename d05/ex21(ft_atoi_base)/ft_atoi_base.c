@@ -16,6 +16,34 @@
 /* ************************************************************************** 
 
 
+• Create a function that returns a number. This number is shaped as a string of
+characters.
+• The string of characters reveals the number in a specific base, given as a second
+parameter.
+• The function must handle negative numbers.
+• The function must handle signs like man atoi.
+• If there’s an invalid argument, the function should return 0. Examples of invalid arguments :
+	◦ str is an empty string ;
+	◦ the base is empty or size of 1;
+	◦ str contains characters that aren’t part of the base, or aren’t + nor - ;
+	◦ the base contains the same character twice ;
+	◦ the base contains + or - ;
+	◦ etc.
+
+
+• Создать функцию, которая возвращает число. Этот номер имеет форму строки символов.
+• Строка символов показывает число в конкретной базе, заданной в качестве второго параметра.
+• Функция должна обрабатывать отрицательные числа.
+• Функция должна обрабатывать такие знаки, как man atoi.
+• Если указан неверный аргумент, функция должна вернуть 0. Примеры неверных аргументов:
+	◦ str - пустая строка;
+	◦ база пуста или имеет размер 1;
+	◦ str содержит символы, которые не являются частью базы или не + или -;
+	◦ база содержит один и тот же символ дважды;
+	◦ база содержит + или -;
+	◦ и т. Д.
+
+
    ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */

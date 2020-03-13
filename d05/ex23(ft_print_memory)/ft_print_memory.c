@@ -15,6 +15,23 @@
 /* ************************************************************************** */
 /* ************************************************************************** 
 
+• Create a function that displays the memory area onscreen.
+• The display of this memory area should be split into three columns :
+	◦ The hexadecimal address of the first line’s first character ;
+	◦ The content in hexadecimal ;
+	◦ The content in printable characters.
+• If a character is non-printable, it’ll be replaced by a dot.
+• Each line should handle sixteen characters.
+• If size equals to 0, nothing should be displayed.
+
+• Создать функцию, которая отображает область памяти на экране.
+• Отображение этой области памяти должно быть разбито на три столбца:
+	◦ Шестнадцатеричный адрес первого символа первой строки;
+	◦ Содержание в шестнадцатеричном формате;
+	◦ Содержание печатных символов.
+• Если символ недоступен для печати, он будет заменен точкой.
+• Каждая строка должна содержать шестнадцать символов.
+• Если размер равен 0, ничего не должно отображаться.
 
    ************************************************************************** */
 /* ************************************************************************** */
