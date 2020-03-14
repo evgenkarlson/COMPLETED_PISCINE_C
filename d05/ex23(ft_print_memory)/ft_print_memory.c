@@ -78,7 +78,7 @@ static void	print_hex(int i, unsigned int size, unsigned char *p)
 		ft_putchar((char)str[*(p + i + j) % 16]);
 		if (j % 2)
 			ft_putchar(' ');
-		j += 1;
+		j++;
 	}
 	while (j < 16)
 	{
@@ -86,18 +86,16 @@ static void	print_hex(int i, unsigned int size, unsigned char *p)
 		ft_putchar(' ');
 		if (j % 2)
 			ft_putchar(' ');
-		j += 1;
+		j++;
 	}
 }
 
 void		ft_print_memory(void *addr, unsigned int size)
 {
-	char			*str;
 	unsigned int	i;
 	unsigned int	j;
 	unsigned char	*p;
 
-	str = "0123456789abcdef";
 	p = (unsigned char *)addr;
 	i = 0;
 	while (i < size)
@@ -110,7 +108,7 @@ void		ft_print_memory(void *addr, unsigned int size)
 				ft_putchar((char)*(p + i + j));
 			else
 				ft_putchar('.');
-			j += 1;
+			j++;
 		}
 		ft_putchar('\n');
 		i += 16;
