@@ -21,7 +21,7 @@ void	ft_putchar(char c)			/* функция вывода символа */
 	write(1, &c, 1);
 }
 
-int		ft_atoi(char *str)
+int		ft_atoi(char *str)			/* Функция получения числа из строки */
 {
 	int	i;
 	int	negativ;
