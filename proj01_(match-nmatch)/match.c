@@ -38,6 +38,7 @@ The purpose of this function is to find out whether two strings match.
 /* ************************************************************************** */
 
 
+
 int		match(char *s1, char *s2)
 {
 	if (*s1 != '\0' && *s2 == '*')
@@ -90,3 +91,68 @@ int		match(char *s1, char *s2)
 		return (match(&s1[0], &s2[1]) || match(&s1[1], &s2[0]));
 	return (0);
 }
+
+
+
+
+/* ************************************************************************** */
+/* ******************************_OR_THAT_*********************************** */
+/* ************************************************************************** */
+
+
+
+unsigned int	ft_strlen(char *str)
+{
+	int len;
+
+	len = 0;
+	while (*(str + len) != '\0')
+	{
+		len++;
+	}
+	return (len);
+}
+
+unsigned int	star_count(char *str)
+{
+	int n;
+
+	n = 0;
+	while (*str)
+		if (*str++ == '*')
+			n++;
+	return (n);
+}
+
+int				recur(char *s1, char *s2, unsigned int star_len)
+{
+	unsigned int i;
+
+	while (1)
+	{
+		if (*s2 == '*')
+		{
+			i = 0;
+			while (i++ <= star_len)
+				if (recur(s1 + i - 1, s2 + 1, star_len - i + 1))
+					return (1);
+			return (0);
+		}
+		if (!*s1)
+		{
+			if (!*s2)
+				return (1);
+			return (0);
+		}
+		if (!*s2)
+			return (0);
+		if (*s1++ != *s2++)
+			return (0);
+	}
+}
+
+int				match(char *s1, char *s2)
+{
+	return (recur(s1, s2, ft_strlen(s1) - ft_strlen(s2) + star_count(s2)));
+}
+
