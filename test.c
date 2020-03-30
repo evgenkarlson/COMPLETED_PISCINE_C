@@ -74,68 +74,61 @@ void		ft_putnbr_base1(int nbr, char *base)
 }
 
 
-int		is_pr2(char c)
+int		check_base(char *base)
 {
-	return (c >= 32 && c <= 126);
-}
+	int	i;
+	int	z;
 
-int		validate_base(char *base)
-{
-	char	*ptr;
-	int		i;
-	int		vals[95];
-
-	ptr = base;
-	i = -1;
-	while (i++ < 95)
-		vals[i] = 0;
 	i = 0;
-	while (*ptr)
-	{
-		if (!is_pr2(*ptr))
-			return (0);
-		if (*ptr == '+' || *ptr == '-')
-			return (0);
-		if (vals[(*ptr) - 32])
-			return (0);
-		vals[(*ptr) - 32] = 1;
-		i++;
-		ptr++;
-	}
-	if (i < 2)
+	z = 0;
+	if (base[0] == '\0' || base[1] == '\0')
 		return (0);
-	return (i);
-}
-
-void	ft_put_negative_base(int nb, char *base, int basen)
-{
-	int a;
-	int b;
-
-	if (!nb)
-		return ;
-	a = nb / basen;
-	b = nb % basen;
-	ft_put_negative_base(a, base, basen);
-	ft_putchar(*(base - b));
-}
-
-void	ft_putnbr_base(int nbr, char *base)	/* принимаем число для печати и массив с описанием основания нужного нам числа, 
-											 * от которого будем отталкиваться при печати числа */
-{
-	int basen;								/* обьявим переменную для хранения результата проверки основания числа */
-
-	basen = validate_base(base);			/* сохранияем результат проверки основания числа в переменной */
-	if (!basen)								/* если основание не соответствует условиям */
-		return ;							/* то завершаем функцию */
-	if (nbr < 0)							/* проверим отрицательно ли число */
+	while (base[i])
 	{
-		ft_putchar('-');					/* если отрицательно то печатаем символ '-' и */
-		ft_put_negative_base(nbr, base, basen);		/* выводим число в том формате основание которого мы дали в массиве base */  
+		z = i + 1;
+		if (base[i] == '+' || base[i] == '-')
+			return (0);
+		if (base[i] < 32 || base[i] > 126)
+			return (0);
+		while (base[z])
+		{
+			if (base[i] == base[z])
+				return (0);
+			z++;
+		}
+		i++;
 	}
-	else									/* если число положительное то просто */
-		ft_put_negative_base(-nbr, base, basen);	/* выводим число в том формате основание которого мы дали в массиве base */
+	return (1);
 }
+
+void	ft_putnbr_base(int nbr, char *base)
+{
+	int	size_base;
+	int	nbr_final[100];
+	int	i;
+
+	i = 0;
+	size_base = 0;
+	if (check_base(base))
+	{
+		if (nbr < 0)
+		{
+			nbr = -nbr;
+			ft_putchar('-');
+		}
+		while (base[size_base])
+			size_base++;
+		while (nbr)
+		{
+			nbr_final[i] = nbr % size_base;
+			nbr = nbr / size_base;
+			i++;
+		}
+		while (--i >= 0)
+			ft_putchar(base[nbr_final[i]]);
+	}
+}
+
 
 
 
