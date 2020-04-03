@@ -91,23 +91,25 @@ void		ft_putnbr_base(int nbr, char *base)
 
 	i = 0;
 	size = 0;
-	if (!check_base(base))
-		return ;
-	if (nbr < 0)
+	if (check_base(base))
 	{
-		nbr *= -1;
-		ft_putchar('-');
+			if (nbr < 0)
+		{
+			nbr *= -1;
+			ft_putchar('-');
+		}
+		while (base[size])
+			size++;
+		while (nbr)
+		{
+			n[i] = nbr % size;
+			nbr /= size;
+			i++;
+		}
+		while (i > 0)
+			ft_putchar(base[n[--i]]);
 	}
-	while (base[size])
-		size++;
-	while (nbr)
-	{
-		n[i] = nbr % size;
-		nbr /= size;
-		i++;
-	}
-	while (i > 0)
-		ft_putchar(base[n[--i]]);
+	
 }
 
 
@@ -160,12 +162,14 @@ void	ft_put_negative_base(int nb, char *base, int basen)
 	int a;
 	int b;
 
-	if (!nb)
-		return ;
-	a = nb / basen;
-	b = nb % basen;
-	ft_put_negative_base(a, base, basen);
-	ft_putchar(*(base - b));
+	if (nb)
+	{
+		a = nb / basen;
+		b = nb % basen;
+		ft_put_negative_base(a, base, basen);
+		ft_putchar(*(base - b));
+	}
+
 }
 
 void	ft_putnbr_base(int nbr, char *base)
@@ -173,15 +177,17 @@ void	ft_putnbr_base(int nbr, char *base)
 	int basen;
 
 	basen = validate_base(base);
-	if (!basen)
-		return ;
-	if (nbr < 0)
+	if (basen)
 	{
-		ft_putchar('-');
-		ft_put_negative_base(nbr, base, basen);
+		if (nbr < 0)
+		{
+			ft_putchar('-');
+			ft_put_negative_base(nbr, base, basen);
+		}
+		else
+			ft_put_negative_base(-nbr, base, basen);
 	}
-	else
-		ft_put_negative_base(-nbr, base, basen);
+
 }
 
 
