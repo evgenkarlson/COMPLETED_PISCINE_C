@@ -94,7 +94,7 @@ void		ft_putnbr_base(int nbr, char *base)
 	size = 0;
 	if (check_base(base))
 	{
-			if (nbr < 0)
+		if (nbr < 0)
 		{
 			nbr *= -1;
 			ft_putchar('-');
