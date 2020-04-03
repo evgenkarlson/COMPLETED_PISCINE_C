@@ -73,7 +73,7 @@ void		ft_putstr_non_printable(char *str)
 		}
 		else
 			ft_putchar(str[i]);
-		i += 1;
+		i++;
 	}
 }
 
