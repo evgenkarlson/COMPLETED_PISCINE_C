@@ -61,7 +61,7 @@ void		ft_putchar(char c);
 
 /* ************************************************************************** */
 
-static int	check_base(char *base)
+static int	ft_check_base(char *base)
 {
 	int	i;
 	int	z;
@@ -81,7 +81,7 @@ static int	check_base(char *base)
 				return (0);
 		i++;
 	}
-	return (1);
+	return (i);
 }
 
 void		ft_putnbr_base(int nbr, char *base)
@@ -92,7 +92,7 @@ void		ft_putnbr_base(int nbr, char *base)
 
 	i = 0;
 	size = 0;
-	if (check_base(base))
+	if (ft_check_base(base))
 	{
 		if (nbr < 0)
 		{

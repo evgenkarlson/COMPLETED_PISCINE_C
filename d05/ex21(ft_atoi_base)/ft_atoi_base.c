@@ -215,7 +215,7 @@ int		ft_atoi_base(char *str, char *base)
 
 
 
-int		ft_ctoi(char c)
+int		ft_ctoi(char c)				
 {
 	if (c >= '0' && c <= '9')
 		return (c - '0');
@@ -226,41 +226,81 @@ int		ft_ctoi(char c)
 	return (-1);
 }
 
-double	ft_pow(double x, double y)
-{
-	double	r;
 
-	r = 1;
-	while (y--)
-		r *= x;
-	return (r);
+
+int		ft_pow(int nb, int power)
+{
+	int	result;
+
+	result = 1;
+	if(power < 0)
+		return (0);
+	if(power == 0)
+		return (0);
+	while (power--)
+		result *= nb;
+	return (result);
 }
 
-int		ft_atoi_base(char *s, int b)
+
+
+int		ft_check_base(char *base)
 {
-	int		n;
+	int	i;
+	int	z;
+
+	i = 0;
+	z = 0;
+	if (!base || !base[1])
+		return (0);
+	while (base[i])
+	{
+		z = i + 1;
+		if (!((base[i] >= '0' && base[i] <= '9') || (base[i] >= 'a' \
+				&& base[i] <= 'z') || (base[i] >= 'A' && base[i] <= 'Z')))
+			return (0);
+		while (base[z])
+			if (base[i] == base[z++])
+				return (0);
+		i++;
+	}
+	return (i);
+}
+
+
+
+int		ft_atoi_base(char *str, char *base)
+{
+	int		num;
 	int		negative;
 	int		i;
-	int		exp;
+	int		pow;
+	int		base_type;
 
-	exp = 0;
+	pow = 0;
 	i = 0;
 	negative = 1;
-	n = 0;
-	if (*s == '-')
+	num = 0;
+	base_type = ft_check_base(base);
+	if(base_type)
 	{
-		i++;
-		negative = -1;
+		if (*str == '-')
+		{
+			i++;
+			negative = -1;
+		}
+		while (str[i])
+			i++;
+		while (--i >= 0)
+		{
+			if (ft_ctoi(str[i]) != -1 && ft_ctoi(str[i]) < base_type)
+				num += ft_ctoi(str[i]) * ft_pow(base_type, pow++);
+		}
+		return (num * negative);
 	}
-	while (s[i])
-		i++;
-	while (--i >= 0)
-	{
-		if (ft_ctoi(s[i]) != -1 && ft_ctoi(s[i]) < b)
-			n += ft_ctoi(s[i]) * ft_pow(b, exp++);
-	}
-	return (n * negative);
+	return (0);
 }
+
 
 
 
