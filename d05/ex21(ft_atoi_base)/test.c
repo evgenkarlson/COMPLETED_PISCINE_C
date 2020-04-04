@@ -195,7 +195,7 @@ int		ft_pow(int nb, int power)	/* Функция возведения в сте�
 	return (result);				/* Завершаем функцию и возвращаем результат возведения в степень */
 }
 
-int		ft_atoi_base(char *s, int b)
+int		ft_atoi_base(char *str, int base)
 {
 	int		n;
 	int		negative;
@@ -206,17 +206,17 @@ int		ft_atoi_base(char *s, int b)
 	i = 0;
 	negative = 1;
 	n = 0;
-	if (*s == '-')
+	if (*str == '-')
 	{
 		i++;
 		negative = -1;
 	}
-	while (s[i])
+	while (str[i])
 		i++;
 	while (--i >= 0)
 	{
-		if (ft_ctoi(s[i]) != -1 && ft_ctoi(s[i]) < b)
-			n += ft_ctoi(s[i]) * ft_pow(b, exp++);
+		if (ft_ctoi(str[i]) != -1 && ft_ctoi(str[i]) < base)
+			n += ft_ctoi(str[i]) * ft_pow(base, exp++);
 	}
 	return (n * negative);
 }
