@@ -87,24 +87,22 @@ static int	ft_check_base(char *base)
 void		ft_putnbr_base(int nbr, char *base)
 {
 	int		i;
-	int		size;
+	int		base_type;
 	int		n[10];
 
 	i = 0;
-	size = 0;
-	if (ft_check_base(base))
+	base_type = ft_check_base(base);
+	if (base_type)
 	{
 		if (nbr < 0)
 		{
 			nbr *= -1;
 			ft_putchar('-');
 		}
-		while (base[size])
-			size++;
 		while (nbr)
 		{
-			n[i] = nbr % size;
-			nbr /= size;
+			n[i] = nbr % base_type;
+			nbr /= base_type;
 			i++;
 		}
 		while (i > 0)
