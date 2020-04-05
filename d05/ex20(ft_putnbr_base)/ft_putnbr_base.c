@@ -56,7 +56,6 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
 void		ft_putchar(char c);
 
 /* ************************************************************************** */
@@ -116,8 +115,6 @@ void		ft_putnbr_base(int nbr, char *base)
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
-
-
 
 void	ft_putchar(char c);
 
@@ -196,9 +193,6 @@ void	ft_putnbr_base(int nbr, char *base)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
-
-
 void	ft_putchar(char c);
 
 /* ************************************************************************** */
@@ -228,30 +222,28 @@ int		check_base(char *base)
 		}
 		i++;
 	}
-	return (1);
+	return (i);
 }
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	size_base;
+	int	base_type;
 	int	nbr_final[100];
 	int	i;
 
 	i = 0;
-	size_base = 0;
-	if (check_base(base))
+	base_type = check_base(base);
+	if (base_type)
 	{
 		if (nbr < 0)
 		{
 			nbr = -nbr;
 			ft_putchar('-');
 		}
-		while (base[size_base])
-			size_base++;
 		while (nbr)
 		{
-			nbr_final[i] = nbr % size_base;
-			nbr = nbr / size_base;
+			nbr_final[i] = nbr % base_type;
+			nbr = nbr / base_type;
 			i++;
 		}
 		while (--i >= 0)
@@ -332,7 +324,7 @@ void		ft_putnbr_base(int nbr, char *base)
 {
 	int		base_len;
 
-	if (base && (base_len = ft_strlen(base)) > 1 &&
-		ft_check_base(base, base_len))
+	base_len = ft_strlen(base);
+	if (base && (base_len > 1) && ft_check_base(base, base_len))
 		ft_putnbr_base_n(nbr, base, base_len);
 }
