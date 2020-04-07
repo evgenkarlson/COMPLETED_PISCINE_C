@@ -43,6 +43,7 @@ int	main(void)
 	print_memory(tab, sizeof(tab));
 	return (0);
 }
+
 $> gcc -Wall -Wall -Werror main.c print_memory.c && ./a.out | cat -e
 0000 0000 1700 0000 9600 0000 ff00 0000 ................$
 0c00 0000 1000 0000 1500 0000 2a00 0000 ............*...$
@@ -61,9 +62,9 @@ void	print_memory(const void *addr, size_t size)
 	size_t			i;
 	size_t 			j;
 	unsigned char	*p;
-	char 			*str;
+	char 			*hex;
 
-	str = "0123456789abcdef";
+	hex = "0123456789abcdef";
 	p = (unsigned char *)addr;
 	i = 0;
 	while (i < size)
@@ -71,11 +72,11 @@ void	print_memory(const void *addr, size_t size)
 		j = 0;
 		while (j < 16 && i + j < size)
 		{
-			write(1, &str[(*(p + i + j)/16) % 16], 1);
-			write(1, &str[*(p + i + j) % 16], 1);
+			write(1, &hex[(*(p + i + j)/16) % 16], 1);
+			write(1, &hex[*(p + i + j) % 16], 1);
 			if (j % 2)
 				write(1, " ", 1);
-			j += 1;
+			j++;
 		}
 		while (j < 16)
 		{
@@ -91,7 +92,7 @@ void	print_memory(const void *addr, size_t size)
 				write(1, p + i + j, 1);
 			else
 				write(1, ".", 1);
-			j += 1;
+			j++;
 		}
 		write(1, "\n", 1);
 		i += 16;
