@@ -33,14 +33,8 @@ void		ft_putchar(char c)
 
 void		ft_putstr(const char *str)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
-		i += 1;
-	}
+	while (*str)
+		ft_putchar(*str++);
 }
 
 int			ft_display_custom_error(int eno, char *argv)

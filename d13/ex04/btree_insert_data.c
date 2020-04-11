@@ -36,10 +36,7 @@ void        ft_putstr(void *v)
 
 	str = (char *)v;
 	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
+		write(1, str++, 1);
 }
 
 void    btree_apply_prefix(t_btree *root, void (*applyf)(void *))

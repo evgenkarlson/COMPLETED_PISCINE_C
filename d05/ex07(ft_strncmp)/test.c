@@ -30,11 +30,8 @@ void	ft_putchar(char c)			/* функция вывода символа */
 
 void	ft_putstr(char *str)		/* функция печати строки */
 {
-	while(*str)
-	{
-		ft_putchar(*str);
-		str++;
-	}
+	while (*str)
+		ft_putchar(*str++);
 }
 
 /* Функция побайтно сравнивает коды символов двух строк, на которые указывают аргументы

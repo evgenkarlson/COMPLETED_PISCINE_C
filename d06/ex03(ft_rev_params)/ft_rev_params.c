@@ -9,7 +9,7 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_putchar(char c);
+void	ft_putchar(char c);
 
 int	main(int argc, char **argv)
 {

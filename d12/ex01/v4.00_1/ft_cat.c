@@ -14,14 +14,8 @@
 
 void	ft_putstr(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(2, &str[i], 1);
-		i++;
-	}
+	while (*str)
+		write(2, str++, 1);
 }
 
 void	disp_files(int argc, char **argv)

@@ -63,10 +63,7 @@ $
 void	ft_putstr(char *str)
 {
 	while (*str)
-	{
-		write(1, str, 1);
-		str++;
-	}
+		write(1, str++, 1);
 }
 
 int		ft_strlen(char *str)
@@ -120,10 +117,10 @@ int main(int argc, char **argv)			/* Программа принимает в а
 
 #include <unistd.h>
 
-void	ft_putstr(char *s)
+void	ft_putstr(char *str)
 {
-	while (*s)
-		write(1, s++, 1);
+	while (*str)
+		write(1, str++, 1);
 }
 
 void	ft_wdmatch(char *str1, char *str2)

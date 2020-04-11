@@ -54,16 +54,6 @@ void	ft_putnbr(int nb)
 
 void	ft_putstr(char *str)
 {
-	int		i;
-	char	c;
-
-	i = 0;
-	while (1)
-	{
-		c = *(str + i);
-		if (c == '\0')
-			break ;
-		ft_putchar(c);
-		i++;
-	}
+	while (*str)
+		ft_putchar(*str++);
 }

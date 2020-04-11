@@ -29,11 +29,8 @@ void	ft_putchar(char c)			/* функция вывода символа */
 
 void	ft_putstr(char *str)		/* функция печати строки */
 {
-	while(*str)
-	{
-		ft_putchar(*str);
-		str++;
-	}
+	while (*str)
+		ft_putchar(*str++);
 }
 
 char	*ft_strupcase(char *str)	/* функция изменения символов строки на верхний регистр */

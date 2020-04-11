@@ -30,11 +30,8 @@ void	ft_putchar(char c)			/* функция вывода символа */
 
 void	ft_putstr(char *str)		/* функция печати строки */
 {
-	while(*str)
-	{
-		ft_putchar(*str);
-		str++;
-	}
+	while (*str)
+		ft_putchar(*str++);
 }
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)/* Принимаем адрес строки в которую будем копировать символы, 

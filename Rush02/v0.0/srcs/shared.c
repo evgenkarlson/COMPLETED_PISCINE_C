@@ -31,11 +31,8 @@ void	ft_putchar(char c)
 
 void	ft_putstr(char *str)
 {
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-		ft_putchar(str[i++]);
+	while (*str)
+		ft_putchar(*str++);
 }
 
 void	print_rush(char *rush, int *xy, int index, int num_rushes)

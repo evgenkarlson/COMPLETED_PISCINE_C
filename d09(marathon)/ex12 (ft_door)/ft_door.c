@@ -13,16 +13,8 @@
 
 void	ft_putstr(char *str)
 {
-	int		i;
-	char	c;
-
-	i = 0;
-	while (str[i])
-	{
-		c = str[i];
-		write(1, &c, 1);
-		i++;
-	}
+	while (*str)
+		write(1, str++, 1);
 }
 
 ft_bool	open_door(t_door *door)
@@ -67,14 +59,8 @@ ft_bool	is_door_close(t_door *door)
 
 void	ft_putstr(char *str)
 {
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+	while (*str)
+		write(1, str++, 1);
 }
 
 void	close_door(t_door *door)
@@ -111,14 +97,8 @@ t_bool	is_door_close(t_door *door)
 
 void	ft_putstr(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+	while (*str)
+		write(1, str++, 1);
 }
 
 t_bool	open_door(t_door *door)
@@ -156,11 +136,8 @@ t_bool	is_door_close(t_door *door)
 
 void	ft_putstr(char *str)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-		write(1, &str[i++], 1);
+	while (*str)
+		write(1, str++, 1);
 }
 
 t_bool	open_door(t_door *door)

@@ -72,11 +72,8 @@ void	ft_putchar(char c)			/* функция печати символа */
 
 void	ft_putstr(char *str)		/* функция печати строки(массива символов) */
 {
-	while (*str != '\0')
-	{
-		ft_putchar(*str);
-		str++;
-	}
+	while (*str)
+		ft_putchar(*str++);
 }
 
 

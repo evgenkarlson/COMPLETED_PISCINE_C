@@ -30,11 +30,8 @@ void	ft_putchar(char c)			/* функция вывода символа */
 
 void	ft_putstr(char *str)		/* функция печати строки */
 {
-	while(*str)
-	{
-		ft_putchar(*str);
-		str++;
-	}
+	while (*str)
+		ft_putchar(*str++);
 }
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)/* принимаем адреса строк dest и src для копирования и размер массива dest*/
