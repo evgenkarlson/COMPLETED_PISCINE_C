@@ -85,7 +85,7 @@ int		ft_atoi_base(const char *str, int base)
 			nbr = (nbr * base) + (str[i] - 'a' + 10);
 		else
 			nbr = (nbr * base) + (str[i] - '0');
-		i += 1;
+		i++;
 	}
 	return (nbr * sign);
 }

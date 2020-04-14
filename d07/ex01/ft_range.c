@@ -44,7 +44,7 @@ int	*ft_range(int min, int max)
 	i = 0;
 	if (min >= max)
 		return ((void *)0);
-	if (tab = (int *)malloc(sizeof(*tab) * (max - min)) == ((void *)0))
+	if ((tab = (int *)malloc(sizeof(int) * (max - min))) == ((void *)0))
 		return ((void *)0);
 	while (min < max)
 	{

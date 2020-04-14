@@ -37,7 +37,7 @@ int	ft_ultimate_range(int **range, int min, int max)
 	int	*tab;
 
 	i = 0;
-	if (tab = (int *)malloc(sizeof(int) * (max - min)) == ((void *)0))
+	if ((tab = (int *)malloc(sizeof(int) * (max - min))) == ((void *)0))
 		return ((void *)0);
 	while (min < max)
 	{
