@@ -20,7 +20,7 @@
 • Минимум включен - максимум исключен.
 
 • Вот как это должно быть прототипировано:
-	int ft_ultimate_range (int ** range, int min, int max);
+	int ft_ultimate_range(int **range, int min, int max);
 
 • Если значение min больше или равно значению max, диапазон будет указывать на NULL.
 

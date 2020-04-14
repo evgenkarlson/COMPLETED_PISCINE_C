@@ -10,58 +10,80 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* **************************************************************************
+
+• Создать функцию, которая возвращает результат преобразования строки nbr из 
+  базового типа base_from в базовый тип base_to. 
+• Строка должна иметь достаточно выделенной памяти.
+• Число, представленное nbr, должно помещаться в int.
+• Вот как это должно быть прототипировано:
+  char *ft_convert_base(char *nbr, char *base_from, char *base_to);
+
+   ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	ft_strlen(char *str)
+int		ft_strlen(char *str)
 {
 	int		i;
 
 	i = 0;
 	while (str[i] != '\0')
-		i += 1;
+		i++;
 	return (i);
 }
 
-static int	ft_power(int nb, int power)
+int		ft_power(int nb, int power)
 {
 	int		result;
 
 	result = 1;
 	if (power < 0)
 		return (0);
+	if (power == 0)
+		return (result);
 	while (power--)
 		result *= nb;
 	return (result);
 }
 
-static int	ft_calculate_dec(char *str, int basesize, int size)
+int		ft_convert_to_dec(char *str, int basesize, int len)
 {
 	int		total;
 	int		i;
-	char	c;
+	char	ch;
 
 	i = -1;
-	c = 0;
+	ch = 0;
 	total = 0;
 	while (str[++i])
 	{
-		c = str[i];
+		ch = str[i];
 		if (str[i] >= 'A' && str[i] <= 'F')
 		{
-			c = 10 + (c - 'A');
-			total += c * ft_power(basesize, size--);
+			ch = 10 + (ch - 'A');
+			total += ch * ft_power(basesize, len--);
+		}
+		if (str[i] >= 'a' && str[i] <= 'f')
+		{
+			ch = 10 + (ch - 'a');
+			total += ch * ft_power(basesize, len--);
 		}
 		else if (str[i] >= '0' && str[i] <= '9')
 		{
-			c -= '0';
-			total += c * ft_power(basesize, size--);
+			ch -= '0';
+			total += ch * ft_power(basesize, len--);
 		}
 	}
 	return (total / basesize);
 }
 
-static char	*ft_itoa_from_base(int nbr, int base_len, char *base_to, int sign)
+char	*ft_convert_to_base(int nbr, int base_len, char *base_to, int sign)
 {
 	int		len;
 	int		tmp;
@@ -72,10 +94,10 @@ static char	*ft_itoa_from_base(int nbr, int base_len, char *base_to, int sign)
 	while (tmp)
 	{
 		tmp /= base_len;
-		len += 1;
+		len++;
 	}
 	if (!(result = (char *)malloc(sizeof(char) * len)))
-		return (NULL);
+		return ((void *)0);
 	result[len] = '\0';
 	while (nbr)
 	{
@@ -86,27 +108,23 @@ static char	*ft_itoa_from_base(int nbr, int base_len, char *base_to, int sign)
 	return (result);
 }
 
-char		*ft_convert_base(char *nbr, char *base_from, char *base_to)
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 {
-	int		a;
-	int		b;
-	int		i;
 	int		len;
 	int		sign;
-
-	a = 0;
-	b = 0;
-	i = 0;
+	
 	len = ft_strlen(nbr);
-	while (nbr[i] != '\0')
+	while (*nbr)
 	{
-		if (nbr[i] == '-')
+		if (*nbr++ == '-')
 		{
-			len -= 1;
+			len--;
 			sign = -1;
 		}
-		i += 1;
 	}
-	return (ft_itoa_from_base(ft_calculate_dec(nbr, ft_strlen(base_from), len),\
-			ft_strlen(base_to), base_to, sign));
+	return (ft_convert_to_base(\
+								ft_get_dec(nbr, ft_strlen(base_from), len),\
+								ft_strlen(base_to),\
+								base_to,\
+								sign											));
 }
