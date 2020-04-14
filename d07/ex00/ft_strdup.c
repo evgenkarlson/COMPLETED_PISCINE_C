@@ -47,7 +47,6 @@ char	*ft_strdup(char *src);
 
 #include <stdlib.h>
 
-
 int			ft_strlen(char *str)
 {
 	int l;
