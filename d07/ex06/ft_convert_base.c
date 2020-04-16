@@ -109,14 +109,12 @@ int		ft_get_dec(char *str, char *base)
 void	*ft_atoi_base(int nbr, char *base)
 {
 	int		i;
-	int		j;
-	int		base_type;
+	int		temp;
 	int		n[100];
 	char	*final;
 
 	i = 0;
-	base_type = ft_check_base(base);
-	if (base_type)
+	if ((temp = ft_check_base(base)))
 	{
 		if (nbr < 0)
 		{
@@ -125,18 +123,18 @@ void	*ft_atoi_base(int nbr, char *base)
 		}
 		while (nbr)
 		{
-			n[i] = nbr % base_type;
-			nbr /= base_type;
+			n[i] = nbr % temp;
+			nbr /= temp;
 			i++;
 		}
 		if ((final = malloc(sizeof(char) * (i + 1))) == ((void *)0))
 			return (((void *)0));
-		j = 0;
+		temp = 0;
 		while (i > 0)
 		{
 			--i;
-			final[j] = base[n[i]];
-			j++;
+			final[temp] = base[n[i]];
+			temp++;
 		}
 	}
 	return (final);
