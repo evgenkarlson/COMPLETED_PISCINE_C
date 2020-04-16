@@ -9,132 +9,76 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* **************************************************************************
+
+• Создать функцию, которая преобразует аргументы, заданные в командной строке, в
+  одну строку символов. Эти аргументы должны быть разделены "\ n".
+
+• Вот как это должно быть прототипировано:
+
+	char *ft_concat_params(int argc, char **argv);
+
+   ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+
 #include <stdlib.h>
 
-int		calc_size_params(int argc, char **argv)
-{
-	int	size_argv;
-	int	z;
-
-	size_argv = 0;
-	while (argc >= 1)
-	{
-		z = 0;
-		while (argv[--argc][z])
-			z++;
-		size_argv += z;
-	}
-	return (size_argv);
-}
-
-void	write_tab(int argc, char **argv, char *string, int size_params)
-{
-	int	i;
-	int	j;
-	int	z;
-
-	i = 0;
-	j = 1;
-	z = 0;
-	while (i < size_params)
-	{
-		while (j < argc)
-		{
-			while (argv[j][z])
-			{
-				string[i] = argv[j][z];
-				z++;
-				i++;
-			}
-			string[i] = '\n';
-			i++;
-			z = 0;
-			j++;
-		}
-	}
-	string[i] = '\0';
-}
 
 char	*ft_concat_params(int argc, char **argv)
 {
+	int		i;
+	int		j;
+	int		z;
 	char	*string;
-	int		size_params;
 
-	size_params = calc_size_params(argc, argv);
-	string = (char*)malloc(sizeof(*string) * (size_params + argc - 1));
-	write_tab(argc, argv, string, size_params);
+	i = 1;
+	z = 0;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j])
+			j++;
+		z += j;
+		i++;
+	}
+	if ((string = (char *)malloc(sizeof(char) * (z + argc))) == ((void *)0))
+		return ((void *)0);
+	i = 0;
+	j = 1;
+	z = 0;
+	while (j < argc)
+	{
+		z = 0;
+		while (argv[j][z])
+		{
+			string[i] = argv[j][z];
+			z++;
+			i++;
+		}
+		string[i] = '\n';
+		i++;
+		j++;
+	}
+	string[i] = '\0';
 	return (string);
 }
 
 
 
-/* ************************************************************************** */
-/* ******************************_ИЛИ_*************************************** */
-/* ************************************************************************** */
-
-
-int		ft_strlen(char *str)
-{
-	int n;
-
-	n = 0;
-	while (str[n] != '\0')
-		n++;
-	return (n);
-}
-
-char	*ft_strcat(char *dest, char *src)
-{
-	int i;
-	int x;
-
-	i = 0;
-	x = 0;
-	while (dest[i] != '\0')
-		i++;
-	while (src[x] != '\0')
-	{
-		dest[i] = src[x];
-		i++;
-		x++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
-char	*ft_concat_params(int argc, char **argv)
-{
-	char	*str;
-	int		i;
-	int		len;
-
-	len = 0;
-	i = 1;
-	while (i < argc)
-	{
-		len += ft_strlen(argv[i]);
-		i++;
-	}
-	str = (char*)malloc(sizeof(char) * (len + argc));
-	i = 1;
-	while (i < argc)
-	{
-		ft_strcat(str, argv[i]);
-		if (i != argc - 1)
-			ft_strcat(str, "\n");
-		else
-			ft_strcat(str, "\0");
-		i++;
-	}
-	return (str);
-}
-
-
 
 /* ************************************************************************** */
 /* ******************************_ИЛИ_*************************************** */
 /* ************************************************************************** */
 
+
+#include <stdlib.h>
 
 int		ft_strlen(char *s)
 {
@@ -146,48 +90,113 @@ int		ft_strlen(char *s)
 	return (i);
 }
 
-int		ft_strlen_total(int argc, char **argv)
+char	*ft_strcat(char *dest, char *src)
 {
-	int count;
 	int i;
+	int x;
 
-	i = 1;
-	count = 0;
-	while (i < argc)
-	{
-		count = count + ft_strlen(argv[i]);
+	i = 0;
+	x = 0;
+	while (dest[i])
 		i++;
+	while (src[x])
+	{
+		dest[i] = src[x];
+		i++;
+		x++;
 	}
-	return (count);
+	dest[i] = '\0';
+	return (dest);
 }
 
 char	*ft_concat_params(int argc, char **argv)
 {
-	char	*r;
-	int		total;
 	int		i;
-	int		y;
-	int		c;
+	char	*str;
+	int		length;
 
-	total = ft_strlen_total(argc, argv) + argc;
-	r = (char*)malloc(sizeof(*r) * total);
 	i = 1;
-	c = 0;
+	length = 0;
 	while (i < argc)
 	{
-		y = 0;
-		while (argv[i][y] != '\0')
-		{
-			r[c] = argv[i][y];
-			c++;
-			y++;
-		}
-		r[c] = '\n';
-		c++;
+		length += ft_strlen(argv[i]);
 		i++;
 	}
-	r[c - 1] = '\0';
-	return (r);
+	if ((str = (char *)malloc(sizeof(char) * (length + argc))) == ((void *)0))
+		return ((void *)0);
+	i = 1;
+	while (i < argc)
+	{
+		ft_strcat(str, argv[i]);
+		ft_strcat(str, "\n");
+		i++;
+	}
+	ft_strcat(str, "\0");
+	return (str);
+}
+
+
+
+/* ************************************************************************** */
+/* ******************************_ИЛИ_*************************************** */
+/* ************************************************************************** */
+
+
+
+#include <stdlib.h>
+
+int		calc_size_params(int argc, char **argv)
+{
+	int	size_argv;
+	int	i;
+	int	z;
+
+	i = 1;
+	z = 0;
+	size_argv = 0;
+	while (i < argc)
+	{
+		while (argv[i][z])
+			z++;
+		size_argv += z;
+		z = 0;
+		i++;
+	}
+	return (size_argv);
+}
+
+
+char	*ft_concat_params(int argc, char **argv)
+{
+	int	i;
+	int	j;
+	int	z;
+	char	*string;
+	int		length;
+
+	i = 0;
+	j = 1;
+	z = 0;
+	length = calc_size_params(argc, argv);
+	string = (char*)malloc(sizeof(*string) * (length + argc));
+	while (i < length)
+	{
+		while (j < argc)
+		{
+			z = 0;
+			while (argv[j][z])
+			{
+				string[i] = argv[j][z];
+				z++;
+				i++;
+			}
+			string[i] = '\n';
+			i++;
+			j++;
+		}
+	}
+	string[i] = '\0';
+	return (string);
 }
 
 
@@ -198,6 +207,11 @@ char	*ft_concat_params(int argc, char **argv)
 /* ************************************************************************** */
 
 
+
+
+
+#include <stdlib.h>
+
 char		*ft_contact_params(int argc, char **argv)
 {
 	int		i;
@@ -205,8 +219,8 @@ char		*ft_contact_params(int argc, char **argv)
 	int		k;
 	char	*str;
 
-	if (!(str = (char *)malloc(sizeof(char) * 9001)))
-		return (NULL);
+	if ((str = (char *)malloc(sizeof(char) * 9001)) == ((void *)0))
+		return ((void *)0);
 	k = 0;
 	while (k < 9001)
 		str[k++] = '\0';
