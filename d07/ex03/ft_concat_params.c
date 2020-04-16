@@ -14,19 +14,15 @@
 int		calc_size_params(int argc, char **argv)
 {
 	int	size_argv;
-	int	i;
 	int	z;
 
-	i = 1;
-	z = 0;
 	size_argv = 0;
-	while (i < argc)
+	while (argc >= 1)
 	{
-		while (argv[i][z])
+		z = 0;
+		while (argv[--argc][z])
 			z++;
 		size_argv += z;
-		z = 0;
-		i++;
 	}
 	return (size_argv);
 }
