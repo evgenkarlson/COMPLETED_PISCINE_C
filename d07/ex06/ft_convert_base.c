@@ -25,6 +25,141 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+
+int		ft_ctoi(char c)				
+{
+	if (c >= '0' && c <= '9')
+		return (c - '0');
+	if (c >= 'A' && c <= 'F')
+		return (c - 'A' + 10);
+	if (c >= 'a' && c <= 'f')
+		return (c - 'a' + 10);
+	return (-1);
+}
+
+int		ft_pow(int nb, int power)
+{
+	int	result;
+
+	result = 1;
+	if(power < 0)
+		return (0);
+	if(power == 0)
+		return (1);
+	while (power--)
+		result *= nb;
+	return (result);
+}
+
+int		ft_check_base(char *base)
+{
+	int	i;
+	int	z;
+
+	i = 0;
+	z = 0;
+	if (!base || !base[1])
+		return (0);
+	while (base[i])
+	{
+		z = i + 1;
+		if (!((base[i] >= '0' && base[i] <= '9') || (base[i] >= 'a' \
+				&& base[i] <= 'z') || (base[i] >= 'A' && base[i] <= 'Z')))
+			return (0);
+		while (base[z])
+			if (base[i] == base[z++])
+				return (0);
+		i++;
+	}
+	return (i);
+}
+
+int		ft_get_dec(char *str, char *base)
+{
+	int		num;
+	int		negative;
+	int		i;
+	int		pow;
+	int		base_type;
+
+	pow = 0;
+	i = 0;
+	negative = 1;
+	num = 0;
+	base_type = ft_check_base(base);
+	if(base_type)
+	{
+		if (*str == '-')
+		{
+			i++;
+			negative = -1;
+		}
+		while (str[i])
+			i++;
+		while (--i >= 0)
+		{
+			if (ft_ctoi(str[i]) != -1 && ft_ctoi(str[i]) < base_type)
+				num += ft_ctoi(str[i]) * ft_pow(base_type, pow++);
+		}
+		return (num * negative);
+	}
+	return (0);
+}
+
+void	*ft_atoi_base(int nbr, char *base)
+{
+	int		i;
+	int		j;
+	int		base_type;
+	int		n[100];
+	char	*final;
+
+	i = 0;
+	base_type = ft_check_base(base);
+	if (base_type)
+	{
+		if (nbr < 0)
+		{
+			nbr *= -1;
+			ft_putchar('-');
+		}
+		while (nbr)
+		{
+			n[i] = nbr % base_type;
+			nbr /= base_type;
+			i++;
+		}
+		if ((final = malloc(sizeof(char) * (i + 1))) == ((void *)0))
+			return (((void *)0));
+		j = 0;
+		while (i > 0)
+		{
+			--i;
+			final[j] = base[n[i]];
+			j++;
+		}
+	}
+	return (final);
+}
+
+char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
+{
+	int dec;
+	char *final;
+
+	dec = ft_get_dec(nbr, base_from);
+	final = ft_atoi_base(dec, base_to);
+	return (final);
+}
+
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+
 #include <stdlib.h>
 #include <stdio.h>
 
