@@ -26,58 +26,6 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
-
-#include <stdlib.h>
-
-
-char	*ft_concat_params(int argc, char **argv)
-{
-	int		i;
-	int		j;
-	int		z;
-	char	*string;
-
-	i = 1;
-	z = 0;
-	while (i < argc)
-	{
-		j = 0;
-		while (argv[i][j])
-			j++;
-		z += j;
-		i++;
-	}
-	if ((string = (char *)malloc(sizeof(char) * (z + argc))) == ((void *)0))
-		return ((void *)0);
-	i = 0;
-	j = 1;
-	z = 0;
-	while (j < argc)
-	{
-		z = 0;
-		while (argv[j][z])
-		{
-			string[i] = argv[j][z];
-			z++;
-			i++;
-		}
-		string[i] = '\n';
-		i++;
-		j++;
-	}
-	string[i] = '\0';
-	return (string);
-}
-
-
-
-
-/* ************************************************************************** */
-/* ******************************_ИЛИ_*************************************** */
-/* ************************************************************************** */
-
-
 #include <stdlib.h>
 
 int		ft_strlen(char *s)
@@ -143,6 +91,57 @@ char	*ft_concat_params(int argc, char **argv)
 
 
 
+
+#include <stdlib.h>
+
+
+char	*ft_concat_params(int argc, char **argv)
+{
+	int		i;
+	int		j;
+	int		z;
+	char	*str;
+
+	i = 1;
+	z = 0;
+	while (i < argc)
+	{
+		j = 0;
+		while (argv[i][j])
+			j++;
+		z += j;
+		i++;
+	}
+	if ((str = (char *)malloc(sizeof(char) * (z + argc))) == ((void *)0))
+		return ((void *)0);
+	i = 0;
+	j = 1;
+	z = 0;
+	while (j < argc)
+	{
+		z = 0;
+		while (argv[j][z])
+		{
+			str[i] = argv[j][z];
+			z++;
+			i++;
+		}
+		str[i] = '\n';
+		i++;
+		j++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+
+
+
+/* ************************************************************************** */
+/* ******************************_ИЛИ_*************************************** */
+/* ************************************************************************** */
+
+
 #include <stdlib.h>
 
 int		calc_size_params(int argc, char **argv)
@@ -165,80 +164,47 @@ int		calc_size_params(int argc, char **argv)
 	return (size_argv);
 }
 
+char	*ft_strcat(char *dest, char *src)
+{
+	int i;
+	int x;
+
+	i = 0;
+	x = 0;
+	while (dest[i])
+		i++;
+	while (src[x])
+	{
+		dest[i] = src[x];
+		i++;
+		x++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
 
 char	*ft_concat_params(int argc, char **argv)
 {
 	int	i;
-	int	j;
-	int	z;
-	char	*string;
+	char	*str;
 	int		length;
 
 	i = 0;
-	j = 1;
-	z = 0;
 	length = calc_size_params(argc, argv);
-	string = (char*)malloc(sizeof(*string) * (length + argc));
-	while (i < length)
-	{
-		while (j < argc)
-		{
-			z = 0;
-			while (argv[j][z])
-			{
-				string[i] = argv[j][z];
-				z++;
-				i++;
-			}
-			string[i] = '\n';
-			i++;
-			j++;
-		}
-	}
-	string[i] = '\0';
-	return (string);
-}
-
-
-
-
-/* ************************************************************************** */
-/* ******************************_ИЛИ_*************************************** */
-/* ************************************************************************** */
-
-
-
-
-
-#include <stdlib.h>
-
-char		*ft_contact_params(int argc, char **argv)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	*str;
-
-	if ((str = (char *)malloc(sizeof(char) * 9001)) == ((void *)0))
-		return ((void *)0);
-	k = 0;
-	while (k < 9001)
-		str[k++] = '\0';
-	k = 0;
+	str = (char*)malloc(sizeof(*str) * (length + argc));
 	i = 1;
-	while (--argc)
+	while (i < argc)
 	{
-		j = 0;
-		while (argv[i][j])
-			str[k++] = argv[i][j++];
-		str[k++] = '\n';
-		i += 1;
+		ft_strcat(str, argv[i]);
+		ft_strcat(str, "\n");
+		i++;
 	}
+	ft_strcat(str, "\0");
 	return (str);
 }
 
 
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
 
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
