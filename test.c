@@ -39,62 +39,102 @@ void	ft_putstr(char *str)   	/* Функция печати строки */
 /*#############################################################################*/
 
 
-int		calc_nb_words(char *str, int *size_word)
+int		ft_is_space(char c)
 {
-	int	word;
-	int	i;
+	if((c == ' ' || c == '\t' || c == '\n'))
+		return (1);
+	return(0);
+}
 
+int		ft_num_words(char *str)
+{
+	int	i;
+	int	g_words;
+
+	g_words = 0;
 	i = 0;
-	word = 0;
 	while (str[i])
 	{
-		if (str[i] != ' ')
-			word++;
-		while (str[i] != ' ')
-		{
-			size_word[word - 1] = size_word[word - 1] + 1;
-			i++;
-		}
-		while (str[i] == ' ')
-			i++;
+		if (!(g_words) && !(ft_is_space(str[i])))
+			g_words++;
+		else if (ft_is_space(str[i - 1]) && !(ft_is_space(str[i])))
+			g_words++;
+		i++;
 	}
+	return (g_words);
+}
+
+char	*createword(char *str, int i, int j)
+{
+	char	*word;
+	int		o;
+
+	o = 0;
+	if ((word = (char*)malloc(sizeof(char) * (j - i + 1))) == ((void *)0))
+		return ((void *)0);
+	while (i < j)
+	{
+		word[o] = str[i];
+		i++;
+		o++;
+	}
+	word[o] = '\0';
 	return (word);
 }
 
-void	**ft_split_whitespaces(char *str)
+char	**ft_split_whitespaces(char *str)
 {
-	int		nb_words;
-	int		tab[10];
-	char	*temp;
-	char	**string;
-	int		i;
+	char	**arr;
+	int		index;
+	int		g_j;
+	int		g_i;
+	int 	g_words;
 
-	i = 0;
-	string = ((void *)0);
-	nb_words = calc_nb_words(str, tab);
-	string = (char*)malloc(sizeof(**string) * (nb_words + 1));
-	while (i < nb_words)
+	g_words = ft_num_words(str);
+	g_i = 0;
+	g_j = 0;
+	index = 0;
+	if (g_words)
 	{
-		string[i] = (char*)malloc(sizeof(*temp) * (tab[i] + 1));
-		i++;
+		if ((arr = (char**)malloc(sizeof(char*) * (g_words + 1))) == ((void *)0))
+			return ((void *)0);
+		while (index < g_words)
+		{
+			while (ft_is_space(str[g_i]) && str[g_i])
+				g_i++;
+			g_j = g_i;
+			while (!(ft_is_space(str[g_j]))  && str[g_j])
+				g_j++;
+			arr[index] = createword(str, g_i, g_j);
+			g_i = g_j + 1;
+			index++;
+		}
 	}
-	return (string);
+	else
+		arr = (char**)malloc(sizeof(char*));
+	arr[index] = 0;
+	return (arr);
 }
-
-
 
 
 
 int     main(void)				/* Основаная функция */
 {
 	int i;
+	int j;
 	char **arr_str;
 
 	i = 0;
-	arr_str = ft_split_whitespaces(" sebas   chapuis wuid ");/* Запускам функцию нахождения в строке отдельных слов и разбрасываем ихв отдельные строки */
-	while(i < 3)
+	if ((arr_str = ft_split_whitespaces(" sebas  sdfds s sdf sdf chapuis wuid ")) == ((void *)0)) /* Запускам функцию нахождения в строке отдельных слов и разбрасываем ихв отдельные строки */
+		return (0);
+	while(i < 7)				/* Печатаем каждую строку массива со строками */
 	{
-		ft_putstr(arr_str[i]);
+		j = 0;
+		while(arr_str[i][j])
+		{
+			ft_putchar(arr_str[i][j]);
+			j++;
+		}
 		ft_putchar('\n');
 		i++;
 	}
