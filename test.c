@@ -39,81 +39,63 @@ void	ft_putstr(char *str)   	/* Функция печати строки */
 /*#############################################################################*/
 
 
-int		ft_is_space(char c)
+static int	ft_wordcount(char *s)
 {
-	if((c == ' ' || c == '\t' || c == '\n'))
-		return (1);
-	return(0);
-}
+	int		i;
+	int		w;
 
-int		ft_num_words(char *str)
-{
-	int	i;
-	int	g_words;
-
-	g_words = 0;
 	i = 0;
-	while (str[i])
+	w = 0;
+	while (s[i])
 	{
-		if (!(g_words) && !(ft_is_space(str[i])))
-			g_words++;
-		else if (ft_is_space(str[i - 1]) && !(ft_is_space(str[i])))
-			g_words++;
+		if (s[i] != '\t' && s[i] != ' ' && s[i] != '\n')
+			w++;
+		while (s[i + 1] && s[i] != '\t' && s[i] != ' ' && s[i] != '\n')
+			i++;
 		i++;
 	}
-	return (g_words);
+	return (w);
 }
 
-char	*createword(char *str, int i, int j)
+static int	ft_wordlen(char *s)
 {
-	char	*word;
-	int		o;
+	int		i;
+	int		len;
 
-	o = 0;
-	if ((word = (char*)malloc(sizeof(char) * (j - i + 1))) == ((void *)0))
-		return ((void *)0);
-	while (i < j)
-	{
-		word[o] = str[i];
-		i++;
-		o++;
-	}
-	word[o] = '\0';
-	return (word);
+	i = 0;
+	len = 0;
+	while (s[i] == '\t' || s[i] == ' ' || s[i] == '\n')
+		i += 1;
+	while (s[i] && s[i] != '\t' && s[i] != ' ' && s[i++] != '\n')
+		len += 1;
+	return (len);
 }
 
-char	**ft_split_whitespaces(char *str)
+char		**ft_split_whitespaces(char *str)
 {
-	char	**arr;
-	int		index;
-	int		g_j;
-	int		g_i;
-	int 	g_words;
+	int		i;
+	int		j;
+	int		k;
+	char	**w;
 
-	g_words = ft_num_words(str);
-	g_i = 0;
-	g_j = 0;
-	index = 0;
-	if (g_words)
+	i = 0;
+	k = 0;
+	if (!str || !(w = (char **)malloc(sizeof(char*) * (ft_wordcount(str) + 1))))
+		return ((void*)0);
+	while (i < ft_wordcount(str))
 	{
-		if ((arr = (char**)malloc(sizeof(char*) * (g_words + 1))) == ((void *)0))
-			return ((void *)0);
-		while (index < g_words)
-		{
-			while (ft_is_space(str[g_i]) && str[g_i])
-				g_i++;
-			g_j = g_i;
-			while (!(ft_is_space(str[g_j]))  && str[g_j])
-				g_j++;
-			arr[index] = createword(str, g_i, g_j);
-			g_i = g_j + 1;
-			index++;
-		}
+		if (!(w[i] = (char *)malloc(sizeof(char) * (ft_wordlen(&str[k]) + 1))))
+			return ((void*)0);
+		j = 0;
+		while (str[k] == '\t' || str[k] == ' ' || str[k] == '\n')
+			k += 1;
+		while (str[k] && str[k] != '\t' && str[k] != ' ' && str[k] != '\n')
+			w[i][j++] = str[k++];
+		w[i][j] = '\0';
+		i += 1;
 	}
-	else
-		arr = (char**)malloc(sizeof(char*));
-	arr[index] = 0;
-	return (arr);
+	w[i] = ((void*)0);
+	return (w);
 }
 
 
