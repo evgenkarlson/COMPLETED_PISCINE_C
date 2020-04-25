@@ -147,9 +147,9 @@ static int	ft_wordlen(char *s)
 	i = 0;
 	len = 0;
 	while (s[i] == '\t' || s[i] == ' ' || s[i] == '\n')
-		i += 1;
+		i++;
 	while (s[i] && s[i] != '\t' && s[i] != ' ' && s[i++] != '\n')
-		len += 1;
+		len++;
 	return (len);
 }
 
@@ -170,11 +170,11 @@ char		**ft_split_whitespaces(char *str)
 			return ((void*)0);
 		j = 0;
 		while (str[k] == '\t' || str[k] == ' ' || str[k] == '\n')
-			k += 1;
+			k++;
 		while (str[k] && str[k] != '\t' && str[k] != ' ' && str[k] != '\n')
 			w[i][j++] = str[k++];
 		w[i][j] = '\0';
-		i += 1;
+		i++;
 	}
 	w[i] = ((void*)0);
 	return (w);
