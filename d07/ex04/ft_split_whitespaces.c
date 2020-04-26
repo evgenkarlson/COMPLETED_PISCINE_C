@@ -121,35 +121,45 @@ char	**ft_split_whitespaces(char *str)
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	ft_wordcount(char *s)
+int		ft_is_space(char c)
+{
+	if((c == ' ' || c == '\t' || c == '\n'))
+		return (1);
+	return(0);
+}
+
+int		ft_wordcount(char *str)
 {
 	int		i;
-	int		w;
+	int		words;
 
 	i = 0;
-	w = 0;
-	while (s[i])
+	words = 0;
+	while (str[i])
 	{
-		if (s[i] != '\t' && s[i] != ' ' && s[i] != '\n')
-			w++;
-		while (s[i + 1] && s[i] != '\t' && s[i] != ' ' && s[i] != '\n')
+		if (!(ft_is_space(str[i])))
+			words++;
+		while (ft_is_space(str[i + 1]) && !(ft_is_space(str[i])))
 			i++;
 		i++;
 	}
-	return (w);
+	return (words);
 }
 
-static int	ft_wordlen(char *s)
+static int	ft_wordlen(char *str)
 {
 	int		i;
 	int		len;
 
 	i = 0;
 	len = 0;
-	while (s[i] == '\t' || s[i] == ' ' || s[i] == '\n')
+	while (ft_is_space(str[i]))
 		i++;
-	while (s[i] && s[i] != '\t' && s[i] != ' ' && s[i++] != '\n')
+	while (str[i] && !(ft_is_space(str[i])))
+	{
+		i++;
 		len++;
+	}
 	return (len);
 }
 
@@ -158,26 +168,26 @@ char		**ft_split_whitespaces(char *str)
 	int		i;
 	int		j;
 	int		k;
-	char	**w;
+	char	**arr;
 
 	i = 0;
 	k = 0;
-	if (!str || !(w = (char **)malloc(sizeof(char*) * (ft_wordcount(str) + 1))))
+	if (!str || (((arr = (char **)malloc(sizeof(char*) * (ft_wordcount(str) + 1)))) == ((void *)0)))
 		return ((void*)0);
 	while (i < ft_wordcount(str))
 	{
-		if (!(w[i] = (char *)malloc(sizeof(char) * (ft_wordlen(&str[k]) + 1))))
+		if ((arr[i] = (char *)malloc(sizeof(char) * (ft_wordlen(&str[k]) + 1))) == ((void *)0))
 			return ((void*)0);
 		j = 0;
-		while (str[k] == '\t' || str[k] == ' ' || str[k] == '\n')
+		while (ft_is_space(str[k]))
 			k++;
-		while (str[k] && str[k] != '\t' && str[k] != ' ' && str[k] != '\n')
-			w[i][j++] = str[k++];
-		w[i][j] = '\0';
+		while (str[k] && !(ft_is_space(str[k])))
+			arr[i][j++] = str[k++];
+		arr[i][j] = '\0';
 		i++;
 	}
-	w[i] = ((void*)0);
-	return (w);
+	arr[i] = ((void*)0);
+	return (arr);
 }
 
 /* ************************************************************************** */
