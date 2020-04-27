@@ -199,6 +199,13 @@ char		**ft_split_whitespaces(char *str)
 
 #include <stdlib.h>
 
+int		ft_is_space(char c)
+{
+	if((c == ' ' || c == '\t' || c == '\n'))
+		return (1);
+	return(0);
+}
+
 int		ft_nb_words(char *str)
 {
 	int i;
@@ -212,12 +219,12 @@ int		ft_nb_words(char *str)
 		return (0);
 	while (str[i])
 	{
-		while (str[i] != '\t' && str[i] != ' ' && str[i] != '\n' && str[i])
+		while (!(ft_is_space(str[i])) && str[i])
 		{
 			i++;
 			sym = 1;
 		}
-		if (str[i] == '\t' || str[i] == ' ' || str[i] == '\n' || str[i] == '\0')
+		if (ft_is_space(str[i]) || str[i] == '\0')
 		{
 			count += (sym == 1) ? 1 : 0;
 			sym = 0;
@@ -227,12 +234,12 @@ int		ft_nb_words(char *str)
 	return (count);
 }
 
-int		ft_ln_w(char *str, int i)
+int		ft_len_w(char *str, int i)
 {
 	int count;
 
 	count = 0;
-	while (str[i] != '\t' && str[i] != ' ' && str[i] != '\n' && str[i])
+	while (!(ft_is_space(str[i])) && str[i])
 	{
 		count++;
 		i++;
@@ -253,14 +260,14 @@ char	**ft_split_whitespaces(char *str)
 		return (NULL);
 	while (str[i])
 	{
-		while ((str[i] == '\t' || str[i] == ' ' || str[i] == '\n') && str[i])
+		while (ft_is_space(str[i]) && str[i])
 			i++;
 		if (str[i])
 		{
 			k = 0;
-			if ((res[j] = malloc(sizeof(char) * ft_ln_w(str, i) + 1)) == NULL)
+			if ((res[j] = malloc(sizeof(char) * ft_len_w(str, i) + 1)) == NULL)
 				return (NULL);
-			while (str[i] != '\t' && str[i] != ' ' && str[i] != '\n' && str[i])
+			while (ft_is_space(str[i]) && str[i])
 				res[j][k++] = str[i++];
 			res[j++][k] = '\0';
 		}
@@ -280,27 +287,26 @@ char	**ft_split_whitespaces(char *str)
 #include <stdlib.h>
 #define IS_SPACE(c) (((c == ' ' || c == '\t' || c == '\n') ? 1 : 0))
 
-int		g_words = 0;
+
 
 int		calc_numberofwords(char *str)
 {
-	int	i;
+	int		i;
+	int		words;
 
+	words = 0;
 	i = 0;
-	if (str[i] == '\0')
+	if (!(str[i]))
 		return (0);
-	while (str[i] != '\0')
+	while (str[i])
 	{
-		if (!(g_words) && (!(IS_SPACE(str[i]))))
-			g_words++;
+		if (!(words) && (!(IS_SPACE(str[i]))))
+			words++;
 		else if (IS_SPACE(str[i - 1]) && !(IS_SPACE(str[i])))
-			g_words++;
+			words++;
 		i++;
 	}
-	if (g_words)
-		return (1);
-	else
-		return (0);
+	return (words);
 }
 
 char	*createword(char *str, int i, int j)
@@ -320,27 +326,30 @@ char	*createword(char *str, int i, int j)
 	return (word);
 }
 
-int		g_j = 0;
-int		g_i = 0;
-
 char	**ft_split_whitespaces(char *str)
 {
 	char	**arr;
 	int		index;
+	int		j;
+	int		i;
+	int		words;
 
+	words = calc_numberofwords(str);
+	j = 0;
+	i = 0;
 	index = 0;
-	if (calc_numberofwords(str))
+	if (words)
 	{
-		arr = (char**)malloc(sizeof(char*) * (g_words + 1));
-		while (index < g_words)
+		arr = (char**)malloc(sizeof(char*) * (words + 1));
+		while (index < words)
 		{
-			while (IS_SPACE(str[g_i]) && (str[g_i] != '\0'))
-				g_i++;
-			g_j = g_i;
-			while (!(IS_SPACE(str[g_j])) && (str[g_j] != '\0'))
-				g_j++;
-			arr[index] = createword(str, g_i, g_j);
-			g_i = g_j + 1;
+			while (IS_SPACE(str[i]) && (str[i]))
+				i++;
+			j = i;
+			while (!(IS_SPACE(str[j])) && (str[j]))
+				j++;
+			arr[index] = createword(str, i, j);
+			i = j + 1;
 			index++;
 		}
 	}
