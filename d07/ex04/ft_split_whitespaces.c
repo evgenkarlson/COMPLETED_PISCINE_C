@@ -36,6 +36,85 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int		ft_is_space(char c)
+{
+	if((c == ' ' || c == '\t' || c == '\n'))
+		return (1);
+	return(0);
+}
+
+int		ft_wordcount(char *str)
+{
+	int		i;
+	int		words;
+
+	i = 0;
+	words = 0;
+	while (str[i])
+	{
+		if (!(words) && !(ft_is_space(str[i])))
+			words++;
+		while (ft_is_space(str[i - 1]) && !(ft_is_space(str[i])))
+			words++;
+		i++;
+	}
+	return (words);
+}
+
+static int	ft_wordlen(char *str)
+{
+	int		i;
+	int		len;
+
+	i = 0;
+	len = 0;
+	while (ft_is_space(str[i]))
+		i++;
+	while (str[i] && !(ft_is_space(str[i])))
+	{
+		i++;
+		len++;
+	}
+	return (len);
+}
+
+char		**ft_split_whitespaces(char *str)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	**arr;
+	int		words;
+
+	words = ft_wordcount(str);
+	i = 0;
+	k = 0;
+	if (!str || (((arr = (char **)malloc(sizeof(char*) * (words + 1)))) == ((void *)0)))
+		return ((void*)0);
+	while (i < words)
+	{
+		if ((arr[i] = (char *)malloc(sizeof(char) * (ft_wordlen(&str[k]) + 1))) == ((void *)0))
+			return ((void*)0);
+		j = 0;
+		while (ft_is_space(str[k]))
+			k++;
+		while (str[k] && !(ft_is_space(str[k])))
+			arr[i][j++] = str[k++];
+		arr[i][j] = '\0';
+		i++;
+	}
+	arr[i] = ((void*)0);
+	return (arr);
+}
+
+/* ************************************************************************** */
+/* ******************************_ИЛИ_*************************************** */
+/* ************************************************************************** */
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
 
 int		ft_is_space(char c)
 {
@@ -49,8 +128,8 @@ int		ft_num_words(char *str)
 	int	i;
 	int	words;
 
-	words = 0;
 	i = 0;
+	words = 0;
 	while (str[i])
 	{
 		if (!(words) && !(ft_is_space(str[i])))
@@ -118,84 +197,6 @@ char	**ft_split_whitespaces(char *str)
 /* ******************************_ИЛИ_*************************************** */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-int		ft_is_space(char c)
-{
-	if((c == ' ' || c == '\t' || c == '\n'))
-		return (1);
-	return(0);
-}
-
-int		ft_wordcount(char *str)
-{
-	int		i;
-	int		words;
-
-	i = 0;
-	words = 0;
-	while (str[i])
-	{
-		if (!(ft_is_space(str[i])))
-			words++;
-		while (ft_is_space(str[i + 1]) && !(ft_is_space(str[i])))
-			i++;
-		i++;
-	}
-	return (words);
-}
-
-static int	ft_wordlen(char *str)
-{
-	int		i;
-	int		len;
-
-	i = 0;
-	len = 0;
-	while (ft_is_space(str[i]))
-		i++;
-	while (str[i] && !(ft_is_space(str[i])))
-	{
-		i++;
-		len++;
-	}
-	return (len);
-}
-
-char		**ft_split_whitespaces(char *str)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	**arr;
-
-	i = 0;
-	k = 0;
-	if (!str || (((arr = (char **)malloc(sizeof(char*) * (ft_wordcount(str) + 1)))) == ((void *)0)))
-		return ((void*)0);
-	while (i < ft_wordcount(str))
-	{
-		if ((arr[i] = (char *)malloc(sizeof(char) * (ft_wordlen(&str[k]) + 1))) == ((void *)0))
-			return ((void*)0);
-		j = 0;
-		while (ft_is_space(str[k]))
-			k++;
-		while (str[k] && !(ft_is_space(str[k])))
-			arr[i][j++] = str[k++];
-		arr[i][j] = '\0';
-		i++;
-	}
-	arr[i] = ((void*)0);
-	return (arr);
-}
-
-/* ************************************************************************** */
-/* ******************************_ИЛИ_*************************************** */
-/* ************************************************************************** */
-
-
-
 
 #include <stdlib.h>
 
@@ -215,8 +216,6 @@ int		ft_nb_words(char *str)
 	i = 0;
 	sym = 0;
 	count = 0;
-	if (!str)
-		return (0);
 	while (str[i])
 	{
 		while (!(ft_is_space(str[i])) && str[i])
