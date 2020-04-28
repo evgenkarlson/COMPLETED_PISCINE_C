@@ -38,9 +38,7 @@
 
 int		ft_isspace(char c)
 {
-	if((c == ' ' || c == '\t' || c == '\n'))
-		return (1);
-	return(0);
+	return (c == ' ' || c == '\t' || c == '\n');
 }
 
 int		ft_wordcount(char *str)
@@ -189,9 +187,7 @@ char	**ft_split_whitespaces(char *str)
 
 int		ft_isspace(char c)
 {
-	if((c == ' ' || c == '\t' || c == '\n'))
-		return (1);
-	return(0);
+	return (c == ' ' || c == '\t' || c == '\n');
 }
 
 int		ft_nb_words(char *str)
