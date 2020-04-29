@@ -39,83 +39,75 @@ void  ft_putchar(char c);
 /* ************************************************************************** */
 
 
-int   ft_isspace(char c)
+static int	ft_strchar(char to_find, char *str)
 {
-	return (c == ' ' || c == '\n' || c == '\t');
+	char	*sptr;
+
+	sptr = str;
+	while (*sptr != '\0')
+		if (to_find == *sptr++)
+			return (1);
+	return (0);
 }
 
-int   count_words(char *str)
+static int	ft_wc(char *str, char *charset)
 {
-	int	count;
-
-	count = 0;
-	while (*str)
-	{
-		while (*str && ft_isspace(*str))
-			str++;
-		if (*str && !ft_isspace(*str))
-		{
-			count++;
-			while (*str && !ft_isspace(*str))
-				str++;
-		}
-	}
-	return (count);
-}
-
-char  *malloc_word(char *str)
-{
-	char *word;
-	int	i;
+	int		i;
 
 	i = 0;
-	while (str[i] && !ft_isspace(str[i]))
-		i++;
-	word = (char *)malloc(sizeof(char) * (i + 1));
-	i = 0;
-	while (str[i] && !ft_isspace(str[i]))
-	{
-		word[i] = str[i];
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
-}
-
-char	**ft_split(char *str)
-{
-	char **arr = (char **)malloc(sizeof(char *) * (count_words(str) + 1));
-
-	int i = 0;
 	while (*str)
-	{
-		while (*str && ft_isspace(*str))    /* перейти к началу нового слова */
-			str++;
-		if (*str && !ft_isspace(*str))
+		if (ft_strchar(*str, charset))
+			++str;
+		else
 		{
-			arr[i] = malloc_word(str);       /* сохранить слово в массив */
-			i++;
-			while (*str && !ft_isspace(*str))/* перейти к следующему пробелу */
-				str++;
+			++i;
+			++str;
+			while (*str && !ft_strchar(*str, charset))
+				++str;
 		}
-	}
-	arr[i] = NULL;
-	return (arr);
+	return (i);
 }
 
-// #include <stdio.h>
+static char	*ft_split_w(char **str, char *charset)
+{
+	char	*bptr;
+	char	*bsptr;
+	char	*sptr;
 
-// int		main(int ac, char **av)
-// {
-// 	char **arr;
+	sptr = *str;
+	while (ft_strchar(*sptr, charset))
+		++sptr;
+	*str = sptr;
+	while (!ft_strchar(*sptr, charset))
+		++sptr;
+	bptr = malloc(sptr - *str);
+	if (!bptr)
+		return (NULL);
+	bsptr = bptr;
+	while (sptr > *str)
+		*bsptr++ = *((*str)++);
+	*bsptr = '\0';
+	while (**str && ft_strchar(**str, charset))
+		++*str;
+	return (bptr);
+}
 
-// 	char *phrase = "   Hello,   Flavio\t Wuensche!  ";
-// 	arr = ft_split(phrase);
-// 	printf("%s\n", arr[0]);
-// 	printf("%s\n", arr[1]);
-// 	printf("%s\n", arr[2]);
-// 	printf("%s\n", arr[3]);
-// }
+char		**ft_split(char *str, char *charset)
+{
+	char	**buffer;
+	char	**bptr;
+	int		i;
+
+	i = ft_wc(str, charset);
+	if (!(buffer = malloc((i + 1) * sizeof(char *))))
+		return (NULL);
+	bptr = buffer;
+	while (i--)
+		if (!(*bptr++ = ft_split_w(&str, charset)))
+			return (NULL);
+	*bptr = (NULL);
+	return (buffer);
+}
 
 /* ************************************************************************** */
 /* ************************************************************************** */
