@@ -112,7 +112,7 @@ int   ft_isspace(char c)
 	return (c == ' ' || c == '\n' || c == '\t');
 }
 
-int   count_words(char *str)
+int   ft_wordcount(char *str)
 {
 	int	count;
 
@@ -155,7 +155,7 @@ char	**ft_split_whitespaces(char *str)
 	int i;
 	char **arr;
 
-	arr = (char **)malloc(sizeof(char *) * (count_words(str) + 1));
+	arr = (char **)malloc(sizeof(char *) * (ft_wordcount(str) + 1));
 	i = 0;
 	while (*str)
 	{
@@ -182,7 +182,7 @@ char	**ft_split_whitespaces(char *str)
 #include <stdlib.h>
 #define IS_SPACE(c) (((c == ' ' || c == '\t' || c == '\n') ? 1 : 0))
 
-int   count_words(char *str)
+int   ft_wordcount(char *str)
 {
 	int		words;
 
@@ -224,7 +224,7 @@ char	**ft_split_whitespaces(char *str)
 	int		i;
 	int		words;
 
-	words = count_words(str);
+	words = ft_wordcount(str);
 	j = 0;
 	i = 0;
 	index = 0;
