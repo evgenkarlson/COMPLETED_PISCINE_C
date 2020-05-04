@@ -231,19 +231,20 @@ int		ft_strchar(char to_find, char *str)
 	return (0);
 }
 
-/*int   ft_wordcount(char *str)
+/*
+int   ft_wordcount(char *str)
 {
 	int	count;
 
 	count = 0;
 	while (*str)
 	{
-		while (*str && (ft_strchar(*str)))
+		while (*str && (ft_strchar(*str, spacechar)))
 			str++;
-		if (*str && !(ft_strchar(*str)))
+		if (*str && !(ft_strchar(*str, spacechar)))
 		{
 			count++;
-			while (*str && !(ft_strchar(*str)))
+			while (*str && !(ft_strchar(*str, spacechar)))
 				str++;
 		}
 	}
@@ -335,19 +336,20 @@ int		ft_strchar(char to_find, char *str)
 }
 
 
-/*int   ft_wordcount(char *str)
+/*
+int   ft_wordcount(char *str)
 {
 	int	count;
 
 	count = 0;
 	while (*str)
 	{
-		while (*str && ft_strchar(*str))
+		while (*str && (ft_strchar(*str, spacechar)))
 			str++;
-		if (*str && !ft_strchar(*str))
+		if (*str && !(ft_strchar(*str, spacechar)))
 		{
 			count++;
-			while (*str && !ft_strchar(*str))
+			while (*str && !(ft_strchar(*str, spacechar)))
 				str++;
 		}
 	}
@@ -403,7 +405,7 @@ char	**ft_split(char *str, char *spacechar)
 			k = 0;
 			if ((res[j] = malloc(sizeof(char) * ft_len_word(str, i, spacechar) + 1)) == NULL)
 				return (NULL);
-			while (ft_strchar(str[i], spacechar) && str[i])
+			while (!ft_strchar(str[i], spacechar) && str[i])
 				res[j][k++] = str[i++];
 			res[j++][k] = '\0';
 		}

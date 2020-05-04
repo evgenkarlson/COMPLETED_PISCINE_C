@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_whitespaces.c                             :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -38,33 +38,58 @@ void	ft_putstr(char *str)   	/* Функция печати строки */
 
 /*#############################################################################*/
 
-int		ft_isspace(char c)
+
+int		ft_strchar(char to_find, char *str)
 {
-	return (c == ' ' || c == '\t' || c == '\n');
+	while (*str)
+		if (to_find == *str++)
+			return (1);
+	return (0);
 }
 
-int		ft_nb_words(char *str)
+
+/*
+int   ft_wordcount(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+	{
+		while (*str && (ft_strchar(*str, spacechar)))
+			str++;
+		if (*str && !(ft_strchar(*str, spacechar)))
+		{
+			count++;
+			while (*str && !(ft_strchar(*str, spacechar)))
+				str++;
+		}
+	}
+	return (count);
+}
+*/
+int		ft_wordcount(char *str, char *spacechar)
 {
 	int		words;
 
 	words = 0;
 	while (*str)
 	{
-		if (!(words) && !(ft_isspace(*str)))
+		if (!(words) && !(ft_strchar(*str, spacechar)))
 			words++;
-		else if (ft_isspace(*(str - 1)) && !(ft_isspace(*str)))
+		else if (ft_strchar(*(str - 1), spacechar) && !(ft_strchar(*str, spacechar)))
 			words++;
 		str++;
 	}
 	return (words);
 }
 
-int		ft_len_w(char *str, int i)
+int		ft_len_word(char *str, int i, char *spacechar)
 {
 	int count;
 
 	count = 0;
-	while (!(ft_isspace(str[i])) && str[i])
+	while (!(ft_strchar(str[i], spacechar)) && str[i])
 	{
 		count++;
 		i++;
@@ -72,7 +97,7 @@ int		ft_len_w(char *str, int i)
 	return (count);
 }
 
-char	**ft_split_whitespaces(char *str)
+char	**ft_split(char *str, char *spacechar)
 {
 	char	**res;
 	int		i;
@@ -81,18 +106,18 @@ char	**ft_split_whitespaces(char *str)
 
 	i = 0;
 	j = 0;
-	if ((res = malloc(sizeof(char*) * (ft_nb_words(str) + 1))) == NULL)
+	if ((res = malloc(sizeof(char*) * (ft_wordcount(str, spacechar) + 1))) == NULL)
 		return (NULL);
 	while (str[i])
 	{
-		while (ft_isspace(str[i]) && str[i])
+		while (ft_strchar(str[i], spacechar) && str[i])
 			i++;
 		if (str[i])
 		{
 			k = 0;
-			if ((res[j] = malloc(sizeof(char) * ft_len_w(str, i) + 1)) == NULL)
+			if ((res[j] = malloc(sizeof(char) * ft_len_word(str, i, spacechar) + 1)) == NULL)
 				return (NULL);
-			while (ft_isspace(str[i]) && str[i])
+			while (!ft_strchar(str[i], spacechar) && str[i])
 				res[j][k++] = str[i++];
 			res[j++][k] = '\0';
 		}
@@ -104,13 +129,15 @@ char	**ft_split_whitespaces(char *str)
 
 
 
+
+
 int     main(void)				/* Основаная функция */
 {
 	char	**arr_str;			/* Обьявляем указатель на указатель, в который мы сохраним адресс массива с адресами строк */
 	int 	i;					/* Обьявляем счетчик для перемещения по строкам */
 
-	
-	if ((arr_str = ft_split_whitespaces(" param pam pam  muther fucker ")) == ((void *)0)) /* Запускам функцию нахождения в строке отдельных слов и разбрасываем ихв отдельные строки */
+	if ((arr_str = ft_split("fuckingfuckingfuckingfucking", "in")) == ((void *)0)) /* Запускам функцию нахождения в строке 
+								 * отдельных слов и разбрасываем ихв отдельные строки */
 		return (0);
 	i = 0;						/* Инициализируем счетчик для перемещения по строкам нулем чтобы начать с нулевой строки */
 	while (arr_str[i] != ((void *)0))/* Проверяем есть ли по этому адресу строка. Если есть то спускаемся ниже и печатаем ее символы */
