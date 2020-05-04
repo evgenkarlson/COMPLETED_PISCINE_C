@@ -41,11 +41,8 @@ void	ft_putstr(char *str)   	/* Функция печати строки */
 
 int		ft_strchar(char to_find, char *str)
 {
-	char	*sptr;
-
-	sptr = str;
-	while (*sptr != '\0')
-		if (to_find == *sptr++)
+	while (*str)
+		if (to_find == *str++)
 			return (1);
 	return (0);
 }
@@ -68,44 +65,45 @@ int		ft_wc(char *str, char *charset)
 	return (i);
 }
 
-char	*ft_split_w(char **str, char *charset)
+char	*ft_split_w(char **str, char *spacechar)
 {
 	char	*bptr;
 	char	*bsptr;
 	char	*sptr;
 
 	sptr = *str;
-	while (ft_strchar(*sptr, charset))
-		++sptr;
-	*str = sptr;
-	while (!ft_strchar(*sptr, charset))
-		++sptr;
-	bptr = malloc(sptr - *str);
-	if (!bptr)
-		return (NULL);
-	bsptr = bptr;
-	while (sptr > *str)
-		*bsptr++ = *((*str)++);
-	*bsptr = '\0';
-	while (**str && ft_strchar(**str, charset))
-		++*str;
+	while (ft_strchar(*sptr, spacechar))/* Пропускаем символы не являющиеся словом чтобы добраться до слова*/
+		sptr++;
+	*str = sptr;				/* Записываем адрес начала слова в одну из ячеек массива с указателями */
+	while (!ft_strchar(*sptr, spacechar))/* Пропускаем остальную часть слова */
+		sptr++;
+	if ((bptr = (char *)malloc(sptr - *str)) == ((void *)0))/* Выделяем память под слово(используем для этого адреса
+								 * начала слова и конца) и сохраняем адрес выделеной памяти в указателе "bptr" */
+		return ((void *)0);		/* Если что то пошло не так завершаем функцию и возвращаем нулевой указатель */ 
+	bsptr = bptr;				/* Дублируем адресс выделеной памяти в указатель "bsptr" */
+	while (sptr > *str)			/* Если адрес хранящий конец слова больше адреса хранящего начало слова */
+		*bsptr++ = *((*str)++); /* Копируем слово по символу в выделеную для него память */
+	*bsptr = '\0';				/* в ячейку после копирования слова добавляем завершающий символ нуля */
+	while (**str && ft_strchar(**str, spacechar))
+		(*str)++;
 	return (bptr);
 }
 
-char	**ft_split(char *str, char *charset)
+char	**ft_split(char *str, char *spacechar)
 {
 	char	**buffer;
 	char	**bptr;
 	int		i;
 
-	i = ft_wc(str, charset);
-	if (!(buffer = malloc((i + 1) * sizeof(char *))))
-		return (NULL);
+	i = ft_wordcount(str, spacechar);
+	ft_putchar((i%10)+'0');
+	if ((buffer = (char **)malloc((i + 1) * sizeof(char *))) == ((void *)0))
+		return ((void *)0);
 	bptr = buffer;
 	while (i--)
-		if (!(*bptr++ = ft_split_w(&str, charset)))
-			return (NULL);
-	*bptr = (NULL);
+		if ((*bptr++ = ft_split_w(&str, spacechar)) == ((void *)0))
+			return ((void *)0);
+	*bptr = ((void *)0);
 	return (buffer);
 }
 
@@ -116,8 +114,7 @@ int     main(void)				/* Основаная функция */
 	char	**arr_str;			/* Обьявляем указатель на указатель, в который мы сохраним адресс массива с адресами строк */
 	int 	i;					/* Обьявляем счетчик для перемещения по строкам */
 
-	
-	if ((arr_str = ft_split_whitespaces(" param pam pam  muther fucker ")) == ((void *)0)) /* Запускам функцию нахождения в строке отдельных слов и разбрасываем ихв отдельные строки */
+	if ((arr_str = ft_split("fuckingfuckinjkhvlijdblhdbfbliaenfgfuckindick", "in")) == ((void *)0)) /* Запускам функцию нахождения в строке отдельных слов и разбрасываем ихв отдельные строки */
 		return (0);
 	i = 0;						/* Инициализируем счетчик для перемещения по строкам нулем чтобы начать с нулевой строки */
 	while (arr_str[i] != ((void *)0))/* Проверяем есть ли по этому адресу строка. Если есть то спускаемся ниже и печатаем ее символы */

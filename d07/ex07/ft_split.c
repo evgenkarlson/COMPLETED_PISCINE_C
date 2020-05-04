@@ -14,11 +14,11 @@
 /* ************************************************************************** */
 /* **************************************************************************
 
-• Создайте функцию, которая разрезает строку символов в зависимости от другой
-  строки символов.
-• Вам придется использовать каждый символ из строкового набора символов в качестве
+• Создайте функцию, которая разрезает одну строку символов в используя значения
+  другой строки символов.
+• Используйте каждый символ из строкового набора символов в качестве
   разделителя.
-• Функция возвращает массив, в котором каждый блок содержит адрес строки, заключенной
+• Функция возвращает массив, с блоками содержащими адреса строк со словом
   между двумя разделителями. Последний элемент этого массива должен быть равен 0,
   чтобы указать конец массива.
 • В вашем массиве не может быть пустых строк. Сделайте свои выводы соответственно.
@@ -39,73 +39,70 @@ void  ft_putchar(char c);
 /* ************************************************************************** */
 
 
-static int	ft_strchar(char to_find, char *str)
+int		ft_strchar(char to_find, char *str)
 {
-	char	*sptr;
-
-	sptr = str;
-	while (*sptr != '\0')
-		if (to_find == *sptr++)
+	while (*str)
+		if (to_find == *str++)
 			return (1);
 	return (0);
 }
 
-static int	ft_wc(char *str, char *charset)
+int		ft_wordcount(char *str, char *spacechar)
 {
 	int		i;
 
 	i = 0;
 	while (*str)
-		if (ft_strchar(*str, charset))
+		if (ft_strchar(*str, spacechar))
 			++str;
 		else
 		{
 			++i;
 			++str;
-			while (*str && !ft_strchar(*str, charset))
+			while (*str && !ft_strchar(*str, spacechar))
 				++str;
 		}
 	return (i);
 }
 
-static char	*ft_split_w(char **str, char *charset)
+char	*ft_split_w(char **str, char *spacechar)
 {
 	char	*bptr;
 	char	*bsptr;
 	char	*sptr;
 
 	sptr = *str;
-	while (ft_strchar(*sptr, charset))
-		++sptr;
+	while (ft_strchar(*sptr, spacechar))
+		sptr++;
 	*str = sptr;
-	while (!ft_strchar(*sptr, charset))
-		++sptr;
-	bptr = malloc(sptr - *str);
-	if (!bptr)
-		return (NULL);
+	while (!ft_strchar(*sptr, spacechar))
+		sptr++;
+	if ((bptr = (char *)malloc(sptr - *str)) == ((void *)0))
+		return ((void *)0);
 	bsptr = bptr;
 	while (sptr > *str)
 		*bsptr++ = *((*str)++);
 	*bsptr = '\0';
-	while (**str && ft_strchar(**str, charset))
-		++*str;
+	while (**str && ft_strchar(**str, spacechar))
+		(*str)++;
 	return (bptr);
 }
 
-char		**ft_split(char *str, char *charset)
+char	**ft_split(char *str, char *spacechar)
 {
 	char	**buffer;
 	char	**bptr;
 	int		i;
 
-	i = ft_wc(str, charset);
-	if (!(buffer = malloc((i + 1) * sizeof(char *))))
-		return (NULL);
+	i = ft_wordcount(str, spacechar);
+	ft_putchar((i%10)+'0');
+	if ((buffer = (char **)malloc((i + 1) * sizeof(char *))) == ((void *)0))
+		return ((void *)0);
 	bptr = buffer;
 	while (i--)
-		if (!(*bptr++ = ft_split_w(&str, charset)))
-			return (NULL);
-	*bptr = (NULL);
+		if ((*bptr++ = ft_split_w(&str, spacechar)) == ((void *)0))
+			return ((void *)0);
+	*bptr = ((void *)0);
 	return (buffer);
 }
 
