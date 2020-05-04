@@ -41,6 +41,25 @@ int		ft_isspace(char c)
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
+/*int   ft_wordcount(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+	{
+		while (*str && ft_isspace(*str))
+			str++;
+		if (*str && !ft_isspace(*str))
+		{
+			count++;
+			while (*str && !ft_isspace(*str))
+				str++;
+		}
+	}
+	return (count);
+}
+*/
 int		ft_wordcount(char *str)
 {
 	int		words;
@@ -112,7 +131,7 @@ int   ft_isspace(char c)
 	return (c == ' ' || c == '\n' || c == '\t');
 }
 
-int   ft_wordcount(char *str)
+/*int   ft_wordcount(char *str)
 {
 	int	count;
 
@@ -129,6 +148,22 @@ int   ft_wordcount(char *str)
 		}
 	}
 	return (count);
+}
+*/
+int		ft_wordcount(char *str)
+{
+	int		words;
+
+	words = 0;
+	while (*str)
+	{
+		if (!(words) && !(ft_isspace(*str)))
+			words++;
+		else if (ft_isspace(*(str - 1)) && !(ft_isspace(*str)))
+			words++;
+		str++;
+	}
+	return (words);
 }
 
 char  *malloc_word(char *str)
@@ -182,6 +217,25 @@ char	**ft_split_whitespaces(char *str)
 #include <stdlib.h>
 #define IS_SPACE(c) (((c == ' ' || c == '\t' || c == '\n') ? 1 : 0))
 
+/*int   ft_wordcount(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+	{
+		while (*str && (IS_SPACE(*str)))
+			str++;
+		if (*str && !(IS_SPACE(*str)))
+		{
+			count++;
+			while (*str && !(IS_SPACE(*str)))
+				str++;
+		}
+	}
+	return (count);
+}
+*/
 int   ft_wordcount(char *str)
 {
 	int		words;
@@ -263,7 +317,26 @@ int		ft_isspace(char c)
 	return (c == ' ' || c == '\t' || c == '\n');
 }
 
-int		ft_nb_words(char *str)
+/*int   ft_wordcount(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (*str)
+	{
+		while (*str && ft_isspace(*str))
+			str++;
+		if (*str && !ft_isspace(*str))
+		{
+			count++;
+			while (*str && !ft_isspace(*str))
+				str++;
+		}
+	}
+	return (count);
+}
+*/
+int		ft_wordcount(char *str)
 {
 	int		words;
 
@@ -279,7 +352,7 @@ int		ft_nb_words(char *str)
 	return (words);
 }
 
-int		ft_len_w(char *str, int i)
+int		ft_len_word(char *str, int i)
 {
 	int count;
 
@@ -301,7 +374,7 @@ char	**ft_split_whitespaces(char *str)
 
 	i = 0;
 	j = 0;
-	if ((res = malloc(sizeof(char*) * (ft_nb_words(str) + 1))) == NULL)
+	if ((res = malloc(sizeof(char*) * (ft_wordcount(str) + 1))) == NULL)
 		return (NULL);
 	while (str[i])
 	{
@@ -310,7 +383,7 @@ char	**ft_split_whitespaces(char *str)
 		if (str[i])
 		{
 			k = 0;
-			if ((res[j] = malloc(sizeof(char) * ft_len_w(str, i) + 1)) == NULL)
+			if ((res[j] = malloc(sizeof(char) * ft_len_word(str, i) + 1)) == NULL)
 				return (NULL);
 			while (ft_isspace(str[i]) && str[i])
 				res[j][k++] = str[i++];
