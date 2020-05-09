@@ -3,5 +3,6 @@
         "type_traits": "c",
         "unistd.h": "c",
         "stdlib.h": "c"
-    }
+    },
+    "cmake.configureOnOpen": false
 }

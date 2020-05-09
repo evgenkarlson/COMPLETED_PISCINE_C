@@ -46,8 +46,6 @@ int		ft_strchar(char to_find, char *str)
 			return (1);
 	return (0);
 }
-
-
 /*
 int   ft_wordcount(char *str)
 {
