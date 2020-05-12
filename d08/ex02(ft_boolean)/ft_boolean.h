@@ -65,7 +65,8 @@ int     main(int argc, char **argv)
    **************************************************************************  
 
 
-    ВСЁ ПРО typedef      http://www.c-cpp.ru/books/typedef
+    ВСЁ ПРО typedef             http://www.c-cpp.ru/books/typedef
+                                https://www.youtube.com/watch?v=CTC2Cibv6Ks
 
 
    ************************************************************************** */
