@@ -9,13 +9,77 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* **************************************************************************   
+
+
+• Create a ft_boolean.h file. It’ll compile and run the following main appropriately
+• Создать файл ft_boolean.h. Он скомпилирует и запустит следующее основное:
+
+
+   **************************************************************************    
+
+
+#include "ft_boolean.h"
+
+void    ft_putstr(char *str)
+{
+    while (*str)
+        write(1, str++, 1);
+}
+
+t_bool  ft_is_even(int nbr)
+{
+    return ((EVEN(nbr)) ? TRUE : FALSE);
+}
+
+int     main(int argc, char **argv)
+{
+    (void)argv;
+    if (ft_is_even(argc - 1) == TRUE)
+        ft_putstr(EVEN_MSG);
+    else
+        ft_putstr(ODD_MSG);
+    return (SUCCESS);
+}
+
+
+   **************************************************************************  
+
+
+• Эта программа должна отображать:
+
+        I have an even number of arguments.
+
+• или:
+
+        I have an odd number of arguments.
+
+
+• с последующим разрывом строки, когда это необходимо.
+
+
+   **************************************************************************  
+
+
+    ВСЁ ПРО typedef      http://www.c-cpp.ru/books/typedef
+
+
+   ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
 #include <unistd.h>
 
 #define	TRUE		1
 #define	FALSE		0
 #define	SUCCESS		0
-#define	EVEN_MSG	"J'ai un nombre pair d'arguments.\n"
-#define	ODD_MSG		"J'ai un nombre impair d'arguments.\n"
+#define	EVEN_MSG	"I have an even number of arguments.\n"
+#define	ODD_MSG		"I have an odd number of arguments.\n"
 #define	EVEN(x)		(!((x) % 2))
 
 typedef int t_bool;
@@ -46,26 +110,6 @@ typedef	int	t_bool;
 
 void		ft_putstr(char *str);
 t_bool		ft_is_even(int nbr);
-
-#endif
-
-
-
-
-/* ************************************************************************** */
-/* ******************************_ИЛИ_*************************************** */
-/* ************************************************************************** */
-
-
-
-#ifndef FT_H
-# define FT_H
-
-int		ft_strlen(char *str);
-int		ft_strcmp(char *s1, char *s2);
-void	ft_putchar(char c);
-void	ft_swap(int *a, int *b);
-void	ft_putstr(char *str);
 
 #endif
 
