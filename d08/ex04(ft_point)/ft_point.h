@@ -42,6 +42,7 @@ int		main(void)
 
 
 	ТУТ ВСЁ О "struct":							https://youtu.be/hoHAOTVRndc
+												https://youtu.be/6ooPdvzhhJw
 
 
    ************************************************************************** */
