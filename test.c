@@ -15,8 +15,13 @@
 /* ************************************************************************** */
 
 
-#include "ft_point.h"
 #include "unistd.h"
+
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+}				t_point;
 
 
 void	ft_putchar(char c)
