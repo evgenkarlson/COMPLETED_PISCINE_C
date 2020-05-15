@@ -48,17 +48,23 @@ void	ft_putnbr(int nb)
 
 void	ft_show_tab(struct s_stock_par *par)
 {
-	int		i;
+	int	i;
+	int	j;
 
 	i = 0;
-	ft_putstr(par->copy);
-	ft_putchar('\n');
-	ft_putnbr(par->size_param);
-	ft_putchar('\n');
-	while (par->tab[i])
+	while (par[i].str)
 	{
-		ft_putstr(par->tab[i++]);
+		ft_putstr(par[i].copy);
 		ft_putchar('\n');
+		ft_putnbr(par[i].size_param);
+		ft_putchar('\n');
+		j = 0;
+		while (par[i].tab[j])
+		{
+			ft_putstr(par[i].tab[j++]);
+			ft_putchar('\n');
+		}
+		i++;
 	}
 }
 
@@ -108,26 +114,28 @@ void	ft_putnbr(int nb)
 	}
 }
 
-void	ft_show_tab(t_stock_par *par)
+void	ft_print_words_tables(char **tab)
+{
+	while (*tab != ((void *)0))
+	{
+		ft_putstr(*tab);
+		ft_putchar('\n');
+		tab++;
+	}
+}
+
+void				ft_show_tab(t_stock_par *par)
 {
 	int i;
-	int y;
 
 	i = 0;
-	while (par[i].str != 0)
+	while (par[i].str)
 	{
 		ft_putstr(par[i].copy);
 		ft_putchar('\n');
 		ft_putnbr(par[i].size_param);
 		ft_putchar('\n');
-		y = 0;
-		while (par[i].tab[y] != 0)
-		{
-			ft_putstr(par[i].tab[y]);
-			if (par[i + 1].str != 0 || par[i].tab[y + 1] != 0)
-				ft_putchar('\n');
-			y++;
-		}
+		ft_print_words_tables(par[i].tab);
 		i++;
 	}
 }
