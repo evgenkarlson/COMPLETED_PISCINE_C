@@ -11,15 +11,29 @@
 /* ************************************************************************** */
 
 
-#ifndef __FT_POINT_H
-#define __FT_POINT_H
+#ifndef FT_STOCK_PAR_H
+# define FT_STOCK_PAR_H
+# include <stdlib.h>
 
-typedef struct	s_point
+typedef	struct		s_stock_par
 {
-	int	x;
-	int	y;
-}				t_point;
+	int		size_param;
+	char	*str;
+	char	*copy;
+	char	**tab;
+}					t_stock_par;
 
-void			set_point(t_point *point);
+int					ft_isspace(char c);
+int					ft_wordcount(char *str);
+int					ft_wordlen(char *str);
+void				ft_putchar(char c);
+void				ft_putstr(char *str);
+void				ft_putnbr(int nb);
+
+void				ft_show_tab(t_stock_par *par);
+char				**ft_split_whitespaces(char *str);
+char				*ft_strdup(char *src);
+struct s_stock_par	*ft_param_to_tab(int ac, char **av);
+
 
 #endif

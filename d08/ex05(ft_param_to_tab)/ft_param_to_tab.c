@@ -10,6 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* **************************************************************************   
+
+	Разрешенные функции: ft_split_whitespaces, ft_show_tab, malloc
+
+   **************************************************************************   
+
+	• Создать функцию, которая хранит аргументы программы в структуре массива 
+	и возвращает адрес первого блока этого массива.
+
+	• Все элементы массива должны быть обработаны, включая av [0].
+
+	• Вот как это должно быть прототипировано:
+
+					   struct s_stock_par *ft_param_to_tab(int ac, char **av);
+
+	• Массив структуры должен быть размещен в своем элементе str и его последний 
+	блок должен содержать 0, чтобы указать на конец массива.
+
+	• Структура определяется в файле ft_stock_par.h, как тут:
+
+													typedef struct	s_stock_par
+													{
+														int size_param;
+														char *str;
+														char *copy;
+														char **tab;
+													}				t_stock_par;
+
+	◦ size_param - длина аргумента;
+	◦ str - адрес аргумента;
+	◦ copy является копией аргумента;
+	◦ tab - массив, возвращаемый ft_split_whitespaces.
+
+
+	• Мы протестируем вашу функцию с помощью наших ft_split_whitespaces и нашего 
+	ft_show_tab (следующее упражнение). Примите соответствующие меры, чтобы это работало!
+
+
+   ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
 #include "ft_stock_par.h"
 
 static char			*ft_strdup(char *src)
@@ -19,9 +65,9 @@ static char			*ft_strdup(char *src)
 
 	i = 0;
 	while (src[i])
-		i += 1;
-	if (!(dst = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
+		i++;
+	if ((dst = (char *)malloc(sizeof(char) * (i + 1))) == ((void *)0))
+		return ((void *)0);
 	i = -1;
 	while (src[++i])
 		dst[i] = src[i];
@@ -33,10 +79,10 @@ struct s_stock_par	*ft_param_to_tab(int ac, char **av)
 {
 	int				i;
 	int				j;
-	t_stock_par		*stk;
+	t_stock_par		**stk;
 
-	if (!(stk = (t_stock_par*)malloc(sizeof(t_stock_par) * (ac + 1))))
-		return (NULL);
+	if ((stk = (t_stock_par **)malloc(sizeof(t_stock_par) * (ac + 1))) == ((void *)0))
+		return ((void *)0);
 	i = 0;
 	while (i < ac)
 	{
@@ -66,7 +112,7 @@ int					ft_strlen(char *str)
 	int i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -97,20 +143,6 @@ struct s_stock_par	*ft_param_to_tab(int ac, char **av)
 	ret[i].str = 0;
 	return (ret);
 }
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-int		main(int argc, char **argv)
-{
-	struct s_stock_par *a;
-	a = ft_param_to_tab(argc, argv);
-	ft_show_tab(a);
-	return (0);
-}
-
 
 
 /* ************************************************************************** */
