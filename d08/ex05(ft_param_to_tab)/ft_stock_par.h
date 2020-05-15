@@ -52,7 +52,7 @@
 
 
    ************************************************************************** */
-/* ************************************************************************** */
+/* *******************************_V_1.0_************************************ */
 /* ************************************************************************** */
 
 
@@ -68,17 +68,18 @@ typedef	struct		s_stock_par
 	char	**tab;
 }					t_stock_par;
 
-void				ft_show_tab(t_stock_par *par);
-char				**ft_split_whitespaces(char *str);
+int					ft_strlen(char *str);
 char				*ft_strdup(char *src);
+char				**ft_split_whitespaces(char *str);
 struct s_stock_par	*ft_param_to_tab(int ac, char **av);
+void				ft_show_tab(t_stock_par *par);
 
 
 #endif
 
 
 /* ************************************************************************** */
-/* ***********************************_ИЛИ_********************************** */
+/* *******************************_V_2.0_************************************ */
 /* ************************************************************************** */
 
 
@@ -94,10 +95,9 @@ typedef struct		s_stock_par
 	char	**tab;
 }					t_stock_par;
 
-void				ft_show_tab(t_stock_par *par);
 char				**ft_split_whitespaces(char *str);
-int					ft_strlen(char *str);
 struct s_stock_par	*ft_param_to_tab(int ac, char **av);
+void				ft_show_tab(t_stock_par *par);
 #endif
 
 

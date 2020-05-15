@@ -55,7 +55,7 @@ void	ft_show_tab(struct s_stock_par *par)
 	ft_putchar('\n');
 	ft_putnbr(par->size_param);
 	ft_putchar('\n');
-	while (par->tab[i] != ((void *)0))
+	while (par->tab[i])
 	{
 		ft_putstr(par->tab[i++]);
 		ft_putchar('\n');

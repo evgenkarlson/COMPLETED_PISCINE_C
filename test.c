@@ -109,14 +109,14 @@ void				ft_show_tab(t_stock_par *par)
 	int y;
 
 	i = 0;
-	while (par[i].str != 0)
+	while (par[i].str)
 	{
 		ft_putstr(par[i].copy);
 		ft_putchar('\n');
 		ft_putnbr(par[i].size_param);
 		ft_putchar('\n');
 		y = 0;
-		while (par[i].tab[y] != 0)
+		while (par[i].tab[y])
 		{
 			ft_putstr(par[i].tab[y]);
 			if (par[i + 1].str != 0 || par[i].tab[y + 1] != 0)
@@ -214,36 +214,32 @@ char				**ft_split_whitespaces(char *str)/* функция разбирает с
 
 /*#############################################################################*/
 
-int					ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 struct s_stock_par	*ft_param_to_tab(int ac, char **av)
 {
 	int			i;
-	int			y;
-	t_stock_par *ret;
+	int			j;
+	t_stock_par	*ret;
 
+	if ((ret = (t_stock_par *)malloc(sizeof(t_stock_par) * (ac + 1))) == ((void *)0))
+		return ((void *)0);
 	i = 0;
-	ret = (t_stock_par *)malloc(sizeof(t_stock_par) * (ac + 1));
 	while (i < ac)
 	{
-		ret[i].size_param = ft_strlen(av[i]);
+		j = 0;
+		while (av[i][j])
+			j++;
+		ret[i].size_param = j;
 		ret[i].str = av[i];
-		ret[i].copy = (char *)malloc(sizeof(char) * (ret[i].size_param + 1));
-		y = 0;
-		while (y < ret[i].size_param)
+		if((ret[i].copy = (char *)malloc(sizeof(char) * (ret[i].size_param + 1))) == ((void *)0))
+			return ((void *)0);
+		j = 0;
+		while (j < ret[i].size_param)
 		{
-			ret[i].copy[y] = av[i][y];
-			y++;
+			ret[i].copy[j] = av[i][j];
+			j++;
 		}
-		ret[i].copy[y] = '\0';
+		ret[i].copy[j] = '\0';
 		ret[i].tab = ft_split_whitespaces(av[i]);
 		i++;
 	}
@@ -256,8 +252,6 @@ int					main(int argc, char **argv)
 	struct s_stock_par *a;
 	a = ft_param_to_tab(argc, argv);
 	ft_show_tab(a);
-	ft_putchar('\n');
-	ft_putstr("----------------------------");
 	ft_putchar('\n');
 	return (0);
 }

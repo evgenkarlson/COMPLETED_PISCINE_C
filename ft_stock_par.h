@@ -23,16 +23,15 @@ typedef	struct		s_stock_par
 	char	**tab;
 }					t_stock_par;
 
-int					ft_isspace(char c);
-int					ft_wordcount(char *str);
-int					ft_wordlen(char *str);
 void				ft_putchar(char c);
 void				ft_putstr(char *str);
 void				ft_putnbr(int nb);
+int					ft_isspace(char c);
+int					ft_wordcount(char *str);
+int					ft_wordlen(char *str);
 
 void				ft_show_tab(t_stock_par *par);
 char				**ft_split_whitespaces(char *str);
-char				*ft_strdup(char *src);
 struct s_stock_par	*ft_param_to_tab(int ac, char **av);
 
 
