@@ -15,6 +15,7 @@
 /* ************************************************************************** */
 /* **************************************************************************   
 
+	Файлы для включения: ft_show_tab.c, ft_stock_par.h
 	Разрешенные функции: ft_split_whitespaces, ft_show_tab, malloc
 
    **************************************************************************   
@@ -56,6 +57,29 @@
 /* ************************************************************************** */
 
 
+#ifndef __FT_STOCK_PAR_H
+# define __FT_STOCK_PAR_H
+# include <stdlib.h>
+
+typedef struct		s_stock_par
+{
+	int		size_param;
+	char	*str;
+	char	*copy;
+	char	**tab;
+}					t_stock_par;
+
+char				**ft_split_whitespaces(char *str);
+struct s_stock_par	*ft_param_to_tab(int ac, char **av);
+void				ft_show_tab(t_stock_par *par);
+#endif
+
+
+/* ************************************************************************** */
+/* *******************************_V_2.0_************************************ */
+/* ************************************************************************** */
+
+
 #ifndef FT_STOCK_PAR_H
 # define FT_STOCK_PAR_H
 # include <stdlib.h>
@@ -75,29 +99,6 @@ struct s_stock_par	*ft_param_to_tab(int ac, char **av);
 void				ft_show_tab(t_stock_par *par);
 
 
-#endif
-
-
-/* ************************************************************************** */
-/* *******************************_V_2.0_************************************ */
-/* ************************************************************************** */
-
-
-#ifndef __FT_STOCK_PAR_H
-# define __FT_STOCK_PAR_H
-# include <stdlib.h>
-
-typedef struct		s_stock_par
-{
-	int		size_param;
-	char	*str;
-	char	*copy;
-	char	**tab;
-}					t_stock_par;
-
-char				**ft_split_whitespaces(char *str);
-struct s_stock_par	*ft_param_to_tab(int ac, char **av);
-void				ft_show_tab(t_stock_par *par);
 #endif
 
 
