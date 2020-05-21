@@ -57,7 +57,7 @@ void	ft_takes_place(int hour)
 	else if (hour == 11)
 		printf("11.00 A.M. AND 12.00 P.M.\n");
 	else if (hour == 23)
-		printf("11.00 P.M. AND 12.00 A.M.\n");
+		printf("11.00 P.M. AND 0.00 A.M.\n");
 	else if (hour == 24)
 		printf("12.00 A.M. AND 1.00 A.M.\n");
 	else
@@ -84,12 +84,12 @@ void	ft_takes_place(int hour)
 	ampm2 = 0;
 	if (h1 >= 12)
 	{
-		h1 = h1 - 12;
+		h1 -= 12;
 		ampm1 = 1;
 	}
 	if (h2 >= 12)
 	{
-		h2 = h2 - 12;
+		h2 -= 12;
 		ampm2 = 1;
 	}
 	h1 = (h1 == 0 ? 12 : h1);
@@ -99,9 +99,26 @@ void	ft_takes_place(int hour)
 }
 
 
+void ft_takes_place(int hour)
+{
+	int time;
+	int h1;
+	int h2;
+	char	am_pm_1;
+	char	am_pm_2;
+
+	time = hour;
+	h1 = (hour - 12);
+	h2 = (((hour + 1) == 24) ? 0 : (hour + 1));
+	am_pm_1 = (ampm2 == 0 ? "A.M" : "P.M");
+	am_pm_2 = (ampm2 == 0 ? "A.M" : "P.M");
+	printf("THE FOLLOWING TAKES PLACE BETWEEN %d.00 %c.M. AND %d.00 %c.M.\n", \
+			(hour - 12), am_pm_1, (((hour + 1) == 24) ? 0 : (hour + 1)), am_pm_2);
+}
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
 
 void	ft_takes_place(int hour)
 {
@@ -126,35 +143,6 @@ void	ft_takes_place(int hour)
 		printf("%d", hour + 1);
 	printf(".00 %cM\n", ampm);
 }
-
-
-
-void	ft_takes_place(int hour)
-{
-	char	ampm;
-	int		late;
-
-	if (hour == 24)
-		hour -= 24;
-	late = hour > 11 ? 1 : 0;
-	ampm = late ? 80 : 65;
-	printf("%s", "THE FOLLOWING TAKES PLACE BETWEEN ");
-	if (hour > 12)
-		printf("%d", hour - 12);
-	else
-		printf("%d", (hour == 0) ? hour + 12 : hour);
-	printf(".00 %cM AND ", ampm);
-	if (hour == 11)
-		ampm = 80;
-	else if (hour == 23)
-		ampm = 65;
-	if (late)
-		printf("%d", hour - 11);
-	else
-		printf("%d", hour + 1);
-	printf(".00 %cM\n", ampm);
-}
-
 
 
 /* ************************************************************************** */
