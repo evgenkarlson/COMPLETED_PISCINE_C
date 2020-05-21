@@ -2,7 +2,8 @@
     "files.associations": {
         "type_traits": "c",
         "unistd.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "cstdio": "c"
     },
     "cmake.configureOnOpen": false
 }

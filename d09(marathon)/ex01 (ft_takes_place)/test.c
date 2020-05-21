@@ -33,6 +33,8 @@ void	ft_takes_place(int hour)
 		am_pm_2 = ((((hour + 1) < 12) || ((hour + 1) > 23)) ? 'A' : 'P');
 		printf("THE FOLLOWING TAKES PLACE BETWEEN %d.00 %c.M. AND %d.00 %c.M.\n", h1, am_pm_1, h2, am_pm_2);
 	}
+	else
+		printf("Number is wrong");
 }
 
 
