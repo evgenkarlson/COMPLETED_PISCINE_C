@@ -15,7 +15,9 @@
 /* ************************************************************************** */
 
 
+
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -24,19 +26,54 @@ void	ft_putchar(char c)
 
 void	ft_putstr(char *str)
 {
-	while (*str)
-		ft_putchar(*str++);
+	while(*str)
+		write(1, str++, 1);
 }
 
-void	ft_generic(void)
+char	rotate_maj(char c)
 {
-	ft_putstr("Tu tu tu tu ; Tu tu tu tu");
+	c = c - 'A';
+	c = ((c + 42) % 26);
+	c = c + 'A';
+	return (c);
+}
+
+char	rotate_min(char c)
+{
+	c = c - 'a';
+	c = ((c + 42) % 26);
+	c = c + 'a';
+	return (c);
+}
+
+char	rotate(char c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (rotate_maj(c));
+	else if (c >= 'a' && c <= 'z')
+		return (rotate_min(c));
+	else
+		return (c);
+}
+
+char	*ft_rot42(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		str[i] = rotate(str[i]);
+		i++;
+	}
+	return (str);
+}
+
+
+int	main()
+{					  /*  iurqijyud   mvutv  */
+	char	tab[][10] = {"zzz","wfedf"};
+	ft_putstr(ft_rot42(tab[0]));
 	ft_putchar('\n');
-}
-
-
-int		main(void)				/* Основаная функция */
-{
-	ft_generic();
-	return (0);
+	return 0;
 }
