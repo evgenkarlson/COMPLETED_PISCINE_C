@@ -42,7 +42,8 @@
 ** Эта ссылка мне очень помогла: 
 ** http://stackoverflow.com/questions/13520067/about-rot13-implementation
 
-
+*  Алфавит для примера:
+*
 *           1   2   3   4   5   6   7   8   9  10  11  12  13
 *           a   b   c   d   e   f   g   h   i   j   k   l   m
 
