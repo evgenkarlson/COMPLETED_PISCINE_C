@@ -78,9 +78,9 @@ char	*ft_rot42(char *str)
 	{
 		if (*ptr >= 'A' && *ptr <= 'Z')
 		{
-			*ptr = *ptr - 'a';
+			*ptr = *ptr - 'A';
 			*ptr = ((*ptr + 42) % 26);
-			*ptr = *ptr + 'a';
+			*ptr = *ptr + 'A';
 		}
 		else if (*ptr >= 'a' && *ptr <= 'z')
 		{
@@ -93,7 +93,7 @@ char	*ft_rot42(char *str)
 	return (str);
 }
 
-/*
+/*			ИЛИ_ТАК/OR_THAT
 char	*ft_rot42(char *str)
 {
 	int	i;
@@ -150,7 +150,6 @@ char	rotate(char c)
 		return (c);
 }
 
-/*
 char	*ft_rot42(char *str)
 {
 	int	i;
@@ -160,20 +159,6 @@ char	*ft_rot42(char *str)
 	{
 		str[i] = rotate(str[i]);
 		i++;
-	}
-	return (str);
-}
-*/
-
-char	*ft_rot42(char *str)
-{
-	char	*ptr;
-
-	ptr = str;
-	while (*ptr)
-	{
-		*ptr = rotate(*ptr);
-		ptr++;
 	}
 	return (str);
 }
