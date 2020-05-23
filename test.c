@@ -58,13 +58,13 @@ char	rotate(char c)
 
 char	*ft_rot42(char *str)
 {
-	int	i;
+	char	*ptr;
 
-	i = 0;
-	while (str[i])
+	ptr = str;
+	while (*ptr)
 	{
-		str[i] = rotate(str[i]);
-		i++;
+		*ptr = rotate(*ptr);
+		ptr++;
 	}
 	return (str);
 }

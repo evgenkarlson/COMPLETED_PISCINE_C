@@ -41,7 +41,20 @@
 ** что равно 10 (26 - 16 = 10). Таким образом, мы можем успешно вращаться. : D 
 ** Эта ссылка мне очень помогла: 
 ** http://stackoverflow.com/questions/13520067/about-rot13-implementation
-
+** ----------------------------------------------------------------------
+** ----------------------------------------------------------------------
+** ----------------------------------------------------------------------
+** Instead of rotating 13, as ROT13 does (because there is 26 characters
+** in the latin alphabet), we do a 42 rotation to make ROT42. This way, we
+** substract 26 (all the letters in the alphabet) to 42, to make the actual
+** rotation, which is 16 (the first value, from the starting point, which is
+** A). Now, we need to find the number that completes the alphabet, from 16,
+** which is 10 (26 - 16 = 10). This way, we can rotate successfully. :D
+** This link helped me a lot:
+** http://stackoverflow.com/questions/13520067/about-rot13-implementation
+** ----------------------------------------------------------------------
+** ----------------------------------------------------------------------
+** ----------------------------------------------------------------------
 *  Алфавит для примера:
 *
 *           1   2   3   4   5   6   7   8   9  10  11  12  13
@@ -83,6 +96,7 @@ char	rotate(char c)
 		return (c);
 }
 
+/*
 char	*ft_rot42(char *str)
 {
 	int	i;
@@ -95,13 +109,21 @@ char	*ft_rot42(char *str)
 	}
 	return (str);
 }
+*/
 
-int	main()
+char	*ft_rot42(char *str)
 {
-	char	tab[] = "sebastien";
-	printf("%s", ft_rot42(tab));
-	return 0;
+	char	*ptr;
+
+	ptr = str;
+	while (*ptr)
+	{
+		*ptr = rotate(*ptr);
+		ptr++;
+	}
+	return (str);
 }
+
 
 
 /* ************************************************************************** */
@@ -177,16 +199,7 @@ char	*ft_rot42(char *str)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-/*
-** Instead of rotating 13, as ROT13 does (because there is 26 characters
-** in the latin alphabet), we do a 42 rotation to make ROT42. This way, we
-** substract 26 (all the letters in the alphabet) to 42, to make the actual
-** rotation, which is 16 (the first value, from the starting point, which is
-** A). Now, we need to find the number that completes the alphabet, from 16,
-** which is 10 (26 - 16 = 10). This way, we can rotate successfully. :D
-** This link helped me a lot:
-** http://stackoverflow.com/questions/13520067/about-rot13-implementation
-*/
+
 
 char	*ft_rot42(char *str)
 {
@@ -204,13 +217,6 @@ char	*ft_rot42(char *str)
 	return (str);
 }
 
-/*
-*           1   2   3   4   5   6   7   8   9  10  11  12  13
-*           a   b   c   d   e   f   g   h   i   j   k   l   m
-
-*          14  15  16  17  18  19  20  21  22  23  24  25  26
-*           n   o   p   q   r   s   t   u   v   w   x   y   z	
-*/
 
 /* ************************************************************************** */
 /* ************************************************************************** */
