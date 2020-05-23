@@ -71,7 +71,7 @@ char	*ft_rot42(char *str)
 
 
 int	main()
-{					  /*  iurqijyud   mvutv  */
+{
 	char	tab[][10] = {"zzz","wfedf"};
 	ft_putstr(ft_rot42(tab[0]));
 	ft_putchar('\n');
