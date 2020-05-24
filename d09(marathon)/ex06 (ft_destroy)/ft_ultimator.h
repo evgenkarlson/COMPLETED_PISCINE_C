@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_destroy.c                                       :+:      :+:    :+:   */
+/*   ft_ultimator.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -32,60 +32,18 @@
 /* ************************************************************************** */
 
 
-#include <stdlib.h>
-#include "ft_ultimator.h"
+#ifndef __FT_ULTIMATOR_H__
+# define __FT_ULTIMATOR_H__
+/*
+**
+** Avec Windows VISTA, on etait au bord du precipice.
+** Avec Windows 8, on a fait un grand pas en avant
+**
+** Le Client:'J'ai un PC avec Windows 8'
+** Le Technicien:'Oui...'
+** Le Client:'Et puis mon PC ne marche plus'
+** Le Technicien:'Oui, vous me l'avez deja dit'...
+**
+*/
 
-void	ft_destroy(char ***factory)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (factory[i])
-	{
-		j = 0;
-		while (factory[i][j])
-		{
-			free(factory[i][j]);
-			j++;
-		}
-		free(factory[i]);
-		i++;
-	}
-	free(factory);
-}
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-#include <stdlib.h>
-#include "ft_ultimator.h"
-
-char	ft_destroy(char ***factory)
-{
-	free(factory);
-}
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-#include <stdlib.h>
-#include "ft_ultimator.h"
-
-void	ft_destroy(char ***factory)
-{
-	free(**factory);
-	free(*factory);
-	free(factory);
-}
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
+#endif

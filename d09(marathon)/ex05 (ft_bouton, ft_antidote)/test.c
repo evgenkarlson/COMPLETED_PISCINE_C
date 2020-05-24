@@ -16,82 +16,62 @@
 
 
 #include <unistd.h>
-#include <stdlib.h>
-#include "ft_ultimator.h"
 
-void	ft_putstr(char *str)			/* функция печати символа */
+void	ft_putchar(char c)			/* функция печати символа */
 {
-	while(*str)
-		write(1, str++, 1);
+	write(1, &c, 1);
 }
 
-void	ft_destroy(char ***factory)
+void ft_putnbr(int nb)				/* функция печати числа */
 {
-	int i;
-	int j;
+	int	temp;
+	int	size;
 
-	i = 0;
-	while (factory[i])
+	if (nb < 0)
 	{
-		j = 0;
-		while (factory[i][j])
-		{
-			free(factory[i][j]);
-			j++;
-		}
-		free(factory[i]);
-		i++;
+		ft_putchar('-');
+		nb = -nb;
 	}
-	free(factory);
+	if (nb == -2147483648)
+	{
+		ft_putchar('2');
+		nb = -147483648;
+	}
+	size = 1;
+	temp = nb;
+	while ((temp /= 10) > 0)
+	{
+		size *= 10;
+	}
+	temp = nb;
+	while (size)
+	{
+		ft_putchar((char)((temp / size) + 48));
+		temp %= size;
+		size /= 10;
+	}
 }
 
+int	ft_bouton(int i, int j, int k)	/* функция принимает параметры параметр состоящий из трех аргументов типа int и будет возвращать среднее значение носителя */
+{
+	if ((i > j && i < k) || (i > k && i < j))
+		return (i);
+	if ((k > j && k < i) || (k > i && k < j))
+		return (k);
+	if ((j > i && j < k) || (j > k && j < i))
+		return (j);
+	if (i == j)
+		return (i);
+	if (j == k)
+		return (j);
+	if (k == i)
+		return (k);
+	return (0);
+}
 
 int	main()							
-{	
-	char	***ptr;
-	int i;
-	int j;
-
-	if ((ptr = (char ***)malloc(1)) == ((void *)0))
-		return (0);
-	i = 0;
-	while (i < 1)
-	{	
-		if ((ptr[i] = (char **)malloc(3)) == ((void *)0))
-			return (0);
-		j = 0;
-		while (j < 3)
-		{
-			if ((ptr[i][j] = (char *)malloc(7)) == ((void *)0))
-				return (0);
-			if (j != 3)
-			{
-				ptr[i][j][0] = (char)'x';
-				ptr[i][j][1] = (char)'y';
-				ptr[i][j][2] = (char)'e';
-				ptr[i][j][3] = (char)'s';
-				ptr[i][j][4] = (char)'o';
-				ptr[i][j][5] = (char)'s';
-				ptr[i][j][6] = (char)'\0';
-			}
-			if (j == 3) 
-				ptr[j] = ((void *)0);
-			j++;
-		}
-		if (i == 1) 
-			ptr[i] = ((void *)0);
-		i++;
-	}
-
-
-	j = 0;
-	while (j < 3)
-	{	
-		ft_putstr(ptr[0][j]);
-		j++;
-	}
-
-	
-	ft_destroy(ptr);
+{
+	ft_putnbr(ft_bouton(1,1,2));
+	ft_putchar('\n');
 	return 0;
 }
