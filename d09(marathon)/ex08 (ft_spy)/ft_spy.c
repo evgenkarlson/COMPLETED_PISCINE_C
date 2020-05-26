@@ -20,106 +20,130 @@
 **	Alert !!! с последующим переводом строки, если один из аргументов, переданных 
 **	в параметре, соответствует словам президент, атака или полномочия.
 **
+**
 **	• Очевидно, ваш файл ft_spy.c должен содержать main.
+**------------------------------------------------------------------------------
+**  	$> $./ft_spy "I" "will" "kill" "Austin" "Powers"
+**  	Alert!!!
+**  	$> $./ft_spy "Hello" "I" "want" "a" "4" "cheese" "pizza"
+**  	$> $./ft_spy "The attack" "will" "start" "soon"
+**  	$> $./ft_spy "an" "attack" "will" "start" "soon"
+**  	Alert!!!
+**  	$>
+**------------------------------------------------------------------------------
 **
-**	• Эта функция будет прототипирована следующим образом:
 **
-**						unsigned int	ft_collatz_conjecture(unsigned int base)
+**	• Обратите внимание на несколько тонкостей:
+**------------------------------------------------------------------------------
+**  	$> $./ft_spy "I" "will" "kill" "Nigel" "PoWeRs"
+**  	Alert!!!
+**  	$> $./ft_spy "   the   " "  president    " "must" "die   "
+**  	Alert!!!
+**  	$> $./ft_spy "   the""omnipresident""must""eat  "
+**  	$>
+**------------------------------------------------------------------------------
 **
-**	• На французском языке «гипотеза Коллатца» называется Conjecture de Syracuse.
 **
+**	• Почему бы не воспользоваться этим упражнением для создания многократно 
+**  используемых модульных функций в вашей библиотеке?
+**
+**
+**
+** ##########################################################################
+**	P.S. Нас просят создать программу которая в массиве строк переданых с
+**	аргументами будет искать слова при нахождении которых будет напечатано "Alert!!!"
+** ##########################################################################
 **
 ** ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
 #include <unistd.h>
 
-void	write_alert(void)
-{
-	write(1, "Alert !!!\n", 10);
-}
-
-int		ft_strcmp(char *s1, char *s2)
-{
-	int	i;
-
-	i = 0;
-	while (s1[i] || s2[i])
-	{
-		if (s1[i] < s2[i])
-			return (-1);
-		if (s1[i] > s2[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	find_alert(char *str)
-{
-	if (ft_strcmp(str, "president") == 0)
-		write_alert();
-	if (ft_strcmp(str, "attentat") == 0)
-		write_alert();
-	if (ft_strcmp(str, "bauer") == 0)
-		write_alert();
-}
-
-void	to_minuscule(char *str)
+void	ft_strlowcase(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] >= 65 && str[i] <= 90)
+		if (str[i] >= 'A' && str[i] <= 'Z')
 		{
-			str[i] = str[i] + 32;
+			str[i] = str[i] - 'A' + 'a';
 		}
 		i++;
 	}
 }
 
-int		main(int argc, char **argv)
+int		ft_strcmp(char *s1, char *s2)
 {
-	char	temp[1000];
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*s1 - *s2);
+}
+
+
+void	ft_find_first_word(char *str, char *temp)
+{
+	int	j;
+	int k;
+
+	j = 0;
+	k = 0;
+	while (str[j])
+	{
+		if (str[j] != ' ')
+			temp[k++] = str[j];
+		j++;
+
+	}
+	temp[j] = '\0';
+}
+
+void	ft_find_alert(int argc, char **argv, char **to_find)
+{
+	char	temp[20];
 	int		i;
-	int		j;
 	int		k;
 
 	i = 1;
 	while (i < argc)
 	{
-		j = 0;
+		ft_find_first_word(argv[i], temp);
+		ft_strlowcase(temp);
 		k = 0;
-		while (argv[i][j])
+		while(to_find[k])
 		{
-			if (argv[i][j] != ' ')
-			{
-				temp[k] = argv[i][j];
-				k++;
-			}
-			j++;
+			if (ft_strcmp(temp, to_find[k]) == 0)
+				write(1, "Alert !!!\n", 10);
+			k++;
 		}
-		temp[j] = '\0';
-		to_minuscule(temp);
-		find_alert(temp);
 		i++;
 	}
+}
+
+
+int		main(int argc, char **argv)
+{
+	char	*array[4] = {"president","attack","powers"};
+
+	if (argc > 1)
+		ft_find_alert(argc, argv, array);
 	return (0);
 }
 
 
 
 
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
-
+#include <unistd.h>
 
 char	*jp_ltrim(char *str)
 {
@@ -195,21 +219,11 @@ int		main(int argc, char **argv)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+#include <unistd.h>
 
 void	putalert(void)
 {
-	int			i;
-	char		c;
-	const char	*str = "Alert!!!";
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	c = '\n';
-	write(1, &c, 1);
+	write(1, "Alert !!!\n", 10);
 }
 
 char	*ft_strlowcase(char *str)
@@ -218,7 +232,7 @@ char	*ft_strlowcase(char *str)
 	char	c;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] > 64 && str[i] < 91)
 		{
@@ -287,8 +301,7 @@ int		main(int argc, char *argv[])
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
-
+#include <unistd.h>
 
 int		ft_strcmp(char *s1, char *s2)
 {
