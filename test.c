@@ -18,18 +18,18 @@
 #include <unistd.h>
 #include "ft_perso.h"
 
-void			ft_putchar(char c)		/* функция печати символа */
+void			ft_putchar(char c)			/* функция печати символа */
 {
 	write(1, &c, 1);
 }
 
-void			ft_putstr(char *str)	/* функция печати строки */
+void			ft_putstr(char *str)		/* функция печати строки */
 {
 	while(*str)
 		ft_putchar(*str++);
 }
 
-void			ft_putnbr(int nb)		/* Функция печати числа */
+void			ft_putnbr(int nb)			/* Функция печати числа */
 {
 	int	temp;
 	int	size;
@@ -58,22 +58,23 @@ void			ft_putnbr(int nb)		/* Функция печати числа */
 		size /= 10;
 	}
 }
-
+/*	aggregate value used where an integer was expected	*/
 int				main()	
 {
-	t_perso		donnie;					/* Создадим экземпляр и поместим туда данные, а потом напечатаем чтобы проверить все ли работает */
+	t_perso		donnie;						/* Создадим экземпляр и поместим туда данные, а потом напечатаем чтобы проверить все ли работает */
+	t_perso		*d;
 	donnie.name = strdup("Donnie");
 	donnie.life = 100.0;
 	donnie.age = 24;
 	donnie.profession = SAVE_AUSTIN_POWERS;
-	(void)donnie;
-							
-	ft_putstr(donnie.name);
+	d = (void *)&(donnie);	/*!*/	/*!*/	/*!*/
+	d->name;
+	ft_putstr(d->name);
 	ft_putchar('\n');
 	ft_putnbr(donnie.age);
 	ft_putchar('\n');
 	ft_putstr(donnie.profession);
 	ft_putchar('\n');
-	
+
 	return (0);
 }

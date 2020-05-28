@@ -41,11 +41,15 @@ int		main(void)
    **************************************************************************
 
 
-	ТУТ ВСЁ О "struct":
+	так же ТУТ ВСЁ О "struct":
 												https://youtu.be/hoHAOTVRndc
 												https://youtu.be/6ooPdvzhhJw
 							 http://www.mir-koda.ru/full_leson_cpp.php?id=20
 							 http://www.mir-koda.ru/full_leson_cpp.php?id=21
+
+	ОБЯЗАТЕЛЬНО к ПРОЧТЕНИЮ:
+							http://www.youngcoder.net/2015/01/structury1.html
+												https://prog-cpp.ru/c-struct/
 
 
    ************************************************************************** */
