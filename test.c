@@ -39,10 +39,10 @@ void			ft_putnbr(int nb)			/* Функция печати числа */
 	if (nb < 0)
 	{
 		ft_putchar('-');
-		nb = -nb;					
+		nb = -nb;
 	}
 	if (nb == -2147483648)
-	{	
+	{
 		ft_putchar('2');
 		nb = 147483648;
 	}
@@ -58,18 +58,22 @@ void			ft_putnbr(int nb)			/* Функция печати числа */
 		size /= 10;
 	}
 }
-/*	aggregate value used where an integer was expected	*/
-int				main()	
+
+void	ft_test(t_perso *user)
 {
-	t_perso		donnie;						/* Создадим экземпляр и поместим туда данные, а потом напечатаем чтобы проверить все ли работает */
-	t_perso		*d;
-	donnie.name = strdup("Donnie");
-	donnie.life = 100.0;
-	donnie.age = 24;
-	donnie.profession = SAVE_AUSTIN_POWERS;
-	d = (void *)&(donnie);	/*!*/	/*!*/	/*!*/
-	d->name;
-	ft_putstr(d->name);
+	user->name = strdup("user");
+	user->age = 32;
+	user->life = 120.0;
+	user->profession = SAVE_AUSTIN_POWERS;
+	(void)user->age;
+}
+
+int				main()
+{
+	t_perso		donnie;			
+	ft_test((void *)&donnie);
+
+	ft_putstr(donnie.name);
 	ft_putchar('\n');
 	ft_putnbr(donnie.age);
 	ft_putchar('\n');

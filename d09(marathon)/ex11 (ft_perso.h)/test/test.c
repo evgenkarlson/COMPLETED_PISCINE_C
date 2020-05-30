@@ -66,7 +66,7 @@ int				main()
 	donnie.life = 100.0;
 	donnie.age = 24;
 	donnie.profession = SAVE_AUSTIN_POWERS;
-	(void)donnie;
+	(void)donnie;						/* Эта строчка была взята из задания. В ней мы пытаемся получить всю структуру данных и привезти ее к типу void */
 							
 	ft_putstr(donnie.name);
 	ft_putchar('\n');
@@ -77,3 +77,32 @@ int				main()
 	
 	return (0);
 }
+
+
+
+/*										ДРУГОЙ КОД ДЛЯ ТЕСТА структуры из заголовочного файла ft_perso.h 
+										Если понятно почему там точки а тут стрелочки то ты молодец.
+void	ft_test(t_perso *user)
+{
+	user->name = strdup("user");
+	user->age = 32;
+	user->life = 120.0;
+	user->profession = SAVE_AUSTIN_POWERS;
+	(void)user->age;
+}
+
+int				main()
+{
+	t_perso		donnie;			
+	ft_test((void *)&donnie);
+
+	ft_putstr(donnie.name);
+	ft_putchar('\n');
+	ft_putnbr(donnie.age);
+	ft_putchar('\n');
+	ft_putstr(donnie.profession);
+	ft_putchar('\n');
+
+	return (0);
+}
+*/
