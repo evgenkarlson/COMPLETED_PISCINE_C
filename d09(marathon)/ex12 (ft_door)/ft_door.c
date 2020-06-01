@@ -9,6 +9,115 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** **
+**
+**
+**	• Напишите файл ft_door.h и исправьте следующий файл ft_door.c:
+**
+**------------------------------------------------------------------------------
+**  	#include "ft_door.h"
+**
+**  	ft_putstr(char *c)
+**		{
+**			int	i = 0;
+**
+**			while(str[i])
+**				write(1, str, i)
+**		}
+**
+**  	ft_bool close_door(t_door *door)
+**		{
+**			ft_putstr(’Door closing...’);
+**			state = CLOSE;
+**			return (TRUE);
+**		}
+**
+**  	void	is_door_open(t_door door)
+**		{
+**			ft_putstr("Door is open ?");
+**			return(door->state = OPEN);
+**		}
+**
+**  	ft_bool is_door_close(t_door* door)
+**		{
+**			ft_putstr("Door is close ?") ;
+**		}
+**------------------------------------------------------------------------------
+**
+**
+**
+**		• Вот пример main и вывода:
+**------------------------------------------------------------------------------
+**		$> cat main.c
+**		#include <stdlib.h>
+**		#include "ft_door.h"
+**		
+**		int main()
+**		{
+**			t_door	door
+**		
+**			open_door(&door);
+**			if (is_door_close(&door))
+**				open_door(&door);
+**			if (is_door_open(&door))
+**				close_door(&door);
+**			if (door.state == OPEN)
+**				close_door(&door);
+**			return (EXIT_SUCCESS);
+**		}
+**		$>./ft_door | cat -e
+**		Door opening...$
+**		Door is close ?$
+**		Door is open ?$
+**		Door closing...$
+**------------------------------------------------------------------------------
+** ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include "ft_door.h"
+
+void	ft_putstr(char *str)
+{
+    while(*str)
+        write(1, str++, 1);
+}
+
+void	open_door(t_door *door)
+{
+    ft_putstr("Door opening...\n");
+    door->state = OPEN;
+}
+
+void	close_door(t_door *door)
+{
+    ft_putstr("Door closing...\n");
+    door->state = CLOSE;
+}
+
+t_bool	is_door_open(t_door *door)
+{
+    ft_putstr("Door is open ?\n");
+    return(door->state = OPEN);
+}
+
+t_bool	is_door_close(t_door* door)
+{
+    ft_putstr("Door is close ?\n");
+    return(door->state = CLOSE);
+}
+
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
 #include "ft_door.h"
 
 void	ft_putstr(char *str)
@@ -17,141 +126,16 @@ void	ft_putstr(char *str)
 		write(1, str++, 1);
 }
 
-ft_bool	open_door(t_door *door)
-{
-	ft_putstr("Door opening...\n");
-	door->state = OPEN;
-	return (TRUE);
-}
-
-ft_bool	close_door(t_door *door)
-{
-	ft_putstr("Door closing...\n");
-	door->state = CLOSE;
-	return (TRUE);
-}
-
-ft_bool	is_door_open(t_door *door)
-{
-	ft_putstr("Door is open ?\n");
-	door->state = OPEN;
-	return (TRUE);
-}
-
-ft_bool	is_door_close(t_door *door)
-{
-	ft_putstr("Door is close ?\n");
-	door->state = CLOSE;
-	return (TRUE);
-}
-
-
-
-
-
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-
-void	ft_putstr(char *str)
-{
-	while (*str)
-		write(1, str++, 1);
-}
-
-void	close_door(t_door *door)
-{
-	ft_putstr("Door closing...\n");
-	door->state = CLOSE;
-}
-
 void	open_door(t_door *door)
 {
 	ft_putstr("Door opening...\n");
 	door->state = OPEN;
 }
 
-t_bool	is_door_open(t_door *door)
-{
-	ft_putstr("Door is open ?\n");
-	return (door->state = OPEN);
-}
-
-t_bool	is_door_close(t_door *door)
-{
-	ft_putstr("Door is close ?\n");
-	return (door->state = CLOSE);
-}
-
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-
-void	ft_putstr(char *str)
-{
-	while (*str)
-		write(1, str++, 1);
-}
-
-t_bool	open_door(t_door *door)
-{
-	ft_putstr("Door opening...\n");
-	door->state = OPEN;
-	return (TRUE);
-}
-
-t_bool	close_door(t_door *door)
+void	close_door(t_door *door)
 {
 	ft_putstr("Door closing...\n");
 	door->state = CLOSE;
-	return (TRUE);
-}
-
-t_bool	is_door_open(t_door *door)
-{
-	ft_putstr("Door is open ?\n");
-	return (door->state);
-}
-
-t_bool	is_door_close(t_door *door)
-{
-	ft_putstr("Door is close ?\n");
-	return (!door->state);
-}
-
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-void	ft_putstr(char *str)
-{
-	while (*str)
-		write(1, str++, 1);
-}
-
-t_bool	open_door(t_door *door)
-{
-	ft_putstr("Door opening...\n");
-	door->state = OPEN;
-	return (TRUE);
-}
-
-t_bool	close_door(t_door *door)
-{
-	ft_putstr("Door closing...\n");
-	door->state = CLOSE;
-	return (TRUE);
 }
 
 t_bool	is_door_open(t_door *door)

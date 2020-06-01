@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ultimator.h                                     :+:      :+:    :+:   */
+/*   ft_door.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,19 +11,24 @@
 /* ************************************************************************** */
 
 
-#ifndef __FT_ULTIMATOR_H__
-# define __FT_ULTIMATOR_H__
+#ifndef __FT_DOOR_H
+# define  __FT_DOOR_H
+# include <unistd.h>
+# define OPEN 1
+# define CLOSE 0
+# define TRUE 1
+# define EXIT_SUCCESS 0
 
-/*
-**
-** Avec Windows VISTA, on etait au bord du precipice.
-** Avec Windows 8, on a fait un grand pas en avant
-**
-** Le Client:'J'ai un PC avec Windows 8'
-** Le Technicien:'Oui...'
-** Le Client:'Et puis mon PC ne marche plus'
-** Le Technicien:'Oui, vous me l'avez deja dit'...
-**
-*/
+typedef int     t_bool;
+typedef struct  s_door
+{
+    int state;
+}               t_door;
+
+void	ft_putstr(char *str);
+void	close_door(t_door *door);
+void	open_door(t_door *door);
+t_bool	is_door_open(t_door *door);
+t_bool	is_door_close(t_door* door);
 
 #endif

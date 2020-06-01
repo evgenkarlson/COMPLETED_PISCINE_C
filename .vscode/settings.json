@@ -3,7 +3,8 @@
         "type_traits": "c",
         "unistd.h": "c",
         "stdlib.h": "c",
-        "cstdio": "c"
+        "cstdio": "c",
+        "sstream": "c"
     },
     "cmake.configureOnOpen": false
 }

@@ -15,38 +15,50 @@
 /* ************************************************************************** */
 
 
-void	remove_element(char *array, int index, int array_length)
-{
-	int i;
+#include "ft_door.h"
+#include <stdlib.h>
 
-	i = index;
-	while (i < array_length - 1)
-	{
-		array[i] = array[i + 1];
-		i++;
-	}
+void	ft_putstr(char *str)
+{
+    while(*str)
+        write(1, str++, 1);
 }
 
-int		ft_compact(char **tab, int length)
+void	open_door(t_door *door)
 {
-	int i;
+    ft_putstr("Door opening...\n");
+    door->state = OPEN;
+}
 
-	i = 0;
-	while (tab[i])
-	{
-		if (!tab[i])
-		{
-			remove_element(tab[i], i, length);
-			length--;
-		}
-		i++;
-	}
-	return (length);
+void	close_door(t_door *door)
+{
+    ft_putstr("Door closing...\n");
+    door->state = CLOSE;
+}
+
+t_bool	is_door_open(t_door *door)
+{
+    ft_putstr("Door is open ?\n");
+    return(door->state = OPEN);
+}
+
+t_bool	is_door_close(t_door* door)
+{
+    ft_putstr("Door is close ?\n");
+    return(door->state = CLOSE);
 }
 
 
-int main(int argc, char *argv[])
+int main()
 {
-    ft_compact(argv, argc);
-    return (0);
+    t_door	door;
+
+    open_door(&door);
+    if (is_door_close(&door))
+        open_door(&door);
+    if (is_door_open(&door))
+        close_door(&door);
+    if (door.state == OPEN)
+        close_door(&door);
+    return (EXIT_SUCCESS);
 }
