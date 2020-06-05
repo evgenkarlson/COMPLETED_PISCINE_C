@@ -52,29 +52,38 @@ int	ft_fibonacci(int index)
 
 /* ************************************************************************** */
 /* ************************************************************************** */
-/* ************************************************************************** */
+/*___________Dynamic solve of Fibonacci - above to down (>_<) V_1.0___________*/
 
-/* Dynamic solve of Fibonacci (>_<) */
-int fib(int n)
+int ft_fibonacci(int index)
 {
 	static int	cache[100] = {0};
 	
-	if (n <= 1)
-		return n;
-	if (cache[n] == 0)
-		cache[n] = fib(n - 1) + fib(n - 2);
-	return cache[n];
+	if (index <= 1)
+		return (index);
+	if (cache[index] == 0)
+		cache[index] = fib(index - 1) + fib(index - 2);
+	return (cache[index]);
 }
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/*___________Dynamic solve of Fibonacci - below to up (#_#) V_2.0_____________*/
 
 int ft_fibonacci(int index)
 {
 	int	Fib[index + 1];
+	int i;
 
 	Fib[0] = 0;
 	Fib[1] = 1;
-	for (int i = 2; i <= index; ++i)
+	i = 2;
+	while (i <= index)
+	{
 		Fib[i] = Fib[i - 1] + Fib[i - 2];
-	return Fib[index];
+		i++;
+	}
+	return (Fib[index]);
 }
 
 

@@ -42,7 +42,7 @@ int fib_dynamic(int n)
 
 int main(void)
 {
-	for (int n = 1; n < 50; n += 1)
+	for (int n = 1; n < 50; n++)
 	{
 		clock_t	time1 = clock();
 		int 	result = fib_dynamic(n);
