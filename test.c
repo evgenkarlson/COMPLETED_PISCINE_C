@@ -15,49 +15,30 @@
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include <time.h>
 
-
-int fib(int n)
+int number_of_trajectories(int n)
 {
-	static int cache[100] = {0};
-	
-	if (n <= 1)
-		return n;
-	if (cache[n] == 0)
-		cache[n] = fib(n - 1) + fib(n - 2);
-	return cache[n];
-}
+    int K[n+1];
+	int	i;
 
-int fib_dynamic(int n)
-{
-	int	Fib[n + 1];
-	
-	Fib[0] = 0;
-	Fib[1] = 1;
-	for (int i = 2; i <= n; ++i)
-		Fib[i] = Fib[i - 1] + Fib[i - 2];
-	return Fib[n];
+    K[0] = 0;
+    K[1] = 1;
+	i = 2;
+    while ( i <= n)
+    {
+		K[i] = K[i-1] + K[i-2];
+		++i;
+	}
+    return K[n];
 }
 
 int main(void)
 {
-	for (int n = 1; n < 50; n++)
-	{
-		clock_t	time1 = clock();
-		int 	result = fib_dynamic(n);
-		clock_t	time2 = clock();
-		int delta_ms = (time2 - time1) * 1000 / CLOCKS_PER_SEC;
-
-		if (n < 21)
-			printf("fib(%d) = %d,\t\t time = %d ms\n",
-				   n, result, delta_ms);
-		else
-			printf("fib(%d) = %d,\t time = %d ms\n",
-				   n, result, delta_ms);
-	}
-
-	return 0;
+    int finish;
+    scanf("%d", &finish);
+    printf("Grasshopper has %d trajectories from 1 to %d\n",
+           number_of_trajectories(finish), finish);
+    return 0;
 }
 
 /*
