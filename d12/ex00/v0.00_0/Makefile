@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+         #
+#    By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/08/25 10:38:04 by jaleman           #+#    #+#              #
-#    Updated: 2016/08/25 10:38:04 by jaleman          ###   ########.fr        #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#              #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

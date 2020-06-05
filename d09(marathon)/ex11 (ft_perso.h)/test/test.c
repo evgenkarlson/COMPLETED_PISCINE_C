@@ -81,11 +81,11 @@ int				main()
 
 
 /*										ДРУГОЙ КОД ДЛЯ ТЕСТА структуры из заголовочного файла ft_perso.h 
-										Если понятно почему там точки а тут стрелочки то ты молодец.
+										Если стало понятно почему там точки, а тут стрелочки то ты молодец.
 void	ft_test(t_perso *user)
 {
-	user->name = strdup("user");
-	user->age = 32;
+	(*user).name = strdup("user");
+	user[0].age = 32;
 	user->life = 120.0;
 	user->profession = SAVE_AUSTIN_POWERS;
 	(void)user->age;

@@ -15,11 +15,11 @@
 
 int			ft_strlen(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (str[i])
-		i += 1;
+		i++;
 	return (i);
 }
 
@@ -55,7 +55,7 @@ t_perso		**ft_create_struct_tab(char *str, int nbstructs)
 
 	i = 0;
 	j = 0;
-	tab = (t_perso**)malloc(sizeof(t_perso**) * (nbstructs + 1));
+	tab = (t_perso **)malloc(sizeof(t_perso**) * (nbstructs + 1));
 	while (str[i])
 	{
 		tab[j]->age = ft_get_age(&i, str);

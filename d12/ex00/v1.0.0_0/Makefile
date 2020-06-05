@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adespond <adespond@student.42.fr>          +#+  +:+       +#+         #
+#    By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/09/15 20:02:56 by adespond          #+#    #+#              #
-#    Updated: 2015/09/18 00:14:16 by adespond         ###   ########.fr        #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#              #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

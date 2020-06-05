@@ -14,39 +14,63 @@
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
 
+/*
 
-void	remove_element(char *array, int index, int array_length)
-{
-	int i;
 
-	i = index;
-	while (i < array_length - 1)
-	{
-		array[i] = array[i + 1];
-		i++;
-	}
-}
+#    By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#              #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson     ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+
+*/
+
+
+
+
+#include <unistd.h>
 
 int		ft_compact(char **tab, int length)
 {
-	int i;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (tab[i])
+	while (i < length)
 	{
-		if (!tab[i])
+		while (*(tab + i))
+			i++;
+		j = i;
+		length--;
+		while (j < length)
 		{
-			remove_element(tab[i], i, length);
-			length--;
+			*(tab + j) = *(tab + j + 1);
+			j++;
 		}
-		i++;
 	}
 	return (length);
 }
 
 
 int main(int argc, char *argv[])
-{
+{   
+    int i;
+    int j;
+
     ft_compact(argv, argc);
+    
+	i = 0;
+    while (argv[i])
+    {
+        j = 0;
+        while(argv[i][j])
+        {
+            write(1, &argv[i][j], 1);
+            j++;
+        }
+        i++;
+    }
     return (0);
 }

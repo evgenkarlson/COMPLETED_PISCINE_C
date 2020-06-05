@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+         #
+#    By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/08/23 16:59:25 by jaleman           #+#    #+#              #
-#    Updated: 2016/08/23 16:59:26 by jaleman          ###   ########.fr        #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#              #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME = libft.a
 FILES = srcs/ft_putchar.c srcs/ft_putstr.c srcs/ft_strcmp.c \
