@@ -54,7 +54,7 @@ int	ft_fibonacci(int index)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
+/* Dynamic solve of Fibonacci (>_<) */
 int fib(int n)
 {
 	static int	cache[100] = {0};
@@ -69,6 +69,7 @@ int fib(int n)
 int ft_fibonacci(int index)
 {
 	int	Fib[index + 1];
+
 	Fib[0] = 0;
 	Fib[1] = 1;
 	for (int i = 2; i <= index; ++i)

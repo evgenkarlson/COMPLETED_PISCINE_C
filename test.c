@@ -32,6 +32,7 @@ int fib(int n)
 int fib_dynamic(int n)
 {
 	int	Fib[n + 1];
+	
 	Fib[0] = 0;
 	Fib[1] = 1;
 	for (int i = 2; i <= n; ++i)
