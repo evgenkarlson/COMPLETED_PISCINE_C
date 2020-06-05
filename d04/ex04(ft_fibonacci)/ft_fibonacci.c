@@ -55,6 +55,33 @@ int	ft_fibonacci(int index)
 /* ************************************************************************** */
 
 
+int fib(int n)
+{
+	static int	cache[100] = {0};
+	
+	if (n <= 1)
+		return n;
+	if (cache[n] == 0)
+		cache[n] = fib(n - 1) + fib(n - 2);
+	return cache[n];
+}
+
+int ft_fibonacci(int index)
+{
+	int	Fib[index + 1];
+	Fib[0] = 0;
+	Fib[1] = 1;
+	for (int i = 2; i <= index; ++i)
+		Fib[i] = Fib[i - 1] + Fib[i - 2];
+	return Fib[index];
+}
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
 int	ft_fibonacci(int index)
 {
 	if (index <= 1)
