@@ -13,77 +13,109 @@
 /*                                                                            */
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
-
 #include <stdio.h>
+#include <stdlib.h>
 
-int number_of_trajectories(int n)
+#define MATRIX_HEIGHT 4
+#define MATRIX_WIDTH 5
+
+void static_array_print(int A[][MATRIX_WIDTH], int N)
 {
-    int K[n+1];
-	int	i;
-
-    K[0] = 0;
-    K[1] = 1;
-	i = 2;
-    while ( i <= n)
-    {
-		K[i] = K[i-1] + K[i-2];
-		++i;
-	}
-    return K[n];
-}
-
-int main(void)
-{
-    int finish;
-    scanf("%d", &finish);
-    printf("Grasshopper has %d trajectories from 1 to %d\n",
-           number_of_trajectories(finish), finish);
-    return 0;
-}
-
-/*
-#include <unistd.h>
-
-int		ft_compact(char **tab, int length)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < length)
+	for (int i = 0; i < N; i++)
 	{
-		while (*(tab + i))
-			i++;
-		j = i;
-		length--;
-		while (j < length)
+		for (int j = 0; j < MATRIX_WIDTH; j++)
+			printf("%*d", 5, A[i][j]);
+		printf("\n");
+	}
+}
+
+void static_array_test(int N)
+{
+	int A[N][MATRIX_WIDTH];
+	int x = 1;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < MATRIX_WIDTH; j++)
 		{
-			*(tab + j) = *(tab + j + 1);
-			j++;
+			A[i][j] = x;
+			x += 1;
 		}
 	}
-	return (length);
+	static_array_print(A, N);
+
+	// memory investigation
+	printf("\n Direct memory access:\n");
+	for (int *p = (int *)A; p < (int *)A + 20; p++)
+		printf("%3d", *p);
+	printf("\n\n");
 }
 
-
-int main(int argc, char *argv[])
-{   
-    int i;
-    int j;
-
-    ft_compact(argv, argc);
-    
-	i = 0;
-    while (argv[i])
-    {
-        j = 0;
-        while(argv[i][j])
-        {
-            write(1, &argv[i][j], 1);
-            j++;
-        }
-        i++;
-    }
-    return (0);
+void dynamic_array_print(int **A, int N, int M)
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			printf("%*d", 5, A[i][j]);
+		}
+		printf("\n");
+	}
 }
-*/
+
+// return pointer on 2d dynamic array
+// !allocates memory -> to be freed later
+
+int **dynamic_array_alloc(int N, int M)
+{
+	int **A = (int **)malloc(N * sizeof(int *));
+	for (int i = 0; i < N; i++)
+	{
+		A[i] = (int *)malloc(M * sizeof(int));
+	}
+	return A;
+}
+
+void dynamic_array_free(int **A, int N)
+{
+	for (int i = 0; i < N; i++)
+	{
+		free(A[i]);
+	}
+	free(A);
+}
+
+void dynamic_array_test(int N, int M)
+{
+	int **A = dynamic_array_alloc(N, M);
+	int x = 1;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			A[i][j] = x;
+			x += 1;
+		}
+	}
+	dynamic_array_print(A, N, M);
+
+	// memory investigation
+	printf("\n Pointers to lines: ");
+	for (int **p = A; p < A + 3; p++)
+		printf("%10ld", (long int)*p);
+
+	printf("\n Direct memory access:\n");
+	for (int *p = (int *)*A; p < (int *)*A + 25; p++)
+		printf("%d\t", *p);
+	dynamic_array_free(A, N);
+	printf("\n");
+}
+
+int main()
+{
+	int matrix_height = 4;
+	int matrix_width = 5;
+
+	static_array_test(MATRIX_HEIGHT);
+	dynamic_array_test(matrix_height, matrix_width);
+	return 0;
+}

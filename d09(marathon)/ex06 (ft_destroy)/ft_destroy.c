@@ -35,6 +35,34 @@
 #include <stdlib.h>
 #include "ft_ultimator.h"
 
+void 	ft_destroy(char ***factory)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (factory[i] != ((void *)0))
+	{
+		j = 0;
+		while (factory[i][j] != ((void *)0))
+		{
+			free(factory[i][j]);
+			j++;
+		}
+		free(factory[i]);
+		i++;
+	}
+	free(factory);
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <stdlib.h>
+#include "ft_ultimator.h"
+
 void	ft_destroy(char ***factory)
 {
 	free(**factory);
