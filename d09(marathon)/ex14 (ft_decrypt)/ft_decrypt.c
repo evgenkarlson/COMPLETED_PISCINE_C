@@ -10,82 +10,104 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/* 
+ * ===-----------------------------------------------------------------------===
+ *
+ *	  • Написать функцию "ft_decrypt". Эта функция примет строку символов в 
+ *	качестве параметра и разделит ее на массив структуры "t_perso". Массив будет 
+ *  разделен 0.
+ * 
+ *	  • Эта функция будет прототипирована следующим образом:
+ *											t_perso		**ft_decrypt(char *str)
+ *
+ *	  • Строка, переданная в качестве параметра, будет отформатирована следующим 
+ *	образом:
+ * 											Age|Name;Age2|Name2;Age3|Name3
+ *	
+ *	• Структура "t_perso" должна сказать вам что-то! Неуказанные поля не будут 
+ *	инициализированы. Подумайте о том, чтобы включить "ft_perso.н "в свой".с"!
+ *
+ * ===-----------------------------------------------------------------------===
+ */
+
 #include <stdlib.h>
 #include "ft_perso.h"
 
-int			ft_strlen(char *str)
+int		ft_isspace(char c)
+{
+	return (c == ' ' || c == '\t' || c == '\n' || c == '|' || c == ';');
+}
+
+int			ft_wordlen(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (*str && !(ft_isspace(*str++)))
+	{
 		i++;
+	}
 	return (i);
 }
 
-char		*ft_get_name(int *i, char *str)
-{
-	int		j;
+char		*ft_get_name(char *str)
+{	int	j;
 	char	*name;
 
 	j = 0;
-	name = (char *)malloc(sizeof(char) * ft_strlen(str) + 1);
-	while ((str[*i] >= 'a' && str[*i] <= 'z')
-			|| (str[*i] >= 'A' && str[*i] <= 'Z'))
-		name[j++] = str[*i++];
+	while(*str && (ft_isspace(*str) || (*str >= '0' && *str <= '9')))
+		str++;
+	name = (char *)malloc(sizeof(char) * ft_wordlen(str) + 1);
+	while (*str && !(ft_isspace(*str)) && ((*str >= 'a' && *str <= 'z') || (*str >= 'A' && *str <= 'Z')))
+		name[j++] = *str++;
 	name[j] = '\0';
 	return (name);
 }
 
-int			ft_get_age(int *i, char *str)
+int			ft_get_age(char *str)
 {
 	int age;
 
 	age = 0;
-	while (str[*i] >= '0' && str[*i] <= '9')
-		age = (age * 10) + (str[*i++] - '0');
+	while (*str >= '0' && *str <= '9')
+		age = (age * 10) + (*str++ - '0');
 	return (age);
 }
 
-t_perso		**ft_create_struct_tab(char *str, int nbstructs)
-{
-	int		i;
-	int		j;
-	t_perso	**tab;
 
-	i = 0;
+t_perso		**ft_decrypt(char *str)
+{
+	t_perso	**tab;
+	int		numstructs;
+	int		j;
+	
+	numstructs = 0;
 	j = 0;
-	tab = (t_perso **)malloc(sizeof(t_perso**) * (nbstructs + 1));
-	while (str[i])
+	while (str[j])
 	{
-		tab[j]->age = ft_get_age(&i, str);
-		i += 1;
-		tab[j]->name = ft_get_name(&i, str);
-		i += 1;
-		j += 1;
+		while (str && str[j++] == '|')
+			numstructs++;
+	}
+	j = 0;
+	if ((tab = (t_perso **)malloc(sizeof(t_perso *) * (numstructs + 1))) == ((void *)0))
+		return ((void *)0);
+	while (j < numstructs)
+	{
+		if ((*(tab + j) = (t_perso *)malloc(sizeof(t_perso))) == ((void *)0))
+			return ((void *)0);
+		while(*str && (ft_isspace(*str) || !(*str >= '0' && *str <= '9')))
+			str++;
+		(*(tab + j))->age = ft_get_age(str);
+		while(*str && (ft_isspace(*str) || (*str >= '0' && *str <= '9')))
+			str++;
+
+		(*(tab + j))->name = ft_get_name(str);
+		j++;
+		str++;
 	}
 	return (tab);
 }
 
-t_perso		**ft_decrypt(char *str)
-{
-	int i;
-	int nbstructs;
-
-	i = 0;
-	nbstructs = 0;
-	while (str[i])
-	{
-		while (str[i] >= '0' && str[i] <= '9')
-			i += 1;
-		if (str[i] == '|')
-			i += 1;
-		while ((str[i] >= 'a' && str[i] <= 'z')
-				|| (str[i] >= 'A' && str[i] <= 'Z'))
-			i += 1;
-		if (str[i] == ';')
-			i += 1;
-		nbstructs += 1;
-	}
-	return (ft_create_struct_tab(str, nbstructs));
-}
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */

@@ -4,7 +4,8 @@
         "unistd.h": "c",
         "stdlib.h": "c",
         "cstdio": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "typeinfo": "c"
     },
     "cmake.configureOnOpen": false
 }
