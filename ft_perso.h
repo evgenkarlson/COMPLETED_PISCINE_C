@@ -11,25 +11,17 @@
 /* ************************************************************************** */
 
 
-#ifndef __FT_DOOR_H
-# define  __FT_DOOR_H
-# include <unistd.h>
-# define OPEN 1
-# define CLOSE 0
-# define TRUE 1
-# define FALSE 0
-# define EXIT_SUCCESS 0
+#ifndef FT_PERSO_H
+# define FT_PERSO_H
+# define SAVE_AUSTIN_POWERS "Save Austin Powers"
+# include <string.h>
 
-typedef int     t_bool;
-typedef struct  s_door
-{
-    int state;
-}               t_door;
-
-void	ft_putstr(char *str);
-void	close_door(t_door *door);
-void	open_door(t_door *door);
-t_bool	is_door_open(t_door *door);
-t_bool	is_door_close(t_door* door);
+typedef struct	s_persos {
+	char	*name;
+	float	life;
+	int		age;
+	char	*profession;
+}				t_perso;
 
 #endif
+
