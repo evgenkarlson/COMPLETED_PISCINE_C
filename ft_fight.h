@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_perso.h                                         :+:      :+:    :+:   */
+/*   ft_door.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,16 +11,11 @@
 /* ************************************************************************** */
 
 
-#ifndef FT_PERSO_H
-# define FT_PERSO_H
-
-typedef struct	s_persos {
-	char	*name;
-	float	life;
-	int		age;
-	char	*profession;
-}				t_perso;
+#ifndef __FT_FIGHT_H
+# define __FT_FIGHT_H
+# define KICK 'k'
+# define PUNCH 'p'
+# define HEADBUTT 'h'
 
 #endif
-
 

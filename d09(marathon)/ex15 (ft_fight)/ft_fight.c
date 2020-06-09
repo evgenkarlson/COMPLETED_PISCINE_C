@@ -10,6 +10,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+/* 
+ * ===-----------------------------------------------------------------------===
+ * 
+ *	  • Напишите JAJAJAJAJAJA "ft_fight", который будет имитировать бой.
+ *
+ *	  • Эта функция будет прототипирована следующим образом:
+ *														void	JAJAJAJAJAJA;
+ *
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * ===-----------------------------------------------------------------------===
+ */
+
 #include "ft_fight.h"
 #include <unistd.h>
 
@@ -19,15 +42,15 @@ void	ft_putstr(char *str)
 		write(1, str++, 1);
 }
 
-void	ft_fight(t_perso *attacker, t_perso *defense, char *attack)
+void	ft_fight(t_perso *attacker, t_perso *defense, char attack)
 {
 	float	strength;
 
 	if (attacker->life <= 0 || defense->life <= 0)
 		return ;
-	if (attack[0] == 'k')
+	if (attack == 'k')
 		strength = 15;
-	else if (attack[0] == 'h')
+	else if (attack == 'h')
 		strength = 5;
 	else
 		strength = 20;
@@ -44,3 +67,26 @@ void	ft_fight(t_perso *attacker, t_perso *defense, char *attack)
 		ft_putstr(" is dead.\n");
 	}
 }
+
+
+
+
+
+void	ft_fight(t_perso *char1, t_perso *char2, char attack)
+{
+	if (char1->life == 0 && char2->life == 0)
+		return ;
+	ft_putstr(char1->name);
+	ft_putstr(" does a ");
+	ft_putstr(attack.name);
+	ft_putstr(" on ");
+	ft_putstr(char2->name);
+	ft_putstr("\n");
+	char2->life -= attack.damage;
+	if (char2->life <= 0)
+	{
+		ft_putstr(char2->name);
+		ft_putstr(" is dead\n");
+	}
+}
+
