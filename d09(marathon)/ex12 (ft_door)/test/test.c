@@ -15,50 +15,56 @@
 /* ************************************************************************** */
 
 
-#include "ft_door.h"
-#include <stdlib.h>
+#include "ft_door.h"				/* Подключаем заголовочный файл с обьявлениями функций, структур и т.д */
 
-void	ft_putstr(char *str)
+void	ft_putstr(char *str)		/* Функция печати строки */
 {
     while(*str)
         write(1, str++, 1);
 }
 
-void	open_door(t_door *door)
+void	open_door(t_door *door)		/* Функция принимает адресс экземпляра структуры и меняет в нем значение */
 {
-    ft_putstr("Door opening...\n");
-    door->state = OPEN;
+    ft_putstr("Door opening...\n");	
+    door->state = OPEN;				
 }
 
-void	close_door(t_door *door)
+void	close_door(t_door *door)	/* Функция принимает адресс экземпляра структуры и меняет в нем значение */
 {
-    ft_putstr("Door closing...\n");
-    door->state = CLOSE;
+    ft_putstr("Door closing...\n");	
+    door->state = CLOSE;			
 }
 
 t_bool	is_door_open(t_door *door)
 {
-    ft_putstr("Door is open ?\n");
-    return(door->state = OPEN);
+	ft_putstr("Door is open ?\n");	/* Функция принимает адресс экземпляра структуры и проверяет состояние значения в нем */
+	if (door->state == OPEN)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
-t_bool	is_door_close(t_door* door)
+t_bool	is_door_close(t_door *door)	/* Функция принимает адресс экземпляра структуры и проверяет состояние значения в нем */
 {
-    ft_putstr("Door is close ?\n");
-    return(door->state = CLOSE);
+	ft_putstr("Door is close ?\n");
+	if (door->state == CLOSE)
+		return (TRUE);
+	else
+		return (FALSE);
 }
+
 
 
 int main()
 {
-    t_door	door;
+    t_door	door;					/* Создадим экземпляр структуры "t_door" */
 
-    open_door(&door);
-    if (is_door_close(&door))
-        open_door(&door);
-    if (is_door_open(&door))
-        close_door(&door);
-    if (door.state == OPEN)
-        close_door(&door);
-    return (EXIT_SUCCESS);
+    open_door(&door);				/* Отправляем в функцию адресс экземпляра структуры чтобы изменить в нем значение */
+    if (is_door_close(&door))		/* Отправляем в функцию адресс экземпляра структуры и проверяет состояние значения в нем */
+        open_door(&door);			/* Изменяем в нем значение */
+    if (is_door_open(&door))		/* Отправляем в функцию адресс экземпляра структуры и проверяет состояние значения в нем */
+        close_door(&door);			/* Изменяем в нем значение */
+    if (door.state == OPEN)			/* Отправляем в функцию адресс экземпляра структуры и проверяет состояние значения в нем */
+        close_door(&door);			/* Изменяем в нем значение */
+    return (EXIT_SUCCESS);		
 }

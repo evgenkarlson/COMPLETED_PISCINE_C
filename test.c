@@ -13,109 +13,58 @@
 /*                                                                            */
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
-#include <stdio.h>
-#include <stdlib.h>
 
-#define MATRIX_HEIGHT 4
-#define MATRIX_WIDTH 5
 
-void static_array_print(int A[][MATRIX_WIDTH], int N)
+#include "ft_door.h"				/* Подключаем заголовочный файл с обьявлениями функций, структур и т.д */
+
+void	ft_putstr(char *str)		/* Функция печати строки */
 {
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < MATRIX_WIDTH; j++)
-			printf("%*d", 5, A[i][j]);
-		printf("\n");
-	}
+    while(*str)
+        write(1, str++, 1);
 }
 
-void static_array_test(int N)
+void	open_door(t_door *door)		/* Функция принимает адресс экземпляра структуры и меняет в нем значение */
 {
-	int A[N][MATRIX_WIDTH];
-	int x = 1;
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < MATRIX_WIDTH; j++)
-		{
-			A[i][j] = x;
-			x += 1;
-		}
-	}
-	static_array_print(A, N);
-
-	// memory investigation
-	printf("\n Direct memory access:\n");
-	for (int *p = (int *)A; p < (int *)A + 20; p++)
-		printf("%3d", *p);
-	printf("\n\n");
+    ft_putstr("Door opening...\n");	
+    door->state = OPEN;				
 }
 
-void dynamic_array_print(int **A, int N, int M)
+void	close_door(t_door *door)	/* Функция принимает адресс экземпляра структуры и меняет в нем значение */
 {
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			printf("%*d", 5, A[i][j]);
-		}
-		printf("\n");
-	}
+    ft_putstr("Door closing...\n");	
+    door->state = CLOSE;			
 }
 
-// return pointer on 2d dynamic array
-// !allocates memory -> to be freed later
-
-int **dynamic_array_alloc(int N, int M)
+t_bool	is_door_open(t_door *door)
 {
-	int **A = (int **)malloc(N * sizeof(int *));
-	for (int i = 0; i < N; i++)
-	{
-		A[i] = (int *)malloc(M * sizeof(int));
-	}
-	return A;
+	ft_putstr("Door is open ?\n");	/* Функция принимает адресс экземпляра структуры и проверяет состояние значения в нем */
+	if (door->state == OPEN)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
-void dynamic_array_free(int **A, int N)
+t_bool	is_door_close(t_door *door)	/* Функция принимает адресс экземпляра структуры и проверяет состояние значения в нем */
 {
-	for (int i = 0; i < N; i++)
-	{
-		free(A[i]);
-	}
-	free(A);
+	ft_putstr("Door is close ?\n");
+	if (door->state == CLOSE)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
-void dynamic_array_test(int N, int M)
-{
-	int **A = dynamic_array_alloc(N, M);
-	int x = 1;
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			A[i][j] = x;
-			x += 1;
-		}
-	}
-	dynamic_array_print(A, N, M);
 
-	// memory investigation
-	printf("\n Pointers to lines: ");
-	for (int **p = A; p < A + 3; p++)
-		printf("%10ld", (long int)*p);
-
-	printf("\n Direct memory access:\n");
-	for (int *p = (int *)*A; p < (int *)*A + 25; p++)
-		printf("%d\t", *p);
-	dynamic_array_free(A, N);
-	printf("\n");
-}
 
 int main()
 {
-	int matrix_height = 4;
-	int matrix_width = 5;
+    t_door	door;					/* Создадим экземпляр структуры "t_door" */
 
-	static_array_test(MATRIX_HEIGHT);
-	dynamic_array_test(matrix_height, matrix_width);
-	return 0;
+    open_door(&door);				/* Отправляем в функцию адресс экземпляра структуры чтобы изменить в нем значение */
+    if (is_door_close(&door))		/* Отправляем в функцию адресс экземпляра структуры и проверяет состояние значения в нем */
+        open_door(&door);			/* Изменяем в нем значение */
+    if (is_door_open(&door))		/* Отправляем в функцию адресс экземпляра структуры и проверяет состояние значения в нем */
+        close_door(&door);			/* Изменяем в нем значение */
+    if (door.state == OPEN)			/* Отправляем в функцию адресс экземпляра структуры и проверяет состояние значения в нем */
+        close_door(&door);			/* Изменяем в нем значение */
+    return (EXIT_SUCCESS);		
 }

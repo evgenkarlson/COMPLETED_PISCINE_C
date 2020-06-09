@@ -17,6 +17,7 @@
 # define OPEN 1
 # define CLOSE 0
 # define TRUE 1
+# define FALSE 0
 # define EXIT_SUCCESS 0
 
 typedef int     t_bool;
