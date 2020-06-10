@@ -11,23 +11,91 @@
 /* ************************************************************************** */
 /*	команда для компиляции и одновременного запуска                           */
 /*                                                                            */
-/*  gcc -Wall -Werror -Wextra main.fr.c ft_fight.c && chmod +x ./a.out && ./a.out  */
+/*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
 
-#include "ft_perso.h"					/* Подключаем библиотеку содержащую структуру "t_perso" */
-#include "ft_fight.h"					/* Подключаем библиотеку содержащую макросы */
+#include <unistd.h>						/* Подключаем библиотеку содержащую функцию "write" */
 
+/* ************************************************************************** */
+void	ft_putchar(char c)				/* Функция печати символа */
+{
+	write(1, &c, 1);
+}
+/* ************************************************************************** */
+void	ft_putnbr(int nb)				/* Функция печати числа */
+{
+	int	temp;
+	int	size;
+
+	size = 1;
+	if (nb < 0)
+	{
+		ft_putchar('-');
+		nb = -nb;
+	}
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
+	{
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
+	}
+}
+/* ************************************************************************** */
+int				convert(int nbr, char *base, int *nbr_final)
+{
+	int size_base;
+	int i;
+
+	i = 0;
+	size_base = 0;
+	while (base[size_base])
+		size_base++;
+	while (nbr)
+	{
+		nbr_final[i] = nbr % size_base;
+		nbr = nbr / size_base;
+		i++;
+	}
+	return (i);
+}
+
+unsigned int	ft_active_bits(int value)
+{
+	int				nbr_final[100];
+	char			base[] = "01";
+	int				i;
+	unsigned int	active_bits;
+	int				negativ;
+
+	i = 0;
+	negativ = 0;
+	active_bits = 0;
+	if (value < 0)
+	{
+		negativ = 1;
+		value = -value;
+	}
+	i = convert(value, base, nbr_final);
+	while (--i >= 0)
+		active_bits = active_bits + (base[nbr_final[i]] - 48);
+	if (negativ == 1)
+		return (32 - active_bits + 1);
+	return (active_bits);
+}
 
 int main(void)
 {
-	t_perso		donnie_matrix;			/* Создаем экземпляр структуры (персонаж "Donnie Matrix") */
-	t_perso		frau_farbissina;		/* Создаем экземпляр структуры (персонаж "Frau Farbissina") */
-
-	donnie_matrix = (t_perso) {.name = "Donnie Matrix", .life = 100.0};		/* Инициализируем структуру заполняя ее данными */
-	frau_farbissina = (t_perso) {.name = "Frau Farbissina", .life = 20.0};	/* Инициализируем структуру заполняя ее данными */
-
-	ft_fight(&donnie_matrix, &frau_farbissina, KICK);		/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
-	ft_fight(&frau_farbissina, &donnie_matrix, PUNCH);		/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
-	ft_fight(&donnie_matrix, &frau_farbissina, HEADBUTT);	/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
-    return (0);							/* Возвращаем ноль и завершаем функцию */
+	ft_putnbr(ft_active_bits(1323));/* 1323 в двоичной системе счисления будет равен 0101 0010 1011, а
+									 * это значит что колличество "активных битов"(единиц) равно шести.
+									 * Если вывод программы будет равен шести значит функция работает верно */
+    return (0);
 }
