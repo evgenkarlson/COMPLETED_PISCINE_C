@@ -67,14 +67,14 @@ void	ft_fight(t_perso *attacker, t_perso *defense, char attack)	/* функци�
 
 int main(void)
 {
-	t_perso		donnie_matrix;
-	t_perso		frau_farbissina;
+	t_perso		nicolas_bauer;
+	t_perso		anastacia;
 
-	donnie_matrix = (t_perso) {.name = "Donnie Matrix", .life = 100.0};
-	frau_farbissina = (t_perso) {.name = "Frau Farbissina", .life = 20.0};
+	nicolas_bauer = (t_perso) {.name = "Nicolas Bauer", .life = 100.0};
+	anastacia = (t_perso) {.name = "Anastacia", .life = 20.0};
 
-	ft_fight(&donnie_matrix, &frau_farbissina, KICK);
-	ft_fight(&frau_farbissina, &donnie_matrix, PUNCH);
-	ft_fight(&donnie_matrix, &frau_farbissina, HEADBUTT);
+	ft_fight(&nicolas_bauer, &anastacia, KICK);
+	ft_fight(&anastacia, &nicolas_bauer, PUNCH);
+	ft_fight(&nicolas_bauer, &anastacia, HEADBUTT);
     return (0);
 }

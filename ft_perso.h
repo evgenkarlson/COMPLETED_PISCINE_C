@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 
 
-#ifndef FT_PERSO_H
-# define FT_PERSO_H
+#ifndef __FT_PERSO_H
+# define __FT_PERSO_H
 
-typedef struct	s_persos {
+typedef struct	s_perso {
 	char	*name;
 	float	life;
 	int		age;

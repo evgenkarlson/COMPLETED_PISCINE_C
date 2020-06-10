@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fight.h                                         :+:      :+:    :+:   */
+/*   ft_perso.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,13 +11,16 @@
 /* ************************************************************************** */
 
 
-#ifndef __FT_FIGHT_H
-# define __FT_FIGHT_H
-# define KICK 'k'
-# define PUNCH 'p'
-# define HEADBUTT 'h'
-# include <unistd.h>
+#ifndef __FT_PERSO_H
+# define __FT_PERSO_H
 
-void	ft_fight(t_perso *attacker, t_perso *defense, char attack);
+typedef struct	s_persos {
+	char	*name;
+	float	life;
+	int		age;
+	char	*profession;
+}				t_perso;
 
 #endif
+
+

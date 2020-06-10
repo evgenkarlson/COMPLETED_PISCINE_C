@@ -21,3 +21,4 @@
 void	ft_fight(t_perso *attacker, t_perso *defense, char attack);
 
 #endif
+
