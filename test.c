@@ -50,6 +50,7 @@ void	ft_putnbr(int nb)				/* Функция печати числа */
 	}
 }
 /* ************************************************************************** */
+
 int				convert(int nbr, char *base, int *nbr_final)
 {
 	int size_base;
@@ -68,7 +69,7 @@ int				convert(int nbr, char *base, int *nbr_final)
 	return (i);
 }
 
-unsigned int	ft_active_bits(int value)
+unsigned int	ft_active_bits_0(int value)
 {
 	int				nbr_final[100];
 	char			base[] = "01";
@@ -92,9 +93,48 @@ unsigned int	ft_active_bits(int value)
 	return (active_bits);
 }
 
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+unsigned int	ft_active_bits_1(int value)
+{
+	unsigned int count;
+
+	count = 0;
+	while (value)
+	{
+		count += value & 1;
+		value >>= 1;
+	}
+	return (count);
+}
+
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+unsigned int	ft_active_bits_2(int value)
+{
+	int			bits;
+
+	bits = 0;
+	while (value > 0)
+	{
+		if ((value & 1) == 1)
+			bits += 1;
+		value >>= 1;
+	}
+	return (bits);
+}
+
 int main(void)
 {
-	ft_putnbr(ft_active_bits(1323));/* 1323 в двоичной системе счисления будет равен 0101 0010 1011, а
+	ft_putnbr(ft_active_bits(1323));/* "1323" в двоичной системе счисления будет равен "0101 0010 1011", а
 									 * это значит что колличество "активных битов"(единиц) равно шести.
 									 * Если вывод программы будет равен шести значит функция работает верно */
     return (0);
