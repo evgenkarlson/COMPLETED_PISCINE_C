@@ -10,14 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #ifndef __FT_FIGHT_H
 # define __FT_FIGHT_H
 # define KICK 'k'
 # define PUNCH 'p'
 # define HEADBUTT 'h'
-# include <unistd.h>
-
-void	ft_fight(t_perso *attacker, t_perso *defense, char attack);
 
 #endif

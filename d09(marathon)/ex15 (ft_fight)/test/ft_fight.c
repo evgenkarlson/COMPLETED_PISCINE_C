@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,13 +9,8 @@
 /*   Updated: 2020/05/12 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*	команда для компиляции и одновременного запуска                           */
-/*                                                                            */
-/*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
-/* ************************************************************************** */
 
 #include "ft_perso.h"					/* Подключаем библиотеку содержащую структуру "t_perso" */
-#include "ft_fight.h"					/* Подключаем библиотеку содержащую макросы */
 
 /* ************************************************************************** */
 void	ft_putchar(char c)				/* Функция печати символа */
@@ -63,18 +58,4 @@ void	ft_fight(t_perso *attacker, t_perso *defense, char attack)	/* функци�
 		ft_putstr(defense->name);
 		ft_putstr(" is dead.\n");
 	}
-}
-
-int main(void)
-{
-	t_perso		donnie_matrix;
-	t_perso		frau_farbissina;
-
-	donnie_matrix = (t_perso) {.name = "Donnie Matrix", .life = 100.0};
-	frau_farbissina = (t_perso) {.name = "Frau Farbissina", .life = 20.0};
-
-	ft_fight(&donnie_matrix, &frau_farbissina, KICK);
-	ft_fight(&frau_farbissina, &donnie_matrix, PUNCH);
-	ft_fight(&donnie_matrix, &frau_farbissina, HEADBUTT);
-    return (0);
 }

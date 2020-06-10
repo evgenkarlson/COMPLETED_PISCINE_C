@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fight.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-//*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
+//*   By: evgenkarlson <RTFM@42.fr>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
@@ -24,7 +24,7 @@
  *
  *	  • Вот как это должно быть prototycrrrcrrrrcrrrr:
  *------------------------------------------------------------------------------
- *														void	JAJAJAJAJAJA;
+ *														void	crrrcrrrrcrrrr;
  *------------------------------------------------------------------------------
  *
  * 
@@ -97,12 +97,16 @@
  * ************************************************************************** */
 
 #include "ft_perso.h"
-#include "ft_fight.h"
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
 
 void	ft_putstr(char *str)
 {
-	while (*str)
-		write(1, str++, 1);
+	while(*str)
+		ft_putchar(*str++);
 }
 
 void	ft_fight(t_perso *attacker, t_perso *defense, char attack)

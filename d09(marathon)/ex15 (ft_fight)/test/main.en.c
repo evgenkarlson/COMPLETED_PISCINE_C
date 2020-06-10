@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 /*	команда для компиляции и одновременного запуска                           */
 /*                                                                            */
-/*  gcc -Wall -Werror -Wextra main.fr.c ft_fight.c && chmod +x ./a.out && ./a.out  */
+/*  gcc -Wall -Werror -Wextra main.en.c ft_fight.c && chmod +x ./a.out && ./a.out  */
 /* ************************************************************************** */
 
 #include "ft_perso.h"					/* Подключаем библиотеку содержащую структуру "t_perso" */
@@ -20,14 +20,14 @@
 
 int main(void)
 {
-	t_perso		donnie_matrix;			/* Создаем экземпляр структуры (персонаж "Donnie Matrix") */
-	t_perso		frau_farbissina;		/* Создаем экземпляр структуры (персонаж "Frau Farbissina") */
+	t_perso		nicolas_bauer;			/* Создаем экземпляр структуры (персонаж "Nicolas Bauer") */
+	t_perso		anastacia;				/* Создаем экземпляр структуры (персонаж "Anastacia") */
 
-	donnie_matrix = (t_perso) {.name = "Donnie Matrix", .life = 100.0};		/* Инициализируем структуру заполняя ее данными */
-	frau_farbissina = (t_perso) {.name = "Frau Farbissina", .life = 20.0};	/* Инициализируем структуру заполняя ее данными */
+	nicolas_bauer = (t_perso) {.name = "Nicolas Bauer", .life = 100.0};		/* Инициализируем структуру заполняя ее данными */
+	anastacia = (t_perso) {.name = "Anastacia", .life = 20.0};	/* Инициализируем структуру заполняя ее данными */
 
-	ft_fight(&donnie_matrix, &frau_farbissina, KICK);		/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
-	ft_fight(&frau_farbissina, &donnie_matrix, PUNCH);		/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
-	ft_fight(&donnie_matrix, &frau_farbissina, HEADBUTT);	/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
+	ft_fight(&nicolas_bauer, &anastacia, KICK);		/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
+	ft_fight(&anastacia, &nicolas_bauer, PUNCH);	/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
+	ft_fight(&nicolas_bauer, &anastacia, HEADBUTT);	/* Вызываем функцию "ft_fight" и отправляем ей в аргументы эти экземпляры и макрос */
     return (0);							/* Возвращаем ноль и завершаем функцию */
 }
