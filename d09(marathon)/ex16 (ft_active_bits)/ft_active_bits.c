@@ -28,14 +28,13 @@
  * #########################################################################
  * P.S Про операции с побитовыми сдвигами читать тут:
  * 									https://metanit.com/cpp/tutorial/2.8.php
+ * 								https://learnc.info/c/bitwise_operators.html
  * #########################################################################
- * 
  * 
  * 
  * ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
-
 
 int				convert(int nbr, char *base, int *nbr_final)
 {
@@ -54,7 +53,21 @@ int				convert(int nbr, char *base, int *nbr_final)
 	}
 	return (i);
 }
+/*
+int				convert_V2_0(int value, int *n)
+{
+	int		i;
 
+	i = 0;
+	while(value)
+	{
+		n[i++] = (value & 1);
+		value >>= 1;
+	}
+	ft_putnbr(i);
+	return (i);
+}
+*/
 unsigned int	ft_active_bits(int value)
 {
 	int				nbr_final[100];
@@ -74,12 +87,16 @@ unsigned int	ft_active_bits(int value)
 	i = convert(value, base, nbr_final);
 	while (--i >= 0)
 		active_bits = active_bits + (base[nbr_final[i]] - 48);
+	/*				OR THIS CODE:
+
+	while (--i >= 0)
+		active_bits += nbr_final[i];
+
+	*/
 	if (negativ == 1)
 		return (32 - active_bits + 1);
 	return (active_bits);
 }
-
-
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
