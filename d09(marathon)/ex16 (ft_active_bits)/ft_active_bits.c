@@ -21,7 +21,7 @@
  *  активных битов в int, переданном в параметре.
  * 
  *	• Эта функция будет прототипирована следующим образом:
- * 									sunsigned int	ft_active_bits(int value)
+ * 									unsigned int	ft_active_bits(int value)
  * 
  * 	P.S  Активный бит = 1
  * 
