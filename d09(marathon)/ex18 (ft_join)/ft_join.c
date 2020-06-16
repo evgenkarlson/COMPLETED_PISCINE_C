@@ -37,47 +37,64 @@
 
 #include <stdlib.h>
 
-static int	tab_size(char **tab)
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
+}
+
+
+static int	ft_size(char **tab, char *sep)
 {
 	int		i;
 	int		j;
 	int		size;
 
 	i = 0;
-	j = 1;
 	size = 0;
-	while (tab && tab[j])
+	while (tab[i])
 	{
-		while (tab && tab[j][i])
-			i++;
-		size += i + 1;
-		j++;
-		i = 0;
+		size += ft_strlen(tab[i]);
+		i++;
 	}
-	size += j;
+	j = 0;
+	while(sep[j])
+		j++;
+	size += j * (i - 1);
 	return (size);
 }
+
 
 char		*ft_join(char **tab, char *sep)
 {
 	int		i;
-	int		k;
 	int		s;
+	int		k;
 	int		size;
 	char	*str;
 
-	i = 1;
+	if (!tab || !*tab || !sep)
+		return ((void *)0);
+	i = 0;
 	k = 0;
 	s = 0;
-	size = ft_size(tab);
-	str = (char*)malloc(sizeof(char) * size + 1);
-	while (s < (size - 1) && tab[i])
+	size = ft_size(tab, sep);
+	if ((str = (char*)malloc(sizeof(char) * size + 1)) == ((void *)0))
+		return ((void *)0);
+	while ((s < size) && tab[i])
 	{
-		while (tab && tab[i][k])
-			str[s++] = tab[i][k++];
-		str[s++] = *sep;
-		i++;
+		
 		k = 0;
+		while ((s < size) && tab[i][k])
+			str[s++] = tab[i][k++];
+		k = 0;
+		while((s < size) && sep[k] && tab[i + 1])
+			str[s++] = sep[k++];
+		i++;
 	}
 	str[s] = '\0';
 	return (str);
@@ -87,3 +104,51 @@ char		*ft_join(char **tab, char *sep)
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
+}
+
+void	ft_strcat(char *dest, char *src)
+{
+	while (*dest)
+		dest++;
+	while (*src)
+		*dest++ = *src++;	
+	*dest = '\0';
+}
+
+char	*ft_join(char **tab, char *sep)
+{
+	char	*str;
+	int		i;
+	int		y;
+	int		x;
+
+	i = 0;
+	x = 1;
+	if (!tab || !*tab || !sep)
+		return ((void *)0);
+	while (tab[i++])
+	{
+		y = 0;
+		while (tab[i][y++])
+			x++;
+	}
+	if (!(str = (char*)malloc(((i - 1) * ft_strlen(sep) + x) * sizeof(char))))
+		return ((void *)0);
+	i = 0;
+	while (tab[i++])
+	{
+		ft_strcat(str, tab[i]);
+		if (tab[i + 1])
+			ft_strcat(str, sep);
+	}
+	return (str);
+}

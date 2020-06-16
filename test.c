@@ -15,9 +15,10 @@
 /* ************************************************************************** */
 
 #include <unistd.h>				/* Подключаем библиотеку содержащую функцию "write" */
+#include <stdlib.h>				/* Подключаем библиотеку содержащую функцию "malloc" */
 
 /* ************************************************************************** */
-void		ft_putchar(char c)/* Функция печати символа */
+void		ft_putchar(char c)	/* Функция печати символа */
 {
 	write(1, &c, 1);
 }
@@ -28,7 +29,7 @@ void		ft_putstr(char *str)/* Функция печати числа */
 		ft_putchar(*str++);
 }
 /* ************************************************************************** */
-void		ft_putnbr(int nb)/* Функция печати числа */
+void		ft_putnbr(int nb)	/* Функция печати числа */
 {
 	int	temp;
 	int	size;
@@ -57,55 +58,63 @@ void		ft_putnbr(int nb)/* Функция печати числа */
 }
 /* ************************************************************************** */
 
-#include <stdlib.h>
 
-static int	ft_size(char **tab)
+
+int		ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
+}
+
+static int	ft_size(char **tab, char *sep)
 {
 	int		i;
 	int		j;
 	int		size;
 
-	j = 1;
+	i = 0;
 	size = 0;
-	while (tab && tab[j])
+	while (tab[i])
 	{
-		i = 0;
-		while (tab && tab[j][i])
-		{
-			i++;
-			ft_putnbr(j);
-			ft_putchar(' ');
-			ft_putnbr(i);
-			ft_putchar(' ');
-		}	
-		size += i + 1;
-		ft_putnbr(size);
-		ft_putchar('\n');
-		j++;
+		size += ft_strlen(tab[i]);
+		i++;
 	}
-	size += j;
+	j = 0;
+	while(sep[j])
+		j++;
+	size += j * (i - 1);
 	return (size);
 }
-
+// first_line/+++/second_line/+++/third_line/+++/fourth_line
 char		*ft_join(char **tab, char *sep)
 {
 	int		i;
-	int		k;
 	int		s;
+	int		k;
 	int		size;
 	char	*str;
 
-	i = 1;
+	i = 0;
 	k = 0;
 	s = 0;
-	size = ft_size(tab);
-	str = (char*)malloc(sizeof(char) * size + 1);
-	while (s < (size - 1) && tab[i])
+	if (!tab || !*tab || !sep)
+		return ((void *)0);
+	size = ft_size(tab, sep);
+	if ((str = (char*)malloc(sizeof(char) * size + 1)) == ((void *)0))
+		return ((void *)0);
+	while ((s < size) && tab[i])
 	{
+		
 		k = 0;
-		while (tab && tab[i][k])
+		while ((s < size) && tab[i][k])
 			str[s++] = tab[i][k++];
-		str[s++] = *sep;
+		k = 0;
+		while((s < size) && sep[k] && tab[i + 1])
+			str[s++] = sep[k++];
 		i++;
 	}
 	str[s] = '\0';
@@ -113,12 +122,12 @@ char		*ft_join(char **tab, char *sep)
 }
 
 
-
 int 		main(void)
 {
-	char	*arr[] = {"Holla", " holla", " holla", "lalaaaa"};
-	char	space = '+';
-	ft_putstr(ft_join(arr, &space));
+	char	*arr[5] = {"first_line","second_line","third_line","fourth_line"};
+	char	*space = "/+++/";
+	
+	ft_putstr(ft_join(arr, space));
 	
 	ft_putchar('\n');
     return (0);					/* Возвращаем 0 и завершаем программу */
