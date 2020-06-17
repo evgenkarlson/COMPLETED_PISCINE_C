@@ -15,6 +15,12 @@
 # define KICK 'k'
 # define PUNCH 'p'
 # define HEADBUTT 'h'
+# include <unistd.h>
+
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+void	ft_fight(t_perso *attacker, t_perso *defense, char attack);
+
 
 #endif
 

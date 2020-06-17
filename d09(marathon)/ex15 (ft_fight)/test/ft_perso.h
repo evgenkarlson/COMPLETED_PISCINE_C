@@ -13,7 +13,6 @@
 
 #ifndef __FT_PERSO_H
 # define __FT_PERSO_H
-# include <unistd.h>
 
 typedef struct	s_perso {
 	char	*name;
@@ -21,9 +20,5 @@ typedef struct	s_perso {
 	int		age;
 	char	*profession;
 }				t_perso;
-
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-void	ft_fight(t_perso *attacker, t_perso *defense, char attack);
 
 #endif
