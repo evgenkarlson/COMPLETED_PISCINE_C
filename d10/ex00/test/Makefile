@@ -10,24 +10,51 @@
 #                                                                              #
 # **************************************************************************** #
 
+
 NAME = libft.a
+CC = gcc
 
-SRC = ./srcs/ft_putchar.c ./srcs/ft_putstr.c ./srcs/ft_strcmp.c ./srcs/ft_strlen.c ./srcs/ft_swap.c
-OBJECT = ./ft_putchar.o ./ft_putstr.o ./ft_strcmp.o ./ft_strlen.o ./ft_swap.o
+CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -c -Wall -Wextra -Werror -Iincludes
 
-FLAGS = -Wall -Wextra -Werror
+SRC0 = ./srcs/ft_putchar.c ./srcs/ft_putstr.c ./srcs/ft_strcmp.c \
+	  ./srcs/ft_strlen.c ./srcs/ft_swap.c
+
+_SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
+SRCS = $(patsubst %, srcs/%, $(_SRCS)) 
+
+OBJS0 = ./ft_putchar.o ./ft_putstr.o ./ft_strcmp.o ./ft_strlen.o ./ft_swap.o
+OBJS = $(_SRCS:.c=.o)
+
+
+HEADER0 = ./includes/
+HEADERS1 = includes/ft.h
+HEADERS = ./includes/ft.h
+
 OPTIONS = -c -I ./includes/
 
 all: $(NAME)
-	
-$(NAME):
-	gcc $(FLAGS) $(OPTIONS) $(SRC)
-	ar rc $(NAME) $(OBJECT)
 
+ $(NAME):
+	$(CC) -c $(CFLAGS) -I=$(HEADER) $(SRC)
+	$(CC) $(CFLAGS) $(OPTIONS) $(SRC)
+	$(CC) -c $(CFLAGS) $(FILES) -I $(HEADERS)
+
+	ar rc libft.a $(OBJS)
+	ranlib libft.a
+
+clean0:
+	/bin/rm -f ft_putchar.o ft_putstr.o ft_strcmp.o ft_strlen.o ft_swap.o
+clean1:
+	/bin/rm -f $(OBJS)
 clean:
-	/bin/rm -f $(OBJECT)
+	rm -f $(OBJS)
 
+fclean0: clean
+	/bin/rm -f  $(NAME)
 fclean: clean
-		/bin/rm -f $(NAME)
+	rm -f $(NAME)
 
-re: fclean	all
+re: fclean all
+
+.PHONY: all clean fclean re

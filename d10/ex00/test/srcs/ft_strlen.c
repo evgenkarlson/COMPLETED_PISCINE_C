@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/07/06 14:13:48 by jpucelle          #+#    #+#             */
-/*   Updated: 2014/07/08 16:27:07 by jpucelle         ###   ########.fr       */
+/*   Created: 2020/05/12 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/05/12 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		ft_strlen(char *str)
 {
-	int l;
+	int i;
 
-	l = 0;
-	while (*str++ != '\0')
-		l++;
-	return (l);
+	i = 0;
+	while (*str++)
+		i++;
+	return (i);
 }
