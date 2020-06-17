@@ -22,14 +22,6 @@
  *	• Эта функция будет прототипирована следующим образом:
  * 									char	*ft_join(char **tab, char *sep)
  * 
- * 	P.S  Активный бит = 1
- * 
- * #########################################################################
- * P.S Про операции с побитовыми сдвигами читать тут:
- * 									https://metanit.com/cpp/tutorial/2.8.php
- * 								https://learnc.info/c/bitwise_operators.html
- * #########################################################################
- * 
  * 
  * ************************************************************************** */
 /* ************************************************************************** */
@@ -51,7 +43,7 @@ int		ft_strlen(char *str)
 static int	ft_size(char **tab, char *sep)
 {
 	int		i;
-	int		j;
+	int		s;
 	int		size;
 
 	i = 0;
@@ -61,10 +53,8 @@ static int	ft_size(char **tab, char *sep)
 		size += ft_strlen(tab[i]);
 		i++;
 	}
-	j = 0;
-	while(sep[j])
-		j++;
-	size += j * (i - 1);
+	s = ft_strlen(sep);
+	size += s * (i - 1);
 	return (size);
 }
 
@@ -72,16 +62,16 @@ static int	ft_size(char **tab, char *sep)
 char		*ft_join(char **tab, char *sep)
 {
 	int		i;
-	int		s;
 	int		k;
+	int		s;
 	int		size;
 	char	*str;
 
-	if (!tab || !*tab || !sep)
-		return ((void *)0);
 	i = 0;
 	k = 0;
 	s = 0;
+	if (!tab || !*tab || !sep)
+		return ((void *)0);
 	size = ft_size(tab, sep);
 	if ((str = (char*)malloc(sizeof(char) * size + 1)) == ((void *)0))
 		return ((void *)0);
@@ -104,6 +94,7 @@ char		*ft_join(char **tab, char *sep)
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
 
 int		ft_strlen(char *str)
 {
@@ -135,20 +126,22 @@ char	*ft_join(char **tab, char *sep)
 	x = 1;
 	if (!tab || !*tab || !sep)
 		return ((void *)0);
-	while (tab[i++])
+	while (tab[i])
 	{
 		y = 0;
 		while (tab[i][y++])
 			x++;
+		i++;
 	}
 	if (!(str = (char*)malloc(((i - 1) * ft_strlen(sep) + x) * sizeof(char))))
 		return ((void *)0);
 	i = 0;
-	while (tab[i++])
+	while (tab[i])
 	{
 		ft_strcat(str, tab[i]);
 		if (tab[i + 1])
 			ft_strcat(str, sep);
+		i++;
 	}
 	return (str);
 }

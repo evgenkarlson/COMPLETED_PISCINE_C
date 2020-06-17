@@ -14,8 +14,6 @@
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
 /* ************************************************************************** */
 
-#include <unistd.h>				/* Подключаем библиотеку содержащую функцию "write" */
-#include <stdlib.h>				/* Подключаем библиотеку содержащую функцию "malloc" */
 
 /* ************************************************************************** */
 void		ft_putchar(char c)	/* Функция печати символа */
@@ -23,7 +21,7 @@ void		ft_putchar(char c)	/* Функция печати символа */
 	write(1, &c, 1);
 }
 /* ************************************************************************** */
-void		ft_putstr(char *str)/* Функция печати числа */
+void		ft_putstr(char *str)/* Функция печати строки */
 {
 	while(*str)
 		ft_putchar(*str++);
@@ -59,76 +57,141 @@ void		ft_putnbr(int nb)	/* Функция печати числа */
 /* ************************************************************************** */
 
 
+/* ************************************************************************** *
+ * 
+ *		Файлы для включения: ft_ultimate_fight.c, ft_ultimate_fight.h
+ * 
+ * 		Разрешенные функции: write
+ * 
+ * ************************************************************************** *
+ * 
+ * 
+ *	  Возобновите симулятор из упражнения 15 и добавьте следующие движения:
+ *
+ *	  • KICK1; 13 очков; дзюдо чоп ичи
+ * 
+ *	  • KICK2; 3 очка; дзюдо чоп ни
+ * 
+ * 	  • KICK3 ; 18 points ;un judo chop san
+ * 
+ * 	  • KICK4; 9 очков; дзюдо чоп ши
+ * 
+ * 	  • KICK5; 11 очков; бой дзюдо
+ * 
+ * 	  • KICK6; 13 очков; дзюдо чоп року
+ * 
+ * 	  • KICK7; 8 очков; дзюдо чоп шичи
+ * 
+ * 	  • KICK8; 6 очков; дзюдо чоп хачи
+ * 
+ * 	  • KICK9; 11 очков; дзюдо чоп ку
+ * 
+ * 	  • KICK10; 9 очков; юн дзюдо чоп ю
+ * 
+ * 	  • KICK11; 18 очков; дзюдо чоп хяку
+ * 	  
+ * 	  • KICK12; 10 очков; бой дзюдо чоп сен
+ *
+ * 
+ *  * ************************************************************************** *
+ * 
+ * 
+ *	  "Хм ... Есть что-то умнее твоей основной идеи. Да да!"
+ * 
+ * 
+ * ************************************************************************** *
+ * ************************************************************************** *
+ * ************************************************************************** */
+// #include "ft_ultimate_fight.h"
+#ifndef FT_ULTIMATE_FIGHT_H
+# define FT_ULTIMATE_FIGHT_H
+# define PUNCH 0
+# define KICK 1
+# define KICK1 2
+# define KICK2 3
+# define KICK3 4
+# define KICK4 5
+# define KICK5 6
+# define KICK6 7
+# define KICK7 8
+# define KICK8 9
+# define KICK9 10
+# define KICK10 11
+# define KICK11 12
+# define HEADBUTT 13
+//  # include "ft_perso.h"
+	#ifndef __FT_PERSO_H
+	# define __FT_PERSO_H
+	# include <unistd.h>
 
-int		ft_strlen(char *str)
+	typedef struct	s_perso {
+		char	*name;
+		float	life;
+		int		age;
+		char	*profession;
+	}				t_perso;
+
+	void	ft_putchar(char c);
+	void	ft_putstr(char *str);
+
+	#endif
+
+
+
+
+void	ft_fight(t_perso *attacker, t_perso *defense, int n);
+
+#endif
+
+
+void	ft_putstr(char *str)
 {
-	int i;
-
-	i = 0;
-	while (*str++)
-		i++;
-	return (i);
+	while (*str)
+		write(1, str++, 1);
 }
 
-static int	ft_size(char **tab, char *sep)
+char	*getattac(int n)
 {
-	int		i;
-	int		j;
-	int		size;
+	const char *a[14] = { "punch", "kick", "chop ichi", "chop ni",
+		"chop san", "chop shi", "chop go", "chop roku", "chop shichi",
+		"chop hachi", "chop ku", "chop ju", "chop hyaku", "headbutt" };
 
-	i = 0;
-	size = 0;
-	while (tab[i])
+	return (a[n]);
+}
+
+int		getpoints(int n)
+{
+	const int a[14] = {15, 5, 13, 3, 18, 9, 11, 13, 8, 6, 11, 9, 18, 20};
+
+	return (a[n]);
+}
+
+void	ft_fight(t_perso *attacker, t_perso *defense, int n)
+{
+	int		points;
+
+	points = getpoints(n);
+	if (attacker->life <= 0 || defense->life <= 0)
+		return ;
+	defense->life -= points;
+	ft_putstr(attacker->name);
+	ft_putstr(" does a judo ");
+	ft_putstr(getattac(n));/*  */
+	ft_putstr(" on ");
+	ft_putstr(defense->name);
+	ft_putstr("\n");
+	if (defense->life <= 0)
 	{
-		size += ft_strlen(tab[i]);
-		i++;
+		ft_putstr(defense->name);
+		ft_putstr(" is dead.\n");
 	}
-	j = 0;
-	while(sep[j])
-		j++;
-	size += j * (i - 1);
-	return (size);
 }
-// first_line/+++/second_line/+++/third_line/+++/fourth_line
-char		*ft_join(char **tab, char *sep)
-{
-	int		i;
-	int		s;
-	int		k;
-	int		size;
-	char	*str;
-
-	i = 0;
-	k = 0;
-	s = 0;
-	if (!tab || !*tab || !sep)
-		return ((void *)0);
-	size = ft_size(tab, sep);
-	if ((str = (char*)malloc(sizeof(char) * size + 1)) == ((void *)0))
-		return ((void *)0);
-	while ((s < size) && tab[i])
-	{
-		
-		k = 0;
-		while ((s < size) && tab[i][k])
-			str[s++] = tab[i][k++];
-		k = 0;
-		while((s < size) && sep[k] && tab[i + 1])
-			str[s++] = sep[k++];
-		i++;
-	}
-	str[s] = '\0';
-	return (str);
-}
-
 
 int 		main(void)
-{
-	char	*arr[5] = {"first_line","second_line","third_line","fourth_line"};
-	char	*space = "/+++/";
+{	int arr[] = {1, 1, 2, 4, 3, 4, 2, 3, 4};/* Создадим массив символов с одним числом, у которого нет пары */
 	
-	ft_putstr(ft_join(arr, space));
-	
+	ft_putnbr(ft_unmatch(arr, 9));	/* Отправим этот массив и его длинну в функцию 'ft_unmatch' для поиска элемента,
+									 * у которого нет пары. И распечатаем результат, который вернет функция 'ft_unmatch' */
 	ft_putchar('\n');
-    return (0);					/* Возвращаем 0 и завершаем программу */
+    return (0);						/* Возвращаем 0 и завершаем программу */
 }

@@ -55,7 +55,7 @@ void	ft_print_comb(void)
 					ft_putchar(num[0]);
 					ft_putchar(num[1]);
 					ft_putchar(num[2]);
-					if(!(num[0] != '7' && num[1] == '8' && num[2] == '9'))
+					if(!(num[0] == '7' && num[1] == '8' && num[2] == '9'))
 						ft_commas();
 				}
 				num[2]++;

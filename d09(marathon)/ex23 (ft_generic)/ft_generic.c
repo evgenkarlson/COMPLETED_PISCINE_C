@@ -52,7 +52,7 @@ void	ft_putstr(char *str)
 
 void	ft_generic(void)
 {
-	ft_putstr("Tut tut ; Tut tut");
+	ft_putstr("Tu tu tu tu ; Tu tu tu tu");
 	ft_putchar('\n');
 }
 
@@ -75,10 +75,10 @@ void	ft_generic(void)
 
 void	ft_generic(void)
 {
-	const char	*str = "Tut tut ; Tut tut";
+	const char	*str = "Tu tu tu tu ; Tu tu tu tu";
 	
 	while (*str)
-		write(1, *str++, 1);
+		write(1, str++, 1);
 	write(1, "\n", 1);
 }
 
