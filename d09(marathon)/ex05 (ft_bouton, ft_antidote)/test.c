@@ -22,7 +22,7 @@ void	ft_putchar(char c)			/* функция печати символа */
 	write(1, &c, 1);
 }
 
-void ft_putnbr(int nb)				/* функция печати числа */
+void	ft_putnbr(int nb)				/* функция печати числа */
 {
 	int	temp;
 	int	size;
@@ -52,7 +52,7 @@ void ft_putnbr(int nb)				/* функция печати числа */
 	}
 }
 
-int	ft_bouton(int i, int j, int k)	/* функция принимает параметры параметр состоящий из трех аргументов типа int и будет возвращать среднее значение носителя */
+int		ft_bouton(int i, int j, int k)	/* функция принимает параметры параметр состоящий из трех аргументов типа int и будет возвращать среднее значение носителя */
 {
 	if ((i > j && i < k) || (i > k && i < j))
 		return (i);
@@ -69,7 +69,7 @@ int	ft_bouton(int i, int j, int k)	/* функция принимает пара
 	return (0);
 }
 
-int	main()							
+int		main()							
 {
 	ft_putnbr(ft_bouton(1,1,2));
 	ft_putchar('\n');

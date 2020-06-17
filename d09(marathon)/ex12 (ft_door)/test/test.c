@@ -55,7 +55,7 @@ t_bool	is_door_close(t_door *door)	/* Функция принимает адре
 
 
 
-int main()
+int     main()
 {
     t_door	door;					/* Создадим экземпляр структуры "t_door" */
 

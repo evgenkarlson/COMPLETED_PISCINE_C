@@ -17,12 +17,12 @@
 
 #include <unistd.h>
 
-void			ft_putchar(char c)		/* функция печати символа */
+void	ft_putchar(char c)		/* функция печати символа */
 {
 	write(1, &c, 1);
 }
 
-void			ft_putnbr(int nb)		/* Функция печати числа */
+void	ft_putnbr(int nb)		/* Функция печати числа */
 {
 	int	temp;
 	int	size;
@@ -69,7 +69,7 @@ void	ft_scrambler(int ***a, int *b, int *******c, int ****d)
 /* Для того чтобы протестировать функцию "ft_scrambler" мы создадим целую кучу указателей и поместим 
 в них адреса переменных которые хранят числа, а после запуска функции "ft_scrambler" распечатаем содержимое 
 переменных и посмотрим как функция "ft_scrambler" поменяла местами содержимое переменных */
-int				main()							
+int		main()							
 {	int	num[] = {1, 2, 3, 4};
 	int	***a;
 	int	**aa;

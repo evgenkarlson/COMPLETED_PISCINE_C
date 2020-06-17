@@ -60,7 +60,7 @@ char	*ft_rot42(char *str)	/* Функция переделывает кажды�
 }
 
 
-int	main()
+int		main()
 {
 	char	tab[][14] = {"first_string","second_string"};
 	ft_putstr(ft_rot42(tab[0]));

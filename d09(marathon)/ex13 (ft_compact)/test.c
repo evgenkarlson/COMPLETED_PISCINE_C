@@ -51,7 +51,7 @@ void	ft_putstr_tab(char **argv)
 	
 }
 
-int	size_tab(char **tab)
+int		size_tab(char **tab)
 {
 	int	i;
 
@@ -61,7 +61,7 @@ int	size_tab(char **tab)
 	return (i);
 }
 
-int	ft_compact(char **tab, int length)
+int		ft_compact(char **tab, int length)
 {
 	int	i;
 	int	j;
@@ -93,7 +93,7 @@ int	ft_compact(char **tab, int length)
 }
 
 
-int main(void)
+int		main(void)
 {
 	char *arr[] = {"skdjnksd "," skjnskdf"," sds_0 "};
 	ft_compact(arr, 3);

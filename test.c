@@ -11,138 +11,10 @@
 /* ************************************************************************** */
 /*	команда для компиляции и одновременного запуска                           */
 /*                                                                            */
-/*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out	   	      */
+/* gcc -Wall -Werror -Wextra main.c ft_fight.c && chmod +x ./a.out && ./a.out */
 /* ************************************************************************** */
 
-
-/* ************************************************************************** */
-void		ft_putchar(char c)	/* Функция печати символа */
-{
-	write(1, &c, 1);
-}
-/* ************************************************************************** */
-void		ft_putstr(char *str)/* Функция печати строки */
-{
-	while(*str)
-		ft_putchar(*str++);
-}
-/* ************************************************************************** */
-void		ft_putnbr(int nb)	/* Функция печати числа */
-{
-	int	temp;
-	int	size;
-
-	size = 1;
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = -nb;
-	}
-	if (nb == -2147483648)
-	{	
-		ft_putchar('2');
-		nb = 147483648;
-	}
-	temp = nb;
-	while ((temp /= 10) > 0)
-		size *= 10;
-	temp = nb;
-	while (size)
-	{
-		ft_putchar((char)((temp / size)) + 48);
-		temp %= size;
-		size /= 10;
-	}
-}
-/* ************************************************************************** */
-
-
-/* ************************************************************************** *
- * 
- *		Файлы для включения: ft_ultimate_fight.c, ft_ultimate_fight.h
- * 
- * 		Разрешенные функции: write
- * 
- * ************************************************************************** *
- * 
- * 
- *	  Возобновите симулятор из упражнения 15 и добавьте следующие движения:
- *
- *	  • KICK1; 13 очков; дзюдо чоп ичи
- * 
- *	  • KICK2; 3 очка; дзюдо чоп ни
- * 
- * 	  • KICK3 ; 18 points ;un judo chop san
- * 
- * 	  • KICK4; 9 очков; дзюдо чоп ши
- * 
- * 	  • KICK5; 11 очков; бой дзюдо
- * 
- * 	  • KICK6; 13 очков; дзюдо чоп року
- * 
- * 	  • KICK7; 8 очков; дзюдо чоп шичи
- * 
- * 	  • KICK8; 6 очков; дзюдо чоп хачи
- * 
- * 	  • KICK9; 11 очков; дзюдо чоп ку
- * 
- * 	  • KICK10; 9 очков; юн дзюдо чоп ю
- * 
- * 	  • KICK11; 18 очков; дзюдо чоп хяку
- * 	  
- * 	  • KICK12; 10 очков; бой дзюдо чоп сен
- *
- * 
- *  * ************************************************************************** *
- * 
- * 
- *	  "Хм ... Есть что-то умнее твоей основной идеи. Да да!"
- * 
- * 
- * ************************************************************************** *
- * ************************************************************************** *
- * ************************************************************************** */
-// #include "ft_ultimate_fight.h"
-#ifndef FT_ULTIMATE_FIGHT_H
-# define FT_ULTIMATE_FIGHT_H
-# define PUNCH 0
-# define KICK 1
-# define KICK1 2
-# define KICK2 3
-# define KICK3 4
-# define KICK4 5
-# define KICK5 6
-# define KICK6 7
-# define KICK7 8
-# define KICK8 9
-# define KICK9 10
-# define KICK10 11
-# define KICK11 12
-# define HEADBUTT 13
-//  # include "ft_perso.h"
-	#ifndef __FT_PERSO_H
-	# define __FT_PERSO_H
-	# include <unistd.h>
-
-	typedef struct	s_perso {
-		char	*name;
-		float	life;
-		int		age;
-		char	*profession;
-	}				t_perso;
-
-	void	ft_putchar(char c);
-	void	ft_putstr(char *str);
-
-	#endif
-
-
-
-
-void	ft_fight(t_perso *attacker, t_perso *defense, int n);
-
-#endif
-
+#include "ft_ultimate_fight.h"
 
 void	ft_putstr(char *str)
 {
@@ -150,33 +22,21 @@ void	ft_putstr(char *str)
 		write(1, str++, 1);
 }
 
-char	*getattac(int n)
-{
-	const char *a[14] = { "punch", "kick", "chop ichi", "chop ni",
-		"chop san", "chop shi", "chop go", "chop roku", "chop shichi",
-		"chop hachi", "chop ku", "chop ju", "chop hyaku", "headbutt" };
-
-	return (a[n]);
-}
-
-int		getpoints(int n)
-{
-	const int a[14] = {15, 5, 13, 3, 18, 9, 11, 13, 8, 6, 11, 9, 18, 20};
-
-	return (a[n]);
-}
-
 void	ft_fight(t_perso *attacker, t_perso *defense, int n)
 {
-	int		points;
+	const char	*attack[14] = { "punch", "kick", "chop ichi", "chop ni",
+		"chop san", "chop shi", "chop go", "chop roku", "chop shichi",
+		"chop hachi", "chop ku", "chop ju", "chop hyaku", "headbutt" };
+	const int	points[14] = {15, 5, 13, 3, 18, 9, 11, 13, 8, 6, 11, 9, 18, 20};
 
-	points = getpoints(n);
+	if (n > 14)
+		n %= 14;
 	if (attacker->life <= 0 || defense->life <= 0)
 		return ;
-	defense->life -= points;
+	defense->life -= points[n];
 	ft_putstr(attacker->name);
 	ft_putstr(" does a judo ");
-	ft_putstr(getattac(n));/*  */
+	ft_putstr((char *)attack[n]);
 	ft_putstr(" on ");
 	ft_putstr(defense->name);
 	ft_putstr("\n");
@@ -187,11 +47,32 @@ void	ft_fight(t_perso *attacker, t_perso *defense, int n)
 	}
 }
 
-int 		main(void)
-{	int arr[] = {1, 1, 2, 4, 3, 4, 2, 3, 4};/* Создадим массив символов с одним числом, у которого нет пары */
-	
-	ft_putnbr(ft_unmatch(arr, 9));	/* Отправим этот массив и его длинну в функцию 'ft_unmatch' для поиска элемента,
-									 * у которого нет пары. И распечатаем результат, который вернет функция 'ft_unmatch' */
-	ft_putchar('\n');
-    return (0);						/* Возвращаем 0 и завершаем программу */
+int		main(void)
+{
+	t_perso		donnie_matrix;			/* Создаем экземпляр структуры (персонаж "Donnie Matrix") */
+	t_perso		frau_farbissina;		/* Создаем экземпляр структуры (персонаж "Frau Farbissina") */
+
+	donnie_matrix = (t_perso) {.name = "Donnie Matrix", .life = 100.0};		/* Инициализируем структуру заполняя ее данными */
+	frau_farbissina = (t_perso) {.name = "Frau Farbissina", .life = 100.0};	/* Инициализируем структуру заполняя ее данными */
+
+	/* Далее вызываем функцию "ft_fight" столько раз сколько нам нужно и отправляем ей в аргументы экземпляры и макросы немного 
+	 * изменяя их чтобы создать иллюзию схватки */
+
+	ft_fight(&donnie_matrix, &frau_farbissina, KICK);
+	ft_fight(&frau_farbissina, &donnie_matrix, PUNCH);
+	ft_fight(&donnie_matrix, &frau_farbissina, KICK1);
+	ft_fight(&frau_farbissina, &donnie_matrix, KICK2);
+	ft_fight(&donnie_matrix, &frau_farbissina, KICK3);
+	ft_fight(&frau_farbissina, &donnie_matrix, KICK4);
+	ft_fight(&donnie_matrix, &frau_farbissina, KICK5);
+	ft_fight(&frau_farbissina, &donnie_matrix, KICK6);
+	ft_fight(&donnie_matrix, &frau_farbissina, KICK7);
+	ft_fight(&frau_farbissina, &donnie_matrix, KICK8);
+	ft_fight(&donnie_matrix, &frau_farbissina, KICK9);
+	ft_fight(&frau_farbissina, &donnie_matrix, KICK10);
+	ft_fight(&donnie_matrix, &frau_farbissina, KICK11);
+	ft_fight(&donnie_matrix, &frau_farbissina, HEADBUTT);
+
+
+    return (0);							/* Возвращаем ноль и завершаем функцию */
 }
