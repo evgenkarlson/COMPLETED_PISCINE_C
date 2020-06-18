@@ -62,7 +62,6 @@ void		ft_putnbr(int nb)	/* Функция печати числа */
 
 int 		main(void)
 {
-	
 	ft_putchar('\n');
     return (0);						/* Возвращаем 0 и завершаем программу */
 }

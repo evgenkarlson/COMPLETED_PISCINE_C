@@ -13,48 +13,34 @@
 
 NAME = libft.a
 CC = gcc
-
 CFLAGS = -Wall -Wextra -Werror
-CFLAGS = -c -Wall -Wextra -Werror -Iincludes
-
-SRC0 = ./srcs/ft_putchar.c ./srcs/ft_putstr.c ./srcs/ft_strcmp.c \
-	  ./srcs/ft_strlen.c ./srcs/ft_swap.c
-
+LDFLAGS = -c -I
+HEADERS = includes/
 _SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
-SRCS = $(patsubst %, srcs/%, $(_SRCS)) 
+SRCS = $(patsubst %, srcs/%, $(_SRC))
+OBJS = $(patsubst %.c, %.o, $(_SRC))
 
-OBJS0 = ./ft_putchar.o ./ft_putstr.o ./ft_strcmp.o ./ft_strlen.o ./ft_swap.o
-OBJS = $(_SRCS:.c=.o)
-
-
-HEADER0 = ./includes/
-HEADERS1 = includes/ft.h
-HEADERS = ./includes/ft.h
-
-OPTIONS = -c -I ./includes/
 
 all: $(NAME)
 
- $(NAME):
-	$(CC) -c $(CFLAGS) -I=$(HEADER) $(SRC)
-	$(CC) $(CFLAGS) $(OPTIONS) $(SRC)
-	$(CC) -c $(CFLAGS) $(FILES) -I $(HEADERS)
+$(NAME):
+	$(CC) $(CFLAGS) $(LDFLAGS) $(HEADERS) $(SRCS)
 
 	ar rc libft.a $(OBJS)
 	ranlib libft.a
 
-clean0:
-	/bin/rm -f ft_putchar.o ft_putstr.o ft_strcmp.o ft_strlen.o ft_swap.o
-clean1:
-	/bin/rm -f $(OBJS)
 clean:
 	rm -f $(OBJS)
 
-fclean0: clean
-	/bin/rm -f  $(NAME)
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
+# **************************************************************************** #
+# **************************************************************************** #
+# **************************************************************************** #

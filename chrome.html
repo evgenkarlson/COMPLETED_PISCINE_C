@@ -1,0 +1,67 @@
+<style>
+
+.translated-ltr,
+body {top: 0 !important;}
+.goog-te-gadget {color: rgba(255, 255, 255, 0)!important;}
+
+.goog-te-banner-frame,
+.goog-logo-link,
+#goog-gt-tt{    display: none!important;}
+
+.goog-text-highlight{    background-color:rgba(255, 255, 255, 0)!important;
+    -webkit-box-shadow: none!important;
+    -moz-box-shadow: none!important;
+    box-shadow: none!important;}
+
+#google_translate_element{opacity: 0;
+    z-index:-999;    position: relative;}
+
+
+.lng img{    width: 40px;
+    height: 25px;
+    margin-bottom: 2px;}
+
+.goog-te-menu-frame{display: block!important;
+    width: 45px!important;
+    left: -48px!important;
+    opacity: 0;
+    position: absolute;}
+
+.lng {    width: 40px;
+    position: absolute;
+    left: -45px;
+    opacity: 0.7;
+    top: 34px;}
+
+.unhide{opacity:1!important;}
+
+</style>
+
+
+
+<div id="google_translate_element"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'ru', includedLanguages: 'en,ru,zh-CN', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+   
+
+
+<script>
+
+function in_lang(){
+$('.lng').addClass('unhide');
+$('.goog-te-gadget-simple').click();
+}
+
+</script>
+
+
+<div onclick="in_lang()" class="lng">
+<img src="https://russia.png" >  
+<img src="https://english.png" >  
+<img src="https://china.jpg" >  
+</div>
