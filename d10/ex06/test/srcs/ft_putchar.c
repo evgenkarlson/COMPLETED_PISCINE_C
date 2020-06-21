@@ -1,39 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/23 17:00:15 by jaleman           #+#    #+#             */
-/*   Updated: 2016/08/23 17:00:17 by jaleman          ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_putnbr(int n)
+void	ft_putchar(char c)
 {
-	char	c;
-
-	if (n == -2147483648)
-	{
-		write(1, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
-	{
-		n = -n;
-		write(1, "-", 1);
-	}
-	if (n < 10)
-	{
-		c = n + '0';
-		write(1, &c, 1);
-	}
-	else
-	{
-		ft_putnbr(n / 10);
-		ft_putnbr(n % 10);
-	}
+	write(1, &c, 1);
 }

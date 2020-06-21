@@ -10,37 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "do_op.h"
+#include "../includes/ft.h"
 
-int	sum(int a, int b)
+int	sum(int a, int b, int *error)
 {
+	*error = 0;
 	return (a + b);
 }
 
-int	subtract(int a, int b)
+int	subtract(int a, int b, int *error)
 {
+	*error = 0;
 	return (a - b);
 }
 
-int	mul(int a, int b)
+int	mul(int a, int b, int *error)
 {
+	*error = 0;
 	return (a * b);
 }
 
-int	div(int a, int b)
+int	div(int a, int b, int *error)
 {
 	if (b)
 		return (a / b);
 	ft_putstr("Stop : division by zero");
-	g_div = 1;
+	*error = 1;
 	return (0);
 }
 
-int	mod(int a, int b)
+int	mod(int a, int b, int *error)
 {
 	if (b)
 		return (a % b);
 	ft_putstr("Stop : modulo by zero");
-	g_mod = 1;
+	*error = 1;
 	return (0);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,30 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(char *str)
-{
-	int i;
-	int number;
-	int sign;
+void	ft_putchar(char c);
 
-	i = 0;
-	number = 0;
-	sign = 1;
-	if (str == '\0')
-		return (0);
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' ||
-			str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
-		i += 1;
-	if (str[i] == '-' || str[i] == '+')
+void	ft_putnbr(int nb)
+{
+	int	temp;
+	int	size;
+
+	size = 1;
+	if (nb < 0)
 	{
-		if (str[i] == '-')
-			sign = -1;
-		i += 1;
+		ft_putchar('-');
+		nb = -nb;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
 	{
-		number = (number * 10) + (str[i] - '0');
-		i += 1;
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
 	}
-	return (number * sign);
 }

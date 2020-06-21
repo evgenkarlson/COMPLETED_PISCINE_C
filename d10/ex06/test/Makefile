@@ -11,19 +11,17 @@
 # **************************************************************************** #
 
 NAME = do-op
-SRC = srcs/ft_atoi.c srcs/ft_putnbr.c
-
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+FLAGS = -Werror -Wall -Wextra -o
+_SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_calcs.c ft_do_op.c main.c
+SRCS = $(patsubst %, srcs/%, $(_SRC))
 
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) -o $(NAME) main.c $(SRC)
+	$(CC) $(FLAGS) $(NAME) $(SRCS)
 
 clean:
-	/bin/rm -f ft_atoi.o ft_putnbr.o
+	rm -f $(NAME)
 
-fclean: clean
-	/bin/rm -f $(NAME)
-
-re: fclean all
+re: clean all
