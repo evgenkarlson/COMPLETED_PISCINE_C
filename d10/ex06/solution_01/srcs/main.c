@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_putchar(char c);
+#include "../includes/ft.h"
 
-void	ft_putstr(char *str)
+
+int		main(int argc, char **argv)
 {
-	while(*str)
-		ft_putchar(*str++);
+	if (argc > 1)
+		ft_do_op(argc, argv);
+
+	return (0);
 }

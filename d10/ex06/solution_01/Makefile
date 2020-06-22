@@ -10,16 +10,17 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = do-op
 CC = gcc
-FLAGS = -Werror -Wall -Wextra -o
-_SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_calcs.c ft_do_op.c main.c
+LFLAGS = -Wall -Wextra -Werror -o
+NAME = do-op
+_SRC = ft_do_op.c ft_calc.c ft_putchar.c ft_putstr.c ft_atoi.c ft_putnbr.c main.c
 SRCS = $(patsubst %, srcs/%, $(_SRC))
+
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(FLAGS) $(NAME) $(SRCS)
+	$(CC) $(LFLAGS) $(NAME) $(SRCS)
 
 clean:
 	rm -f $(NAME)

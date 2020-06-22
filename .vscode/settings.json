@@ -5,7 +5,8 @@
         "stdlib.h": "c",
         "cstdio": "c",
         "sstream": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "cstdlib": "c"
     },
     "cmake.configureOnOpen": false
 }
