@@ -10,14 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = ./srcs/ft_op.c ./srcs/ft_putchar.c ./srcs/ft_putstr.c ./srcs/ft_atoi.c ./srcs/ft_putnbr.c 
-OBJECT = ./ft_op.o ./ft_putchar.o ./ft_putstr.o ./ft_atoi.o ./ft_putnbr.o
+CC = gcc
+LFLAGS = -Werror -Wall -Wextra -o
+NAME = ft_advanced_do-op
+_SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_opp.c main.c
+SRCS = $(patsubst %, srcs/%, $(_SRC))
 
-FLAGS = -Wall -Wextra -Werror
+all: $(NAME)
 
-all:
-	gcc $(FLAGS) -c $(SRC)
-	gcc $(FLAGS) -o do-op main.c $(SRC)
+$(NAME):
+	$(CC) $(LFLAGS) $(NAME) $(SRCS)
 
 clean:
-	/bin/rm -f $(OBJECT)
+	rm -f $(NAME)
+
+re: fclean all

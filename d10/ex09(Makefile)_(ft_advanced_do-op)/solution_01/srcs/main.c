@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,31 +11,37 @@
 /* ************************************************************************** */
 
 #include "../includes/ft_adv_opp.h"
+#include "../includes/ft_opp.h"
 
-void	ft_putnbr(int nb)
+void	ft_advanced_do_op(char *a, char *op, char *b)
 {
-	int	temp;
-	int	size;
+	int	i;
 
-	size = 1;
-	if (nb < 0)
+	if ((op[0] == '/' && !op[1]) && b == 0)
+		ft_putstr("Stop : division by zero\n");
+	else if ((op[0] == '%' && !op[1]) && b == 0)
+		ft_putstr("Stop : modulo by zero\n");
+	else
 	{
-		ft_putchar('-');
-		nb = -nb;
+		i = 0;
+		while (i < 5)
+		{
+			if ((*g_opptab[i].op == op[0]) && !op[1])
+			{
+				ft_putnbr(g_opptab[i].f(ft_atoi(a), ft_atoi(b)));
+				break;
+			}
+			i++;
+		}
+		if (i >= 5)
+			g_opptab[5].f(ft_atoi(a), ft_atoi(b));
+		ft_putchar('\n');
 	}
-	if (nb == -2147483648)
-	{	
-		ft_putchar('2');
-		nb = 147483648;
-	}
-	temp = nb;
-	while ((temp /= 10) > 0)
-		size *= 10;
-	temp = nb;
-	while (size)
-	{
-		ft_putchar((char)((temp / size)) + 48);
-		temp %= size;
-		size /= 10;
-	}
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc == 4)
+		ft_advanced_do_op(argv[1], argv[2], argv[3]);
+	return (0);
 }

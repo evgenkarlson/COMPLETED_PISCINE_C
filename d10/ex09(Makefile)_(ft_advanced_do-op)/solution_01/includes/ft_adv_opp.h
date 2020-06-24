@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef __FT_OP_H
-# define __FT_OP_H
+#ifndef FT_ADV_OPP_H
+# define FT_ADV_OPP_H
 # include <unistd.h>
 
 typedef struct	s_opp
 {
-	char	op;
+	char	*op;
 	int		(*f)(int a, int b);
 }				t_opp;
 
@@ -30,5 +30,6 @@ void			ft_putchar(char c);
 void			ft_putstr(char *str);
 void			ft_putnbr(int nbr);
 int				ft_atoi(char *str);
-int				ft_do_op(int a, char op, int b);
+void			ft_advanced_do_op(char *a, char *op, char *b);
+
 #endif

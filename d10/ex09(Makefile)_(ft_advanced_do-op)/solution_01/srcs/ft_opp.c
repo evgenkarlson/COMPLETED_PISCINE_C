@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/ft_adv_opp.h"
+
 int		ft_add(int a, int b)
 {
 	return (a + b);
@@ -33,4 +35,10 @@ int		ft_mod(int a, int b)
 int		ft_div(int a, int b)
 {
 	return (a / b);
+}
+
+int		ft_usage(int a, int b)
+{
+	ft_putstr("error : only [ - + * / % ] are accepted.");
+	return (a + b);
 }

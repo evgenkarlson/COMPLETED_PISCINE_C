@@ -14,18 +14,28 @@
 
 void	ft_putnbr(int nb)
 {
+	int	temp;
+	int	size;
+
+	size = 1;
 	if (nb < 0)
 	{
 		ft_putchar('-');
-		nb = nb * (-1);
+		nb = -nb;
 	}
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
 	}
-	else
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
 	{
-		ft_putchar(nb + '0');
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
 	}
 }
