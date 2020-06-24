@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_op.h                                            :+:      :+:    :+:   */
+/*   ft_adv_opp.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: adespond <adespond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/09/16 00:52:30 by adespond          #+#    #+#             */
-/*   Updated: 2015/09/16 05:31:16 by adespond         ###   ########.fr       */
+/*   Created: 2020/05/12 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/05/12 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,16 @@ typedef struct	s_opp
 	char	op;
 	int		(*f)(int a, int b);
 }				t_opp;
-int				ft_atoi(char *str);
+
 int				ft_add(int a, int b);
 int				ft_sub(int a, int b);
 int				ft_mul(int a, int b);
 int				ft_mod(int a, int b);
 int				ft_div(int a, int b);
-int				ft_do_op(int a, char op, int b);
+int				ft_usage(int a, int b);
 void			ft_putchar(char c);
-void			ft_putnbr(int nbr);
 void			ft_putstr(char *str);
+void			ft_putnbr(int nbr);
+int				ft_atoi(char *str);
+int				ft_do_op(int a, char op, int b);
 #endif
