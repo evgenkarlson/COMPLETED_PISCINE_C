@@ -13,7 +13,7 @@
 CC = gcc
 LFLAGS = -Werror -Wall -Wextra -o
 NAME = ft_advanced_do-op
-_SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_opp.c ft_adv_do_op.c main.c
+_SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_opp.c ft_adv_opp.c main.c
 SRCS = $(patsubst %, srcs/%, $(_SRC))
 
 all: $(NAME)
