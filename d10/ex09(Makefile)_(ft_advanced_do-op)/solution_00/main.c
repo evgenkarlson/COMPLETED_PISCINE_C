@@ -94,6 +94,7 @@ void	ft_advanced_do_op(char *a, char *operator, char *b)
 	else if (operator[0] == '%' && ft_atoi(b) == 0)
 		write(1, "Stop : modulo by zero\n", 23);
 	else
+	{
 		while (i < 5)
 		{
 			if ((*g_opptab[i].op == operator[0]) && !operator[1])
@@ -106,6 +107,7 @@ void	ft_advanced_do_op(char *a, char *operator, char *b)
 		if (i >= 5)
 			g_opptab[5].func(atoi(a), atoi(b));
 		write(1, "\n", 1);
+	}
 }
 
 
