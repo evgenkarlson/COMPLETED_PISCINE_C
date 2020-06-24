@@ -17,9 +17,9 @@ void	ft_advanced_do_op(char *a, char *op, char *b)
 {
 	int i;
 
-	if ((op[0] == '/' && !op[1]) && ft_atoi(b) == 0)
+	if (((op[0] == '/') && !op[1]) && ft_atoi(b) == 0)
 		ft_putstr("Stop : division by zero\n");
-	else if ((op[0] == '%' && !op[1]) && ft_atoi(b) == 0)
+	else if (((op[0] == '%') && !op[1]) && ft_atoi(b) == 0)
 		ft_putstr("Stop : modulo by zero\n");
 	else
 	{
