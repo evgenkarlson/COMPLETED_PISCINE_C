@@ -10,6 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** *
+ *
+ * 
+ *	• Создайте функцию "ft_advanced_sort_wordtab", которая сортирует, в 
+ *	зависимости от возврата функции, заданной в качестве аргумента, слова, 
+ *	полученные с помощью "ft_split_whitespaces".
+ * 
+ * 
+ *	• Сортировка будет выполняться путем обмена указателями массива.
+ * 
+ * 
+ *	• Вот как эта функция должна быть объявлена :
+ *
+ *		void	ft_advanced_sort_wordtab(char **tab, int(*cmp)(char *, char *))
+ * 
+ * 
+ * ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
 void	ft_swap(char **x, char **y)
 {
 	char *temp;
@@ -24,12 +48,12 @@ int		getlength(char **tab)
 	int i;
 
 	i = 0;
-	while (tab[i] != 0)
+	while (*tab++)
 		i++;
 	return (i);
 }
 
-void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
+void	ft_advanced_sort_wordtab(char **tab, int(*cmp)(char *, char *))
 {
 	int i;
 	int j;
@@ -59,7 +83,7 @@ void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
 /* ************************************************************************** */
 
 
-void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
+void	ft_advanced_sort_wordtab(char **tab, int(*cmp)(char *, char *))
 {
 	int		length;
 	int		i;
@@ -88,7 +112,7 @@ void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
 /* ************************************************************************** */
 
 
-void	ft_advanced_sort_wordtab(char **tab, int (*cmp)(char *, char *))
+void	ft_advanced_sort_wordtab(char **tab, int(*cmp)(char *, char *))
 {
 	int		i;
 	int		sorted;
