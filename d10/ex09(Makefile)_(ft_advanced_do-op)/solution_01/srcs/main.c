@@ -13,17 +13,20 @@
 #include "../includes/ft_adv_opp.h"
 #include "../includes/ft_opp.h"
 
+
 void	ft_advanced_do_op(char *a, char *op, char *b)
 {
 	int	i;
 
-	if ((op[0] == '/' && !op[1]) && b == 0)
+	i = 0;
+	if (!op[1])
+		g_opptab[5].f(ft_atoi(a), ft_atoi(b));
+	else if ((op[0] == '/') && (b == 0))
 		ft_putstr("Stop : division by zero\n");
-	else if ((op[0] == '%' && !op[1]) && b == 0)
+	else if ((op[0] == '%') && (b == 0))
 		ft_putstr("Stop : modulo by zero\n");
 	else
 	{
-		i = 0;
 		while (i < 5)
 		{
 			if ((*g_opptab[i].op == op[0]) && !op[1])
@@ -33,8 +36,6 @@ void	ft_advanced_do_op(char *a, char *op, char *b)
 			}
 			i++;
 		}
-		if (i >= 5)
-			g_opptab[5].f(ft_atoi(a), ft_atoi(b));
 		ft_putchar('\n');
 	}
 }
