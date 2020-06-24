@@ -10,20 +10,19 @@
 #                                                                              #
 # **************************************************************************** #
 
+CC = gcc
+LFLAGS = -Werror -Wall -Wextra -o
 NAME = ft_advanced_do-op
-SRC = ft_opp.c main.c
+_SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_opp.c ft_advanced_do_op.c main.c
+SRCS = $(patsubst %, srcs/%, $(_SRC))
 
-CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) -o $(NAME) $(SRC)
+	$(CC) $(LFLAGS) $(NAME) $(SRCS)
 
 clean:
-	/bin/rm -f ft_opp.o main.o
-
-fclean: clean
-	/bin/rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
