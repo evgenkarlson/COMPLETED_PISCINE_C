@@ -97,8 +97,10 @@ void	ft_advanced_do_op(char *a, char *operator, char *b)
 		while (i < 5)
 		{
 			if ((*g_opptab[i].op == operator[0]) && !operator[1])
+			{
 				ft_putnbr(g_opptab[i].func(atoi(a), atoi(b)));
 				break;
+			}
 			i++;
 		}
 		if (i >= 5)
