@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_adv_opp.h                                       :+:      :+:    :+:   */
+/*   ft_op.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: adespond <adespond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/30 21:27:38 by jaleman           #+#    #+#             */
-/*   Updated: 2017/03/30 21:27:39 by jaleman          ###   ########.fr       */
+/*   Created: 2015/09/16 00:52:30 by adespond          #+#    #+#             */
+/*   Updated: 2015/09/16 05:31:16 by adespond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_ADV_OPP_H
-# define FT_ADV_OPP_H
-
+#ifndef __FT_OP_H
+# define __FT_OP_H
 # include <unistd.h>
-# include <stdlib.h>
-
-typedef int		(*t_s_opp)(int, int);
 
 typedef struct	s_opp
 {
-	char	*op;
-	t_s_opp	func;
+	char	op;
+	int		(*f)(int a, int b);
 }				t_opp;
-
+int				ft_atoi(char *str);
 int				ft_add(int a, int b);
 int				ft_sub(int a, int b);
 int				ft_mul(int a, int b);
-int				ft_div(int a, int b);
 int				ft_mod(int a, int b);
-int				ft_usage(int a, int b);
-
+int				ft_div(int a, int b);
+int				ft_do_op(int a, char op, int b);
+void			ft_putchar(char c);
+void			ft_putnbr(int nbr);
+void			ft_putstr(char *str);
 #endif

@@ -29,10 +29,10 @@ int		ft_mul(int nbr1, int nbr2)
 
 int		ft_div(int nbr1, int nbr2)
 {
-	return (nbr2 != 0 ? nbr1 / nbr2 : 0);
+	return ((nbr2 != 0) ? (nbr1 / nbr2) : 0);
 }
 
 int		ft_mod(int nbr1, int nbr2)
 {
-	return (nbr2 != 0 ? nbr1 % nbr2 : 0);
+	return ((nbr2 != 0) ?( nbr1 % nbr2) : 0);
 }
