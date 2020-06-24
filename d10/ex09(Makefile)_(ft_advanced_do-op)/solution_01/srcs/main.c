@@ -22,9 +22,9 @@ void	ft_advanced_do_op(char *a, char *op, char *b)
 	if (!op[1])
 		g_opptab[5].f(ft_atoi(a), ft_atoi(b));
 	else if ((op[0] == '/') && (b == 0))
-		ft_putstr("Stop : division by zero\n");
+		ft_putstr("Stop : division by zero");
 	else if ((op[0] == '%') && (b == 0))
-		ft_putstr("Stop : modulo by zero\n");
+		ft_putstr("Stop : modulo by zero");
 	else
 	{
 		while (i < 5)
@@ -36,8 +36,8 @@ void	ft_advanced_do_op(char *a, char *op, char *b)
 			}
 			i++;
 		}
-		ft_putchar('\n');
 	}
+	ft_putchar('\n');
 }
 
 int		main(int argc, char **argv)
