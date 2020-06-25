@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_create_elem.c                                   :+:      :+:    :+:   */
+/*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,58 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
-#include <stdlib.h>
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
-/* ************************************************************************** */
-
-t_list	*ft_create_elem(void *data)
+typedef struct	s_list
 {
-	t_list	*list;
+	struct s_list	*next;
+	void			*data;
+}					t_list;
 
-	list = NULL;
-	list = malloc(sizeof(t_list));
-	if (list)
-	{
-		list->data = data;
-		list->next = NULL;
-	}
-	return (list);
-}
+t_list			*ft_create_elem(void *data);
+
+#endif
 
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 
 
-t_list		*ft_create_elem(void *data)
+#ifndef	__FT_LIST_H__
+# define __FT_LIST_H__
+
+typedef struct	s_list
 {
-	t_list	*list;
+	struct s_list	*next;
+	void			*data;
+}					t_list;
 
-	list = (t_list*)malloc(sizeof(t_list));
-	if (list)
-	{
-		list->data = data;
-		list->next = NULL;
-	}
-	return (list);
-}
+t_list			*ft_create_elem(void *data);
 
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-t_list		*ft_create_elem(void *data)
-{
-	t_list	*tmp;
-
-	if (!(tmp = (t_list *)malloc(sizeof(t_list))))
-		return (NULL);
-	tmp->data = data;
-	tmp->next = NULL;
-	return (tmp);
-}
+#endif
 
 
 /* ************************************************************************** */

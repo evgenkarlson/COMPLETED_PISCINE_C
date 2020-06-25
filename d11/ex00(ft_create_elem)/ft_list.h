@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_push_back.c                                :+:      :+:    :+:   */
+/*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,65 +10,52 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_list.h"
+#ifndef	__FT_LIST_H__
+# define __FT_LIST_H__
 
-/* ************************************************************************** */
-
-void	ft_list_push_back(t_list **begin_list, void *data)
+typedef struct		s_list
 {
-	t_list	*list;
+	struct s_list	*next;
+	void			*data;
+}					t_list;
 
-	list = *begin_list;
-	if (list)
-	{
-		while (list->next)
-			list = list->next;
-		list->next = ft_create_elem(data);
-	}
-	else
-		*begin_list = ft_create_elem(data);
-}
+#endif
 
 
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-void	ft_list_push_back(t_list **begin_list, void *data)
+
+#ifndef FT_LIST_H
+# define FT_LIST_H
+
+typedef struct	s_list
 {
-	t_list *list;
-	t_list *tmp;
+	struct s_list	*next;
+	void			*data;
+}				t_list;
+#endif
 
-	tmp = *begin_list;
-	list = ft_create_elem(data);
-	if (list)
-	{
-		while (tmp->next != 0)
-		{
-			tmp = tmp->next;
-		}
-		tmp->next = list;
-	}
-}
+
 
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-void	ft_list_push_back(t_list **begin_list, void *data)
+
+
+
+#ifndef FT_LIST_H
+# define FT_LIST_H
+
+typedef struct			s_list
 {
-	t_list	*list;
+	struct s_list		*next;
+	void				*data;
+}						t_list;
 
-	list = *begin_list;
-	if (list)
-	{
-		while (list->next)
-			list = list->next;
-		list->next = ft_create_elem(data);
-	}
-	else
-		*begin_list = ft_create_elem(data);
-}
+#endif
 
 
 /* ************************************************************************** */
