@@ -58,8 +58,9 @@ int		ft_calc(int x, char operator, int y)
 	cal[4].op = '%';
 	cal[4].ft = ft_mod;
 
-	/*	V 0.2	Еще один способ инициализировать каждый обьект массива обьектов 'cal' */
-	/*	t_cal	cal[] = 
+/*
+		V 0.2	Еще один способ инициализировать каждый обьект массива обьектов 'cal' 
+		t_cal	cal[] = 
 		{
 			{'=', ft_sum},
 			{'-', ft_sub},
@@ -67,14 +68,14 @@ int		ft_calc(int x, char operator, int y)
 			{'/', ft_div},
 			{'%', ft_mod}
 		};	
-	*/
 
-	/*	V 0.3	Еще один способ инициализировать каждый обьект массива обьектов 'cal' */
-	/*	cal[0] = (t_cal){.op = '+', .ft = ft_sum}; */
-	/*	cal[1] = (t_cal){.op = '-', .ft = ft_sub}; */
-	/*	cal[2] = (t_cal){.op = '*', .ft = ft_mul}; */
-	/*	cal[3] = (t_cal){.op = '/', .ft = ft_div}; */
-	/*	cal[4] = (t_cal){.op = '%', .ft = ft_mod}; */
+		V 0.3	Еще один способ инициализировать каждый обьект массива обьектов 'cal'
+		cal[0] = (t_cal){.op = '+', .ft = ft_sum};
+		cal[1] = (t_cal){.op = '-', .ft = ft_sub};
+		cal[2] = (t_cal){.op = '*', .ft = ft_mul};
+		cal[3] = (t_cal){.op = '/', .ft = ft_div};
+		cal[4] = (t_cal){.op = '%', .ft = ft_mod};
+*/
 
 	i = 0;
 	while (i < 5)

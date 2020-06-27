@@ -42,9 +42,9 @@ void	ft_list_push_back(t_list **begin_list, void *data)
 {
 	t_list	*list;
 
-	list = *begin_list;
-	if (list)
+	if (*begin_list)
 	{
+		list = *begin_list;
 		while (list->next)
 			list = list->next;
 		list->next = ft_create_elem(data);
@@ -62,18 +62,16 @@ void	ft_list_push_back(t_list **begin_list, void *data)
 
 /* ************************************************************************** */
 
-void	ft_list_push_back(t_list **begin_list, void *data)
+void	ft_list_push_back2(t_list **begin_list, void *data)
 {
-	t_list *list;
 	t_list *tmp;
 
-	tmp = *begin_list;
-	list = ft_create_elem(data);
-	if (list)
+	if (*begin_list)
 	{
-		while (tmp->next != 0)
+		tmp = *begin_list;
+		while (tmp->next)
 			tmp = tmp->next;
-		tmp->next = list;
+		tmp->next = ft_create_elem(data);
 	}
 }
 

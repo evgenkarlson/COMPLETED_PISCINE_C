@@ -9,6 +9,8 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 #include "ft_list.h"
 
 void	ft_list_push_front(t_list **begin_list, void *data)
@@ -30,6 +32,9 @@ void	ft_list_push_front(t_list **begin_list, void *data)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+
+#include "ft_list.h"
+
 void	ft_list_push_front(t_list **begin_list, void *data)
 {
 	t_list	*list;
@@ -44,6 +49,9 @@ void	ft_list_push_front(t_list **begin_list, void *data)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+
+#include "ft_list.h"
+
 void	ft_list_push_front(t_list **begin_list, void *data)
 {
 	t_list *list;
@@ -55,6 +63,7 @@ void	ft_list_push_front(t_list **begin_list, void *data)
 		*begin_list = list;
 	}
 }
+
 
 /* ************************************************************************** */
 /* ************************************************************************** */
