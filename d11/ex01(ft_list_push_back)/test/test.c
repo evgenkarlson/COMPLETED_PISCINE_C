@@ -124,3 +124,17 @@ int			main(void)
 
 	return (0);								/* Завершаем функцию и возвращаем ноль */
 }
+
+	/*	Вот несколько способов чтобы получить данные экземпляра структуры из первого элементам массива указателей "t_list	**tab_list"
+		ft_putstr((char *)((*tab_list).next->data));
+		ft_putstr((char *)((*(**tab_list).next).data));
+
+		ft_putstr((char *)((*tab_list[0]).next->data));
+		ft_putstr((char *)((*(*tab_list[0]).next).data));
+
+		ft_putstr((char *)(tab_list[0][0].next->data));
+		ft_putstr((char *)(tab_list[0][0].next[0].data));
+
+		ft_putstr((char *)((*tab_list)->next->data));
+		ft_putstr((char *)(tab_list[0]->next->data));
+	*/
