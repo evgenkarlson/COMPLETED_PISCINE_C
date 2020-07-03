@@ -29,14 +29,6 @@ void		ft_putchar(char c)			/* Функция печати символа */
 
 /* ************************************************************************** */
 
-void		ft_putstr(char *str)		/* Функция печати строки */
-{
-	while(*str)
-		ft_putchar(*str++);
-}
-
-/* ************************************************************************** */
-
 void		ft_putnbr(int nb)			/* Функция печати числа */
 {
 	int	temp;
@@ -125,17 +117,3 @@ int			main(void)
 
 	return (0);							/* Завершаем функцию и возвращаем ноль */
 }
-
-	/*	Вот несколько способов чтобы получить данные экземпляра структуры из первого элементам массива указателей "t_list	**tab_list"
-		ft_putstr((char *)((*tab_list).next->data));
-		ft_putstr((char *)((*(**tab_list).next).data));
-
-		ft_putstr((char *)((*tab_list[0]).next->data));
-		ft_putstr((char *)((*(*tab_list[0]).next).data));
-
-		ft_putstr((char *)(tab_list[0][0].next->data));
-		ft_putstr((char *)(tab_list[0][0].next[0].data));
-
-		ft_putstr((char *)((*tab_list)->next->data));
-		ft_putstr((char *)(tab_list[0]->next->data));
-	*/
