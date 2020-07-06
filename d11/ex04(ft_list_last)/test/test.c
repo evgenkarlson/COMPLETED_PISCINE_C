@@ -104,6 +104,8 @@ t_list	*ft_list_last(t_list *begin_list)
 	return ((void *)0);
 }
 
+
+
 int			main(void)
 {
 	t_list	*list;						/* Обьявим указатель структуры типа t_list для хранения адреса экземпляра структуры типа t_list */
