@@ -47,6 +47,34 @@
 #include <stdlib.h>
 #include "ft_list.h"
 
+t_list	*ft_list_push_params(int ac, char **av)
+{
+	t_list	*tmp;
+	t_list	*list;
+	int		i;
+
+	i = 1;
+	list = ft_create_elem(av[0]);
+	tmp = list;
+	while (i < ac)
+	{
+		list = ft_create_elem(av[i]);
+		list->next = tmp;
+		tmp = list;
+		i++;
+	}
+	return (list);
+}
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <stdlib.h>
+#include "ft_list.h"
+
 t_list	*add_link(t_list *list, void *data)
 {
 	t_list *tmp;
@@ -82,32 +110,6 @@ t_list	*ft_list_push_params(int ac, char **av)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "ft_list.h"
-
-t_list	*ft_list_push_params(int ac, char **av)
-{
-	t_list	*tmp;
-	t_list	*list;
-	int		i;
-
-	i = 1;
-	list = ft_create_elem(av[0]);
-	tmp = list;
-	while (i < ac)
-	{
-		list = ft_create_elem(av[i]);
-		list->next = tmp;
-		tmp = list;
-		i++;
-	}
-	return (list);
-}
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
 
 #include <stdlib.h>
 #include "ft_list.h"
@@ -130,6 +132,7 @@ t_list	*ft_list_push_params(int ac, char **av)
 	}
 	return (list);
 }
+
 
 /* ************************************************************************** */
 /* ************************************************************************** */
