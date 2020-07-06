@@ -34,29 +34,6 @@
 
 void	ft_list_clear(t_list **begin_list)
 {
-	t_list	*tmp;
-	t_list	*list;
-
-	list = *begin_list;
-	tmp = NULL;
-	while (list)
-	{
-		if (list->next)
-			tmp = list->next;
-		else
-			tmp = NULL;
-		free(list);
-		list = tmp;
-	}
-}
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-void	ft_list_clear(t_list **begin_list)
-{
 	t_list *tmp;
 	t_list *list;
 
@@ -66,16 +43,19 @@ void	ft_list_clear(t_list **begin_list)
 		if (list->next)
 			tmp = list->next;
 		else
-			tmp = NULL;
+			tmp = ((void *)0);
 		free(list);
 		list = tmp;
 	}
-	*begin_list = 0;
+	*begin_list = ((void *)0);
 }
 
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
+#include <stdlib.h>
+#include "ft_list.h"
 
 void	ft_list_clear(t_list **begin_list)
 {
@@ -89,7 +69,7 @@ void	ft_list_clear(t_list **begin_list)
 		free(link);
 		link = next_link;
 	}
-	*begin_list = NULL;
+	*begin_list = ((void *)0);
 }
 
 /* ************************************************************************** */
