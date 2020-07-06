@@ -7,7 +7,8 @@
         "sstream": "c",
         "typeinfo": "c",
         "cstdlib": "c",
-        "list": "c"
+        "list": "c",
+        "*.tcc": "c"
     },
     "cmake.configureOnOpen": false
 }
