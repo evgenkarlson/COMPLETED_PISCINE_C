@@ -28,14 +28,13 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-
 #include <stdlib.h>
 #include "ft_list.h"
 
 void	ft_list_clear(t_list **begin_list)
 {
-	t_list *tmp;
-	t_list *list;
+	t_list	*tmp;
+	t_list	*list;
 
 	list = *begin_list;
 	while (list)
@@ -50,27 +49,30 @@ void	ft_list_clear(t_list **begin_list)
 	*begin_list = ((void *)0);
 }
 
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
 
 #include <stdlib.h>
 #include "ft_list.h"
 
 void	ft_list_clear(t_list **begin_list)
 {
-	t_list	*next_link;
-	t_list	*link;
+	t_list	*tmp;
+	t_list	*list;
 
-	link = *begin_list;
-	while (link)
+	list = *begin_list;
+	while (list)
 	{
-		next_link = link->next;
-		free(link);
-		link = next_link;
+		tmp = list->next;
+		free(list);
+		list = tmp;
 	}
 	*begin_list = ((void *)0);
 }
+
 
 /* ************************************************************************** */
 /* ************************************************************************** */
