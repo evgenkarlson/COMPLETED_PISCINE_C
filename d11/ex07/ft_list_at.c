@@ -11,17 +11,17 @@
 /* ************************************************************************** */
 #include "ft_list.h"
 
-t_list *ft_list_at(t_list *begin_list, unsigned int nbr)
+t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	t_list			*list;
 	unsigned int	i;
 
-	i = 1;
 	list = begin_list;
+	i = 1;
 	while (i < nbr)
 	{
 		if (!list)
-			return (NULL);
+			return ((void *)0);
 		list = list->next;
 		i++;
 	}
@@ -40,7 +40,7 @@ t_list		*ft_list_at(t_list *begin_list, unsigned int nbr)
 	t_list			*list;
 
 	if (nbr == 0)
-		return (0);
+		return ((void *)0);
 	list = begin_list;
 	i = 1;
 	while (i < nbr)
@@ -48,7 +48,7 @@ t_list		*ft_list_at(t_list *begin_list, unsigned int nbr)
 		if (list->next)
 			list = list->next;
 		else
-			return (0);
+			return ((void *)0);
 		i++;
 	}
 	return (list);
@@ -63,7 +63,7 @@ t_list		*ft_list_at(t_list *begin_list, unsigned int nbr)
 t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	if (!begin_list)
-		return (0);
+		return ((void *)0);
 	if (!nbr)
 		return (begin_list);
 	return (ft_list_at(begin_list->next, nbr - 1));
