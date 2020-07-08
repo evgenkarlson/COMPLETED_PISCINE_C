@@ -9,6 +9,25 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** *
+ *
+ * 
+ *	• 
+ *	
+ *
+ *	• 
+ *
+ * 
+ *	• Вот как эта функция должна быть объявлена :
+ *
+ *								void	ft_list_reverse(t_list **begin_list)
+ * 
+ * 
+ * ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
 #include "ft_list.h"
 
 void	ft_list_reverse(t_list **begin_list)
@@ -17,13 +36,12 @@ void	ft_list_reverse(t_list **begin_list)
 	t_list	*tmp;
 	t_list	*tmp2;
 
-	tmp = NULL;
 	list = *begin_list;
 	if (!list || !(list->next))
 		return;
 	tmp = list->next;
 	tmp2 = tmp->next;
-	list->next = NULL;
+	list->next = ((void *)0);
 	tmp->next = list;
 	while (tmp2)
 	{
@@ -52,7 +70,7 @@ void	ft_list_reverse(t_list **begin_list)
 		return ;
 	tmp = list->next;
 	tmp2 = tmp->next;
-	list->next = 0;
+	list->next = ((void *)0);
 	tmp->next = list;
 	while (tmp2)
 	{
@@ -75,7 +93,7 @@ void	ft_list_reverse(t_list **begin_list)
 	t_list	*new_start;
 	t_list	*tmp;
 
-	new_start = NULL;
+	new_start = ((void *)0);
 	while (*begin_list)
 	{
 		tmp = (*begin_list)->next;

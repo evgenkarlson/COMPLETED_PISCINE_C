@@ -64,8 +64,7 @@ t_list		*ft_create_elem(void *data)	/* Функция создает экзем�
 
 /* ************************************************************************** */
 
-
-t_list		*ft_list_at1(t_list *begin_list, unsigned int nbr)
+t_list		*ft_list_at(t_list *begin_list, unsigned int nbr)
 {
 	unsigned int	i;
 	t_list			*list;
