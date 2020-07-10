@@ -66,27 +66,21 @@ t_list		*ft_create_elem(void *data)	/* Функция создает экзем�
 
 void	ft_list_reverse(t_list **begin_list)
 {
-	t_list	*list;						/* */
-	t_list	*tmp;						/* */
-	t_list	*tmp2;						/* */
+	t_list	*new_start;
+	t_list	*tmp;
 
-	list = *begin_list;					/* */
-	if (!list || !(list->next))			/* */
-		return;							/* */
-	tmp = list->next;					/* */
-	tmp2 = tmp->next;					/* */
-	list->next = ((void *)0);			/* */
-	tmp->next = list;					/* */
-	while (tmp2)						/* */
+	if (*begin_list == 0 || (*begin_list)->next == 0)
+		return ;
+	new_start = ((void *)0);
+	while (*begin_list)
 	{
-		list = tmp;						/* */
-		tmp = tmp2;						/* */
-		tmp2 = tmp2->next;				/* */
-		tmp->next = list;				/* */
+		tmp = (*begin_list)->next;
+		(*begin_list)->next = new_start;
+		new_start = *begin_list;
+		*begin_list = tmp;
 	}
-	*begin_list = tmp;					/* */
+	*begin_list = new_start;
 }
-
 
 
 int			main(void)

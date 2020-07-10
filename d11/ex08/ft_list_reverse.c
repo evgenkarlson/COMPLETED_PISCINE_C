@@ -91,6 +91,8 @@ void	ft_list_reverse(t_list **begin_list)
 	t_list	*new_start;
 	t_list	*tmp;
 
+	if (*begin_list == 0 || (*begin_list)->next == 0)
+		return ;
 	new_start = ((void *)0);
 	while (*begin_list)
 	{
