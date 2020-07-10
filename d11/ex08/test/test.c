@@ -106,8 +106,8 @@ int			main(void)
 	list->next->next->next->next = ft_create_elem("Cool ");
 	list->next->next->next->next->next = ft_create_elem("Friend ");
 
-	ft_list_reverse(&list);
-	ft_put_list(list);		
+	ft_list_reverse(&list);				/* */
+	ft_put_list(list);					/* */
 	ft_putchar('\n');					/* Печатаем символ переноса строки для кореектного отображения вывода */
 	return (0);							/* Завершаем функцию и возвращаем ноль */
 }
