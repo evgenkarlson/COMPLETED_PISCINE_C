@@ -25,7 +25,7 @@
  * 
  *	• Вот как эта функция должна быть объявлена :
  *
- *					void	ft_list_push_back(t_list **begin_list, void *data)
+ *					void	ft_list_push_back(t_list **begin_list, void *data);
  * 
  * 
  * ************************************************************************** */

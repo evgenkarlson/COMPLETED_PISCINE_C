@@ -21,7 +21,7 @@
  * 
  *	• Вот как эта функция должна быть объявлена :
  *
- *					t_list	*ft_list_at(t_list *begin_list, unsigned int nbr)
+ *					t_list	*ft_list_at(t_list *begin_list, unsigned int nbr);
  * 
  * 
  * ************************************************************************** */

@@ -19,7 +19,7 @@
  * 
  *	• Вот как эта функция должна быть объявлена :
  *
- *				void	ft_list_foreach(t_list *begin_list, void (*f)(void *))
+ *				void	ft_list_foreach(t_list *begin_list, void (*f)(void *));
  * 
  * 
  *	• Функция, указанная "f", будет использоваться следующим образом:
