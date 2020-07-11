@@ -9,6 +9,22 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** *
+ *
+ * 
+ *	• Создайте функцию ft_list_remove_if, которая удаляет из списка все элемен-
+ *	ты, данные которых «равны» справочным данным.
+ * 
+ * 
+ *	• Вот как эта функция должна быть объявлена :
+ *
+ *	void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
+ * 
+ *
+ * ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
 
 #include "ft_list.h"
 #include <stdlib.h>
@@ -20,8 +36,8 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 	t_list *tmp;
 
 	list_ptr = *begin_list;
-	list_parent = 0;
-	while (list_ptr != 0)
+	list_parent = ((void *)0);
+	while (list_ptr)
 	{
 		tmp = list_ptr;
 		if ((*cmp)(list_ptr->data, data_ref) == 0)
@@ -39,15 +55,18 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+#include "ft_list.h"
+#include <stdlib.h>
+
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
 	t_list	*last;
 	t_list	*current;
 	t_list	*tmp;
 
-	last = NULL;
+	last = ((void *)0);
 	current = *begin_list;
-	tmp = NULL;
+	tmp = ((void *)0);
 	while (current)
 	{
 		if ((*cmp)(current->data, data_ref) == 0)
