@@ -30,6 +30,30 @@
 
 void	ft_list_reverse(t_list **begin_list)
 {
+	t_list	*new_start;
+	t_list	*tmp;
+
+	if (!(*begin_list) || !((*begin_list)->next))
+		return ;
+	new_start = ((void *)0);
+	while (*begin_list)
+	{
+		tmp = (*begin_list)->next;
+		(*begin_list)->next = new_start;
+		new_start = *begin_list;
+		*begin_list = tmp;
+	}
+	*begin_list = new_start;
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+#include "ft_list.h"
+
+void	ft_list_reverse(t_list **begin_list)
+{
 	t_list	*list;
 	t_list	*tmp;
 	t_list	*tmp2;
@@ -57,51 +81,23 @@ void	ft_list_reverse(t_list **begin_list)
 
 #include "ft_list.h"
 
-void	ft_list_reverse(t_list **begin_list)
+t_list	*ft_rev_list(t_list *node)
 {
-	t_list *tmp;
-	t_list *tmp2;
-	t_list *list;
+	t_list *rest;
 
-	list = *begin_list;
-	if (list == 0 || list->next == 0)
-		return ;
-	tmp = list->next;
-	tmp2 = tmp->next;
-	list->next = ((void *)0);
-	tmp->next = list;
-	while (tmp2)
-	{
-		list = tmp;
-		tmp = tmp2;
-		tmp2 = tmp2->next;
-		tmp->next = list;
-	}
-	*begin_list = tmp;
+	if (!node)
+		return (0);
+	if (!node->next)
+		return (node);
+	rest = ft_rev_list(node->next);
+	node->next->next = node;
+	node->next = 0;
+	return (rest);
 }
 
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-#include "ft_list.h"
-
 void	ft_list_reverse(t_list **begin_list)
 {
-	t_list	*new_start;
-	t_list	*tmp;
-
-	if (*begin_list == 0 || (*begin_list)->next == 0)
-		return ;
-	new_start = ((void *)0);
-	while (*begin_list)
-	{
-		tmp = (*begin_list)->next;
-		(*begin_list)->next = new_start;
-		new_start = *begin_list;
-		*begin_list = tmp;
-	}
-	*begin_list = new_start;
+	*begin_list = ft_rev_list(*begin_list);
 }
 
 /* ************************************************************************** */

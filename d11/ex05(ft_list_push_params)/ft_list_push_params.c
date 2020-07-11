@@ -58,6 +58,58 @@ t_list	*ft_list_push_params(int ac, char **av)
 	return (list);
 }
 
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <stdlib.h>
+#include "ft_list.h"
+
+t_list	*ft_list_push_params(int ac, char **av)
+{
+	t_list *current;
+	t_list *last;
+	int i;
+
+	i = 0;
+	last = 0;
+	while (++i < ac)
+	{
+		current = ft_create_elem(av[i]);
+		current->next = last;
+		last = current;
+	}
+	return (current);
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <stdlib.h>
+#include "ft_list.h"
+
+t_list	*ft_list_push_params(int ac, char **av)
+{
+	int		i;
+	t_list	*list;
+	t_list	*tmp;
+
+	i = 0;
+	tmp = (void *)0;
+	list = (void *)0;
+	while (i < ac)
+	{
+		list = ft_create_elem(av[i]);
+		list->next = tmp;
+		tmp = list;
+		i++;
+	}
+	return (list);
+}
+
 
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -93,34 +145,6 @@ t_list	*ft_list_push_params(int ac, char **av)
 	{
 		list = add_link(list, av[i]);
 		i++;
-	}
-	return (list);
-}
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-#include <stdlib.h>
-#include "ft_list.h"
-
-t_list	*ft_list_push_params(int ac, char **av)
-{
-	int		i;
-	t_list	*list;
-	t_list	*tmp;
-
-	i = 0;
-	tmp = (void *)0;
-	list = (void *)0;
-	while (i < ac)
-	{
-		list = ft_create_elem(av[i]);
-		list->next = tmp;
-		tmp = list;
-		i += 1;
 	}
 	return (list);
 }
