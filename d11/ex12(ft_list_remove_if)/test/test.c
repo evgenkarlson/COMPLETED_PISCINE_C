@@ -93,7 +93,7 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 		tmp = list_ptr;
 		if ((*cmp)(list_ptr->data, data_ref) == 0)
 		{
-			if (list_parent != 0)
+			if (list_parent)
 				list_parent->next = list_ptr->next;
 			free(list_ptr);
 		}
