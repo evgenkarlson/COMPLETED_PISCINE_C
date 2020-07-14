@@ -82,26 +82,32 @@ int			ft_strcmp(char *s1, char *s2)	/* Функция сравнивает дв�
  * который мы получили с аргументами в указатель *data_ref.*/
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
-	t_list *list_ptr;
-	t_list *list_parent;
-	t_list *tmp;
+	t_list	*last;
+	t_list	*current;
+	t_list	*tmp;
 
-	list_ptr = *begin_list;
-	list_parent = ((void *)0);
-	while (list_ptr)
+	last = ((void *)0);
+	current = *begin_list;
+	tmp = ((void *)0);
+	while (current)
 	{
-		tmp = list_ptr;
-		if ((*cmp)(list_ptr->data, data_ref) == 0)
+		if ((*cmp)(current->data, data_ref) == 0)
 		{
-			if (list_parent)
-				list_parent->next = list_ptr->next;
-			free(list_ptr);
+			if (current == *begin_list)
+				*begin_list = current->next;
+			else
+				last->next = current->next;
+			tmp = current;
+			current = current->next;
+			free(tmp);
 		}
-		list_parent = list_ptr;
-		list_ptr = tmp->next;
+		else
+		{
+			last = current;
+			current = current->next;
+		}
 	}
 }
-
 
 int			main(void)
 {
@@ -121,7 +127,7 @@ int			main(void)
 	list->next->next->next->next->next = ft_create_elem("Friend ");
 
 
-	ft_list_remove_if(&list, (void *)"Hello ", &ft_strcmp);	/* Ищем в текущей цепи связанных между собой экземпляров структур нужный 
+	ft_list_remove_if(&list, (void *)"Bro ", &ft_strcmp);	/* Ищем в текущей цепи связанных между собой экземпляров структур нужный 
 															 * нам экземпляр с такой же строкой внутри и удаляем его из этой цепи */
 	ft_put_list(list);
 	ft_putchar('\n');					/* Печатаем символ переноса строки для кореектного отображения вывода */
