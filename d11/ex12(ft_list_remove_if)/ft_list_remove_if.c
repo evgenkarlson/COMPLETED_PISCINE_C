@@ -26,37 +26,8 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-#include "ft_list.h"
 #include <stdlib.h>
-
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
-{
-	t_list *list_ptr;
-	t_list *list_parent;
-	t_list *tmp;
-
-	list_ptr = *begin_list;
-	list_parent = ((void *)0);
-	while (list_ptr)
-	{
-		tmp = list_ptr;
-		if ((*cmp)(list_ptr->data, data_ref) == 0)
-		{
-			if (list_parent != 0)
-				list_parent->next = list_ptr->next;
-			free(list_ptr);
-		}
-		list_parent = list_ptr;
-		list_ptr = tmp->next;
-	}
-}
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
 #include "ft_list.h"
-#include <stdlib.h>
 
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
@@ -87,6 +58,35 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 	}
 }
 
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+#include <stdlib.h>
+#include "ft_list.h"
+
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
+{
+	t_list *list_ptr;
+	t_list *list_parent;
+	t_list *tmp;
+
+	list_ptr = *begin_list;
+	list_parent = ((void *)0);
+	while (list_ptr)
+	{
+		tmp = list_ptr;
+		if ((*cmp)(list_ptr->data, data_ref) == 0)
+		{
+			if (list_parent != 0)
+				list_parent->next = list_ptr->next;
+			free(list_ptr);
+		}
+		list_parent = list_ptr;
+		list_ptr = tmp->next;
+	}
+}
 
 /* ************************************************************************** */
 /* ************************************************************************** */
