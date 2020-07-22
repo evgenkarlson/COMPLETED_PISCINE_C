@@ -87,7 +87,7 @@ int		ft_list_size(t_list *begin_list)
 		while (list->next)
 		{
 			list = list->next;
-			i += 1;
+			i++;
 		}
 	}
 	return (i);

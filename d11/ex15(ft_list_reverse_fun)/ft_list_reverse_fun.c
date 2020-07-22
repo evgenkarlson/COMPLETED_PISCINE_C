@@ -27,19 +27,69 @@
 /* ************************************************************************** */
 
 #include "ft_list.h"
-#include <stdlib.h>
 
 int		ft_list_size(t_list *begin_list)
 {
-	int		i;
+	int		count;
 
-	i = 0;
+	count = 0;
 	while (begin_list)
 	{
-		i++;
+		count++;
 		begin_list = begin_list->next;
 	}
-	return (i);
+	return (count);
+}
+
+void	ft_swap_data(t_list *a, t_list *b)
+{
+	t_list tmp;
+
+	tmp.data = a->data;
+	a->data = b->data;
+	b->data = tmp.data;
+}
+
+void	ft_list_reverse_fun(t_list *begin_list)
+{
+	t_list	*current;
+	int		size;
+	int		i;
+
+	if (!begin_list || !begin_list->next)
+		return ;
+	size = ft_list_size(begin_list);
+	while (size)
+	{
+		i = 0;
+		current = begin_list;
+		while ((i < size - 1) && current->next)
+		{
+			ft_swap_data(current, current->next);
+			current = current->next;				
+			i++;
+		}
+		size--;
+	}
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+#include "ft_list.h"
+
+int		ft_list_size(t_list *begin_list)
+{
+	int		count;
+
+	count = 0;
+	while (begin_list)
+	{
+		count++;
+		begin_list = begin_list->next;
+	}
+	return (count);
 }
 
 void	ft_list_reverse_fun(t_list *begin_list)
@@ -74,17 +124,19 @@ void	ft_list_reverse_fun(t_list *begin_list)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+#include "ft_list.h"
+
 int		ft_list_size(t_list *begin_list)
 {
-	int		i;
+	int		count;
 
-	i = 0;
+	count = 0;
 	while (begin_list)
 	{
-		i++;
+		count++;
 		begin_list = begin_list->next;
 	}
-	return (i);
+	return (count);
 }
 
 void	ft_list_reverse_fun(t_list *begin_list)
@@ -95,14 +147,14 @@ void	ft_list_reverse_fun(t_list *begin_list)
 	int		len;
 	int		i;
 
-	len = ft_list_size(begin_list);
 	if (begin_list == ((void *)0))
 		return ;
+	len = ft_list_size(begin_list);
 	while (len > 0)
 	{
 		i = 0;
 		tmp = begin_list;
-		next = tmp->next;
+		next = begin_list->next;
 		while (next && i < len - 1)
 		{
 			var = tmp->data;
@@ -112,7 +164,7 @@ void	ft_list_reverse_fun(t_list *begin_list)
 			next = next->next;
 			i++;
 		}
-		len = len - 1;
+		len--;
 	}
 }
 
@@ -120,17 +172,19 @@ void	ft_list_reverse_fun(t_list *begin_list)
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+#include "ft_list.h"
+
 int		ft_get_size(t_list *begin_list)
 {
-	int		i;
+	int		count;
 
-	i = 0;
+	count = 0;
 	while (begin_list)
 	{
-		i++;
+		count++;
 		begin_list = begin_list->next;
 	}
-	return (i);
+	return (count);
 }
 
 void	ft_swap(void **a, void **b)
@@ -175,6 +229,8 @@ void	ft_list_reverse_fun(t_list *begin_list)
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
+#include "ft_list.h"
 
 int		ft_list_size(t_list *begin_list)
 {
