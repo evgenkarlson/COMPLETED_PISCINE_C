@@ -31,8 +31,12 @@ void		ft_putchar(char c)			/* Функция печати символа */
 
 void		ft_putstr(char *str)		/* Функция печатает строку */
 {
-	while (*str)
-		ft_putchar(*str++);
+	int	i;
+
+	i = 0;
+	while (*(str + i))
+		i++;
+	write(1, str, i);
 }
 
 /* ************************************************************************** */
@@ -132,22 +136,45 @@ void		ft_list_sort(t_list **begin_list, int (*cmp)())	/* Функция сорт
 	}
 }
 
+void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())/* Функция узнает где заканчивается цепь связанных между собой 
+										 * экземпляров структур, после чего создает еще один экземпляр структуры и прикреляет его к этой цепи 
+										 * связанных между собой экземпляров структур, а затем сортирует эту цепочку связанных между собой 
+										 * экземпляров структуры */
+{
+	t_list *current;					/* Обьявляем указатель для хранения адреса текущего экземпляра */
+
+	if (!*(begin_list))					/* Если указатель '*begin_list' хранящий начало цепи связанных между собой экземпляров структур не 
+										 * содержит адрес экземпляра структуры, значит цепи связанных между собой экземпляров не существует */
+	{
+		*begin_list = ft_create_elem(data);	/* Значит мы просто помещаем новый экземпляр структуры в указатель хранящий начало цепи связанных 
+											 * между собой структур */
+		return ;							/* Завершаем функцию */
+	}
+	current = *begin_list;					/* Инициализируем указатель адресом первого экземпляра цепи связанных между собой экземпляров структур */
+	while (current->next)					/* Запускаем цикл, который дойдет до последнего экземпляра в цепи связаннанных между собой экземпляров */
+		current = current->next;	
+	current->next = ft_create_elem(data);	/* Помещаем в указатель найденого нами экземпляра адресс нового, созданного нами экземпляра структуры */
+	ft_list_sort(begin_list, (*cmp));		/* Сортируем цепь связанных между собой структур */
+}
+
+/*			ИЛИ ТАК			*/
+/*
 void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 {
-	t_list *head;
+	t_list *current;
 
-	head = *begin_list;
-	if (!head)
+	current = *begin_list;
+	if (!current)
 	{
 		*begin_list = ft_create_elem(data);
 		return ;
 	}
-	while (head->next)
-		head = head->next;
-	head->next = ft_create_elem(data);
+	while (current->next)
+		current = current->next;
+	current->next = ft_create_elem(data);
 	ft_list_sort(begin_list, (*cmp));
 }
-
+*/
 
 
 

@@ -61,20 +61,39 @@ void		ft_list_sort(t_list **begin_list, int (*cmp)())
 
 void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 {
-	t_list *head;
+	t_list *current;
 
-	head = *begin_list;
-	if (!head)
+	if (!current)
 	{
 		*begin_list = ft_create_elem(data);
 		return ;
 	}
-	while (head->next)
-		head = head->next;
-	head->next = ft_create_elem(data);
+	current = *begin_list;
+	while (current->next)
+		current = current->next;
+	current->next = ft_create_elem(data);
 	ft_list_sort(begin_list, (*cmp));
 }
 
+/*			ИЛИ ТАК			*/
+/*
+void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+{
+	t_list *current;
+
+	if (!*(begin_list))
+		*begin_list = ft_create_elem(data);
+	else
+	{
+		current = *begin_list;
+		while (current->next)
+			current = current->next;
+		current->next = ft_create_elem(data);
+		ft_list_sort(begin_list, (*cmp));
+	}
+}
+
+*/
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -112,17 +131,17 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)())
 
 void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 {
-	t_list *head;
+	t_list *current;
 
-	head = *begin_list;
-	if (!head)
+	current = *begin_list;
+	if (!current)
 	{
 		*begin_list = ft_create_elem(data);
 		return ;
 	}
-	while (head->next)
-		head = head->next;
-	head->next = ft_create_elem(data);
+	while (current->next)
+		current = current->next;
+	current->next = ft_create_elem(data);
 	ft_list_sort(begin_list, (*cmp));
 }
 
