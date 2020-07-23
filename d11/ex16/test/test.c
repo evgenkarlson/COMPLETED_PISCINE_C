@@ -107,7 +107,7 @@ void		ft_list_sort(t_list **begin_list, int (*cmp)())/* Функция сорт�
 
 /* ************************************************************************** */
 
-void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+void		ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 {
 	t_list	*link;
 	t_list	*new_link;
