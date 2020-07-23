@@ -63,10 +63,10 @@ void	ft_list_reverse_fun(t_list *begin_list)
 	{
 		i = 0;
 		current = begin_list;
-		while ((i < size - 1) && current->next)
+		while (i < (size - 1))
 		{
 			ft_swap_data(current, current->next);
-			current = current->next;				
+			current = current->next;
 			i++;
 		}
 		size--;
