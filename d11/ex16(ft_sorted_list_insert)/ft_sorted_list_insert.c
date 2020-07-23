@@ -27,6 +27,109 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include "ft_list.h"
+
+void		ft_list_sort(t_list **begin_list, int (*cmp)())
+{
+	t_list	*current;
+	t_list	*tmp;
+	t_list	*last;
+
+	last = ((void *)0);
+	current = *begin_list;
+	while (current->next)
+	{
+		if ((*cmp)(current->data, current->next->data) > 0)
+		{
+			if (current == *begin_list)
+				last = *begin_list = (*begin_list)->next;
+			else
+				last = last->next = current->next;
+			tmp = current->next->next;
+			current->next->next = current;
+			current->next = tmp;
+			current = *begin_list;
+		}
+		else
+		{
+			last = current;
+			current = current->next;
+		}
+	}
+}
+
+void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+{
+	t_list *head;
+
+	head = *begin_list;
+	if (!head)
+	{
+		*begin_list = ft_create_elem(data);
+		return ;
+	}
+	while (head->next)
+		head = head->next;
+	head->next = ft_create_elem(data);
+	ft_list_sort(begin_list, (*cmp));
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include "ft_list.h"
+
+void	ft_swap_data(t_list *a, t_list *b)
+{
+	t_list tmp;
+
+	tmp.data = a->data;
+	a->data = b->data;
+	b->data = tmp.data;
+}
+
+void	ft_list_sort(t_list **begin_list, int (*cmp)())
+{
+	t_list *current;
+	t_list *next;
+
+	current = *begin_list;
+	while (current->next)
+	{
+		next = current->next;
+		if ((*cmp)(current->data, next->data) > 0)
+		{
+			ft_swap_data(current, next);
+			current = *begin_list;
+		}
+		else
+			current = next;
+	}
+}
+
+void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
+{
+	t_list *head;
+
+	head = *begin_list;
+	if (!head)
+	{
+		*begin_list = ft_create_elem(data);
+		return ;
+	}
+	while (head->next)
+		head = head->next;
+	head->next = ft_create_elem(data);
+	ft_list_sort(begin_list, (*cmp));
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include "ft_list.h"
 
@@ -40,7 +143,7 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 	if (!link || (*cmp)(data, link->data) < 0)
 	{
 		*begin_list = new_link;
-		new_link->next = link ? link : NULL;
+		new_link->next = link ? link : ((void *)0);
 		return ;
 	}
 	while (link->next)
@@ -135,57 +238,6 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 		}
 	else
 		*begin_list = elem;
-}
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-#include <stdio.h>
-#include "ft_list.h"
-
-void	ft_swap_data(t_list *a, t_list *b)
-{
-	t_list tmp;
-
-	tmp.data = a->data;
-	a->data = b->data;
-	b->data = tmp.data;
-}
-
-void	ft_list_sort_123456(t_list **begin_list, int (*cmp)())
-{
-	t_list *current;
-	t_list *next;
-
-	current = *begin_list;
-	while (current->next)
-	{
-		next = current->next;
-		if ((*cmp)(current->data, next->data) > 0)
-		{
-			ft_swap_data(current, next);
-			current = *begin_list;
-		}
-		else
-			current = next;
-	}
-}
-
-void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
-{
-	t_list *head;
-
-	head = *begin_list;
-	if (!head)
-	{
-		*begin_list = ft_create_elem(data);
-		return ;
-	}
-	while (head->next)
-		head = head->next;
-	head->next = ft_create_elem(data);
-	ft_list_sort_123456(begin_list, (*cmp));
 }
 
 /* ************************************************************************** */
