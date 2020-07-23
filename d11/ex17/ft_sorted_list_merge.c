@@ -13,15 +13,14 @@
 /* ************************************************************************** *
  *
  * 
- *	• 
- *
- * 
- *	• 
+ *	• Создайте функцию «ft_sorted_list_merge», которая объединяет элементы 
+ *	отсортированного списка «begin2» в другой отсортированный список «begin1»,
+ *	так что «begin1» остается отсортированным в порядке возрастания
  * 
  * 
  *	• Вот как эта функция должна быть объявлена :
  *
- *			
+ *	void	ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2,int(*cmp)());
  * 
  * 
  * ************************************************************************** */
@@ -105,7 +104,7 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 }
 
 void	ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2,
-	int (*cmp)())
+		int (*cmp)())
 {
 	if (*begin_list1)
 	{
