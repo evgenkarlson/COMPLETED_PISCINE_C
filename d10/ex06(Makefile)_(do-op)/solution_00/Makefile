@@ -10,9 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = do-op
 CC = gcc
 LFLAGS = -Werror -Wall -Wextra -o
-NAME = do-op
+HEADERS = -I includes/
 _SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_calc.c ft_do_op.c main.c
 SRCS = $(patsubst %, srcs/%, $(_SRC))
 
@@ -20,7 +21,7 @@ SRCS = $(patsubst %, srcs/%, $(_SRC))
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(LFLAGS) $(NAME) $(SRCS)
+	$(CC) $(LFLAGS) $(NAME) $(SRCS) $(HEADERS)
 
 clean:
 	rm -f $(NAME)

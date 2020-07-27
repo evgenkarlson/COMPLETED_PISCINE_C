@@ -19,7 +19,7 @@ void	ft_advanced_do_op(char *a, char *op, char *b)
 	int	i;
 
 	i = 0;
-	if (!op[1])
+	if (op[1])
 		g_opptab[5].f(ft_atoi(a), ft_atoi(b));
 	else if ((op[0] == '/') && (b == 0))
 		ft_putstr("Stop : division by zero");

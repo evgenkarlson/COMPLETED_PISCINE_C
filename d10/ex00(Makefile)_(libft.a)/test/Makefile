@@ -14,8 +14,8 @@
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -c -I
-HEADERS = includes/
+LDFLAGS = -c
+HEADERS = -I includes/
 _SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
 SRCS = $(patsubst %, srcs/%, $(_SRC))
 OBJS = $(patsubst %.c, %.o, $(_SRC))

@@ -11,16 +11,17 @@
 # **************************************************************************** #
 
 NAME = ft_display_file
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -o
 SOURCE = ft_display_file.c ft_display_stdin.c ft_putstr.c ft_strcmp.c main.c
 HEADER = ft_lib.h
-OBJECTS = ft_display_file.o ft_display_stdin.o ft_putstr.o ft_strcmp.o main.o
-CFLAGS = -Wall -Werror -Wextra -o
+SRCS = $(patsubst %, ./%, $(SOURCE))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) $(NAME) $(SOURCE) -I $(HEADER)
-
+	$(CC) $(CFLAGS) $(NAME) $(SOURCE) $(HEADER)
 clean:
 	/bin/rm -f $(OBJECTS)
 
