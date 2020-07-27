@@ -1,8 +1,8 @@
 # Ecole 42  |  School 42  |  School 21  |  Школа 42  |  Школа 21
 
-## RU
+### RU
 
-### Completed Task of the Piscine C
+# Completed Task of the Piscine C
 
 #### Выполненые и закоментированные задания басейна Школы 42
 
