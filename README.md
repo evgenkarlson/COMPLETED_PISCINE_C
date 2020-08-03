@@ -1,5 +1,5 @@
-### Completed Task of the Piscine C
-____
+## Completed Task of the Piscine C
+
 
 ### Выполненые и закоментированные задания басейна Школы 42
 
