@@ -14,7 +14,7 @@
 # define FT_LIB_H
 
 void	ft_putstr(char *str);
-void	ft_display_stdin(int file);
+void	ft_display_stdin(int fd);
 void	ft_display_file(int argc, char **argv);
 int		ft_strcmp(char *s1, char *s2);
 

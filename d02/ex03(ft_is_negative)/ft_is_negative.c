@@ -10,9 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* - Create a function that displays ’N’ or ’P’ depending on the integer’s sign entered as a parameter. If n is negative, display ’N’. If n is positive or null, display ’P’. */
+/* - Create a function that displays ’N’ or ’P’ depending on the integer’s sign 
+entered as a parameter. If n is negative, display ’N’. If n is positive or null,
+ display ’P’. */
 
-/* - Создайте функцию, которая отображает «N» или «P» в зависимости от целочисленного знака, введенного в качестве параметра. Если n отрицательно, выведите «N». Если n является положительным или нулевым, выведите «P». */
+/* - Создайте функцию, которая отображает «N» или «P» в зависимости от целочис-
+лнного знака, введенного в качестве параметра. Если n отрицательно, выведите
+ «N». Если n является положительным или нулевым, выведите «P». */
 
 /* Скомпилируй файл тест. В нем можно увидеть как работает эта функция вживую */
 

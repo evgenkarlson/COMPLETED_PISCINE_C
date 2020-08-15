@@ -92,5 +92,5 @@ int 	main(void)
 {	
 	ft_print_combn(5);
 
-	return 0;
+	return (0);
 }

@@ -15,10 +15,10 @@
 
 #define BUFF_SIZE	4096
 
-void	ft_display_stdin(int file)
+void	ft_display_stdin(int fd)
 {
 	char	buffer[BUFF_SIZE + 1];
 
-	while (read(file, buffer, BUFF_SIZE))
+	while (read(fd, buffer, BUFF_SIZE))
 		ft_putstr(buffer);
 }
