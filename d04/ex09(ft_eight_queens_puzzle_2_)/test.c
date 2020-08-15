@@ -86,7 +86,7 @@ int 	main(void)
 {
 	ft_eight_queens_puzzle_2();
 
-	return 0;
+	return (0);
 }
 
 

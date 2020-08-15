@@ -106,5 +106,5 @@ int 	main(void)
 	r = ft_find_next_prime(4);
 	ft_putnbr(r);
 
-	return 0;
+	return (0);
 }

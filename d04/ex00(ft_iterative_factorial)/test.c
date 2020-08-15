@@ -87,5 +87,5 @@ int 	main(void)
 
 	ft_putnbr(r);
 
-	return 0;
+	return (0);
 }
