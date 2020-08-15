@@ -83,6 +83,6 @@ int 	main(void)
 
 	ft_putnbr(lenght);
 
-	return 0;
+	return (0);
 }
 
