@@ -12,15 +12,13 @@
 
 #ifndef FT_LIB_H
 # define FT_LIB_H
-
-#include <unistd.h>
-#include <fcntl.h>
+# include <unistd.h>
+# include <fcntl.h>
+# define BUFF_SIZE	4096
 
 void	ft_putstr(char *str);
 void	ft_display_stdin(int fd);
 void	ft_display_file(int argc, char **argv);
 int		ft_strcmp(char *s1, char *s2);
-
-#define BUFF_SIZE	4096
 
 #endif
