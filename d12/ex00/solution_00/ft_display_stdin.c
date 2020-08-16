@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "ft_lib.h"
-
-#define BUFF_SIZE	4096
 
 void	ft_display_stdin(int fd)
 {
@@ -24,11 +21,6 @@ void	ft_display_stdin(int fd)
 }
 
 /*	second solution - v2.0
-
-#include <unistd.h>
-#include "ft_lib.h"
-
-#define BUFF_SIZE	4096
 
 void	ft_display_stdin(int fd)
 {

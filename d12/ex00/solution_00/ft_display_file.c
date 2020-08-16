@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
 #include "ft_lib.h"
 
 void	ft_display_file(int argc, char **argv)
