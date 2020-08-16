@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_file.c                                  :+:      :+:    :+:   */
+/*   ft_display_stdin.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,33 +11,37 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
-#include <fcntl.h>
 #include "ft_lib.h"
 
-void	ft_display_file(int argc, char **argv)
-{
-	int		file;
+#define BUFF_SIZE	4096
 
-	if (argc > 1)
-	{
-		if (ft_strcmp(argv[1], ".") == 0 || ft_strcmp(argv[1], "/") == 0 ||
-			ft_strcmp(argv[1], "..") == 0 || ft_strcmp(argv[1], "./") == 0 ||
-			ft_strcmp(argv[1], "../") == 0)
-		{
-			ft_putstr(argv[1]);
-			ft_putstr(": Is a directory.\n");
-			return ;
-		}
-		if ((file = open(argv[1], O_RDONLY)) == -1)
-		{
-			ft_putstr("No such file or directory.\n");
-			return ;
-		}
-		ft_display_stdin(file);
-		close(file);
-	}
-	if (argc > 2)
-		ft_putstr("Too many arguments.\n");
-	if (argc < 2)
-		ft_putstr("File name missing.\n");
+void	ft_display_stdin(int fd)
+{
+	char	buffer[BUFF_SIZE + 1];
+
+	while (read(fd, buffer, BUFF_SIZE))
+		ft_putstr(buffer);
 }
+
+/*	second solution - v2.0
+
+#include <unistd.h>
+#include "ft_lib.h"
+
+#define BUFF_SIZE	4096
+
+void	ft_display_stdin(int fd)
+{
+	char	buffer[BUFF_SIZE + 1];
+	int		nb_char;
+
+	nb_char = 1;
+	while (nb_char)
+	{
+		nb_char = read(fd, buffer, BUFF_SIZE);
+		write(1, buffer, nb_char);
+	}
+	ft_putchar('\n');
+}
+
+*/

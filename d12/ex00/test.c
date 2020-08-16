@@ -47,7 +47,8 @@ void	ft_display_stdin(int fd)
 	while (read(fd, buffer, BUFF_SIZE))
 		ft_putstr(buffer);
 	ft_putchar('\n');
-}/*
+}
+/*
 void	ft_display_stdin(int fd)
 {
 	char	buffer[BUFF_SIZE + 1];
@@ -61,7 +62,6 @@ void	ft_display_stdin(int fd)
 	}
 	ft_putchar('\n');
 }
-
 */
 void	ft_display_file(int argc, char **argv)
 {

@@ -21,7 +21,7 @@ OBJS = $(patsubst %.c, %.o, $(SOURCE))
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(NAME) $(SOURCE) $(HEADER)
+	$(CC) $(CFLAGS) $(NAME) $(SRCS) $(HEADER)
 clean:
 	/bin/rm -f $(OBJECTS)
 

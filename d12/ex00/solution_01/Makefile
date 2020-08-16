@@ -11,19 +11,20 @@
 # **************************************************************************** #
 
 NAME = ft_display_file
-
-FILE = ./main.c
-OBJECT = ./main.o
-FLAGS = -Wall -Wextra -Werror
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -o
+SOURCE = main.c
+SRCS = $(patsubst %, ./%, $(SOURCE))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
-	
-$(NAME):
-	gcc -c $(FILE)
-	gcc $(FLAGS) -o $(NAME) $(OBJECT)
 
+$(NAME):
+	$(CC) $(CFLAGS) $(NAME) $(SRCS)
 clean:
-	/bin/rm -f $(OBJECT)
+	/bin/rm -f $(OBJECTS)
 
 fclean: clean
 	/bin/rm -f $(NAME)
+
+re: fclean all
