@@ -15,9 +15,13 @@
 void	ft_display_stdin(int fd)
 {
 	char	buffer[BUFF_SIZE + 1];
-
-	while (read(fd, buffer, BUFF_SIZE))
+	int		len;
+	
+	while ((len = read(fd, buffer, BUFF_SIZE)))
+	{
+		buffer[len] = '\0';
 		ft_putstr(buffer);
+	}
 }
 
 /*	second solution - v2.0
@@ -27,13 +31,9 @@ void	ft_display_stdin(int fd)
 	char	buffer[BUFF_SIZE + 1];
 	int		nb_char;
 
-	nb_char = 1;
-	while (nb_char)
-	{
-		nb_char = read(fd, buffer, BUFF_SIZE);
+	while (nb_char = read(fd, buffer, BUFF_SIZE))
 		write(1, buffer, nb_char);
-	}
-	ft_putchar('\n');
+	write(1, "\n", 1);
 }
 
 */

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.h                                             :+:      :+:    :+:   */
+/*   ft_inc.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/07/17 15:34:19 by jpucelle          #+#    #+#             */
-/*   Updated: 2014/07/17 15:37:27 by jpucelle         ###   ########.fr       */
+/*   Created: 2016/08/25 22:52:27 by jaleman           #+#    #+#             */
+/*   Updated: 2016/08/25 22:52:27 by jaleman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MAIN_H
-# define MAIN_H
+#ifndef FT_LIB_H
+# define FT_LIB_H
 
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdio.h>
+# include <errno.h>
 
-void	jp_putchar(char c);
-void	jp_putstr(char *str);
-int		jp_display_file(char *filename);
+# define BUF_SIZE 32
+
+char		*g_progname;
+const char	*ft_strerror(int errnum);
+void		ft_putchar(char c);
+void		ft_putstr(const char *str);
+int			ft_display_custom_error(int eno, char *argv);
 
 #endif

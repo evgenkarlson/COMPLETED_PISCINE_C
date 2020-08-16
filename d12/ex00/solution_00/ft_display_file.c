@@ -16,7 +16,7 @@ void	ft_display_file(int argc, char **argv)
 {
 	int		file;
 
-	if (argc > 1)
+	if (argc == 2)
 	{
 		if (ft_strcmp(argv[1], ".") == 0 || ft_strcmp(argv[1], "/") == 0 ||
 			ft_strcmp(argv[1], "..") == 0 || ft_strcmp(argv[1], "./") == 0 ||
@@ -28,13 +28,13 @@ void	ft_display_file(int argc, char **argv)
 		}
 		if ((file = open(argv[1], O_RDONLY)) == -1)
 		{
-			ft_putstr("No such file or directory.\n");
+			ft_putstr("OPEN(): An read error occurred. No such file or directory.\n");
 			return ;
 		}
 		ft_display_stdin(file);
 		if (close(file) == -1)
 		{
-			ft_putstr("CLOSE() error.\n");
+			ft_putstr("CLOSE(): An file stream close error occurred.\n");
 			return ;
 		}
 	}

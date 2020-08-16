@@ -12,15 +12,18 @@
 
 NAME = ft_display_file
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Werror -Wextra -o
+SOURCE = main.c
+HEADER = ft_lib.h
+SRCS = $(patsubst %, ./%, $(SOURCE))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -o $(NAME)  main.c
-
+	$(CC) $(CFLAGS) $(NAME) $(SRCS)  $(HEADER)
 clean:
-	rm -f $(NAME)
+	/bin/rm -f $(OBJECTS)
 
 fclean: clean
-
+	/bin/rm -f $(NAME)

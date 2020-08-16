@@ -12,6 +12,7 @@
 
 #ifndef FT_LIB_H
 # define FT_LIB_H
+
 # include <unistd.h>
 # include <fcntl.h>
 # define BUFF_SIZE	4096

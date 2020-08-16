@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inc.h                                           :+:      :+:    :+:   */
+/*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/25 22:52:27 by jaleman           #+#    #+#             */
-/*   Updated: 2016/08/25 22:52:27 by jaleman          ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,9 @@
 
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
-# include <errno.h>
+# define BUFF_SIZE	1024
 
-# define BUF_SIZE 32
+void	ft_putstr(char *str);
+int		ft_display_file(char *filename);
 
-char						*g_progname;
-const char					*ft_strerror(int errnum);
-void						ft_putchar(char c);
-void						ft_putstr(const char *str);
-int							ft_display_custom_error(int eno, char *argv);
 #endif

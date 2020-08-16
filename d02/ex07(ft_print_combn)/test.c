@@ -45,7 +45,7 @@ void	ft_check_print(int x[], int n)
 			ft_putchar(x[i]);
 			i++;
 		}
-		if (x[0] != 57 - n + 1)
+		if (x[0] != '9' - n + 1)
 		{
 			ft_putchar(',');
 			ft_putchar(' ');
@@ -57,10 +57,10 @@ void	create_while(int x[], int k, int n)
 {
 	if (k == n - 1)
 	{
-		x[k] = 48;
-		while (x[k] < 58)
+		x[k] = '0';
+		while (x[k] <= '9')
 		{
-			if (n == 9 && x[0] > 49)
+			if (n == 9 && x[0] > '1')
 				break ;
 			ft_check_print(x, n);
 			x[k]++;
@@ -68,8 +68,8 @@ void	create_while(int x[], int k, int n)
 	}
 	else
 	{
-		x[k] = 48;
-		while (x[k] < 58)
+		x[k] = '0';
+		while (x[k] <= '9')
 		{
 			create_while(x, k + 1, n);
 			x[k]++;
@@ -84,13 +84,9 @@ void	ft_print_combn(int n)
 	create_while(x, 0, n);
 }
 
-
-
-
-
 int 	main(void)
 {	
-	ft_print_combn(5);
+	ft_print_combn(2);
 
 	return (0);
 }

@@ -10,10 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <fcntl.h>
+#include "ft_lib.h"
 
-#define BUFF_SIZE	4096
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (*(str + i))
+		i++;
+	write(1, str, i);
+}
 
 int		ft_strcmp(char *s1, char *s2)
 {
@@ -25,42 +32,52 @@ int		ft_strcmp(char *s1, char *s2)
 	return (*s1 - *s2);
 }
 
-void	ft_display_stdin(int fd)
+int		ft_display_file(char *filename)
 {
+	int		fd;
 	char	buffer[BUFF_SIZE + 1];
-	int		nb_char;
+	int		len;
 
-	while ((nb_char = read(fd, buffer, BUFF_SIZE)))
-		write(1, buffer, nb_char);
-	write(1, "\n", 1);
+	if ((fd = open(filename, O_RDONLY)) == -1)
+	{
+		ft_putstr("OPEN(): An read error occurred. No such file or directory.\n");
+		return (1);
+	}
+	while ((len = read(fd, buffer, BUFF_SIZE)))
+	{
+		buffer[len] = '\0';
+		ft_putstr(buffer);
+	}
+	if ((close(fd)) == -1)
+	{
+		ft_putstr("CLOSE(): An file stream close error occurred.\n");
+		return (2);
+	}
+	return (0);
 }
 
-
-int		main(int argc, char **argv)
+int		main(int argc, char *argv[])
 {
-	int		file;
-
-	if(argc == 2)
+	if (argc == 2)
 	{
 		if (ft_strcmp(argv[1], ".") == 0 || ft_strcmp(argv[1], "/") == 0 ||
 			ft_strcmp(argv[1], "..") == 0 || ft_strcmp(argv[1], "./") == 0 ||
 			ft_strcmp(argv[1], "../") == 0)
 		{
-			write(1, "Is a directory.\n", 16);
+			ft_putstr(argv[1]);
+			ft_putstr(": Is a directory.\n");
 			return (1);
 		}
-		if ((file = open(argv[1], O_RDONLY)) == -1)
-			return (write(2, "OPEN(): An read error occurred. No such file or directory.\n", 59) || 1);
-		ft_display_stdin(file);
-		if (close(file) == -1)
-			return (write(2, "CLOSE(): An file stream close error occurred.\n", 46) || 1);
+		if (ft_display_file(argv[1]) > 0)
+			return (1);
 	}
-	else
+	else if (argc != 2)
 	{
-		if (argc < 2)
-			return (write(2, "File name missing.\n", 19) || 1);
 		if (argc > 2)
-			return (write(2, "Too many arguments.\n", 20) || 1);
+			ft_putstr("Too many arguments.\n");
+		if (argc < 1)
+			ft_putstr("File name missing.\n");
+		return (1);
 	}
 	return (0);
 }
