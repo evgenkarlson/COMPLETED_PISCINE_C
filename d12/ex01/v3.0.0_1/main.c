@@ -12,44 +12,44 @@
 
 #include "main.h"
 
-void	jp_putchar(char c)
+void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	jp_putstr(char *str)
+void	ft_putstr(char *str)
 {
 	while (*str != '\0')
-		jp_putchar(*str++);
+		ft_putchar(*str++);
 }
 
-int		jp_cat(char *filename)
+int		ft_cat(char *filename)
 {
-	int		fh;
+	int		fd;
 	char	buf[129];
 	int		len;
 
-	if ((fh = open(filename, O_RDONLY)) == -1)
+	if ((fd = open(filename, O_RDONLY)) == -1)
 		return (errno);
-	while ((len = read(fh, buf, 128)))
+	while ((len = read(fd, buf, 128)))
 	{
 		buf[len] = '\0';
-		jp_putstr(buf);
+		ft_putstr(buf);
 	}
-	close(fh);
+	close(fd);
 	return (0);
 }
 
-void	jp_puterr(char *name, char *file, int no)
+void	ft_puterr(char *name, char *file, int num)
 {
-	if (no != 0)
+	if (num != 0)
 	{
-		jp_putstr(name);
-		jp_putstr(": ");
-		jp_putstr(file);
-		jp_putstr(": ");
-		if (no == ENOENT)
-			jp_putstr("No such file or directory\n");
+		ft_putstr(name);
+		ft_putstr(": ");
+		ft_putstr(file);
+		ft_putstr(": ");
+		if (num == ENOENT)
+			ft_putstr("No such file or directory\n");
 	}
 }
 
@@ -62,14 +62,14 @@ int		main(int argc, char *argv[])
 	{
 		while (argv[i])
 		{
-			jp_puterr(argv[0], argv[i], jp_cat(argv[i]));
+			ft_puterr(argv[0], argv[i], ft_cat(argv[i]));
 			i++;
 		}
 		return (0);
 	}
 	else
 	{
-		jp_putchar('\\');
+		ft_putchar('\\');
 		return (1);
 	}
 }

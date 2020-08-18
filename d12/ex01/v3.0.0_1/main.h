@@ -18,9 +18,9 @@
 #include <errno.h>
 #include <stdio.h>
 
-void	jp_putchar(char c);
-void	jp_putstr(char *str);
-void	jp_puterr(char *name, char *file, int no);
-int		jp_cat(char *filename);
+void	ft_putchar(char c);
+void	ft_putstr(char *str);
+void	ft_puterr(char *name, char *file, int num);
+int		ft_cat(char *filename);
 
 #endif
