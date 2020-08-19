@@ -37,7 +37,6 @@ void	ft_sort_integer_table(int *tab, int size)
 	int temp;
 
 	i = 0;
-	j = 0;
 	while (i < size - 1)
 	{
 		j = 0;
@@ -52,6 +51,32 @@ void	ft_sort_integer_table(int *tab, int size)
 			j++;
 		}
 		i++;
+	}
+}
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+void	ft_sort_integer_table(int *tab, int size)
+{
+	int i;
+	int temp;
+
+	i = 0;
+	while (i < size - 1)
+	{
+		if (tab[i] > tab[i + 1])
+		{
+			temp = tab[i];
+			tab[i] = tab[i + 1];
+			tab[i + 1] = temp;
+			i = -1;
+		}
+		i++;
+		
 	}
 }
 

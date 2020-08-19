@@ -31,7 +31,7 @@
 /* ************************************************************************** */
 
 /* * */
-/* SORTING THE LIST BY BUBBLE *without* using the "ft_list_size" function */
+/* SORTING THE LIST **WITHOUT** using the "ft_list_size" function */
 
 #include "ft_list.h"
 
@@ -68,7 +68,7 @@ void		ft_list_sort(t_list **begin_list, int (*cmp)())
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-/* SORTING THE LIST BY BUBBLE *with* using the "ft_list_size" function */
+/* SORTING THE LIST *with* using the "ft_list_size" function */
 
 #include "ft_list.h"
 

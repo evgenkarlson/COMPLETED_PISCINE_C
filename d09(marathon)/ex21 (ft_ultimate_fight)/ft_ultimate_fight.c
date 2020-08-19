@@ -75,18 +75,19 @@ void	ft_fight(t_perso *attacker, t_perso *defense, int n)
 
 	if (n > 14)
 		n %= 14;
-	if (attacker->life <= 0 || defense->life <= 0)
-		return ;
-	defense->life -= points[n];
-	ft_putstr(attacker->name);
-	ft_putstr(" does a judo ");
-	ft_putstr((char *)attack[n]);
-	ft_putstr(" on ");
-	ft_putstr(defense->name);
-	ft_putstr("\n");
-	if (defense->life <= 0)
+	if (attacker->life > 0 || defense->life > 0)
 	{
+		defense->life -= points[n];
+		ft_putstr(attacker->name);
+		ft_putstr(" does a judo ");
+		ft_putstr((char *)attack[n]);
+		ft_putstr(" on ");
 		ft_putstr(defense->name);
-		ft_putstr(" is dead.\n");
+		ft_putstr("\n");
+		if (defense->life <= 0)
+		{
+			ft_putstr(defense->name);
+			ft_putstr(" is dead.\n");
+		}
 	}
 }

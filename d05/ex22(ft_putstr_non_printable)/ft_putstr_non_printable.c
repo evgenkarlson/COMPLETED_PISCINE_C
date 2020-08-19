@@ -141,7 +141,7 @@ void	ft_putchar(char c);
 
 int		is_pr5(char c)
 {
-	return (c >= 32 && c <= 126);
+	return ((c >= 32) && (c <= 126));
 }
 
 void	ft_puthex_digit(char c)
@@ -149,7 +149,6 @@ void	ft_puthex_digit(char c)
 	if (c < 10)
 	{
 		ft_putchar('0' + c);
-		return ;
 	}
 	else
 	{

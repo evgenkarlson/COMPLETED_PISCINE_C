@@ -113,24 +113,30 @@ void	ft_fight(t_perso *attacker, t_perso *defense, char attack)
 {
 	float	strength;
 
-	if (attacker->life <= 0 || defense->life <= 0)
-		return ;
-	if (attack == 'k')
-		strength = 15;
-	else if (attack == 'h')
-		strength = 5;
-	else
-		strength = 20;
-	defense->life -= strength;
-	ft_putstr(attacker->name);
-	ft_putstr(" does a judo ");
-	ft_putstr(attack);
-	ft_putstr(" on ");
-	ft_putstr(defense->name);
-	ft_putstr("\n");
-	if (defense->life <= 0)
+	if (attacker->life > 0 || defense->life > 0)
 	{
+		if (attack == 'k')
+			strength = 15;
+		else if (attack == 'h')
+			strength = 5;
+		else
+			strength = 20;
+		defense->life -= strength;
+		ft_putstr(attacker->name);
+		ft_putstr(" does a judo ");
+		if (attack == 'k')
+			ft_putstr("KICK");
+		else if (attack == 'h')
+			ft_putstr("HEADBUTT");
+		else
+		ft_putstr("PUNCH");
+		ft_putstr(" on ");
 		ft_putstr(defense->name);
-		ft_putstr(" is dead.\n");
+		ft_putstr("\n");
+		if (defense->life <= 0)
+		{
+			ft_putstr(defense->name);
+			ft_putstr(" is dead.\n");
+		}
 	}
 }

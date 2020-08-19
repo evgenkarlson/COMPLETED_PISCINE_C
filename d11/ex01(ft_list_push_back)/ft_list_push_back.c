@@ -87,13 +87,13 @@ void	ft_list_push_back(t_list **begin_list, void *data)
 
 	current = *begin_list;
 	if (current == ((void *)0))
-	{
 		*begin_list = ft_create_elem(data);
-		return ;
+	else
+	{
+		while (current->next)
+			current = current->next;
+		current->next = ft_create_elem(data);
 	}
-	while (current->next)
-		current = current->next;
-	current->next = ft_create_elem(data);
 }
 
 /* ************************************************************************** */
