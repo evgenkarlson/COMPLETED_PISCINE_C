@@ -44,11 +44,12 @@ void	btree_apply_infix(t_btree *root, void (*applyf)(void *))
 
 void	btree_apply_infix(t_btree *root, void (*applyf)(void *))
 {
-	if (!root)
-		return ;
-	btree_apply_infix(root->left, applyf);
-	(*applyf)(root->item);
-	btree_apply_infix(root->right, applyf);
+	if (root)
+	{
+		btree_apply_infix(root->left, applyf);
+		(*applyf)(root->item);
+		btree_apply_infix(root->right, applyf);
+	}
 }
 
 /* ************************************************************************** */

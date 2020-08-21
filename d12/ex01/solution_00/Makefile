@@ -11,15 +11,16 @@
 # **************************************************************************** #
 
 NAME = ft_cat
-SOURCE = srcs/ft_auxiliary.c ft_cat.c
+SOURCE = ft_auxiliary.c ft_cat.c
 HEADER = ft_lib.h
-OBJECTS = ft_auxiliary.o ft_cat.o
+SRC = $(patsubst %, ./srcs/%, $(SOURCE))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 CFLAGS = -Wall -Werror -Wextra -o
 
 all: $(NAME)
 
 $(NAME):
-	gcc $(CFLAGS) $(NAME) $(SOURCE) -I $(HEADER)
+	gcc $(CFLAGS) $(NAME) $(SRC) -I $(HEADER)
 
 clean:
 	/bin/rm -rf *.o

@@ -113,19 +113,21 @@ void	sastantua(int n)
 {
 	int spaces[2];
 
-	g_n = n;
-	if (g_n == 0)
-		return ;
-	if (g_n % 2 == 1)
-		g_n_uneven = g_n + 1;
-	else
-		g_n_uneven = g_n;
-	n = 0;
-	g_rows = g_n * 3;
-	while (n < g_n)
+	
+	if (n > 0)
 	{
-		g_rows += n;
-		n++;
+		g_n = n;
+		if (g_n % 2 == 1)
+			g_n_uneven = g_n + 1;
+		else
+			g_n_uneven = g_n;
+		n = 0;
+		g_rows = g_n * 3;
+		while (n < g_n)
+		{
+			g_rows += n;
+			n++;
+		}
+		ft_print(1, spaces, 0, g_n);
 	}
-	ft_print(1, spaces, 0, g_n);
 }

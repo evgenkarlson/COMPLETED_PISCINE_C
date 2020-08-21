@@ -30,22 +30,24 @@ void	disp_results(int x, int y, char **grid, int num_rushes)
 	if (num_rushes == 0)
 	{
 		ft_putstr("Noid\n");
-		return ;
 	}
-	index = 0;
-	xy[0] = x;
-	xy[1] = y;
-	if (r00c(x, y, grid))
-		print_rush("rush-00", xy, ++index, num_rushes);
-	if (r01c(x, y, grid))
-		print_rush("rush-01", xy, ++index, num_rushes);
-	if (r02c(x, y, grid))
-		print_rush("rush-02", xy, ++index, num_rushes);
-	if (r03c(x, y, grid))
-		print_rush("rush-03", xy, ++index, num_rushes);
-	if (r04c(x, y, grid))
-		print_rush("rush-04", xy, ++index, num_rushes);
-	ft_putchar('\n');
+	else
+	{
+		index = 0;
+		xy[0] = x;
+		xy[1] = y;
+		if (r00c(x, y, grid))
+			print_rush("rush-00", xy, ++index, num_rushes);
+		if (r01c(x, y, grid))
+			print_rush("rush-01", xy, ++index, num_rushes);
+		if (r02c(x, y, grid))
+			print_rush("rush-02", xy, ++index, num_rushes);
+		if (r03c(x, y, grid))
+			print_rush("rush-03", xy, ++index, num_rushes);
+		if (r04c(x, y, grid))
+			print_rush("rush-04", xy, ++index, num_rushes);
+		ft_putchar('\n');
+	}
 }
 
 int		get_num_of_solutions(int x, int y, char **grid)

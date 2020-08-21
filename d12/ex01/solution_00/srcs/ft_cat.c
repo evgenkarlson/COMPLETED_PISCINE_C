@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_lib.h"
+#include "../includes/ft_lib.h"
 
 void	ft_set_program_name(char *argv0)
 {
@@ -39,10 +39,12 @@ void	ft_display_cat(int file, char *argv_x)
 		if (r == -1)
 		{
 			ft_display_custom_error(errno, argv_x);
-			return ;
 		}
-		buffer[r] = '\0';
-		ft_putstr(buffer);
+		else
+		{
+			buffer[r] = '\0';
+			ft_putstr(buffer);
+		}
 	}
 }
 

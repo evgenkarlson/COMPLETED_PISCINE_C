@@ -12,6 +12,17 @@
 
 #include "../includes/ft_lib.h"
 
+void		ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void		ft_putstr(const char *str)
+{
+	while (*str)
+		ft_putchar(*str++);
+}
+
 const char	*ft_strerror(int errnum)
 {
 	extern const char * const	sys_errlist[];
@@ -24,17 +35,6 @@ const char	*ft_strerror(int errnum)
 		return (sys_errlist[errnum]);
 	}
 	return ("Unknown error");
-}
-
-void		ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void		ft_putstr(const char *str)
-{
-	while (*str)
-		ft_putchar(*str++);
 }
 
 int			ft_display_custom_error(int eno, char *argv)

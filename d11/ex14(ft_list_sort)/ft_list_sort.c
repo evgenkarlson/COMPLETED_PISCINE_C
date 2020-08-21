@@ -197,24 +197,25 @@ void		ft_list_sort(t_list **begin_list, int (*cmp)())
 
 	i = 0;
 	j = 1;
-	if (!*begin_list)
-		return ;
-	while (i < ft_list_size(*begin_list) - 1)
+	if (*begin_list)
 	{
-		while (j < ft_list_size(*begin_list))
+		while (i < ft_list_size(*begin_list) - 1)
 		{
-			if (cmp(ft_list_at(*begin_list, i)->data,
-						ft_list_at(*begin_list, j)->data) > 0)
+			while (j < ft_list_size(*begin_list))
 			{
-				save = ft_list_at(*begin_list, i)->data;
-				ft_list_at(*begin_list, i)->data =
-					ft_list_at(*begin_list, j)->data;
-				ft_list_at(*begin_list, j)->data = save;
+				if (cmp(ft_list_at(*begin_list, i)->data,
+							ft_list_at(*begin_list, j)->data) > 0)
+				{
+					save = ft_list_at(*begin_list, i)->data;
+					ft_list_at(*begin_list, i)->data =
+						ft_list_at(*begin_list, j)->data;
+					ft_list_at(*begin_list, j)->data = save;
+				}
+				j = j + 1;
 			}
-			j = j + 1;
+			i = i + 1;
+			j = i + 1;
 		}
-		i = i + 1;
-		j = i + 1;
 	}
 }
 
@@ -305,9 +306,7 @@ void	ft_insert(t_list **begin_list, int (*cmp)())
 {
 	void	*val;
 
-	if (!*begin_list || !(*begin_list)->next)
-		return ;
-	else
+	if (*begin_list || (*begin_list)->next)
 	{
 		if (cmp((*begin_list)->data, ((*begin_list)->next)->data) > 0)
 		{
@@ -316,16 +315,12 @@ void	ft_insert(t_list **begin_list, int (*cmp)())
 			((*begin_list)->next)->data = val;
 			ft_insert(&((*begin_list)->next), cmp);
 		}
-		else
-			return ;
 	}
 }
 
 void	ft_list_sort(t_list **begin_list, int (*cmp)())
 {
-	if (!*begin_list || !(*begin_list)->next)
-		return ;
-	else
+	if (*begin_list || (*begin_list)->next)
 	{
 		ft_list_sort(&((*begin_list)->next), cmp);
 		ft_insert(begin_list, cmp);
@@ -351,20 +346,19 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)())
 {
 	t_list *current;
 
-	if (!(*begin_list))
-		return ;
-	if (!(*begin_list)->data)
-		return ;
-	current = *begin_list;
-	while (current->next)
+	if (*begin_list || (*begin_list)->data)
 	{
-		if ((*cmp)(current->data, current->next->data) > 0)
+		current = *begin_list;
+		while (current->next)
 		{
-			ft_swap_data(current, current->next);
-			current = *begin_list;
+			if ((*cmp)(current->data, current->next->data) > 0)
+			{
+				ft_swap_data(current, current->next);
+				current = *begin_list;
+			}
+			else
+				current = current->next;
 		}
-		else
-			current = current->next;
 	}
 }
 

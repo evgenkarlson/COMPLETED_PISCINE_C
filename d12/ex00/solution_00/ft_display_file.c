@@ -16,7 +16,11 @@ void	ft_display_file(int argc, char **argv)
 {
 	int		file;
 
-	if (argc == 2)
+	if (argc > 2)
+		ft_putstr("Too many arguments.\n");
+	else if (argc < 2)
+		ft_putstr("File name missing.\n");
+	else if (argc == 2)
 	{
 		if (ft_strcmp(argv[1], ".") == 0 || ft_strcmp(argv[1], "/") == 0 ||
 			ft_strcmp(argv[1], "..") == 0 || ft_strcmp(argv[1], "./") == 0 ||
@@ -24,22 +28,14 @@ void	ft_display_file(int argc, char **argv)
 		{
 			ft_putstr(argv[1]);
 			ft_putstr(": Is a directory.\n");
-			return ;
 		}
-		if ((file = open(argv[1], O_RDONLY)) == -1)
-		{
+		else if ((file = open(argv[1], O_RDONLY)) == -1)
 			ft_putstr("OPEN(): An read error occurred. No such file or directory.\n");
-			return ;
-		}
-		ft_display_stdin(file);
-		if (close(file) == -1)
+		else
 		{
-			ft_putstr("CLOSE(): An file stream close error occurred.\n");
-			return ;
+			ft_display_stdin(file);
+			if (close(file) == -1)
+				ft_putstr("CLOSE(): An file stream close error occurred.\n");
 		}
 	}
-	if (argc > 2)
-		ft_putstr("Too many arguments.\n");
-	if (argc < 2)
-		ft_putstr("File name missing.\n");
 }

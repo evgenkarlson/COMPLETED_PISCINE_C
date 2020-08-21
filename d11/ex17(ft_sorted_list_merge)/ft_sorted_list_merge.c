@@ -65,30 +65,26 @@ void	ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2,
 {
 	t_list *current;
 
-	if (!*(begin_list1))
+	if (*begin_list1)
 	{
-		if (!begin_list2)
-			return ;
-		else
+		if (begin_list2)
 		{
-			*begin_list1 = begin_list2;
-			return ;
+			current = *begin_list1;
+			while (current->next)
+				current = current->next;
+			current->next = begin_list2;
+			ft_list_sort(begin_list1, (*cmp));
 		}
+		else
+			*begin_list1 = begin_list2;
 	}
-	else
-	{
-		current = *begin_list1;
-		while (current->next)
-			current = current->next;
-		current->next = begin_list2;
-		ft_list_sort(begin_list1, (*cmp));
-	}
-
 }
 
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
+
 
 #include "ft_list.h"
 
@@ -103,23 +99,26 @@ void	ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2, \
 	if (!*begin_list1 || !begin_list2)
 	{
 		*begin_list1 = begin_list2 ? begin_list2 : *begin_list1;
-		return ;
 	}
-	compare = (*cmp)(begin_list2->data, (*begin_list1)->data);
-	head1 = (compare < 0) ? *begin_list1 : (*begin_list1)->next;
-	head2 = (compare < 0) ? begin_list2->next : begin_list2;
-	*begin_list1 = (compare < 0) ? begin_list2 : begin_list1;
-	tail = *begin_list1;
-	while (head1 && head2)
+	else
 	{
-		compare = (*cmp)(head2->data, head1->data);
-		tail->next = (compare < 0 ? head2 : head1);
-		head1 = compare < 0 ? head1 : head1->next;
-		head2 = compare < 0 ? head2->next : head2;
-		tail = tail->next;
+		compare = (*cmp)(begin_list2->data, (*begin_list1)->data);
+		head1 = (compare < 0) ? *begin_list1 : (*begin_list1)->next;
+		head2 = (compare < 0) ? begin_list2->next : begin_list2;
+		*begin_list1 = (compare < 0) ? begin_list2 : begin_list1;
+		tail = *begin_list1;
+		while (head1 && head2)
+		{
+			compare = (*cmp)(head2->data, head1->data);
+			tail->next = (compare < 0 ? head2 : head1);
+			head1 = compare < 0 ? head1 : head1->next;
+			head2 = compare < 0 ? head2->next : head2;
+			tail = tail->next;
+		}
+		tail->next = head2 ? head2 : head1;
 	}
-	tail->next = head2 ? head2 : head1;
 }
+
 
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -190,9 +189,7 @@ void	ft_insert(t_list **begin_list, int (*cmp)())
 {
 	void	*val;
 
-	if (*begin_list == ((void *)0) || (*begin_list)->next == ((void *)0))
-		return ;
-	else
+	if (*begin_list || (*begin_list)->next)
 	{
 		if (cmp((*begin_list)->data, ((*begin_list)->next)->data) > 0)
 		{
@@ -201,8 +198,6 @@ void	ft_insert(t_list **begin_list, int (*cmp)())
 			((*begin_list)->next)->data = val;
 			ft_insert(&((*begin_list)->next), cmp);
 		}
-		else
-			return ;
 	}
 }
 
@@ -211,9 +206,7 @@ void	ft_sorted_list_merge(t_list **begin_list1, t_list *begin_list2,
 {
 	t_list	*liste;
 
-	if (begin_list2 == ((void *)0))
-		return ;
-	else
+	if (begin_list2)
 	{
 		liste = begin_list2->next;
 		begin_list2->next = *begin_list1;

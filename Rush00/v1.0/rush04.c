@@ -39,5 +39,4 @@ void	rush(int x, int y)
 		if (y > 0)
 			ft_print_manager(x, 'C', 'B', 'A');
 	}
-	return ;
 }

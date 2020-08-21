@@ -28,13 +28,13 @@ void	ft_push_list(t_list **first, char c)
 
 	list = *first;
 	if (!list)
-	{
 		*first = ft_create_list(c);
-		return ;
+	else
+	{
+		while (list->next)
+			list = list->next;
+		list->next = ft_create_list(c);
 	}
-	while (list->next)
-		list = list->next;
-	list->next = ft_create_list(c);
 }
 
 char	*ft_concat_list(t_list *list, int len)

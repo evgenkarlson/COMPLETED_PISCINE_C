@@ -75,14 +75,15 @@ void	sastantua(int size)
 	int i;
 	int center;
 
-	if (size <= 0)
-		return ;
-	center = calc_w(size - 1);
-	i = 0;
-	while (i < size)
+	if (size > 0)
 	{
-		draw_layer_w_door(center, i, i == size - 1);
-		i++;
+		center = calc_w(size - 1);
+		i = 0;
+		while (i < size)
+		{
+			draw_layer_w_door(center, i, i == size - 1);
+			i++;
+		}
 	}
 }
 

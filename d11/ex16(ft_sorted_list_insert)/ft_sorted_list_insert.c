@@ -63,26 +63,10 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 {
 	t_list *current;
 
-	if (!*(begin_list))
+	if (!(*begin_list))
 	{
 		*begin_list = ft_create_elem(data);
-		return ;
 	}
-	current = *begin_list;
-	while (current->next)
-		current = current->next;
-	current->next = ft_create_elem(data);
-	ft_list_sort(begin_list, (*cmp));
-}
-
-/*			ИЛИ ТАК			*/
-/*
-void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
-{
-	t_list *current;
-
-	if (!*(begin_list))
-		*begin_list = ft_create_elem(data);
 	else
 	{
 		current = *begin_list;
@@ -93,7 +77,7 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 	}
 }
 
-*/
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -137,12 +121,14 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 	if (!current)
 	{
 		*begin_list = ft_create_elem(data);
-		return ;
 	}
-	while (current->next)
-		current = current->next;
-	current->next = ft_create_elem(data);
-	ft_list_sort(begin_list, (*cmp));
+	else
+	{
+		while (current->next)
+			current = current->next;
+		current->next = ft_create_elem(data);
+		ft_list_sort(begin_list, (*cmp));
+	}
 }
 
 /* ************************************************************************** */
@@ -163,19 +149,23 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 	{
 		*begin_list = new_link;
 		new_link->next = link ? link : ((void *)0);
-		return ;
 	}
-	while (link->next)
+	else
 	{
-		if ((*cmp)(data, link->data) > 0 && (*cmp)(data, link->next->data) <= 0)
+		while (link->next)
 		{
-			new_link->next = link->next;
-			link->next = new_link;
-			return ;
+			if ((*cmp)(data, link->data) > 0 && (*cmp)(data, link->next->data) <= 0)
+			{
+				new_link->next = link->next;
+				link->next = new_link;
+			}
+			else
+			{
+				link = link->next;
+			}
 		}
-		link = link->next;
+		link->next = new_link;
 	}
-	link->next = new_link;
 }
 
 /* ************************************************************************** */
@@ -194,23 +184,25 @@ void	ft_sorted_list_insert(t_list **begin_list, void *data, int (*cmp)())
 
 	elem = ft_create_elem(data);
 	current = *begin_list;
-	cont = (current == ((void *)0)) ? 0 : 1;
-	*begin_list = (current == 0) ? elem : *begin_list;
-	*begin_list = (cont && cmp(data, current->data) <= 0) ? elem : *begin_list;
-	elem->next = (cont && cmp(data, current->data) <= 0) ? current : elem->next;
+	cont = ((current == ((void *)0)) ? 0 : 1);
+	*begin_list = ((current == 0) ? elem : *begin_list);
+	*begin_list = ((cont && cmp(data, current->data) <= 0) ? elem : *begin_list);
+	elem->next = ((cont && cmp(data, current->data) <= 0) ? current : elem->next);
 	cont = (cont && cmp(data, current->data) <= 0) ? 0 : 1;
 	while (cont && current)
 	{
 		next = current->next;
-		current->next = (next == 0) ? elem : current->next;
-		cont = (next == 0) ? 0 : 1;
+		current->next = ((next == 0) ? elem : current->next);
+		cont = ((next == 0) ? 0 : 1);
 		if (cont && cmp(data, next->data) <= 0)
 		{
 			current->next = elem;
 			elem->next = next;
-			return ;
 		}
-		current = current->next;
+		else
+		{
+			current = current->next;
+		}
 	}
 }
 

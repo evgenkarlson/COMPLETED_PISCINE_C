@@ -11,18 +11,18 @@
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** *
- *
- * 
- *	• Создайте функцию «ft_list_reverse_fun», которая меняет порядок элементов
- *	списка. Вы можете использовать только связанные с указателями материалы.
- *
- * 
- *	• Вот как эта функция должна быть объявлена :
- *
- *							void	ft_list_reverse_fun(t_list *begin_list);
- * 
- * 
- * ************************************************************************** */
+** 
+**  
+** 	• Создайте функцию «ft_list_reverse_fun», которая меняет порядок элементов
+** 	списка. Вы можете использовать только связанные с указателями материалы.
+** 
+**  
+** 	• Вот как эта функция должна быть объявлена :
+** 
+** 							void	ft_list_reverse_fun(t_list *begin_list);
+**  
+**  
+** ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 
@@ -56,20 +56,21 @@ void	ft_list_reverse_fun(t_list *begin_list)
 	int		size;
 	int		i;
 
-	if (!begin_list || !begin_list->next)
-		return ;
-	size = ft_list_size(begin_list);
-	while (size)
+	if (begin_list || begin_list->next)
 	{
-		i = 0;
-		current = begin_list;
-		while (i < (size - 1))
+		size = ft_list_size(begin_list);
+		while (size)
 		{
-			ft_swap_data(current, current->next);
-			current = current->next;
-			i++;
+			i = 0;
+			current = begin_list;
+			while (i < (size - 1))
+			{
+				ft_swap_data(current, current->next);
+				current = current->next;
+				i++;
+			}
+			size--;
 		}
-		size--;
 	}
 }
 
@@ -147,24 +148,25 @@ void	ft_list_reverse_fun(t_list *begin_list)
 	int		len;
 	int		i;
 
-	if (begin_list == ((void *)0))
-		return ;
-	len = ft_list_size(begin_list);
-	while (len > 0)
+	if (begin_list || begin_list->next)
 	{
-		i = 0;
-		tmp = begin_list;
-		next = begin_list->next;
-		while (next && i < len - 1)
+		len = ft_list_size(begin_list);
+		while (len > 0)
 		{
-			var = tmp->data;
-			tmp->data = next->data;
-			tmp->next->data = var;
-			tmp = tmp->next;
-			next = next->next;
-			i++;
+			i = 0;
+			tmp = begin_list;
+			next = begin_list->next;
+			while (next && i < len - 1)
+			{
+				var = tmp->data;
+				tmp->data = next->data;
+				tmp->next->data = var;
+				tmp = tmp->next;
+				next = next->next;
+				i++;
+			}
+			len--;
 		}
-		len--;
 	}
 }
 

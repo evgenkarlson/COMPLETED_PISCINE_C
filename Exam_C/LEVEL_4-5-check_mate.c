@@ -267,28 +267,29 @@ void	print(int ac, char **av)
 	// creating map
 	while (ac-- > 1)
 		len++;
-	if (!(m = (char **)malloc(sizeof(char *) * len * (len + 1))))
-		return ;
-	y = 0;
-	while (y < len)
+	if (m = (char **)malloc(sizeof(char *) * len * (len + 1)))
 	{
-		if (!(m[y] = (char *)malloc(sizeof(char) * (len + 1))))
-			return ;
-		x = 0;
-		while (av[y + 1][x])
+		y = 0;
+		while (y < len)
 		{
-			m[y][x] = av[y + 1][x];
-			++x;
+			if (!(m[y] = (char *)malloc(sizeof(char) * (len + 1))))
+				return ;
+			x = 0;
+			while (av[y + 1][x])
+			{
+				m[y][x] = av[y + 1][x];
+				++x;
+			}
+			m[y][x] = 0;
+			++y;
 		}
-		m[y][x] = 0;
-		++y;
-	}
-	// printing map
-	y = 0;
-	while (y < len)
-	{
-		write(1, m[y++], len);
-		write(1, "\n", 1);
+		// printing map
+		y = 0;
+		while (y < len)
+		{
+			write(1, m[y++], len);
+			write(1, "\n", 1);
+		}
 	}
 }
 

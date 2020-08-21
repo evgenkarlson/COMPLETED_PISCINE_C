@@ -19,30 +19,55 @@ void	ft_putchar(char c)
 
 void	ft_putnbr(int nb)
 {
+	int	temp;
+	int	size;
+
+	size = 1;
 	if (nb < 0)
 	{
 		ft_putchar('-');
-		ft_putnbr(-nb);
-		return ;
+		nb = -nb;
 	}
-	if (nb >= 10)
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
 	}
-	else
-		ft_putchar(nb + '0');
 }
 
 int		ft_atoi(char *str)
 {
-	int	nbr;
+	int	i;
+	int	negativ;
+	int	number;
 
-	nbr = 0;
-	while (*str >= '0' && *str <= '9')
+	i = 0;
+	negativ = 0;
+	number = 0;
+	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
+		|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
+		i++;
+	if (str[i] == '-')
+		negativ = 1;
+	if ((str[i] == '-') || (str[i] == '+'))
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		nbr = nbr * 10 + (*str - '0');
-		str += 1;
+		number = (number * 10) + ((int)str[i] - '0');
+		i++;
 	}
-	return (nbr);
+	if (negativ == 1)
+		return (-number);
+	else
+		return (number);
 }

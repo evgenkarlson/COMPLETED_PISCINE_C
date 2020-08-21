@@ -14,30 +14,20 @@
 
 void	push(char n)
 {
-	if (g_opstack.top == (9999 - 1))
-	{
-		return ;
-	}
-	else
+	if ((g_opstack.top != (9999 - 1)))
 	{
 		g_opstack.top = g_opstack.top + 1;
 		g_opstack.stk[g_opstack.top] = n;
 	}
-	return ;
 }
 
 void	rpush(int n)
 {
-	if (g_rstack.top == (9999 - 1))
-	{
-		return ;
-	}
-	else
+	if (g_rstack.top != (9999 - 1))
 	{
 		g_rstack.top = g_rstack.top + 1;
 		g_rstack.stk[g_rstack.top] = n;
 	}
-	return ;
 }
 
 char	*pop(void)

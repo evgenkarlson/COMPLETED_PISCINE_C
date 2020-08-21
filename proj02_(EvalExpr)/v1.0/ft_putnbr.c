@@ -14,54 +14,30 @@
 
 void	ft_putchar(char c);
 
-void	ft_printnbr(int x[])
-{
-	int i;
-	int b;
-
-	i = 0;
-	b = 0;
-	while (i < 5)
-	{
-		if (b == 1)
-		{
-			ft_putchar(x[i] + 48);
-		}
-		else
-		{
-			if (x[i] > 0)
-			{
-				b = 1;
-				ft_putchar(x[i] + 48);
-			}
-		}
-		i++;
-	}
-}
-
 void	ft_putnbr(int nb)
 {
-	int o;
-	int t;
-	int x[5];
+	int	temp;
+	int	size;
 
-	if (nb == 0)
-	{
-		ft_putchar('0');
-		return ;
-	}
+	size = 1;
 	if (nb < 0)
 	{
 		ft_putchar('-');
-		nb = nb + -2 * nb;
+		nb = -nb;
 	}
-	t = 4;
-	while (t >= 0)
+	if (nb == -2147483648)
+	{	
+		ft_putchar('2');
+		nb = 147483648;
+	}
+	temp = nb;
+	while ((temp /= 10) > 0)
+		size *= 10;
+	temp = nb;
+	while (size)
 	{
-		o = nb % 10;
-		x[t] = o;
-		nb /= 10;
-		t--;
+		ft_putchar((char)((temp / size)) + 48);
+		temp %= size;
+		size /= 10;
 	}
-	ft_printnbr(x);
 }
