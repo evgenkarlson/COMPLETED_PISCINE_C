@@ -23,7 +23,8 @@
  
       "./d10/ex06/Solution_00/",
       "./d10/ex06/Solution_01/",
-      "./d10/ex06/Solution_02/", и т.д.
+      "./d10/ex06/Solution_02/",
+      и т.д.
 
 
 
