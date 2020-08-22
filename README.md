@@ -68,4 +68,4 @@
 > 
 > Чтобы не терять время, можно все команды соединить в одну строку записав в окне терминала вот так:  
 > 
->         gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out
+>> gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out
