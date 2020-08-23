@@ -1,6 +1,6 @@
 # Completed Task of the Piscine C
 
-![Piscine_C](https://github.com/evgenkarlson/Completed___Piscine_C___of___School_42/blob/master/.vscode/Charlie-Day-in-Its-Always-Sunny-In-Philadelphia.jpg)
+![Piscine_C](https://pbs.twimg.com/media/D6nqJ_SXsAA65zu.jpg)
 
  • Этот репозиторий содержит множество версий выполненных задач на каждый день самого первого басейна по Си. 
 
