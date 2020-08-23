@@ -1,7 +1,5 @@
 # Completed Task of the Piscine C
 
-![Piscine_C](https://github.com/evgenkarlson/Completed___Piscine_C___of___School_42/blob/master/.vscode/01.png)
-
  • Этот репозиторий содержит множество версий выполненных задач на каждый день самого первого басейна по Си. 
 
 
@@ -32,6 +30,8 @@
  • Так же в папке выполненого задания может содержаться тестовый файл или папка с тестовыми файлами, скомпилировав которые можно посмотреть как работает требуемая в заданиии функция(или несколько функций).
 
 
+
+![Piscine_C](https://github.com/evgenkarlson/Completed___Piscine_C___of___School_42/blob/master/.vscode/01.png)
 
 ## Компиляция:
 
