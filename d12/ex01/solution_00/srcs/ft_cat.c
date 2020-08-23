@@ -48,7 +48,7 @@ void	ft_display_cat(int file, char *argv_x)
 	}
 }
 
-int		main(int argc, char **argv)
+int		ft_cat(int argc, char **argv)
 {
 	int	i;
 	int	file;
