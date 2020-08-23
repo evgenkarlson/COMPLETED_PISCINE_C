@@ -1,6 +1,6 @@
 # Completed Task of the Piscine C
 
-![Piscine_C](https://pbs.twimg.com/media/D6nqJ_SXsAA65zu.jpg)
+![Piscine_C](https://pbs.twimg.com/profile_banners/917963786702770177/1559144687/1500x500)
 
  • Этот репозиторий содержит множество версий выполненных задач на каждый день самого первого басейна по Си. 
 
