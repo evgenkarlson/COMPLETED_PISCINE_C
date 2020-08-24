@@ -1,4 +1,4 @@
-# Completed Tasks of the Piscine C
+# 「 Completed Tasks of the Piscine C 」
 
  • Этот репозиторий содержит множество версий выполненных задач на каждый день самого первого басейна по Си. 
 
