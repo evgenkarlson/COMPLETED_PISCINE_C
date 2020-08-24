@@ -1,6 +1,6 @@
 # Completed Tasks of the Piscine C
 
-![Piscine_C](https://github.com/evgenkarlson/Completed___Piscine_C___of___School_42/blob/master/.vscode/05.png)
+![Piscine_C](https://github.com/evgenkarlson/Completed___Piscine_C___of___School_42/blob/master/.vscode/03.png)
 
  • Этот репозиторий содержит множество версий выполненных задач на каждый день самого первого басейна по Си. 
 
