@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_inc.h                                           :+:      :+:    :+:   */
+/*   ft_lib.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/25 22:52:27 by jaleman           #+#    #+#             */
-/*   Updated: 2016/08/25 22:52:27 by jaleman          ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 # include <stdio.h>
 # include <errno.h>
 
-# define BUF_SIZE 32
+# define BUF_SIZE 1024
 
-char		*g_progname;
 const char	*ft_strerror(int errnum);
 void		ft_putchar(char c);
 void		ft_putstr(const char *str);
 int			ft_display_custom_error(int eno, char *argv);
+void	    ft_display_cat(int file, char *argv);
 int	        ft_cat(int argc, char **argv);
 
 #endif

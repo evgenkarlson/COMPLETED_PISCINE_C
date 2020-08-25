@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_auxiliary.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/25 22:52:06 by jaleman           #+#    #+#             */
-/*   Updated: 2016/08/25 22:52:07 by jaleman          ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		ft_putstr(const char *str)
 const char	*ft_strerror(int errnum)
 {
 	extern const char * const	sys_errlist[];
-	extern const int			sys_nerr;
+	extern int					sys_nerr;
 
 	if (errnum < 0)
 		errnum = -errnum;
@@ -39,7 +39,7 @@ const char	*ft_strerror(int errnum)
 
 int			ft_display_custom_error(int eno, char *argv)
 {
-	ft_putstr(g_progname);
+	ft_putstr("g_progname");
 	ft_putstr(": ");
 	ft_putstr(argv);
 	ft_putstr(": ");

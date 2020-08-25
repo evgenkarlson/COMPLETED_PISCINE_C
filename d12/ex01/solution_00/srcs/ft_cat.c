@@ -3,33 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jaleman <jaleman@student.42.us.org>        +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/25 22:51:41 by jaleman           #+#    #+#             */
-/*   Updated: 2016/08/25 22:51:42 by jaleman          ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_lib.h"
 
-void	ft_set_program_name(char *argv0)
-{
-	char *slash;
-
-	slash = 0;
-	while (*argv0)
-	{
-		if (*argv0 == '/')
-			slash = argv0;
-		argv0++;
-	}
-	if (slash)
-		g_progname = slash + 1;
-	else
-		g_progname = argv0;
-}
-
-void	ft_display_cat(int file, char *argv_x)
+void	ft_display_cat(int file, char *argv)
 {
 	int		r;
 	char	buffer[BUF_SIZE + 1];
@@ -37,9 +20,7 @@ void	ft_display_cat(int file, char *argv_x)
 	while ((r = read(file, buffer, BUF_SIZE)))
 	{
 		if (r == -1)
-		{
-			ft_display_custom_error(errno, argv_x);
-		}
+			ft_display_custom_error(errno, argv);
 		else
 		{
 			buffer[r] = '\0';
@@ -54,7 +35,6 @@ int		ft_cat(int argc, char **argv)
 	int	file;
 
 	i = 0;
-	ft_set_program_name(argv[0]);
 	while (++i < argc)
 	{
 		if (argc < 2 || argv[i][0] == '-')

@@ -16,6 +16,7 @@ LFLAGS = -Werror -Wall -Wextra -o
 HEADERS = -I includes/
 _SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_opp.c ft_adv_opp.c main.c
 SRCS = $(patsubst %, srcs/%, $(_SRC))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
@@ -23,6 +24,9 @@ $(NAME):
 	$(CC) $(LFLAGS) $(NAME) $(SRCS) $(HEADERS)
 
 clean:
-	rm -f $(NAME)
+	/bin/rm -f $(OBJS)
+
+fclean: clean
+	/bin/rm -f $(NAME)
 
 re: fclean all

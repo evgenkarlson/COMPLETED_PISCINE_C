@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_display_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: schapuis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/08/28 11:47:38 by schapuis          #+#    #+#             */
-/*   Updated: 2013/08/28 12:16:58 by schapuis         ###   ########.fr       */
+/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include <unistd.h>
 #include <fcntl.h>
 
