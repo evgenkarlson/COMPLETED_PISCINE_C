@@ -12,7 +12,7 @@
 
 #include "../includes/ft_lib.h"
 
-void	ft_display_cat(int file, char *argv)
+void	ft_display_file(int file, char *argv)
 {
 	int		r;
 	char	buffer[BUF_SIZE + 1];
@@ -38,11 +38,11 @@ int		ft_cat(int argc, char **argv)
 	while (++i < argc)
 	{
 		if (argc < 2 || argv[i][0] == '-')
-			ft_display_cat(1, argv[0]);
+			ft_display_file(1, argv[0]);
 		if ((file = open(argv[i], O_RDONLY)) == -1)
 			ft_display_custom_error(errno, argv[i]);
 		if (file != -1)
-			ft_display_cat(file, argv[i]);
+			ft_display_file(file, argv[i]);
 		close(file);
 	}
 	return (0);

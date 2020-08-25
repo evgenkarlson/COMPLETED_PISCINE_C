@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <fcntl.h>
-# include <stdio.h>
 # include <errno.h>
 
 # define BUF_SIZE 1024
@@ -24,7 +23,7 @@ const char	*ft_strerror(int errnum);
 void		ft_putchar(char c);
 void		ft_putstr(const char *str);
 int			ft_display_custom_error(int eno, char *argv);
-void	    ft_display_cat(int file, char *argv);
+void	    ft_display_file(int file, char *argv);
 int	        ft_cat(int argc, char **argv);
 
 #endif
