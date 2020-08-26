@@ -20,7 +20,10 @@ void	ft_display_file(int file, char *argv)
 	while ((r = read(file, buffer, BUF_SIZE)))
 	{
 		if (r == -1)
+		{
 			ft_display_custom_error(errno, argv);
+			break;
+		}
 		else
 		{
 			buffer[r] = '\0';
@@ -34,6 +37,7 @@ int		ft_cat(int argc, char **argv)
 	int	i;
 	int	file;
 
+	g_progname = *argv;
 	i = 0;
 	while (++i < argc)
 	{
