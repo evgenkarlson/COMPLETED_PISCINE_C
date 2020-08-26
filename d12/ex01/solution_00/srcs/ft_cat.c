@@ -12,22 +12,36 @@
 
 #include "../includes/ft_lib.h"
 
-void	ft_display_file(int file, char *argv)
+void	ft_display_file(char *argv)
 {
 	int		r;
+	int 	file;
 	char	buffer[BUF_SIZE + 1];
 
-	while ((r = read(file, buffer, BUF_SIZE)))
+	if ((file = open(argv, O_RDONLY)) == -1)
 	{
-		if (r == -1)
+		ft_putstr("\n");
+		ft_display_custom_error(errno, argv);
+	}
+	else
+	{
+		while ((r = read(file, buffer, BUF_SIZE)))
 		{
-			ft_display_custom_error(errno, argv);
-			break;
+			if (r == -1)
+			{
+				ft_display_custom_error(errno, argv);
+				break;
+			}
+			else
+			{
+				buffer[r] = '\0';
+				ft_putstr(buffer);
+			}
 		}
-		else
+		if ((close(file)) == -1)
 		{
-			buffer[r] = '\0';
-			ft_putstr(buffer);
+			ft_putstr("\n");
+			ft_display_custom_error(errno, argv);
 		}
 	}
 }
@@ -35,19 +49,15 @@ void	ft_display_file(int file, char *argv)
 int		ft_cat(int argc, char **argv)
 {
 	int	i;
-	int	file;
 
 	g_progname = *argv;
 	i = 0;
 	while (++i < argc)
 	{
 		if (argc < 2 || argv[i][0] == '-')
-			ft_display_file(1, argv[0]);
-		if ((file = open(argv[i], O_RDONLY)) == -1)
-			ft_display_custom_error(errno, argv[i]);
-		if (file != -1)
-			ft_display_file(file, argv[i]);
-		close(file);
+			ft_display_file(argv[0]);
+		else
+			ft_display_file(argv[i]);
 	}
 	return (0);
 }
