@@ -17,10 +17,14 @@ void		ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-void		ft_putstr(const char *str)
+void	ft_putstr(char *str)
 {
-	while (*str)
-		ft_putchar(*str++);
+	int	i;
+
+	i = 0;
+	while (*(str + i))
+		i++;
+	write(1, str, i);
 }
 
 const char	*ft_get_strerr(int errnum)

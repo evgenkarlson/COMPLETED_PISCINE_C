@@ -15,8 +15,12 @@
 
 void	ft_putstr(char *str)
 {
-	while (*str)
-		write(2, str++, 1);
+	int	i;
+
+	i = 0;
+	while (*(str + i))
+		i++;
+	write(1, str, i);
 }
 
 void	ft_stdin(void)
