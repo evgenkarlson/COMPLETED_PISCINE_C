@@ -15,17 +15,17 @@
 void	ft_display_file(char *argv)
 {
 	int		r;
-	int 	file;
+	int 	fd;
 	char	buffer[BUF_SIZE + 1];
 
-	if ((file = open(argv, O_RDONLY)) == -1)
+	if ((fd = open(argv, O_RDONLY)) == -1)
 	{
 		ft_putstr("\n");
 		ft_display_custom_error(errno, argv);
 	}
 	else
 	{
-		while ((r = read(file, buffer, BUF_SIZE)))
+		while ((r = read(fd, buffer, BUF_SIZE)))
 		{
 			if (r == -1)
 			{
@@ -38,7 +38,7 @@ void	ft_display_file(char *argv)
 				ft_putstr(buffer);
 			}
 		}
-		if ((close(file)) == -1)
+		if ((close(fd)) == -1)
 		{
 			ft_putstr("\n");
 			ft_display_custom_error(errno, argv);
