@@ -41,8 +41,7 @@ int		ft_is_prime(int nb)
 	{
 		if (nb % i == 0)
 			return (0);
-		else
-			i++;
+		i++;
 	}
 	return (1);
 }
@@ -75,8 +74,7 @@ int		ft_is_prime(int nb)
 	{
 		if (!(nb % i))
 			return (0);
-		else
-			i++;
+		i++;
 	}
 	return (1);
 }
