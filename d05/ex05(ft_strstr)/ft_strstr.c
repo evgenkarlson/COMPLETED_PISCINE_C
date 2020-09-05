@@ -67,7 +67,7 @@ char	*ft_strstr(char *str, char *to_find)
 		j = 0;
 		i++;
 	}
-	return (0);
+	return ((void *)0);
 }
 
 /* ************************************************************************** */
@@ -82,7 +82,7 @@ char	*ft_strstr(char *str, char *to_find)
 	b = to_find;
 	if (*b == '\0')
 		return (str);
-	while (*str != '\0')
+	while (*str)
 	{
 		if (*str == *b)
 		{
