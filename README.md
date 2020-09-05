@@ -1,7 +1,6 @@
+# 「 Completed Tasks of the Piscine C 」
 
 ![header](.vscode/header.png)
-
-# 「 Completed Tasks of the Piscine C 」
 
  • Этот репозиторий содержит множество версий выполненных задач на каждый день самого первого бассейна по Си. 
 
