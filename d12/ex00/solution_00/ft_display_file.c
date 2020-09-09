@@ -38,4 +38,4 @@ void	ft_display_file(int argc, char **argv)
 				ft_putstr("CLOSE(): An file stream close error occurred.\n");
 		}
 	}
-}
+} 
