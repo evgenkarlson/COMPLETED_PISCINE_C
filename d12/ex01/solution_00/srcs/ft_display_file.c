@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cat.c                                           :+:      :+:    :+:   */
+/*   ft_display_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,19 +12,36 @@
 
 #include "../includes/ft_lib.h"
 
-int		ft_cat(int argc, char **argv)
+void	ft_display_file(char *argv)
 {
-	int	i;
+	int		r;
+	int 	fd;
+	char	buffer[BUF_SIZE + 1];
 
-	g_progname = *argv;
-	i = 0;
-	while (++i < argc)
+	if ((fd = open(argv, O_RDONLY)) == -1)
 	{
-		if (argc < 2 || argv[i][0] == '-')
-			ft_display_file(argv[0]);
-		else
-			ft_display_file(argv[i]);
-		ft_putchar('\n');
+		ft_putstr("\n");
+		ft_display_custom_error(errno, argv);
 	}
-	return (0);
+	else
+	{
+		while ((r = read(fd, buffer, BUF_SIZE)))
+		{
+			if (r == -1)
+			{
+				ft_display_custom_error(errno, argv);
+				break;
+			}
+			else
+			{
+				buffer[r] = '\0';
+				ft_putstr(buffer);
+			}
+		}
+		if ((close(fd)) == -1)
+		{
+			ft_putstr("\n");
+			ft_display_custom_error(errno, argv);
+		}
+	}
 }
