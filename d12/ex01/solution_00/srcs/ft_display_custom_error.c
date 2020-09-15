@@ -12,12 +12,12 @@
 
 #include "../includes/ft_lib.h"
 
-int		ft_display_custom_error(int eno, char *argv)
+void	ft_display_custom_error(int eno, char *argv)/* Принимаем номер ошибки, и адресс строки, с которой была связана ошибка */
 {
-	ft_putstr(g_progname);
-	ft_putstr(": ");
-	ft_putstr(argv);
-	ft_putstr(": ");
-	ft_putstr((char *)ft_get_strerr(eno));
-	return (0);
+	ft_putstr(g_progname);							/* Берем из глобального указателя адресс хранящий строку с именем программы и печатаем её */
+	ft_putstr(": ");								/* Печатаем символ двоеточия для визуального разделения строк */
+	ft_putstr(argv);								/* Печатаем содержимое строки, с которой была связана ошибка */
+	ft_putstr(": ");								/* Печатаем символ двоеточия для визуального разделения строк */
+	ft_putstr((char *)ft_get_strerr(eno));			/* Отправляем номер ошибки в функцию, которая найдет строку с
+													** описанием этой ошибки и вернет адрес этой строки */
 }

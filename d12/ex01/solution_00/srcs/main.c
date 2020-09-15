@@ -12,9 +12,8 @@
 
 #include "../includes/ft_lib.h"
 
-int		main(int argc, char **argv)
+int		main(int argc, char **argv)	/* Принимаем количество аргументов и адресс массва строк с аргументами программы*/
 {
-	if(argc > 1)
-		ft_cat(argc, argv);
+	ft_cat(argc, argv);
 	return (0);
 }
