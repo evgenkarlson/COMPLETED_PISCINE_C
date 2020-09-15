@@ -19,6 +19,5 @@ int		ft_display_custom_error(int eno, char *argv)
 	ft_putstr(argv);
 	ft_putstr(": ");
 	ft_putstr((char *)ft_get_strerr(eno));
-	ft_putstr("\n");
 	return (0);
 }

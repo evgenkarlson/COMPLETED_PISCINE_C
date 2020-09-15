@@ -19,10 +19,7 @@ void	ft_display_file(char *argv)
 	char	buffer[BUF_SIZE + 1];
 
 	if ((fd = open(argv, O_RDONLY)) == -1)
-	{
-		ft_putstr("\n");
 		ft_display_custom_error(errno, argv);
-	}
 	else
 	{
 		while ((r = read(fd, buffer, BUF_SIZE)))
@@ -39,9 +36,6 @@ void	ft_display_file(char *argv)
 			}
 		}
 		if ((close(fd)) == -1)
-		{
-			ft_putstr("\n");
 			ft_display_custom_error(errno, argv);
-		}
 	}
 }
