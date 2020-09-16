@@ -16,6 +16,6 @@ void	ft_stdin(void)
 {
 	char	buffer;
 
-	while (read(0, &buffer, 1) != 0)
+	while (read(0, &buffer, 1))
 		write(1, &buffer, 1);
 }
