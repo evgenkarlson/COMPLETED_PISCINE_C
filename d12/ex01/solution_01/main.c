@@ -51,8 +51,7 @@ int		ft_file(int argc, char **argv)
 			ft_stdin();
 		else
 		{
-			fd = open(argv[i], O_RDONLY);
-			if (fd >= 0)
+			if ((fd = open(argv[i], O_RDONLY)) >= 0)
 			{
 				while (read(fd, &buffer, 1) != 0)
 					write(1, &buffer, 1);

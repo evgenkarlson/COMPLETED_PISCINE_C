@@ -12,15 +12,19 @@
 
 NAME = ft_cat
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+LFLAGS = -Wall -Wextra -Werror -o
+SRC = main.c
+OBJS = $(patsubst %.c, %.o, $(SRC))
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) -o $(NAME)  main.c
+	$(CC) $(CFLAGS) $(NAME) $(SRC)
 
 clean:
-	rm -f $(NAME)
+	/bin/rm -f $(OBJ)
 
-fclean: clean
+fclean: 
+	/bin/rm -f $(NAME)
 
+re: fclean all
