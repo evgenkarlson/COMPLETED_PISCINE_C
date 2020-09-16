@@ -13,9 +13,9 @@
 NAME = ft_display_file
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -o
-SOURCE = ft_display_file.c ft_display_stdin.c ft_putstr.c ft_strcmp.c main.c
-HEADER = ft_lib.h
-SRCS = $(patsubst %, ./%, $(SOURCE))
+SOURCE = ft_display_file.c ft_putstr.c ft_strcmp.c main.c
+HEADER = -I includes/
+SRCS = $(patsubst %, ./srcs/%, $(SOURCE))
 OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)

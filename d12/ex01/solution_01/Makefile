@@ -25,7 +25,7 @@ $(NAME):
 clean:
 	/bin/rm -f $(OBJS)
 
-fclean: clean
+fclean:
 	/bin/rm -f $(NAME)
 
 re: fclean all

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lib.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,10 +10,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lib.h"
+#ifndef FT_LIB_H
+# define FT_LIB_H
 
-int		main(int argc, char **argv)
-{
-	ft_display_file(argc, argv);
-	return (0);
-}
+# include <unistd.h>
+# include <fcntl.h>
+# define BUFF_SIZE	4096
+
+void	ft_putstr(char *str);
+void	ft_display_file(int argc, char **argv);
+int		ft_strcmp(char *s1, char *s2);
+
+#endif

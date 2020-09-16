@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_file.c                                  :+:      :+:    :+:   */
+/*   ft_cat.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -9,33 +9,53 @@
 /*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
+#include <fcntl.h>
 
-#include "ft_lib.h"
-
-void	ft_display_file(int argc, char **argv)
+void	ft_puterr(char *str)
 {
-	int		file;
+	while (*str)
+		write(2, str++, 1);
+}
 
-	if (argc > 2)
-		ft_putstr("Too many arguments.\n");
-	else if (argc < 2)
-		ft_putstr("File name missing.\n");
-	else if (argc == 2)
+void	disp_files(int argc, char **argv)
+{
+	char	buffer;
+	int		fd;
+	int		i;
+
+	i = 1;
+	while (i < argc)
 	{
-		if (ft_strcmp(argv[1], ".") == 0 || ft_strcmp(argv[1], "/") == 0 ||
-			ft_strcmp(argv[1], "..") == 0 || ft_strcmp(argv[1], "./") == 0 ||
-			ft_strcmp(argv[1], "../") == 0)
+		fd = open(argv[i], O_RDONLY);
+		if (fd >= 0)
 		{
-			ft_putstr(argv[1]);
-			ft_putstr(": Is a directory.\n");
+			while (read(fd, &buffer, 1) != 0)
+				write(1, &buffer, 1);
 		}
-		else if ((file = open(argv[1], O_RDONLY)) == -1)
-			ft_putstr("OPEN(): An read error occurred. No such file or directory.\n");
 		else
 		{
-			ft_display_stdin(file);
-			if (close(file) == -1)
-				ft_putstr("CLOSE(): An file stream close error occurred.\n");
+			ft_puterr("ft_cat: ");
+			ft_puterr(argv[i]);
+			ft_puterr(": No such file or directory\n");
 		}
+		close(fd);
+		i++;
 	}
-} 
+}
+
+void	disp_stdin(void)
+{
+	char	buffer;
+
+	while (read(0, &buffer, 1) != 0)
+		write(1, &buffer, 1);
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc < 2 || argv[1][0] == '-')
+		disp_stdin();
+	disp_files(argc, argv);
+	return (0);
+}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lib.h                                           :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,16 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_LIB_H
-# define FT_LIB_H
+#include "../includes/ft_lib.h"
 
-# include <unistd.h>
-# include <fcntl.h>
-# define BUFF_SIZE	4096
+void	ft_putstr(char *str)	/* Функция печати символа через стандартный поток вывода */
+{
+	int	i;
 
-void	ft_putstr(char *str);
-void	ft_display_stdin(int fd);
-void	ft_display_file(int argc, char **argv);
-int		ft_strcmp(char *s1, char *s2);
-
-#endif
+	i = 0;
+	while (*(str + i))
+		i++;
+	write(1, str, i);
+}

@@ -11,20 +11,21 @@
 # **************************************************************************** #
 
 NAME = ft_cat
-
-SRC = ft_cat.c
+CC = gcc
+LFLAGS = -Wall -Werror -Wextra -o
+SOURCE = main.c
+HEADER = -I includes/
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Werror -Wextra $(SRC)
-	gcc -o $(NAME) ft_cat.o
+	$(CC) $(LFLAGS) $(NAME) $(SOURCE)
 
 clean:
-	/bin/rm -f ft_cat.o
+	/bin/rm -f $(OBJS)
 
-fclean:
+fclean: clean
 	/bin/rm -f $(NAME)
 
-re:
-	fclean all
+re: fclean all
