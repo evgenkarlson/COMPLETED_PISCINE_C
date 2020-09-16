@@ -13,7 +13,7 @@
 NAME = ft_cat
 CC = gcc
 LFLAGS = -Wall -Werror -Wextra -o
-SOURCE = ft_display_custom_error.c ft_display_file.c ft_get_strerr.c ft_putchar.c ft_putstr.c ft_cat.c main.c
+SOURCE = ft_display_custom_error.c ft_display_file.c ft_get_strerr.c ft_putchar.c ft_putstr.c ft_stdin.c ft_cat.c main.c
 HEADER = -I includes/
 SRC = $(patsubst %, ./srcs/%, $(SOURCE))
 OBJS = $(patsubst %.c, %.o, $(SOURCE))

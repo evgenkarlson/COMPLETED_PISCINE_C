@@ -9,7 +9,7 @@
 #    Created: 2020/02/14 12:33:14 by evgenkarlson     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-#	              команда для компиляции и линковки проекта:               #
+#                 команда для компиляции и линковки проекта:                   #
 #                                                                              #
 #                                   make                                       #
 #                                                                              #
@@ -46,12 +46,16 @@
 #                                                                                 #
 #   • Сообщения об ошибках должны отображаться на их зарезервированном выходе.    #
 # ------------------------------------------------------------------------------- #
-# :		$> ./ft_display_file                                            : #
-# :		File name missing.                                              : #
-# :		$> ./ft_display_file Makefile                                   : #
-# :		*contenu du Makefile*                                           : #
-# :		$> ./ft_display_file Makefile display_file.c                    : #
-# :		Too many arguments.                                             : #
-# :		$>                                                              : #
+# :             $> ./ft_display_file                                            : #
+# :             File name missing.                                              : #
+# :             $> ./ft_display_file Makefile                                   : #
+# :             *contenu du Makefile*                                           : #
+# :             $> ./ft_display_file Makefile display_file.c                    : #
+# :             Too many arguments.                                             : #
+# :             $>                                                              : #
 # ------------------------------------------------------------------------------- #
 ###################################################################################
+
+
+О файловых дескрипторах:
+https://stackoverflow.com/questions/5256599/what-are-file-descriptors-explained-in-simple-terms

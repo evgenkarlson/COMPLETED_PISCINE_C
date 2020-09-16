@@ -20,6 +20,7 @@
 # define BUF_SIZE 1024
 
 char        *g_progname;
+void        ft_stdin(void);
 void		ft_putchar(char c);
 void		ft_putstr(char *str);
 const char	*ft_get_strerr(int errnum);
