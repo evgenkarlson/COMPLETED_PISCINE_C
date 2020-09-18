@@ -15,9 +15,10 @@
 
 # include <unistd.h>
 # include <fcntl.h>
-# define BUFF_SIZE	1024
 
+void	ft_putchar(char c);
 void	ft_putstr(char *str);
+int		ft_strcmp(char *s1, char *s2);
 int		ft_display_file(char *filename);
 
 #endif

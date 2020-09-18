@@ -12,6 +12,11 @@
 
 #include "ft_lib.h"
 
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 void	ft_putstr(char *str)
 {
 	int	i;
@@ -35,7 +40,7 @@ int		ft_strcmp(char *s1, char *s2)
 int		ft_display_file(char *filename)
 {
 	int		fd;
-	char	buffer[BUFF_SIZE + 1];
+	char	buffer;
 	int		len;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
@@ -43,10 +48,9 @@ int		ft_display_file(char *filename)
 		ft_putstr("OPEN(): An read error occurred. No such file or directory.\n");
 		return (1);
 	}
-	while ((len = read(fd, buffer, BUFF_SIZE)))
+	while ((len = read(fd, &buffer, 1)))
 	{
-		buffer[len] = '\0';
-		ft_putstr(buffer);
+		ft_putchar(buffer);
 	}
 	if ((close(fd)) == -1)
 	{

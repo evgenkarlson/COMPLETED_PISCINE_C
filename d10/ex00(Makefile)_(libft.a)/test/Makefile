@@ -10,37 +10,27 @@
 #                                                                              #
 # **************************************************************************** #
 
-
 NAME = libft.a
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-LDFLAGS = -c
-HEADERS = -I includes/
-_SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
-SRCS = $(patsubst %, srcs/%, $(_SRC))
-OBJS = $(patsubst %.c, %.o, $(_SRC))
-
+CFLAGS = -Wall -Werror -Wextra -c
+LFLAGS = -Wall -Werror -Wextra -o
+SOURCE = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c
+HEADER = -I includes/
+SRC = $(patsubst %, ./srcs/%, $(SOURCE))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(LDFLAGS) $(HEADERS) $(SRCS)
+	$(CC) $(CFLAGS) $(SRC) $(HEADER)
 
 	ar rc libft.a $(OBJS)
 	ranlib libft.a
 
 clean:
-	rm -f $(OBJS)
+	/bin/rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	/bin/rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
-
-
-
-# **************************************************************************** #
-# **************************************************************************** #
-# **************************************************************************** #

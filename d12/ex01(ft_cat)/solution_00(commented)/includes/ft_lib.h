@@ -17,8 +17,6 @@
 # include <fcntl.h>
 # include <errno.h>
 
-# define BUF_SIZE 1024
-
 char        *g_progname;
 void        ft_stdin(void);
 void		ft_putchar(char c);

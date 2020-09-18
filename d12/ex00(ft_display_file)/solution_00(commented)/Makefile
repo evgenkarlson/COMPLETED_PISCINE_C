@@ -12,18 +12,21 @@
 
 NAME = ft_display_file
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -o
-SOURCE = ft_display_file.c ft_putstr.c ft_strcmp.c main.c
+CFLAGS = -Wall -Werror -Wextra -c
+LFLAGS = -Wall -Werror -Wextra -o
+SOURCE = ft_display_file.c ft_putstr.c ft_putchar.c ft_strcmp.c main.c
 HEADER = -I includes/
-SRCS = $(patsubst %, ./srcs/%, $(SOURCE))
+SRC = $(patsubst %, ./srcs/%, $(SOURCE))
 OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(CFLAGS) $(NAME) $(SRCS) $(HEADER)
+	$(CC) $(CFLAGS) $(SRC)
+	$(CC) $(LFLAGS) $(NAME) $(OBJS) $(HEADER)
+
 clean:
-	/bin/rm -f $(OBJECTS)
+	/bin/rm -f $(OBJS)
 
 fclean: clean
 	/bin/rm -f $(NAME)

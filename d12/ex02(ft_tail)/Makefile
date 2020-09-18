@@ -11,20 +11,24 @@
 # **************************************************************************** #
 
 NAME = ft_tail
-
-SRC = ft_tail.c
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -c
+LFLAGS = -Wall -Werror -Wextra -o
+SOURCE = ft_display_custom_error.c ft_display_file.c ft_get_strerr.c ft_putchar.c ft_putstr.c ft_stdin.c ft_tail.c main.c
+HEADER = -I includes/
+SRC = $(patsubst %, ./srcs/%, $(SOURCE))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c -Wall -Werror -Wextra $(SRC)
-	gcc -o $(NAME) ft_tail.o
+	$(CC) $(CFLAGS) $(SRC)
+	$(CC) $(LFLAGS) $(NAME) $(OBJS) $(HEADER)
 
 clean:
-	/bin/rm -f ft_tail.o
+	/bin/rm -f $(OBJS)
 
-fclean:
+fclean: clean
 	/bin/rm -f $(NAME)
 
-re:
-	fclean all
+re: fclean all

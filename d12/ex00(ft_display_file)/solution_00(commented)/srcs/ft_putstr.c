@@ -12,7 +12,7 @@
 
 #include "../includes/ft_lib.h"
 
-void	ft_putstr(char *str)	/* Функция печати символа через стандартный поток вывода */
+void	ft_putstr(char *str)	/* Функция печати строки через стандартный поток вывода */
 {
 	int	i;
 

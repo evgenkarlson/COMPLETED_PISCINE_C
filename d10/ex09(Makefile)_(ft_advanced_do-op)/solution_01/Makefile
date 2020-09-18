@@ -12,17 +12,23 @@
 
 NAME = ft_advanced_do-op
 CC = gcc
-LFLAGS = -Werror -Wall -Wextra -o
-HEADERS = -I includes/
-_SRC = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_opp.c main.c
-SRCS = $(patsubst %, srcs/%, $(_SRC))
+CFLAGS = -Wall -Werror -Wextra -c
+LFLAGS = -Wall -Werror -Wextra -o
+SOURCE = ft_atoi.c ft_putnbr.c ft_putstr.c ft_putchar.c ft_opp.c main.c
+HEADER = -I includes/
+SRC = $(patsubst %, ./srcs/%, $(SOURCE))
+OBJS = $(patsubst %.c, %.o, $(SOURCE))
 
 all: $(NAME)
 
 $(NAME):
-	$(CC) $(LFLAGS) $(NAME) $(SRCS) $(HEADERS)
+	$(CC) $(CFLAGS) $(SRC)
+	$(CC) $(LFLAGS) $(NAME) $(OBJS) $(HEADER)
 
 clean:
-	rm -f $(NAME)
+	/bin/rm -f $(OBJS)
+
+fclean: clean
+	/bin/rm -f $(NAME)
 
 re: fclean all

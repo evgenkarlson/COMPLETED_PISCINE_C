@@ -26,16 +26,13 @@ void	ft_putstr(char *str)
 int		ft_cat(char *filename)
 {
 	int		fd;
-	char	buf[129];
+	char	buf;
 	int		len;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
 		return (errno);
-	while ((len = read(fd, buf, 128)))
-	{
-		buf[len] = '\0';
-		ft_putstr(buf);
-	}
+	while ((len = read(fd, &buf, 1)))
+		ft_putchar(buf);
 	close(fd);
 	return (0);
 }
