@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_size_files.c                                    :+:      :+:    :+:   */
+/*   ft_print_name.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,15 @@
 
 #include "../includes/ft_lib.h"
 
-int		ft_size_files(int i, char **argv)
+void	ft_print_name(int i, int argc, char *name)
 {
-	int		fd2;
-	char	buffer;
-	int		size;
-
-	size = 0;
-	fd2 = open(argv[i], O_RDONLY);
-	while (read(fd2, &buffer, 1))
-		size++;
-	close(fd2);
-	return (size);
+	if (argc >= 5)
+	{
+		if (i > 4)
+			ft_putstr("\n==> ");
+		else
+			ft_putstr("==> ");
+		ft_putstr(name);
+		ft_putstr(" <==\n");
+	}
 }

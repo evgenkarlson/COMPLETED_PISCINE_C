@@ -12,7 +12,7 @@
 
 #include "../includes/ft_lib.h"
 
-int		ft_atoi(char *str)		/* Функция получает из строки и возвращает целое число */
+int		ft_atoi(char *str)		/* Функция получает из строки целое число и возвращает его */
 {
 	int	i;
 	int	negativ;
