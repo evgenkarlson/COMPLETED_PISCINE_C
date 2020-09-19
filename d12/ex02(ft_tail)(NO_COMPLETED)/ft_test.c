@@ -89,23 +89,20 @@ void	ft_disp_file(int i, int fd, int argc, char **argv)
 
 	size_file = ft_size_file(argv[i]);
 	readed = 0;
+	offset = ft_atoi(argv[2]);
 	ft_print_name(i, argc, argv);
 	if (argv[1][0] == '-' && (argv[1][1] == 'C' || argv[1][1] == 'c'))
 	{
-		offset = ft_atoi(argv[2]);
 		while (readed != offset - 1)
 			readed += read(fd, &buffer, 1);
-		while (read(fd, &buffer, 1))
-			write(1, &buffer, 1);
 	}
 	else
 	{
-		offset = 10;
 		while (readed < (size_file - offset))
 			readed += read(fd, &buffer, 1);
-		while  (read(fd, &buffer, 1))
-			write(1, &buffer, 1);
 	}
+	while  (read(fd, &buffer, 1))
+		write(1, &buffer, 1);
 }
 
 void	ft_tail(int argc, char **argv)
@@ -115,20 +112,17 @@ void	ft_tail(int argc, char **argv)
 
 	g_progname = argv[0];
 	i = 3;
-	if (argc >= 4)
+	while (i < argc)
 	{
-		while (i < argc)
+		if ((fd = open(argv[i], O_RDONLY)) == -1)
+			ft_display_custom_error(errno, argv[i]);
+		else
 		{
-			if ((fd = open(argv[i], O_RDONLY)) == -1)
+			ft_disp_file(i, fd, argc, argv[i]);
+			if (close(fd) == -1)
 				ft_display_custom_error(errno, argv[i]);
-			else
-			{
-				ft_disp_file(i, fd, argc, argv[i]);
-				if (close(fd) == -1)
-					ft_display_custom_error(errno, argv[i]);
-			}
-			i++;
 		}
+		i++;
 	}
 }
 
