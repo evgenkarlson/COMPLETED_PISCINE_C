@@ -39,19 +39,6 @@ int		ft_atoi(char *str)		/* Функция получает из строки и
 		return (number);
 }
 
-void	ft_print_name(int i, int argc, char *argv)
-{
-	if (argc >= 4)
-	{
-		if (i > 3)
-			ft_putstr("\n==> ");
-		else
-			ft_putstr("==> ");
-		ft_putstr(argv);
-		ft_putstr(" <==\n");
-	}
-}
-
 int		ft_size_file(char *argv)
 {
 	int		fd;
@@ -64,7 +51,7 @@ int		ft_size_file(char *argv)
 		ft_display_custom_error(errno, argv);
 	else
 	{
-		while (r = read(fd, &buffer, 1))
+		while ((r = read(fd, &buffer, 1)))
 		{
 			if (r == -1)
 			{
@@ -79,30 +66,54 @@ int		ft_size_file(char *argv)
 	return (size);
 }
 
+void	ft_print_name(int i, int argc, char *name)
+{
+	if (argc >= 5)
+	{
+		if (i > 4)
+			ft_putstr("\n==> ");
+		else
+			ft_putstr("==> ");
+		ft_putstr(name);
+		ft_putstr(" <==\n");
+	}
+}
 
 void	ft_disp_file(int i, int fd, int argc, char **argv)
 {
 	char	buffer;
 	int		offset;
 	int		readed;
+	int		rnum;
 	int		size_file;
 
-	size_file = ft_size_file(argv[i]);
-	readed = 0;
-	offset = ft_atoi(argv[2]);
-	ft_print_name(i, argc, argv);
 	if (argv[1][0] == '-' && (argv[1][1] == 'C' || argv[1][1] == 'c'))
 	{
-		while (readed != offset - 1)
-			readed += read(fd, &buffer, 1);
-	}
-	else
-	{
+		ft_print_name(i, argc, argv[i]);
+		size_file = ft_size_file(argv[i]);
+		readed = 0;
+		offset = ft_atoi(argv[2]);
 		while (readed < (size_file - offset))
-			readed += read(fd, &buffer, 1);
+		{
+			if ((rnum = read(fd, &buffer, 1)) == -1)
+			{
+				ft_display_custom_error(errno, argv[i]);
+				break;
+			}
+			readed += rnum;
+		}
+		while  ((rnum = read(fd, &buffer, 1)))
+		{
+			if (rnum == -1)
+			{
+				ft_display_custom_error(errno, argv[i]);
+				break;
+			}
+			write(1, &buffer, 1);
+		}
+		if (i < (argc - 1))
+			ft_putchar('\n');
 	}
-	while  (read(fd, &buffer, 1))
-		write(1, &buffer, 1);
 }
 
 void	ft_tail(int argc, char **argv)
@@ -118,7 +129,7 @@ void	ft_tail(int argc, char **argv)
 			ft_display_custom_error(errno, argv[i]);
 		else
 		{
-			ft_disp_file(i, fd, argc, argv[i]);
+			ft_disp_file(i, fd, argc, argv);
 			if (close(fd) == -1)
 				ft_display_custom_error(errno, argv[i]);
 		}
