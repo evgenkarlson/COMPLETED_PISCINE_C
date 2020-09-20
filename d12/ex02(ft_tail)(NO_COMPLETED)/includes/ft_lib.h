@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Created: 2020/09/20 16:56:15 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2020/09/20 17:17:12 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
-
-# define BUF_SIZE 1024
 
 char        *g_progname;
 void		ft_putchar(char c);
