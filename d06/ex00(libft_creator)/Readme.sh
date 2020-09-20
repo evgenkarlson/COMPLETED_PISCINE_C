@@ -98,12 +98,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    libft_creator.sh                                   :+:      :+:    :+:    #
+#    README.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adespond <adespond@student.42.fr>          +#+  +:+       +#+         #
+#    By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/09/09 09:56:48 by adespond          #+#    #+#              #
-#    Updated: 2015/09/09 09:56:48 by adespond         ###   ########.fr        #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#              #
+#    Updated: 2020/09/20 17:17:56 by evgenkarlson     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 gcc -Wall -Wextra -Werror -c ft_putchar.c ft_swap.c ft_putstr.c ft_strlen.c ft_strcmp.c
@@ -181,12 +181,12 @@ ar rc libft.a *.o
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    libft_creator.sh                                   :+:      :+:    :+:    #
+#    README.sh                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+         #
+#    By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/07/10 15:15:04 by jpucelle          #+#    #+#              #
-#    Updated: 2014/07/10 15:15:55 by jpucelle         ###   ########.fr        #
+#    Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#              #
+#    Updated: 2020/09/20 17:17:56 by evgenkarlson     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
