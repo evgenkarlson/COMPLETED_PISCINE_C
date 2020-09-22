@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_name.c                                    :+:      :+:    :+:   */
+/*   ft_size_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/22 03:09:22 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_lib.h"
 
-void	ft_print_name(int i, int argc, char *name)
+int		ft_size_file(char *argv)
 {
-	if (argc >= 5)
+	int		fd;
+	char	buffer;
+	int		size;
+	int		r;
+
+	size = 0;
+	if ((fd = open(argv, O_RDONLY)) == -1)
+		ft_display_custom_error(errno, argv);
+	else
 	{
-		if (i > 4)
-			ft_putstr("\n==> ");
-		else
-			ft_putstr("==> ");
-		ft_putstr(name);
-		ft_putstr(" <==\n");
+		while ((r = read(fd, &buffer, 1)))
+		{
+			if (r == -1)
+			{
+				ft_display_custom_error(errno, argv);
+				break;
+			}
+			size++;
+		}
+		if (close(fd) == -1)
+			ft_display_custom_error(errno, argv);
 	}
+	return (size);
 }
