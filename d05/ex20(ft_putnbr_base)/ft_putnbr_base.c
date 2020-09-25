@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/09/23 11:11:54 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/26 00:36:55 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static int	ft_check_base(char *base)
 	int	z;
 
 	i = 0;
-	z = 0;
 	if (!base || !base[1])
 		return (0);
 	while (base[i])
