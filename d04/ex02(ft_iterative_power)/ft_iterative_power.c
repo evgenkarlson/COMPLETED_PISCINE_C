@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/28 19:04:03 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,10 @@
 /* **************************************************************************
 
 
-Create an iterated function that returns the value of a power applied to a number.
-An power lower than 0 returns 0. Overflows don’t have to be handled.
-
 Создайте итерационную функцию, которая возвращает значение степени, примененной к числу.
 Мощность ниже 0 возвращает 0. Переполнения не должны быть обработаны.
 
-Your function must return its result in less than two seconds.
+
 Ваша функция должна вернуть свой результат менее чем за две секунды.
 
 

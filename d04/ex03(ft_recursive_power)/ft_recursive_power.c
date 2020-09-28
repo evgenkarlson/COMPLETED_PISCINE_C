@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/28 19:04:28 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 /* **************************************************************************
 
 
-Create a recursive function that returns the value of a power applied to a number.
 Создайте рекурсивную функцию, которая возвращает значение степени, примененной к числу.
 
-Your function must return its result in less than two seconds.
 Ваша функция должна вернуть свой результат менее чем за две секунды.
 
 
