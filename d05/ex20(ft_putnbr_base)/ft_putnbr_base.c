@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/09/26 00:36:55 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/28 15:11:49 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void		ft_putnbr_base(int nbr, char *base)
 {
 	int		i;
 	int		base_type;
-	int		n[10];
+	int		n[16];
 
 	i = 0;
 	base_type = ft_check_base(base);
@@ -112,6 +112,89 @@ void		ft_putnbr_base(int nbr, char *base)
 	
 }
 
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+void		ft_putchar(char c);
+
+/* ************************************************************************** */
+
+static int	ft_check_base(char *base)
+{
+	int	i;
+	int	z;
+
+	i = 0;
+	if (!base || !base[1])
+		return (0);
+	while (base[i])
+	{
+		if (!((base[i] >= '0' && base[i] <= '9') || (base[i] >= 'a' \
+				&& base[i] <= 'z') || (base[i] >= 'A' && base[i] <= 'Z')))
+			return (0);
+		z = i + 1;
+		while (base[z])
+		{
+			if (base[i] == base[z])
+				return (0);
+			z++;
+		}
+		i++;
+	}
+	return (i);
+}
+
+
+int		ft_get_len_future_nbr(int nbr, int base_type)
+{
+	int	size;
+
+	if (base_type)
+	{
+		size = 1;
+		while ((nbr /= base_type) > 0)
+			size++;
+	}
+	return (size);
+}
+
+void	ft_conv_nbr(int nbr, int length, char *base, int base_type)
+{
+	int		i;
+	int		n[length];
+
+	i = 0;
+	while (nbr)
+	{
+		n[i] = nbr % base_type;
+		nbr /= base_type;
+		i++;
+	}
+	while (i > 0)
+		ft_putchar(base[n[--i]]);
+	
+}
+
+
+void	ft_putnbr_base(int nbr, char *base)
+{
+	int		base_type;
+
+	base_type = ft_check_base(base);
+	if (base_type)
+	{
+		if (nbr < 0)
+		{
+			nbr = -nbr;
+			ft_putchar('-');
+		}
+		ft_conv_nbr(nbr, ft_get_len_future_nbr(nbr, base_type), base, base_type);
+	}
+}
 
 
 /* ************************************************************************** */
