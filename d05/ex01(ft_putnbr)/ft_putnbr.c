@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/29 13:58:11 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_putnbr(int nb)
 	temp = nb;
 	while (size)
 	{
-		ft_putchar((char)((temp / size)) + 48);
+		ft_putchar((char)((temp / size)) + '0');
 		temp %= size;
 		size /= 10;
 	}
