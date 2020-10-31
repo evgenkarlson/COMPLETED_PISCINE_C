@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/28 19:04:53 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,13 @@
 /* ************************************************************************** */
 /* **************************************************************************
 
-Create a function ft_fibonacci that returns the n-th element of the Fibonacci 
-sequence, the first element being at the 0 index. We’ll consider that the 
-Fibonacci sequence starts like this: 0, 1, 1, 2.
 Создайте функцию ft_fibonacci, которая возвращает n-й элемент последовательности 
 Фибоначчи, причем первый элемент находится в индексе 0. Будем считать, что 
 последовательность Фибоначчи начинается так: 0, 1, 1, 2.
 
 
-Obviously, ft_fibonacci has to be recursive.
 Очевидно, что ft_fibonacci должен быть рекурсивным.
 
-If the index is less than 0, the function should return -1.
 Если индекс меньше 0, функция должна возвращать значение -1.
 
 

@@ -6,17 +6,12 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/28 19:06:47 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
- - Le but de ce jeu est de placer huit dames sur un échiquier sans qu’elles ne puissent s’atteindre en un seul coup.
- - Rafraîchissez-vous la mémoire sur les règles des échecs.
- - Bien entendu, on utilisera la recursivité pour résoudre ce problème.
- - Écrire une fonction qui renvoie le nombre de possibilités de placer les huit dames sur l’échiquier sans qu’elles ne puissent s’atteindre.
-*/
-/* ************************************************************************** */
-/*
+
+/* ************************************************************************** **
+
  - Цель этой игры - разместить на шахматной доске восемь шашек, чтобы они не могли
    достичь друг друга одним махом.
  - освежить память о правилах шахмат.
@@ -30,7 +25,7 @@
  	P.S в этом задании вас просят найти все возможные варианты размещения фигур
 	согласно условию!
 
-* ************************************************************************** */
+** ************************************************************************** */
 
 void	dessin(int *board)
 {

@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/28 19:07:02 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,8 @@
 /* **************************************************************************
 
 
-Create a function that returns the next prime number greater or equal to the number given as argument.
 Создайте функцию, которая возвращает следующее простое число, большее или равное числу, указанному в качестве аргумента.
 
-Your function must return its result in less than two seconds.
 Ваша функция должна вернуть свой результат менее чем за две секунды.
 
 

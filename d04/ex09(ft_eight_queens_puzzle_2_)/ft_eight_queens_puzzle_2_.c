@@ -1,24 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_eight_queens_puzzle_2.c                         :+:      :+:    :+:   */
+/*   ft_eight_queens_puzzle_2_.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/09/28 19:06:19 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-/*
- - Écrire une fonction qui affiche toutes les possibilités de placer les huit dames sur l’échiquier sans qu’elles ne puissent s’atteindre.
- - La recursivité devra être utilisée.
 
- - La suite se lit de gauche à droite. Le premier chiffre correspond à la position de la première dame dans la première colonne (l(index commena̧nt à 1). Le énième chiffre correspond à la position de la énième dame dans la énième colonne.
- - Il y a un saut de ligne après la dernière solution.
- -  Votre fonction doit donner son résultat en moins de deux secondes.
-*/
-/* ************************************************************************** */
-/*
+/* ************************************************************************** **
+
  - Напишите функцию, которая отображает все возможности размещения восьми женщин на 
    шахматной доске, не позволяя им достичь друг друга.
  - Рекурсивность должна быть использована.
@@ -38,7 +31,7 @@
 	В итоге, печатая какие то определенные символы в нужный момент нанужной строке
 	мы на выводе получим как бы отображение шахматной доски!
 
-* ************************************************************************** */
+** ************************************************************************** */
 
 
 #define ABS(a, b)	((a >= b) ? (a - b) : (b - a))
