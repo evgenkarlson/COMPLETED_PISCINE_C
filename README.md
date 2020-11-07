@@ -215,13 +215,13 @@
       ./a.out
 
 
-
+---
 > ### *LifeHack*:
 > 
 > Чтобы не терять время, можно все команды соединить в одну строку записав в окне терминала вот так:
 > 
 >      gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out
-
+---
 
 <p align=center ><img src='./map_of_the_Piscine_C.png'></p>
 
