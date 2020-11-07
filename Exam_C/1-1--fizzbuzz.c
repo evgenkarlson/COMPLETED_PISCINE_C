@@ -16,29 +16,44 @@
 /* **************************************************************************
 
 
-Assignment name  : ulstr
-Expected files   : ulstr.c
+Assignment name  : fizzbuzz
+Expected files   : fizzbuzz.c
 Allowed functions: write
 --------------------------------------------------------------------------------
 
-Напишите программу, которая принимает строку и меняет регистр всех ее букв.
-Другие персонажи остаются без изменений.
+Напишите программу, которая печатает числа от 1 до 100, разделенные символом новой строки.
 
-Вы должны отобразить результат, за которым следует новая строка.
+Если число кратно 3, вместо этого печатается «fizz».
 
-Если количество аргументов не равно 1, программа отображает '\ n'.
+Если число кратно 5, вместо этого выводится «жужжание».
+
+Если число одновременно кратно 3 и кратно 5, вместо этого выводится «fizzbuzz».
 
 
-Примеры :
+Пример:
 
-$>./ulstr "L'eSPrit nE peUt plUs pRogResSer s'Il staGne et sI peRsIsTent VAnIte et auto-justification." | cat -e
-l'EspRIT Ne PEuT PLuS PrOGrESsER S'iL STAgNE ET Si PErSiStENT vaNiTE ET AUTO-JUSTIFICATION.$
-$>./ulstr "S'enTOuRer dE sECreT eSt uN sIGnE De mAnQuE De coNNaiSSanCe.  " | cat -e
-s'ENtoUrER De SecREt EsT Un SigNe dE MaNqUe dE COnnAIssANcE.  $
-$>./ulstr "3:21 Ba  tOut  moUn ki Ka di KE m'en Ka fe fot" | cat -e
-3:21 bA  ToUT  MOuN KI kA DI ke M'EN kA FE FOT$
-$>./ulstr | cat -e
-$
+$>./fizzbuzz
+1
+2
+fizz
+4
+buzz
+fizz
+7
+8
+fizz
+buzz
+11
+fizz
+13
+14
+fizzbuzz
+[...]
+97
+98
+fizz
+buzz
+$> 
 
 
 
