@@ -163,10 +163,10 @@
 
  • Так же в папке выполненого задания может содержаться тестовый файл или папка с тестовыми файлами, скомпилировав которые можно посмотреть как работает требуемая в заданиии функция(или несколько функций).
 
-
- • Чтобы разобраться в заданиях используйте обучающие видео `Школы 42` на 10-30 минут с теорией и примерами(используйте в плеере функцию субтитров и их перевода на нужный вам язык):
-
-| [Shell and Git video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxhvwi0PGmXb5isUdVwmsg8) | [C00 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxz5wbzZn4tfUhF4djgzscB-) | [C01 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxytsXWxZx6odBJMbRktIHTs) | [C05 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxZbeH9b0VC-nC6QsJRw5Ah)| [C06 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxDlCkkCX262SI90TsllYUW) | [C07 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzNYF00nlmx624twFlamqLt) | [C08 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxMI_GiGGb2hxMcd3IwNYRy) | [C09 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxw6n6q_i8wek6U7t7CeAXhU) | [C11 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxx8sKygTdqtOPytqN7sb0Vz) | [C12 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxwmUOmyYSaI6gD1UyfF9MSj) | [C13 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzusAgMiybYwkLvuMFbVat9) |
+---
+>  Чтобы разобраться в заданиях используйте обучающие видео `Школы 42` на 10-30 минут с теорией и примерами(используйте в плеере функцию субтитров и их перевода на нужный вам язык):
+>
+> | [Shell and Git video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxhvwi0PGmXb5isUdVwmsg8) | [C00 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxz5wbzZn4tfUhF4djgzscB-) | [C01 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxytsXWxZx6odBJMbRktIHTs) | [C05 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxZbeH9b0VC-nC6QsJRw5Ah)| [C06 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxDlCkkCX262SI90TsllYUW) | [C07 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzNYF00nlmx624twFlamqLt) | [C08 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxMI_GiGGb2hxMcd3IwNYRy) | [C09 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxw6n6q_i8wek6U7t7CeAXhU) | [C11 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxx8sKygTdqtOPytqN7sb0Vz) | [C12 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxwmUOmyYSaI6gD1UyfF9MSj) | [C13 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzusAgMiybYwkLvuMFbVat9) |
 
 ---
 >  Для корректного отображения содержимого файлов, этого репозитория - склонируйте репозиторий к себе на компьютер и открывайте файлы через любой удобный вам редактор кода.
