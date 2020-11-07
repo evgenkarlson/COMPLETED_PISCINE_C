@@ -131,6 +131,14 @@
     * ex07 = btree_apply_by_level.c | ft_btree.h
  • Этот репозиторий содержит множество версий выполненных и закомментированных задач на каждый день самого первого бассейна по Си. 
 
+  
+#### Совместная групповая работа
+  
+- Rush00 - Отображение индивидуальных сеток с различными размерами.
+- Rush01 - Напить программу решающую логическую головоломку `Небоскребы`, также известные как `Башни`(skyscapers).
+- Rush02
+- BSQ - Программа, которая находит самый большой квадрат на данной карте и отображает его.
+
 </details>
 
  • На данный момент выполнена работа по проверке заданий на корректную работоспособность у папки `Exam_C`, `shell00`, `shell01` и папок от `с00` до `с12` включительно.
@@ -155,6 +163,10 @@
 
 >  Для корректного отображения содержимого файлов, этого репозитория - склонируйте репозиторий к себе на компьютер и открывайте файлы через любой удобный вам редактор кода.
 
+
+ • Чтобы разобраться в заданиях используйте обучающие видео `Школы 42` на 10-30 минут с теорией и примерами(используйте в плеере функцию субтитров и их перевода на нужный вам язык):
+
+| [Shell and Git video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxhvwi0PGmXb5isUdVwmsg8) | [C00 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxz5wbzZn4tfUhF4djgzscB-) | [C01 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxytsXWxZx6odBJMbRktIHTs) | [C05 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxZbeH9b0VC-nC6QsJRw5Ah)| [C06 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxDlCkkCX262SI90TsllYUW) | [C07 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzNYF00nlmx624twFlamqLt) | [C08 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxMI_GiGGb2hxMcd3IwNYRy) | [C09 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxw6n6q_i8wek6U7t7CeAXhU) | [C11 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxx8sKygTdqtOPytqN7sb0Vz) | [C12 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxwmUOmyYSaI6gD1UyfF9MSj) | [C13 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzusAgMiybYwkLvuMFbVat9) |
 
 
 ## Компиляция:
@@ -205,20 +217,8 @@
 > 
 > Чтобы не терять время, можно все команды соединить в одну строку записав в окне терминала вот так:
 > 
-      gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out
+>      gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out
 
-
- • Чтобы разобраться в заданиях используйте обучающие видео `Школы 42` на 10-30 минут с теорией и примерами(используйте в плеере функцию субтитров и их перевода на нужный вам язык):
-
-| [Shell and Git video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxhvwi0PGmXb5isUdVwmsg8) | [C00 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxz5wbzZn4tfUhF4djgzscB-) | [C01 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxytsXWxZx6odBJMbRktIHTs) | [C05 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxZbeH9b0VC-nC6QsJRw5Ah)| [C06 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxDlCkkCX262SI90TsllYUW) | [C07 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzNYF00nlmx624twFlamqLt) | [C08 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxxMI_GiGGb2hxMcd3IwNYRy) | [C09 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxw6n6q_i8wek6U7t7CeAXhU) | [C11 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxx8sKygTdqtOPytqN7sb0Vz) | [C12 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxwmUOmyYSaI6gD1UyfF9MSj) | [C13 video](https://www.youtube.com/playlist?list=PLVQYiy6xNUxzusAgMiybYwkLvuMFbVat9) |
-
-  
-### Совместная групповая работа
-  
-- Rush00 - Отображение индивидуальных сеток с различными размерами.
-- Rush01 - Напить программу решающую логическую головоломку `Небоскребы`, также известные как `Башни`(skyscapers).
-- Rush02
-- BSQ - Программа, которая находит самый большой квадрат на данной карте и отображает его.
 
 <p align=center ><img src='./map_of_the_Piscine_C.png'></p>
 
