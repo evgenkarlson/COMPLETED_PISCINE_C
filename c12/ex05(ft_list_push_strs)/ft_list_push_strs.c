@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/08 01:23:42 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/10 01:11:02 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@
  *
  * 
  *	• Создайте функцию "ft_list_push_strs", которая создает новый список,
- *	включающий аргументы командной строки.
+ *	включающий включающий  строку, указанную элементом "str".
  *	
  *
- *	• Первый аргумент должен быть в конце списка.
+ *  • size - это размер массива строк strs.
+ *
+ *
+ *	• Первый аргумент должен быть в конце списка, а последний в начале.
  *	
  * 
  *	• Возвращается адрес первой ссылки в списке.
@@ -77,8 +80,9 @@ t_list	*ft_list_push_strs(int size, char **strs)
 	t_list *last;
 	int i;
 
-	i = 0;
-	last = 0;
+	i = -1;
+	current = ((void *)0);
+	last = ((void *)0);
 	while (++i < size)
 	{
 		current = ft_create_elem(strs[i]);
@@ -86,33 +90,6 @@ t_list	*ft_list_push_strs(int size, char **strs)
 		last = current;
 	}
 	return (current);
-}
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-#include <stdlib.h>
-#include "ft_list.h"
-
-t_list	*ft_list_push_strs(int size, char **strs)
-{
-	int		i;
-	t_list	*list;
-	t_list	*tmp;
-
-	i = 0;
-	tmp = (void *)0;
-	list = (void *)0;
-	while (i < size)
-	{
-		list = ft_create_elem(strs[i]);
-		list->next = tmp;
-		tmp = list;
-		i++;
-	}
-	return (list);
 }
 
 
@@ -142,15 +119,10 @@ t_list	*ft_list_push_strs(int size, char **strs)
 	t_list	*list;
 	int		i;
 
-	i = 2;
-	if (size == 1)
-		return ((void *)0);
-	list = ft_create_elem(strs[1]);
+	i = 0;
+	list = ((void *)0);
 	while (i < size)
-	{
-		list = add_link(list, strs[i]);
-		i++;
-	}
+		list = add_link(list, strs[i++]);
 	return (list);
 }
 
