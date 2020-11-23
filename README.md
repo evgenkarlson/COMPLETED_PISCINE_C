@@ -2,7 +2,7 @@
 
 
 <details>
-<summary> Содержимое бассейна </summary>
+<summary> СОДЕРЖИМОЕ БАССЕЙНА </summary>
 
 - Shell00 - Командная строка Unix 
 - Shell01 - Командная строка Unix
