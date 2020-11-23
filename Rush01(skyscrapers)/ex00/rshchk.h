@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree.h                                         :+:      :+:    :+:   */
+/*   rshchk.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/19 18:19:00 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/23 12:09:37 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RSHCHK_H
+# define RSHCHK_H
 
-
-#ifndef FT_BTREE_H
-# define FT_BTREE_H
-
-typedef struct		s_btree
-{
-	struct s_btree	*left;
-	struct s_btree	*right;
-	void			*item;
-}					t_btree;
-
-t_btree				*btree_create_node(void *item);
+void	ft_cluescheck(char *clues_str, int *clues_int);
+void	ft_cluestomtx(int *clues_arr, int **clues_mtx);
+int		***ft_checks(int **clues_mtx, int ***cube);
 
 #endif
-
-
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */

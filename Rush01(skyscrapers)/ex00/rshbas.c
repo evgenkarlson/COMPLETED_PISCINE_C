@@ -1,33 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree.h                                         :+:      :+:    :+:   */
+/*   rshbas.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/19 18:19:00 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/23 12:09:17 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 
-
-#ifndef FT_BTREE_H
-# define FT_BTREE_H
-
-typedef struct		s_btree
+void	ft_putchar(char c)
 {
-	struct s_btree	*left;
-	struct s_btree	*right;
-	void			*item;
-}					t_btree;
+	write(1, &c, 1);
+}
 
-t_btree				*btree_create_node(void *item);
+void	ft_putstr(char *str)
+{
+	while (*str != '\0')
+	{
+		ft_putchar(*str);
+		str++;
+	}
+}
 
-#endif
+int		ft_strlen(char *str)
+{
+	int counter;
 
+	counter = 0;
+	while (*str != '\0')
+	{
+		counter++;
+		str++;
+	}
+	return (counter);
+}
 
+int		ft_atoi(char nbr)
+{
+	int n;
 
+	n = nbr - ('0');
+	return (n);
+}
 
-/* ************************************************************************** */
-/* ************************************************************************** */
+int		ft_msg_error(void)
+{
+	ft_putstr("Error\n");
+	return (0);
+}

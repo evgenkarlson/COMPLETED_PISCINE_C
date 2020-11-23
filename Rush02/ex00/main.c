@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree.h                                         :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/19 18:19:00 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/23 12:07:37 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "header.h"
+#include <unistd.h>
 
-
-#ifndef FT_BTREE_H
-# define FT_BTREE_H
-
-typedef struct		s_btree
+int		main(int argc, char **argv)
 {
-	struct s_btree	*left;
-	struct s_btree	*right;
-	void			*item;
-}					t_btree;
+	char *filename;
+	char *dict;
+	char *nbr;
 
-t_btree				*btree_create_node(void *item);
-
-#endif
-
-
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
+	filename = 0;
+	dict = 0;
+	nbr = 0;
+	if (ft_ver_cond(argc, argv) >= 1)
+	{
+		filename = ft_dict_file(argc, argv);
+		dict = ft_read_dict(filename);
+		ft_get_nbr(argc, argv, &nbr);
+		ft_write_nbr(nbr, dict);
+		ft_free(filename, dict, nbr);
+	}
+	else
+		ft_msg_error();
+	write(1, "\n", 1);
+	return (0);
+}

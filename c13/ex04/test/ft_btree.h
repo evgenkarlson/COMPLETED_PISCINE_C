@@ -6,10 +6,9 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/19 18:19:00 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/19 18:32:59 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 
 #ifndef FT_BTREE_H
@@ -25,8 +24,6 @@ typedef struct		s_btree
 t_btree				*btree_create_node(void *item);
 
 #endif
-
-
 
 
 /* ************************************************************************** */

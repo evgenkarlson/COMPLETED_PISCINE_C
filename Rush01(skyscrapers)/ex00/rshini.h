@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_btree.h                                         :+:      :+:    :+:   */
+/*   rshini.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/19 18:19:00 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/23 12:09:49 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RSHINI_H
+# define RSHINI_H
 
-
-#ifndef FT_BTREE_H
-# define FT_BTREE_H
-
-typedef struct		s_btree
-{
-	struct s_btree	*left;
-	struct s_btree	*right;
-	void			*item;
-}					t_btree;
-
-t_btree				*btree_create_node(void *item);
+void	ft_free(int *clues_arr, int **clues_mtx);
+void	ft_initialization(char *argv);
 
 #endif
-
-
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
