@@ -6,18 +6,12 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/23 15:16:41 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/29 01:09:40 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* ************************************************************************** */
 /* ************************************************************************** **
-**
-**  Каталог сдачи задания: ex02/
-**  Файлы для сдачи: ft_split.c
-**  Разрешенные функции: malloc
-**
-** ************************************************************************** **
 **
 ** 
 **  • Создайте функцию, которая разрезает одну строку символов в используя 
@@ -94,7 +88,28 @@ int   ft_wordcount(char *str, char *charset)
 	}
 	return (words);
 }
+
+int		ft_wordcount(char *str, char *charset)
+{
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (ft_is_space(str[i], charset))
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && !(ft_is_space(str[i], charset)))
+			i++;
+	}
+	return (count);
+}
+
 */
+
 char	*create_word(char *str, int i, int j)
 {
 	char	*word;
@@ -123,8 +138,7 @@ char	**ft_split(char *str, char *charset)
 
 	if ((words = ft_wordcount(str, charset)))
 	{
-		if (!str || ((arr = (char **)malloc(sizeof(char *) * (words + 1))) \
-			== ((void *)0)))
+		if (!str || ((arr = (char **)malloc(sizeof(char *) * (words + 1))) == ((void *)0)))
 			return ((void *)0);
 		i = 0;
 		index = 0;
@@ -197,6 +211,26 @@ int   ft_wordcount(char *str, char *charset)
 	}
 	return (words);
 }
+
+int		count_words(char *str, char *charset)
+{
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (ft_is_space(str[i], charset))
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && !(ft_is_space(str[i], charset)))
+			i++;
+	}
+	return (count);
+}
+
 */
 
 int		ft_wordlen(char *str, char *charset)
@@ -224,7 +258,7 @@ char	**ft_split(char *str, char *charset)
 	words = ft_wordcount(str, charset);
 	i = 0;
 	if (!str || (((arr = (char **)malloc(sizeof(char*) * (words + 1)))) == ((void *)0)))
-		return ((void*)0);
+		return ((void *)0);
 	while (i < words)
 	{
 		if ((arr[i] = (char *)malloc(sizeof(char) * (ft_wordlen(str, charset) + 1))) == ((void *)0))
@@ -290,10 +324,30 @@ int   ft_wordcount(char *str, char *charset)
 	}
 	return (words);
 }
+
+int		count_words(char *str, char *charset)
+{
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (ft_is_space(str[i], charset))
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && !(ft_is_space(str[i], charset)))
+			i++;
+	}
+	return (count);
+}
+
 */
 
 
-char  *malloc_word(char *str, char *charset)
+char  *ft_create_word(char *str, char *charset)
 {
 	char *word;
 	int	i;
@@ -317,7 +371,7 @@ char	**ft_split(char *str, char *charset)
 	int i;
 	char **arr;
 
-	arr = (char **)malloc(sizeof(char *) * (ft_wordcount(str, charset) + 1));
+	arr = (char **)malloc(sizeof(char *) * (ft_wc(str, charset) + 1));
 	i = 0;
 	while (*str)
 	{
@@ -325,7 +379,7 @@ char	**ft_split(char *str, char *charset)
 			str++;
 		if (*str && !ft_is_space(*str, charset))
 		{
-			arr[i] = malloc_word(str, charset);
+			arr[i] = ft_create_word(str, charset);
 			i++;
 			while (*str && !ft_is_space(*str, charset))
 				str++;
@@ -385,6 +439,26 @@ int   ft_wordcount(char *str, char *charset)
 	}
 	return (words);
 }
+
+int		count_words(char *str, char *charset)
+{
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (ft_is_space(str[i], charset))
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && !(ft_is_space(str[i], charset)))
+			i++;
+	}
+	return (count);
+}
+
 */
 
 int		ft_len_word(char *str, int i, char *charset)
