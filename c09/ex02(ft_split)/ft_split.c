@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/29 01:09:40 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/29 01:13:18 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -388,6 +388,82 @@ char	**ft_split(char *str, char *charset)
 	arr[i] = ((void *)0);
 	return (arr);
 }
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <stdlib.h>
+
+int		ft_is_space(char to_find, char *str)
+{
+	while (*str)
+	{
+		if (to_find == *str++)
+			return (1);
+	}
+	return (0);
+}
+
+int		ft_wordcount(char *str, char *charset)
+{
+	int		i;
+	int		count;
+
+	count = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (ft_is_space(str[i], charset))
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && !(ft_is_space(str[i], charset)))
+			i++;
+	}
+	return (count);
+}
+
+int		ft_wordlen(char *str, char *charset)
+{
+	int		len;
+
+	len = 0;
+	while (str[len]
+			&& !(ft_is_space(str[len], charset)))
+		len++;
+	return (len);
+}
+
+char	**ft_split(char *str, char *charset)
+{
+	char	**tab;
+	int		pos;
+	int		i;
+	int		j;
+
+	if (!(tab = (char **)malloc((ft_wordcount(str, charset) + 1) * sizeof(char *))))
+		return ((void *)0);
+	pos = 0;
+	i = 0;
+	while (str[i])
+	{
+		while (ft_is_space(str[i], charset))
+			i++;
+		if (str[i])
+		{
+			if (!(tab[pos] = (char *)malloc(ft_wordlen(str + i, charset) * sizeof(char))))
+				return ((void *)0);
+			j = 0;
+			while (str[i] && !(ft_is_space(str[i], charset)))
+				tab[pos][j++] = str[i++];
+			tab[pos++][j] = '\0';
+		}
+	}
+	tab[pos] = (void *)0;
+	return (tab);
+}
+
 
 
 /* ************************************************************************** */
