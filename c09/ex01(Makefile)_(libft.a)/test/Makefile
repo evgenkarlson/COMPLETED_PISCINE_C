@@ -26,7 +26,7 @@ CC := gcc
 #=================================================#
 #              Флаги для компиляции               #
 #=================================================#
-CFLAGS := -Wall -Werror -Wextra -c
+CFLAGS := -Wall -Werror -Wextra
 
 
 #=================================================#
@@ -91,7 +91,7 @@ obj: $(SRCS)
 	@echo "\033[33m(ﾉ◕ヮ◕)ﾉ*・ﾟ✧ \tCompiling... Wait a sec.\033[0m"
 
 $(SRC_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) $< -o $@ $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
 #=================================================#
 #   Другие варианты компиляции обьектных файлов   #
 #=================================================#
@@ -127,6 +127,14 @@ $(NAME): $(OBJS)
 	$(LIBR) $(NAME)
 	@echo "$(NAME) generated!"
 	@echo "\033[33m[ 100% ] (•̀ᴗ•́)و Compilation of $(NAME) is done\033[0m"
+	@echo "\n"
+	@echo "\033[33m>>>   CHECK LIBRARY. \033[0m"
+	@echo "\033[33mMake sure the '$(NAME)' library works \033[0m"
+	@echo "\033[33mcompile the test program using the generated libft.a library \033[0m"
+	$(CC) $(CFLAGS) -o test test.c $(NAME)
+	@echo "\n"
+	@echo "\033[33m>>>   CHECK PROGRAM './test' \033[0m"
+	./test
 
 
 #=================================================#
@@ -141,8 +149,10 @@ clean:
 # Правило очистки от обьектных файлов и файла библиотеки libft.a
 #=================================================#
 fclean: clean
+	@echo "\n"
 	/bin/rm -f $(NAME)
 	@echo "\033[33m(╯°□°）╯︵ ┻━┻  $(NAME) removed!\033[0m"
+	@echo "\n"
 
 
 #=================================================#
