@@ -1,4 +1,4 @@
-<h1 align="center"> 「 Completed Tasks of the Piscine C 」 </h1> 
+<h1> 「 Completed Tasks of the Piscine C 」 </h1> 
 
 ------------------------------------------------------------------------------------
 
