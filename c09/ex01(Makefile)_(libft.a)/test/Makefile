@@ -77,6 +77,21 @@ LIBR := ranlib
 #=================================================#
 RM := rm -f
 
+#=================================================#
+#                    Цвета                        #
+#=================================================#
+NOC         = \033[0m #non color
+BOLD        = \033[1m
+UNDERLINE   = \033[4m
+BLACK       = \033[1;30m
+RED         = \033[1;31m
+GREEN       = \033[1;32m
+YELLOW      = \033[1;33m
+BLUE        = \033[1;34m
+VIOLET      = \033[1;35m
+CYAN        = \033[1;36m
+WHITE       = \033[1;37m
+
 
 #=================================================#
 #                  Все правила                    #
@@ -88,7 +103,8 @@ all: obj $(NAME)
 #          Компиляция обьектных файлов            #
 #=================================================#
 obj: $(SRCS)
-	@echo "\033[33m(ﾉ◕ヮ◕)ﾉ*・ﾟ✧ \tCompiling... Wait a sec.\033[0m"
+	@echo "==============================================================="
+	@echo "$(YELLOW)[  0%  ] (ﾉ◕ヮ◕)ﾉ*・ﾟ✧ \tCompiling... Wait a sec.$(NOC)"
 
 $(SRC_DIR)%.o: $(SRC_DIR)%.c
 	$(CC) $(CFLAGS) -c $< -o $@ $(HEADER)
@@ -125,34 +141,36 @@ $(SRC_DIR)%.o: $(SRC_DIR)%.c
 $(NAME): $(OBJS)
 	$(LIBC) $(NAME) $(OBJS)
 	$(LIBR) $(NAME)
-	@echo "$(NAME) generated!"
-	@echo "\033[33m[ 100% ] (•̀ᴗ•́)و Compilation of $(NAME) is done\033[0m"
-	@echo "\n"
-	@echo "\033[33m>>>   CHECK LIBRARY. \033[0m"
-	@echo "\033[33mMake sure the '$(NAME)' library works \033[0m"
-	@echo "\033[33mcompile the test program using the generated libft.a library \033[0m"
+	@echo "$(YELLOW)[ 100% ] (•̀ᴗ•́)و Compilation of '$(NAME)' is done$(NOC)"
+	@echo "==============================================================="
+	@echo "$(CYAN)>>>   CHECK LIBRARY. \033[0m"
+	@echo "$(CYAN)Make sure the '$(NAME)' library works $(NOC)"
+	@echo "$(CYAN)compile the test program using the generated libft.a library $(NOC)"
 	$(CC) $(CFLAGS) -o test test.c $(NAME)
-	@echo "\n"
-	@echo "\033[33m>>>   CHECK PROGRAM './test' \033[0m"
+	@echo "==============================================================="
+	@echo "$(CYAN)>>>   CHECK PROGRAM './test' $(NOC)"
 	./test
+	@echo "==============================================================="
 
 
 #=================================================#
 # Правило очистки от обьектных файлов
 #=================================================#
 clean:
+	@echo "==============================================================="
+	@echo "$(RED)¯\_(ツ)_/¯      Objects remove!$(NOC)"
 	/bin/rm -f $(OBJS)
-	@echo "\033[33m¯\_(ツ)_/¯      Objects removed!\033[0m"
+	@echo "==============================================================="
 
 
 #=================================================#
 # Правило очистки от обьектных файлов и файла библиотеки libft.a
 #=================================================#
 fclean: clean
-	@echo "\n"
+	@echo "==============================================================="
+	@echo "$(RED)(╯°□°）╯︵ ┻━┻  $(NAME) remove!$(NOC)"
 	/bin/rm -f $(NAME)
-	@echo "\033[33m(╯°□°）╯︵ ┻━┻  $(NAME) removed!\033[0m"
-	@echo "\n"
+	@echo "==============================================================="
 
 
 #=================================================#
