@@ -57,7 +57,7 @@ int		ft_calc(int x, char operator, int y)
 {
 	int	(*g_p[5])(int x, int y);
 	int temp;
-	
+
 	g_p[0] = ft_sum;
 	g_p[1] = ft_sub;
 	g_p[2] = ft_mul;
@@ -68,3 +68,4 @@ int		ft_calc(int x, char operator, int y)
 		return (0);
 	return ((*g_p[temp])(x, y));
 }
+
