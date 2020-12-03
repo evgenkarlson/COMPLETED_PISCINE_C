@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/19 20:58:01 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/12/03 17:53:03 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@
 #include "ft_btree.h"
 
 void	btree_insert_data(t_btree **root, void *item, \
-						int (*cmpf)(void *, void *))
+							int (*cmpf)(void *, void *))
 {
 	if (*root == ((void *)0))
-		btree_create_node(item);
+		*root = btree_create_node(item);
 	else if ((*cmpf)(item, (*root)->item) < 0)
 		btree_insert_data(&(*root)->left, item, cmpf);
 	else
@@ -55,6 +55,19 @@ void	btree_insert_data(t_btree **root, void *item, \
 
 
 /* ************************************************************************** */
+/* ************************************************************************** */
+
+void	btree_insert_data(t_btree **root, void *item,
+							int (*cmpf)(void *, void *))
+{
+	if (!(*root))
+		*root = btree_create_node(item);
+	else if (cmpf(item, (*root)->item) >= 0)
+		btree_insert_data(&(*root)->right, item, cmpf);
+	else
+		btree_insert_data(&(*root)->left, item, cmpf);
+}
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 
@@ -66,7 +79,7 @@ void	btree_insert_data(t_btree **root, void *item, \
 {
 	t_btree	*node;
 
-	if (*root)
+	if (!(*root))
 	{
 		*root = btree_create_node(item);
 	}
@@ -91,6 +104,5 @@ void	btree_insert_data(t_btree **root, void *item, \
 }
 
 
-/* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */

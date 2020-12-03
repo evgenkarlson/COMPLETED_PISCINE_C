@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/21 00:25:57 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/12/03 17:53:01 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	btree_apply_prefix(t_btree *root, void (*applyf)(void *))
 		if (root->right)
 			btree_apply_prefix(root->right, applyf);
 	}
-	ft_putstr("\n+");
+	ft_putstr("\n");
 }
 
 /* ************************************************************************** */
@@ -99,16 +99,36 @@ t_btree	*btree_create_node(void *item)
 
 /* ************************************************************************** */
 
+
 void	btree_insert_data(t_btree **root, void *item, \
-						  int (*cmpf)(void *, void *))
+							int (*cmpf)(void *, void *))
 {
-	if (*root == ((void *)0))
-		btree_create_node(item);
-	else if ((*cmpf)(item, (*root)->item) < 0)
-		btree_insert_data(&(*root)->left, item, cmpf);
+	t_btree	*node;
+
+	if (!(*root))
+	{
+		*root = btree_create_node(item);
+	}
 	else
-		btree_insert_data(&(*root)->right, item, cmpf);
+	{
+		node = *root;
+		if ((*cmpf)(item, node->item) < 0)
+		{
+			if (node->left)
+				btree_insert_data(&node->left, item, cmpf);
+			else
+				node->left = btree_create_node(item);
+		}
+		else
+		{
+			if (node->right)
+				btree_insert_data(&node->right, item, cmpf);
+			else
+				node->right = btree_create_node(item);
+		}
+	}
 }
+
 
 /* ************************************************************************** */
 
