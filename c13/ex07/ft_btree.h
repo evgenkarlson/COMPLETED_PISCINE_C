@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/17 17:55:31 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/12/10 17:25:18 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct		s_btree
 	void			*item;
 }					t_btree;
 
-void	btree_apply_by_level(t_btree *root, void (*applyf)(void *item, int current_level, int is_first_elem));
+void	btree_apply_by_level(t_btree *root, void (*applyf)(void *item, \
+							int current_level, int is_first_elem));
 
 #endif
