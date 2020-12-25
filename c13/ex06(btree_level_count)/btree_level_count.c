@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/12/11 01:20:24 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/12/22 21:56:00 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 /* ************************************************************************** */
 
 #include "ft_btree.h"
+# define MAX(a,b) ((a > b) ? a : b)
 
 int		btree_level_count(t_btree *root)
 {
@@ -63,6 +64,31 @@ int		btree_level_count(t_btree *root)
 	}
 	else
 		return (0);
+}
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+#include "ft_btree.h"
+
+int		ft_max(int a, int b)
+{
+	return (a > b ? a : b);
+}
+
+int		ft_btree_level_count(t_btree *root)
+{
+	int	count;
+
+	count = 0;
+	if (!root)
+		return (0);
+	if (root->left)
+		count = ft_max(count, ft_btree_level_count(root->left));
+	if (root->right)
+		count = ft_max(count, ft_btree_level_count(root->right));
+	return (count + 1);
 }
 
 

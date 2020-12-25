@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/12/18 15:40:15 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/12/25 18:23:02 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,7 @@ void	btree_apply_infix_mod(t_btree *root, void (*applyf)(void *), unsigned int i
 		{
 			ft_putchar('\t');
 		}
-		ft_putchar('(');
 		(*applyf)(root->item);
-		ft_putchar(')');
 		ft_putchar('\n');
 		ft_putchar('\n');
 		if (root->right)
@@ -108,35 +106,96 @@ void	btree_insert_data(t_btree **root, void *item, \
 
 /* ************************************************************************** */
 
-int 	main(void)
+int		btree_level_count(t_btree *root)
 {
-	t_btree 	*root;
-
-	root = ((void *)0);
-	btree_insert_data(&root, "5", (void *)&ft_strcmp);
-	btree_insert_data(&root, "3", (void *)&ft_strcmp);
-	btree_insert_data(&root, "8", (void *)&ft_strcmp);
-	btree_insert_data(&root, "4", (void *)&ft_strcmp);
-	btree_insert_data(&root, "1", (void *)&ft_strcmp);
-	btree_insert_data(&root, "9", (void *)&ft_strcmp);
-	btree_insert_data(&root, "7", (void *)&ft_strcmp);
-	btree_insert_data(&root, "6", (void *)&ft_strcmp);
-	btree_insert_data(&root, "2", (void *)&ft_strcmp);
-	btree_insert_data(&root, "4", (void *)&ft_strcmp);
-	btree_insert_data(&root, "7", (void *)&ft_strcmp);
-
-	ft_putstr(" ------------------------------------------- \n");
-	ft_putstr("|   Input data   |  5.3.8.4.1.9.7.6.2.4.7.  |\n");
-	ft_putstr(" ------------------------------------------- \n\n");
-	ft_putstr(" ------------------------------------------- \n");
-	ft_putstr("|          Sorted results in tree           |\n");
-	ft_putstr("|-------------------------------------------|\n");
-	btree_apply_infix_mod(root, (void *)&ft_putstr, 1);
-	ft_putstr("|                                           |\n");
-	ft_putstr(" ------------------------------------------- \n");
-
+	if (root)
+		return (1 + MAX(btree_level_count(root->left), \
+				btree_level_count(root->right)));
 	return (0);
 }
 
-
 /* ************************************************************************** */
+
+void	btree_process_level(t_btree *root, int *t, int level,
+			void (*applyf)(void *item, int current_level, int is_first_elem))
+{
+	if (root)
+	{
+		if (level == 1)
+		{
+			applyf(root->item, t[0], t[1]);
+			t[1] = 0;
+		}
+		else if (level > 1)
+		{
+			btree_process_level(root->left, t, level - 1, applyf);
+			btree_process_level(root->right, t, level - 1, applyf);
+		}
+	}
+}
+
+void	btree_apply_by_level(t_btree *root, void (*applyf)(void *item,
+							int current_level, int is_first_elem))
+{
+	int t[2];
+	int coun_lvl;
+	int i;
+
+	if (root)
+	{
+		coun_lvl = btree_level_count(root);
+		i = 0;
+		while (i < coun_lvl)
+		{
+			t[0] = i;
+			t[1] = 1;
+			btree_process_level(root, t, ++i, applyf);
+		}
+	}
+}
+
+void	test_btree_level(void *item, int current_level, int is_first_elem)
+{
+	if (item)
+	{
+		ft_putstr("Current node:\t\t\t\t ");
+		ft_putstr((char *)item);
+		ft_putstr(" \" \nThe level at which it is located:\t\" ");
+		ft_putchar((current_level / 10) + '0');
+		ft_putchar((current_level % 10) + '0');
+		ft_putstr(" \"\n");
+		ft_putstr("Is he the first on this level:\t\t");
+		if (is_first_elem)
+			ft_putstr("\" yes \"");
+		else
+			ft_putstr("\" no \"");
+	ft_putstr("\n---------------------------------------------------------------\n");
+	}
+}
+int 	main(void)
+{
+	t_btree		*tree_temp;
+
+	tree_temp = btree_create_node("root");
+	tree_temp->left = btree_create_node("one children");
+	tree_temp->right = btree_create_node("two children");
+	tree_temp->left->left = btree_create_node("one grand-children from one children");
+	tree_temp->left->right = btree_create_node("two grand-children from one children");
+	tree_temp->right->left = btree_create_node("one grand-children from two children");
+	tree_temp->right->right = btree_create_node("two grand-children from two children");
+
+	ft_putstr(" ------------------------------------------------------------\n");
+	ft_putstr("|                       map of tree                          |\n");
+	ft_putstr(" ------------------------------------------------------------\n\n");
+	btree_apply_infix_mod(tree_temp, (void *)&ft_putstr, 1);
+	ft_putstr("\n\n");
+
+	ft_putstr(" -------------------------------------------------------------\n");
+	ft_putstr("|              test \'btree apply by level\'                    |\n");
+	ft_putstr(" -------------------------------------------------------------\n\n");
+	
+	btree_apply_by_level(tree_temp, test_btree_level);
+	ft_putchar('\n');
+	
+	return (0);
+}
