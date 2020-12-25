@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/12/25 21:58:38 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/12/25 22:00:09 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,13 +158,12 @@ void	test_btree_level(void *item, int current_level, int is_first_elem)
 {
 	if (item)
 	{
-		ft_putstr("Current node:\t\t\t\t ");
+		ft_putstr("Current node:\t\t\t\t\" ");
 		ft_putstr((char *)item);
 		ft_putstr(" \" \nThe level at which it is located:\t\" ");
 		ft_putchar((current_level / 10) + '0');
 		ft_putchar((current_level % 10) + '0');
-		ft_putstr(" \"\n");
-		ft_putstr("Is he the first on this level:\t\t");
+		ft_putstr(" \"\nIs he the first on this level:\t\t");
 		if (is_first_elem)
 			ft_putstr("\" yes \"");
 		else
