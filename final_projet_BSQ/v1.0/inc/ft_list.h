@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/07/22 12:37:30 by jpucelle          #+#    #+#             */
-/*   Updated: 2014/07/22 18:26:44 by jpucelle         ###   ########.fr       */
+/*   Updated: 2020/12/25 22:38:29 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef JP_LIST_H
 # define JP_LIST_H
-
 # include <stdlib.h>
 # include "ft_string.h"
 
