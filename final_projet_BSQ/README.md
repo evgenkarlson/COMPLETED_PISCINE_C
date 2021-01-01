@@ -1,4 +1,4 @@
-# BSQ (Biggest SQuare)#
+# BSQ (Biggest SQuare) #
 
 
 ### Самая большая площадь
