@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print.h                                         :+:      :+:    :+:   */
+/*   grid.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpucelle <jpucelle@student.42.fr>          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/07/22 12:37:01 by jpucelle          #+#    #+#             */
-/*   Updated: 2014/07/23 18:00:53 by jpucelle         ###   ########.fr       */
+/*   Created: 2015/09/22 17:49:13 by evgenkarlson      #+#    #+#             */
+/*   Updated: 2021/01/01 16:51:41 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef JP_PRINT_H
-# define JP_PRINT_H
+#include "../header/bsq.h"
 
-# include <unistd.h>
-# include "ft_string.h"
+t_grid		create_struct_grid(void)
+{
+	t_grid	grid;
 
-void	jp_putchar(char c);
-void	jp_putstr(char *str);
-void	jp_puterr(char *str);
-
-#endif
+	grid.char_empty = 0;
+	grid.char_mine = 0;
+	grid.char_square = 0;
+	grid.x = 0;
+	grid.y = 0;
+	return (grid);
+}
