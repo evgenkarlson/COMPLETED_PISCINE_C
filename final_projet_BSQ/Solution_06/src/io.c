@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/24 13:30:19 by alucas-           #+#    #+#             */
-/*   Updated: 2020/12/26 15:28:41 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/01 22:19:11 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ inline t_reader	*bsq_reader(t_reader *reader, t_u8 fd)
 {
 	ssize_t		rlen;
 
-	if (fd < 0)
-		return (NULL);
+/*	if (fd < 0)
+		return (NULL);*/
 	if ((rlen = read(fd, reader->buf, BUF_SIZE)) <= 0)
 		return (NULL);
 	reader->len = (t_u16)rlen;

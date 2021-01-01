@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verifs2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: apuchill <apuchill@student.42.fr>          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 20:41:26 by apuchill          #+#    #+#             */
-/*   Updated: 2019/12/11 20:43:13 by apuchill         ###   ########.fr       */
+/*   Updated: 2021/01/01 22:14:56 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		check_row_qty(void)
 
 	i = 0;
 	row_count = 0;
-	while (map[0].map != '\0')
+	while (map[0].map)
 	{
 		if (map[0].map)
 			row_count++;

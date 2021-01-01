@@ -1,56 +1,99 @@
-# **************************************************************************** #ME
+# **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rdidier <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ecaceres <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2015/09/23 06:11:12 by rdidier           #+#    #+#              #
-#    Updated: 2015/09/24 10:48:38 by adespond         ###   ########.fr        #
+#    Created: 2019/08/13 15:11:33 by ecaceres          #+#    #+#              #
+#    Updated: 2019/08/21 19:57:49 by fyusuf-a         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+C_YELLOW_B=\033[1;95m
+C_LIGHT_RED_B=\033[0;91m
+C_WHITE=\033[0;97m
+C_RESET=\033[0;39m
 
-NAME	=	bsq
+SRCS	= ./srcs/main.c ./srcs/solution.c ./srcs/utilities.c ./srcs/bsq_parse.c ./srcs/bsq_parse2.c ./srcs/bsq_grid.c 
+OBJS	= ${SRCS:.c=.o}
+INCS	= includes
+NAME	= bsq
+CC		= gcc
+RM		= rm -f
+CFLAGS	= -Wall -Wextra -Werror -g
 
-SOURCES	=	./src/main.c \
-			./src/algo_bsq.c \
-			./src/display.c \
-			./src/grid.c \
-			./src/struct_gestion.c \
-			./src/bsq.c \
-			./src/input.c \
-			./src/read.c
+.c.o :
+	${CC} ${CFLAGS} -c $< -o ${<:.c=.o} -I${INCS}
 
-OBJECTS	=	./main.o \
-			./algo_bsq.o \
-			./display.o \
-			./grid.o \
-			./struct_gestion.o \
-			./bsq.o \
-			./input.o \
-			./read.o
+${NAME} : ${OBJS}
+	${CC} ${CFLAGS} ${OBJS} -o ${NAME}
 
-FLAGS	=	-Werror -Wall -Wextra
+all : ${NAME}
 
-HEADER	=	./header
+run :
+	./${NAME}
 
-$(NAME)		:	all
+clean :
+	${RM} ${OBJS}
 
-all			:
-				gcc -c $(FLAGS) $(SOURCES) -I $(HEADER) 
-				gcc -o $(NAME) $(FLAGS) $(OBJECTS)
+fclean : clean
+	${RM} ${NAME}
 
-clean		: 
-				rm -rf $(OBJECTS)
+norm :
+	norminette */*.[ch]
 
-fclean		:	clean
-				rm -rf $(NAME)
+find_sources :
+	find srcs -type f -name "*.c" | xargs -I{} echo ./{} | tr '\n' ' '
+	
+memcheck : re
+	/Users/ecaceres/apps/valgrind_3.13_high_sierra/vg-in-place --leak-check=full ./bsq ./tests/set/*
+	
+memcheck_1 : re
+	/Users/ecaceres/apps/valgrind_3.13_high_sierra/vg-in-place --leak-check=full ./bsq ./tests/set/grid_1
 
-re			:	fclean \
-				all
+check : re
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing set$(C_RESET)" ;
+	@./${NAME} ./tests/set/* || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing an empty file$(C_RESET)" ;
+	@./${NAME} ./tests/cases/empty_map || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing an invalid map$(C_RESET)" ;
+	@./${NAME} ./tests/cases/invalid_map || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing file with no permission$(C_RESET)" ;
+	@./${NAME} ./tests/cases/no_permission || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing directory$(C_RESET)" ;
+	@./${NAME} ./tests/cases/ || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing 1x1 maps$(C_RESET)" ;
+	@./${NAME} ./tests/cases/one_by_one_* || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing maps with irregular width$(C_RESET)" ;
+	@./${NAME} ./tests/cases/map_with_irregular_width* || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing maps with invalid header$(C_RESET)" ;
+	@./${NAME} ./tests/cases/map_with_invalid_header* || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing maps with invalid height$(C_RESET)" ;
+	@./${NAME} ./tests/cases/map_with_invalid_height* || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing a map without any column$(C_RESET)" ;
+	@./${NAME} ./tests/cases/no_colomn_line || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing maps with only one column$(C_RESET)" ;
+	@./${NAME} ./tests/cases/one_colomn_line* || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing maps with only one line$(C_RESET)" ;
+	@./${NAME} ./tests/cases/one_line_colomn* || true ;
+	@##
+	@echo "[$(C_YELLOW_B)TESTING$(C_RESET)] $(C_WHITE)Testing 2x2 maps:$(C_RESET)" ;
+	@./${NAME} ./tests/cases/two_by_two* || true ;
+	@##
 
-boom		:	re \
-				clean
-				clear
+re : fclean all
 
+test : re
 
+.PHONY: all clean fclean re .c.o test
