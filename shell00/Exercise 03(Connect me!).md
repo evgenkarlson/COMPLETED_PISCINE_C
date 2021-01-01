@@ -51,6 +51,10 @@
 
 ## Документация:
 
+https://uit.stanford.edu/service/kerberos/user_guide/commands
+
+https://en.wikipedia.org/wiki/Kerberos_%28protocol%29
+
 https://habr.com/ru/company/aktiv-company/blog/170829/
 
 https://www.f-notes.info/linux:ldap_ad
