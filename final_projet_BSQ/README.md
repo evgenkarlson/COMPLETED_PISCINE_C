@@ -110,7 +110,11 @@
 
 # Полезные ссылки #
 
+- https://www.xspdf.com/resolution/55548198.html
+
 - https://afteracademy.com/blog/maximal-square
+
+- https://tutorialspoint.dev/data-structure/matrix-archives/maximum-size-rectangle-binary-sub-matrix-1s
 
 - [Максимальный размер прямоугольника динамического программирования всех единиц](https://youtu.be/g8bSdXCG-lA)
 
