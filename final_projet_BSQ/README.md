@@ -110,6 +110,8 @@
 
 # Полезные ссылки #
 
+- https://afteracademy.com/blog/maximal-square
+
 - [Максимальный размер прямоугольника динамического программирования всех единиц](https://youtu.be/g8bSdXCG-lA)
 
 - [Максимальный Прямоугольник](https://youtu.be/PrNAjqoo83k)

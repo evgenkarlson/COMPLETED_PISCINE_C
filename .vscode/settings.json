@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.tcc": "c",
+        "string_view": "c",
+        "algorithm": "c",
+        "istream": "c",
+        "limits": "c",
+        "array": "c"
+    }
+}
