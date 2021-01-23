@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/16 11:43:57 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/21 02:13:18 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@
 #ifndef FT_STOCK_STR_H
 # define FT_STOCK_STR_H
 
-typedef struct		s_stock_str
+typedef struct	s_stock_str
 {
 	int		size;
 	char	*str;
 	char	*copy;
-}					t_stock_str;
+}				t_stock_str;
 
 #endif
 

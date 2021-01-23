@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/19 14:46:49 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/17 02:30:53 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,29 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
+void	ft_putnbr(int n)
+{
+	if (n < 0)
+	{
+		n = -n;
+		ft_putchar('-');
+	}
+	if (n >= 10)
+		ft_putnbr(n / 10);
+	ft_putchar((n % 10) + '0');
+}
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
 void	ft_putnbr(int nb)
 {
-	char	c;
-
 	if (nb < 0)
 	{
 		nb = -nb;
@@ -106,113 +125,6 @@ void	ft_putnbr(int nb)
 }
 
 
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	if (nb >= 10)
-	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
-	else
-	{
-		ft_putchar(nb + '0');
-	}
-}
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-void	ft_putchar(char c)
-{
-	write(1, &c, 1);
-}
-
-void	ft_printnbr(int x[])
-{
-	int i;
-	int b;
-
-	i = 0;
-	b = 0;
-	while (i < 10)
-	{
-		if (b == 1)
-		{
-			ft_putchar(x[i] + 48);
-		}
-		else
-		{
-			if (x[i] > 0)
-			{
-				b = 1;
-				ft_putchar(x[i] + 48);
-			}
-		}
-		i++;
-	}
-}
-
-void	ft_preventoverflow(void)
-{
-	ft_putchar('-');
-	ft_putchar('2');
-	ft_putchar('1');
-	ft_putchar('4');
-	ft_putchar('7');
-	ft_putchar('4');
-	ft_putchar('8');
-	ft_putchar('3');
-	ft_putchar('6');
-	ft_putchar('4');
-	ft_putchar('8');
-}
-
-void	ft_fillarray(int x[], int nb)
-{
-	int t;
-
-	t = 9;
-	while (t >= 0)
-	{
-		x[t] = nb % 10;
-		nb /= 10;
-		t--;
-	}
-}
-
-void	ft_putnbr(int nb)
-{
-	int x[10];
-
-	if (nb == 0)
-		ft_putchar('0');
-	else
-	{
-		if (nb == -2147483648)
-			ft_preventoverflow();
-		else
-		{
-			if (nb < 0)
-			{
-				ft_putchar('-');
-				nb = nb + -2 * nb;
-			}
-			ft_fillarray(x, nb);
-			ft_printnbr(x);
-		}
-	}
-}
 
 /* ************************************************************************** */
 /* ************************************************************************** */

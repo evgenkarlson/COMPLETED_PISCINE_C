@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/29 01:13:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/23 21:31:00 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,28 @@ int		ft_wordcount(char *str, char *charset)
 	return (count);
 }
 
+int		ft_wordcount(char *str, char *charset)
+{
+	int	count;
+	int	flag;
+
+	count = 0;
+	flag = 1;
+	while (*str)
+	{
+		if (ft_is_space(*str, charset))
+			flag = 1;
+		if (!ft_is_space(*str, charset))
+		{
+			if (flag)
+				count++;
+			flag = 0;
+		}
+		str++;
+	}
+	return (count);
+}
+
 */
 
 char	*create_word(char *str, int i, int j)
@@ -136,12 +158,12 @@ char	**ft_split(char *str, char *charset)
 	int		i;
 	int		words;
 
+	index = 0;
 	if ((words = ft_wordcount(str, charset)))
 	{
 		if (!str || ((arr = (char **)malloc(sizeof(char *) * (words + 1))) == ((void *)0)))
 			return ((void *)0);
 		i = 0;
-		index = 0;
 		while (index < words)
 		{
 			while (ft_is_space(str[i], charset) && (str[i]))
@@ -149,9 +171,8 @@ char	**ft_split(char *str, char *charset)
 			j = i;
 			while (!(ft_is_space(str[j], charset)) && (str[j]))
 				j++;
-			arr[index] = create_word(str, i, j);
+			arr[index++] = create_word(str, i, j);
 			i = j + 1;
-			index++;
 		}
 	}
 	else
@@ -227,6 +248,28 @@ int		count_words(char *str, char *charset)
 			count++;
 		while (str[i] && !(ft_is_space(str[i], charset)))
 			i++;
+	}
+	return (count);
+}
+
+int		ft_wordcount(char *str, char *charset)
+{
+	int	count;
+	int	flag;
+
+	count = 0;
+	flag = 1;
+	while (*str)
+	{
+		if (ft_is_space(*str, charset))
+			flag = 1;
+		if (!ft_is_space(*str, charset))
+		{
+			if (flag)
+				count++;
+			flag = 0;
+		}
+		str++;
 	}
 	return (count);
 }
@@ -340,6 +383,28 @@ int		count_words(char *str, char *charset)
 			count++;
 		while (str[i] && !(ft_is_space(str[i], charset)))
 			i++;
+	}
+	return (count);
+}
+
+int		ft_wordcount(char *str, char *charset)
+{
+	int	count;
+	int	flag;
+
+	count = 0;
+	flag = 1;
+	while (*str)
+	{
+		if (ft_is_space(*str, charset))
+			flag = 1;
+		if (!ft_is_space(*str, charset))
+		{
+			if (flag)
+				count++;
+			flag = 0;
+		}
+		str++;
 	}
 	return (count);
 }
@@ -531,6 +596,28 @@ int		count_words(char *str, char *charset)
 			count++;
 		while (str[i] && !(ft_is_space(str[i], charset)))
 			i++;
+	}
+	return (count);
+}
+
+int		ft_wordcount(char *str, char *charset)
+{
+	int	count;
+	int	flag;
+
+	count = 0;
+	flag = 1;
+	while (*str)
+	{
+		if (ft_is_space(*str, charset))
+			flag = 1;
+		if (!ft_is_space(*str, charset))
+		{
+			if (flag)
+				count++;
+			flag = 0;
+		}
+		str++;
 	}
 	return (count);
 }

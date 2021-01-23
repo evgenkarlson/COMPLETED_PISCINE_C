@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/10 16:30:29 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/12 14:37:19 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,32 +57,25 @@
 
 int	ft_atoi(char *str)
 {
-	int	i;
-	int	negativ;
-	int	number;
+	int	sign;
+	int	num;
 
-	i = 0;
-	negativ = 0;
-	number = 0;
-	while ((str[i] == ' ') || (str[i] == '\t') || (str[i] == '\n')
-		|| (str[i] == '\v') || (str[i] == '\f') || (str[i] == '\r'))
-		i++;
-	if (str[i] == '-')
-		negativ = 1;
-	if ((str[i] == '-') || (str[i] == '+'))
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	sign = 1;
+	num = 0;
+	while ((*str == ' ') || (*str == '\t') || (*str == '\n')
+		|| (*str == '\v') || (*str == '\f') || (*str == '\r'))
+		str++;
+	if (*str == '-')
+		sign = -1;
+	while ((*str == '-') || (*str == '+'))
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
-		number = (number * 10) + ((int)str[i] - '0');
-		i++;
+		num = (num * 10) + ((int)*str - '0');
+		str++;
 	}
-	if (negativ == 1)
-		return (-number);
-	else
-		return (number);
+	return (num * sign);
 }
-
-
 
 
 
@@ -137,6 +130,8 @@ int	ft_atoi(char *str)
 		is_negative = 1;
 		x++;
 	}
+	while ((str[x] == '-') || (str[x] == '+'))
+		x++;
 	while (str[x] >= '0' && str[x] <= '9')
 	{
 		total *= 10;

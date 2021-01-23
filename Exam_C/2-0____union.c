@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   2-0--union.c                                       :+:      :+:    :+:   */
+/*   2-0____union.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/06 21:41:43 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/08 19:06:53 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,73 @@ $>
 
    ************************************************************************** */
 /* ************************************************************************** */
-/* ************************************************************************** */
+
 
 #include <unistd.h>
 
-int		ft_has_char(char *s, char c)
+void 	ft_putchar(char c)
 {
-	int i;
+	write(1, &c, 1);
+}
 
-	i = 0;
-	while (s[i])
+int		ft_verif_char(char *str, char *symbol)
+{
+	while (str < symbol)
 	{
-		if (s[i] == c)
+		if (*str == *symbol)
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
+void	ft_union(char **argv)
+{
+	int string;
+	int	symbol;
+
+	string = 0;
+	while (string < 2)
+	{
+		symbol = 0;
+		while (argv[string][symbol])
+		{
+			if (ft_verif_char(argv[0], &argv[string][symbol]))
+				ft_putchar(argv[string][symbol]);
+			symbol++;
+		}
+		string++;
+	}
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc == 3)
+		ft_union(&argv[1]);
+	ft_putchar('\n');
+	return (0);
+}
+
+
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+
+#include <unistd.h>
+
+int		ft_check_symbol(char *str, char c)
+{
+	while (*str)
+	{
+		if (*str == c)
 			return (1);
-		i++;
+		str++;
 	}
 	return (0);
 }
+
 
 void	ft_union(char *s, char *u, int *p)
 {
@@ -73,7 +123,7 @@ void	ft_union(char *s, char *u, int *p)
 	i = 0;
 	while (s[i])
 	{
-		if (!ft_has_char(u, s[i]))
+		if (!ft_check_symbol(u, s[i]))
 		{
 			write(1, &s[i], 1);
 			u[*p] = s[i];
@@ -101,7 +151,6 @@ int		main(int argc, char **argv)
 
 
 
-/* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
 

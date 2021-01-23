@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_remove_if.c                                :+:      :+:    :+:   */
+/*   4-2____ft_list_remove_if.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <RTFM@42.fr>                          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/24 02:45:47 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,76 @@ typedef struct      s_list
 $>
 
 
+** ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <stdlib.h>
+#include "ft_list.h"
+
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *))
+{
+	t_list	*last;
+	t_list	*current;
+
+	last = ((void *)0);
+	current = *begin_list;
+	while (current)
+	{
+		if ((*cmp)(current->data, data_ref) == 0)
+		{
+			if (current == *begin_list)
+				*begin_list = current->next;
+			else
+				last->next = current->next;
+			last = current;
+			current = current->next;
+			free_fct(last->data);
+			free(last);
+		}
+		else
+		{
+			last = current;
+			current = current->next;
+		}
+	}
+}
+
+
 /* ************************************************************************** */
 /* ************************************************************************** */
+
+
+#include <stdlib.h>
+#include "ft_list.h"
+
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *))
+{
+	t_list *current;
+	t_list *last;
+	t_list *tmp;
+
+	current = *begin_list;
+	last = ((void *)0);
+	while (current)
+	{
+		tmp = current;
+		if ((*cmp)(current->data, data_ref) == 0)
+		{
+			if (last)
+				last->next = current->next;
+			free_fct(current->data);
+			free(current);
+		}
+		last = current;
+		current = tmp->next;
+	}
+}
+
 /* ************************************************************************** */
+/* ************************************************************************** */
+
+
 
 
 #include "ft_list.h"
@@ -77,3 +144,4 @@ void 	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 			i = i->next;
 	}
 }
+

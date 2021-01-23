@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/10 16:04:22 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/21 02:06:01 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,11 @@ int		ft_is_prime(int nb)
 	if (nb < 2)
 		return (0);
 	i = 2;
-	while (i <= nb / i)
+	while (i <= (nb / i))
 	{
-		if (nb % i == 0)
+		if ((nb % i) == 0) 
 			return (0);
-		else
-			i++;
+		i++;
 	}
 	return (1);
 }
@@ -57,13 +56,13 @@ int		ft_is_prime(int nb)
 int		ft_is_prime( int nb )
 {
 	int i;
-
+ 
 	if (nb < 2)
 		return (0);
 	i = 2;
-	while (i * i <= nb)
+	while ((i * i) <= nb)
 	{
-		if (nb % i == 0) 
+		if ((nb % i) == 0) 
 			return (0);
 		i++;
 	}
@@ -82,10 +81,32 @@ int		ft_is_prime(int nb)
 	i = 2;
 	while (i <= (nb / 2))
 	{
-		if (!(nb % i))
+		if ((nb % i) == 0) 
 			return (0);
-		else
-			i++;
+		i++;
+	}
+	return (1);
+}
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+int		ft_is_prime1(int nb)
+{
+	int i;
+
+	if (nb < 2)
+		return (0);
+	i = 2;
+	while (i <= nb)
+	{
+		if ((nb % i) == 0)
+		{
+			if ((nb / i) == 1)
+				return (1);
+			return (0);
+		}
+		i++;
 	}
 	return (1);
 }

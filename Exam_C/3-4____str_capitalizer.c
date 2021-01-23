@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_capitalizer.c                                  :+:      :+:    :+:   */
+/*   3-4____str_capitalizer.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <RTFM@42.fr>                          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/20 21:34:48 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
 /* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** 
+/* ************************************************************************** **
 
 
 Assignment name  : str_capitalizer
@@ -46,13 +45,11 @@ Aller Un Dernier 0123456789pour La Route    E $
 $>
 
 
-/* ************************************************************************** */
-/* ************************************************************************** */
+** ************************************************************************** */
 /* ************************************************************************** */
 
 
 #include <unistd.h>
-#define ISLETTER(c) ((c > 64 && c < 91) || (c > 96 && c < 123)) ? 1 : 0
 
 void	ft_putchar(char c)
 {
@@ -61,107 +58,56 @@ void	ft_putchar(char c)
 
 void	ft_putstr(char *str)
 {
-	while (*str)
-		ft_putchar(*str++);
-}
+	int i;
 
-char high(char c)
-{
-	if (c > 96 && c < 123)
-		c = c - 32;
-	return (c);
-}
-
-char low(char c)
-{
-	if (c > 64 && c < 91)
-		c+=32;
-	return (c);
-}
-
-char *cap(char *str)
-{
-	int i = 0;
-
-	while (str[i] != '\0')
-	{
-		if ((i == 0) && (str[i] > 96 && str[i] < 123))
-			str[i] = str[i] - 32;
-		else if ((ISLETTER(str[i])) && (str[i -1] == ' ' || str[i-1] == '\t'))
-			str[i] = high(str[i]);
-		else if ((ISLETTER(str[i])) && (str[i - 1] != ' ' || str[i -1] != '\t'))
-		{
-			if (i != 0)
-				str[i] = low(str[i]);
-		}
+	i = 0;
+	while (str[i])
 		i++;
-	}
-	return (str);
+	write(1, str, i);
 }
 
-int main(int argc, char **argv)
+int		ft_is_space(char c)
 {
-	if (argc == 1) {
-		ft_putchar('\n');
-		return (0);
-	}
-
-	int i = 1;
-	while (i < argc)
-	{
-		ft_putstr(cap(argv[i]));
-		ft_putchar('\n');
-		i++;
-	}
-	return (0);
-
+	return (c == ' ' || c == '\t' || c == '\0');
 }
-
-
-
-
-/* ************************************************************************** */
-/* ********************************_OR_THAT_:)******************************* */
-/* ************************************************************************** */
-
-
-
-#include <unistd.h>
 
 void	str_capitalizer(char *str)
 {
 	int		i;
 
 	i = 0;
-	if (str[i] >= 'a' && 'z' >= str[i])
-		str[i] -= 32;
-	write(1, &str[i], 1);
-	while (str[++i])
+	if (str[i] >= 'a' && str[i] <= 'z')
+		str[i] += 'A' - 'a';
+	i++;
+	while (str[i])
 	{
-		if (str[i] >= 'A' && 'Z' >= str[i])
-			str[i] += 32;
-		if ((str[i] >= 'a' && 'z' >= str[i]) && (str[i - 1] == ' ' || \
-		str[i] == '\t'))
-			str[i] -= 32;
-		write(1, &str[i], 1);
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += 'a' - 'A';
+		if ((str[i] >= 'a' && str[i] <= 'z') && (ft_is_space(str[i - 1])))
+			str[i] += 'A' - 'a';
+		i++;
+	}
+}
+
+void	ft_apply_to_arr(char **arr, int lenght, void (*applly_f)(char *))
+{
+	int i;
+
+	i = 0;
+	while (i < lenght)
+	{
+		applly_f(arr[i]);
+		ft_putstr(arr[i]);
+		ft_putchar('\n');
+		i++;
 	}
 }
 
 int		main(int argc, char *argv[])
 {
-	int		i;
-
-	if (argc < 1)
-		write(1, "\n", 1);
+	if (argc > 1)
+		ft_apply_to_arr(&argv[1], argc - 1, str_capitalizer);
 	else
-	{
-		i = 1;
-		while (i < argc)
-		{
-			str_capitalizer(argv[i]);
-			write(1, "\n", 1);
-			i += 1;
-		}
-	}
+		ft_putchar('\n');
 	return (0);
 }

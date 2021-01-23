@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/19 13:37:27 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/21 02:16:20 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,16 @@
 /* ************************************************************************** */
 
 
-#include "ft_stock_par.h"
+#include "ft_stock_str.h"
 #include <stdlib.h>
 
-struct s_stock_par	*ft_param_to_tab(int ac, char **av)
+struct s_stock_str	*ft_param_to_tab(int ac, char **av)
 {
-	int			i;
-	int			j;
-	t_stock_par	*ret;
+	int				i;
+	int				j;
+	t_stock_str		*ret;
 
-	if ((ret = (t_stock_par *)malloc(sizeof(t_stock_par) * (ac + 1))) == ((void *)0))
+	if ((ret = (t_stock_str *)malloc(sizeof(t_stock_str) * (ac + 1))) == ((void *)0))
 		return ((void *)0);
 	i = 0;
 	while (i < ac)
@@ -89,18 +89,17 @@ struct s_stock_par	*ft_param_to_tab(int ac, char **av)
 		j = 0;
 		while (av[i][j])
 			j++;
-		ret[i].size_param = j;
+		ret[i].size = j;
 		ret[i].str = av[i];
-		if((ret[i].copy = (char *)malloc(sizeof(char) * (ret[i].size_param + 1))) == ((void *)0))
+		if((ret[i].copy = (char *)malloc(sizeof(char) * (ret[i].size + 1))) == ((void *)0))
 			return ((void *)0);
 		j = 0;
-		while (j < ret[i].size_param)
+		while (j < ret[i].size)
 		{
 			ret[i].copy[j] = av[i][j];
 			j++;
 		}
 		ret[i].copy[j] = '\0';
-		ret[i].tab = ft_split_whitespaces(av[i]);
 		i++;
 	}
 	ret[i].str = 0;
@@ -112,7 +111,7 @@ struct s_stock_par	*ft_param_to_tab(int ac, char **av)
 /* ************************************************************************** */
 
 
-#include "ft_stock_par.h"
+#include "ft_stock_str.h"
 #include <stdlib.h>
 
 int					ft_strlen(char *str)
@@ -142,17 +141,17 @@ char				*ft_strdup(char *src)
 	return (dst);
 }
 
-struct s_stock_par	*ft_param_to_tab(int ac, char **av)
+struct s_stock_str	*ft_param_to_tab(int ac, char **av)
 {
 	int				i;
-	t_stock_par		*stk;
+	t_stock_str		*stk;
 
-	if ((stk = (t_stock_par *)malloc(sizeof(t_stock_par) * (ac + 1))) == ((void *)0))
+	if ((stk = (t_stock_str *)malloc(sizeof(t_stock_str) * (ac + 1))) == ((void *)0))
 		return ((void *)0);
 	i = 0;
 	while (i < ac)
 	{
-		stk[i].size_param = ft_strlen(av[i]);
+		stk[i].size = ft_strlen(av[i]);
 		stk[i].str = av[i];
 		stk[i].copy = ft_strdup(av[i]);
 		i++;
