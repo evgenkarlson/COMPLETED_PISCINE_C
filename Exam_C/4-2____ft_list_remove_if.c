@@ -6,13 +6,12 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/01/24 02:47:57 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/24 13:49:24 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
-/* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** **
 
@@ -51,8 +50,22 @@ $>
 
 #include <stdlib.h>
 #include "ft_list.h"
+/* 'ft_list.h' contains:
+ 
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *))
+typedef struct	s_list
+{
+	struct s_list	*next;
+	void			*data;
+}				t_list;
+
+#endif
+
+*/
+
+void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
 	t_list	*last;
 	t_list	*current;
@@ -69,7 +82,7 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (
 				last->next = current->next;
 			last = current;
 			current = current->next;
-			free_fct(last->data);
+			free(last->data);
 			free(last);
 		}
 		else
@@ -87,8 +100,22 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (
 
 #include <stdlib.h>
 #include "ft_list.h"
+/* 'ft_list.h' contains:
+ 
+#ifndef FT_LIST_H
+# define FT_LIST_H
 
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *))
+typedef struct	s_list
+{
+	struct s_list	*next;
+	void			*data;
+}				t_list;
+
+#endif
+
+*/
+
+void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
 	t_list *current;
 	t_list *last;
@@ -103,7 +130,7 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (
 		{
 			if (last)
 				last->next = current->next;
-			free_fct(current->data);
+			free(current->data);
 			free(current);
 		}
 		last = current;
@@ -117,8 +144,22 @@ void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (
 
 
 
-#include "ft_list.h"
 #include <stdlib.h>
+#include "ft_list.h"
+/* 'ft_list.h' contains:
+ 
+#ifndef FT_LIST_H
+# define FT_LIST_H
+
+typedef struct	s_list
+{
+	struct s_list	*next;
+	void			*data;
+}				t_list;
+
+#endif
+
+*/
 
 void 	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 {
