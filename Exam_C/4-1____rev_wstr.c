@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/01/23 22:50:17 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/25 02:14:14 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ void	ft_rev_wstr(char *str, char *charset)
 	while (--wcount > (-1))
 	{
 		ft_putstr(words[wcount]);
+		free(words[wcount]);
 		if (wcount > 0)
 			write(1, " " ,1);
 	}
@@ -238,31 +239,39 @@ int		main(int argc, char *argv[])
 /* ************************************************************************** */
 
 
-
-
 #include <unistd.h>
 
-int		main(int argc, char *argv[])
+int		ft_is_space(char to_find, char *str)
+{
+	while (*str)
+	{
+		if (to_find == *str++)
+			return (1);
+	}
+	return (0);
+}
+
+void	ft_rev_wstr(char *str, char *charset)
 {
 	int		i;
 	int		j;
 	int		num;
 	char	words[256][4096];
 
-	if (argc == 2)
+	if (*str && *charset)
 	{
 		i = 0;
 		j = 0;
 		num = 0;
-		while (argv[1][i] != '\0')
+		while (str[i] != '\0')
 		{
-			if (argv[1][i] == ' ')
+			if (str[i] == ' ')
 			{
 				num++;
 				i++;
 				j = 0;
 			}
-			words[num][j] = argv[1][i];
+			words[num][j] = str[i];
 			i++;
 			j++;
 		}
@@ -282,6 +291,13 @@ int		main(int argc, char *argv[])
 			j++;
 		}
 	}
+}
+
+int		main(int argc, char *argv[])
+{
+
+	if (argc == 2)
+		ft_rev_wstr(argv[1], " \t\n");
 	write(1, "\n", 1);
 	return (0);
 }

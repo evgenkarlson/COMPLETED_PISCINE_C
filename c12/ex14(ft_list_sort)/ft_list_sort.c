@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/11/17 01:37:05 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/25 00:45:02 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 /* ************************************************************************** */
 
 /* * */
-/* SORTING THE LIST WITHOUT using the "ft_list_size" function */
+/* SORTING THE LIST !WITHOUT! using the "ft_list_size" function */
 
 #include "ft_list.h"
 
@@ -78,7 +78,7 @@ void		ft_list_sort(t_list **begin_list, int (*cmp)())
 /* ************************************************************************** */
 /* ************************************************************************** */
 
-/* SORTING THE LIST with using the "ft_list_size" function */
+/* SORTING THE LIST !with! using the "ft_list_size" function */
 
 #include "ft_list.h"
 
@@ -135,7 +135,7 @@ void	ft_list_sort(t_list **begin_list, int (*cmp)())
 
 void	ft_swap(void **a, void **b)
 {
-	void *temp;
+	void	*temp;
 
 	temp = *a;
 	*a = *b;

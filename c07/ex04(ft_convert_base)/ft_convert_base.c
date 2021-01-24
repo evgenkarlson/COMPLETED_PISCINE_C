@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/01/20 01:43:30 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/25 02:45:55 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,8 @@ void	*ft_itoa_base(int nbr, char *base)
 		if (nbr < 0)
 		{
 			nbr = -nbr;
-			ft_putchar('-');
+			n[i] = '-';
+			i++;
 		}
 		while (nbr)
 		{
@@ -149,7 +150,9 @@ void	*ft_itoa_base(int nbr, char *base)
 		}
 		if ((final = malloc(sizeof(char) * (i + 1))) == ((void *)0))
 			return (((void *)0));
-		j = 0;
+		if ((n[0] == '-'))
+			final[0] = n[0];
+		j = 1;
 		while (i > 0)
 		{
 			--i;
@@ -249,7 +252,8 @@ char	*ft_itoa_base(int nbr, int base_type)
 		if (nbr < 0)
 		{
 			nbr = -nbr;
-			ft_putchar('-');
+			temp[i] = '-';
+			i++;
 		}
 		while (nbr)
 		{
@@ -259,8 +263,10 @@ char	*ft_itoa_base(int nbr, int base_type)
 		}
 		if ((final = (char *)malloc(sizeof(char) * (i + 1))) == ((void *)0))
 			return (((void *)0));
-		j = 0;
-		while (i > 0)
+		if ((temp[0] == '-'))
+			final[0] = temp[0];
+		j = 1;
+		while (i > 1)
 		{
 			--i;
 			if (temp[i] < 10)

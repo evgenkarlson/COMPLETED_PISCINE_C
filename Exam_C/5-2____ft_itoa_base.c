@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   5-2____ft_itoa_base.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: exam <RTFM@42.fr>                          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/02/15 10:51:23 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/01/25 02:49:45 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 /* ************************************************************************** */
-/* ************************************************************************** */
-/* **************************************************************************
+/* ************************************************************************** **
 
 
 Assignment name  : ft_itoa_base
@@ -39,87 +38,55 @@ Allowed functions: malloc
 char	*ft_itoa_base(int value, int base);
 
 
-/* ************************************************************************** */
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-#include <stdlib.h>
-
-char		*ft_itoa_base(int value, int base)
-{
-	int		len;
-	long	nbr;
-	char	*pointer;
-	char	*base_string = "0123456789ABCDEF";
-
-	if (value == 0)
-		return ("0");
-	len = 0;
-	nbr = value;
-	while (nbr)
-	{
-		nbr /= base;
-		len += 1;
-	}
-	nbr = value;
-	if (nbr < 0)
-	{
-		if (base == 10)
-			len += 1;
-		nbr *= -1;
-	}
-	if (!(pointer = (char *)malloc(sizeof(char) * len + 1)))
-		return (NULL);
-	pointer[len] = '\0';
-	while (nbr)
-	{
-		pointer[--len] = base_string[nbr % base];
-		nbr /= base;
-	}
-	if (value < 0 && base == 10)
-		pointer[0] = '-';
-	return (pointer);
-}
-
-
-
-/* ************************************************************************** */
-/* ********************************_OR_THAT_:)******************************* */
+** ************************************************************************** */
 /* ************************************************************************** */
 
-
-
-#include <stdlib.h>
-#include <stdio.h> //malloc protection isn't required for the exam
 
 char	*ft_itoa_base(int value, int base)
 {
-	char	*s;
-	long	n;
-	int		sign;
 	int		i;
+	int		j;
+	char	temp[16];
+	char	*final;
 
-	n = (value < 0) ? -(long)value : value;
-	sign = (value < 0 && base == 10) ? -1 : 0;
-	i = (sign == -1) ? 2 : 1;
-	while ((n /= base) >= 1)
-		i++;
-	s = (char*)malloc(sizeof(char) * (i + 1));
-	s[i] = '\0';
-	n = (value < 0) ? -(long)value : value;
-	while (i-- + sign)
+	i = 0;
+	if ((base >= 2))
 	{
-		s[i] = (n % base < 10) ? n % base + '0' : n % base + 'A' - 10;
-		n /= base;
+		if (value < 0)
+		{
+			value = -value;
+			temp[i] = '-';
+			i++;
+		}
+		while (value)
+		{
+			temp[i] = value % base;
+			value /= base;
+			i++;
+		}
+		if ((final = (char *)malloc(sizeof(char) * (i + 1))) == ((void *)0))
+			return (((void *)0));
+		if ((temp[0] == '-'))
+			final[0] = temp[0];
+		j = 1;
+		while (i > 1)
+		{
+			--i;
+			if (temp[i] < 10)
+				final[j] = temp[i] + '0';
+			if (temp[i] >= 10)
+				final[j] = temp[i] - 10 + 'A';
+/* ******************************************************************************** **
+** SHORT:       final[j] = (temp[i] < 10) ? (temp[i] + '0') : (temp[i] - 10 + 'A'); **
+** ******************************************************************************** **/
+			j++;
+		}
+		final[j] = '\0';
 	}
-	(i == 0) ? s[i] = '-' : 0;
-	return (s);
+	return (final);	
 }
 
-int		main(int ac, char **av)//
-{//
-	if (ac == 3)//
-		printf("%s", ft_itoa_base(atoi(av[1]), atoi(av[2])));//
-	return (1);//
-}//
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
