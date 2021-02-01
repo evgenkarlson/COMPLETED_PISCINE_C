@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/01 23:38:21 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/02 00:08:45 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ int		brainfuck(char *str)
 		else
 			i++;
 	}
+	free(ptr);
 	return (0);
 }
 
