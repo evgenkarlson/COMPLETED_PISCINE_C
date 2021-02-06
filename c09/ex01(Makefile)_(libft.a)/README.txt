@@ -6,7 +6,7 @@
 #    By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#              #
-#    Updated: 2020/10/30 13:16:02 by evgenkarlson     ###   ########.fr        #
+#    Updated: 2021/02/04 21:24:41 by evgenkarlson     ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@
 #                                                                               #
 #                                                                               #
 #  Сайт на котором я нашел полезную информацию по созданию Makefile:            #
+#  https://dimaru.github.io/make-doc/make.html                                  #
 #  http://rus-linux.net/nlib.php?name=/MyLDP/algol/gnu_make/gnu_make_3-79_russian_manual.html#SEC101
 #                                                                               #
 #                                                                               #
