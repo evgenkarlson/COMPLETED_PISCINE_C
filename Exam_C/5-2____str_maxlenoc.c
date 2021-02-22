@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/23 01:31:17 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/23 01:33:57 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ $
 #include <unistd.h>
 #include <stdlib.h>
 
-int stringLength(char *s) {
+int string_length(char *s) {
 	int ret = 0;
 	while (*s++)
 		ret++;
 	return ret;
 }
 
-int getMinIndex(int ac, char* av[]) {
+int get_min_index(int ac, char* av[]) {
 
 	int minLen = ~0u >> 1;
 	int minIdx = 1;
 	for (int i = 1; i < ac; i++) {
-		int tmp = stringLength(av[i]);
+		int tmp = string_length(av[i]);
 		if (minLen > tmp) {
 			minLen = tmp;
 			minIdx = i;
@@ -88,9 +88,9 @@ int unfit(char* a, char* b, int len) {
 	return 0;
 }
 
-int findLargestMatchSize(char* key, int ac, char* av[]) {
+int find_largest_match_size(char* key, int ac, char* av[]) {
 
-	int len = stringLength(key);
+	int len = string_length(key);
 
 	for (int i = 0; i < ac; i++) {
 		if (unfit(key, av[i], len)) {
@@ -109,11 +109,11 @@ int main(int ac, char* av[]) {
 
 	if (ac <= 2) {
 		if (ac == 2)
-			write(1, av[1], stringLength(av[1]));
+			write(1, av[1], string_length(av[1]));
 		write(1, "\n", 1); 
 		return 0;
 	}
-	int minIdx = getMinIndex(ac, av);
+	int minIdx = get_min_index(ac, av);
 	if (minIdx != 1) {
 		char* tmp = av[minIdx];
 		av[minIdx] = av[1];
@@ -125,7 +125,7 @@ int main(int ac, char* av[]) {
 	int maxLen = -1, maxIdx = -1;
 
 	for (int i = 2; i < ac; i++) {
-		int tmp = findLargestMatchSize(key + currIdx, ac - 2, av + 2);
+		int tmp = find_largest_match_size(key + currIdx, ac - 2, av + 2);
 		if (maxLen < tmp) {
 			maxLen = tmp;
 			maxIdx = currIdx;
