@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/23 01:38:17 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/23 01:44:43 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ $>
 ** ************************************************************************** */
 /* ************************************************************************** */
 
+
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -175,7 +176,6 @@ int		checkmate(int size, char **map)
 	return (1);
 }
 
-
 void	ft_print_tab(int size, char **tab)
 {
 	int	i;
@@ -191,7 +191,7 @@ void	ft_print_tab(int size, char **tab)
 
 int		main(int ac, char **av)
 {
-	if (ac == 5 && checkmate(ac - 1, av + 1))
+	if ((ac % 2) && checkmate(ac - 1, av + 1))
 		write(1, "Success\n", 8);
 	else if (ac == 1)
 		ft_putchar('\n');
@@ -200,6 +200,7 @@ int		main(int ac, char **av)
 	// ft_print_tab(ac - 1, av + 1);
 	return (0);
 }
+
 
 
 /*------------------------------------------------------------------------------
