@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/23 00:20:09 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/23 00:47:17 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ $> ./chessmate '..' '.K' | cat -e
 Fail$
 $> ./chessmate 'R...' '..P.' '.K..' '....' | cat -e
 Success$
-$> ./chessmate 'R...' 'iheK' '....' 'jeiR' | cat -e
+$> ./chessmate 'R...' 'iheK' '....' 'jei.' | cat -e
 Success$
 $> ./chessmate | cat -e
 $
@@ -174,6 +174,7 @@ int		checkmate(int size, char **map)
 	}
 	return (1);
 }
+
 
 void	ft_print_tab(int size, char **tab)
 {
