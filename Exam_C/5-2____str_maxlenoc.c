@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/23 01:35:51 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/23 01:51:15 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int main(int ac, char* av[]) {
 		av[1] = tmp;
 	}
 
-	char* key = av[1]; // I hate using av[1] over and over
+	char* key = av[1];
 	int currIdx = 0;
 	int maxLen = -1, maxIdx = -1;
 
