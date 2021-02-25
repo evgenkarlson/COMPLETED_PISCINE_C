@@ -6,10 +6,9 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/23 01:51:15 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/25 21:02:53 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 /* ************************************************************************** */
 /* ************************************************************************** **
@@ -47,96 +46,134 @@ $
 ** ************************************************************************** */
 /* ************************************************************************** */
 
-
-
 #include <unistd.h>
 #include <stdlib.h>
 
-int string_length(char *s) {
+int string_length(char *s)
+{
 	int ret = 0;
 	while (*s++)
 		ret++;
 	return ret;
 }
 
-int get_min_index(int ac, char* av[]) {
+int get_min_index(int ac, char *av[])
+{
 
-	int minLen = ~0u >> 1;
-	int minIdx = 1;
-	for (int i = 1; i < ac; i++) {
-		int tmp = string_length(av[i]);
-		if (minLen > tmp) {
+	int minLen;
+	int minIdx;
+	int	tmp;
+	int i;
+
+	minLen = ~0u >> 1;
+	minIdx = 1;
+	i = 1;
+	while (i < ac)
+	{
+		tmp = string_length(av[i]);
+		if (minLen > tmp)
+		{
 			minLen = tmp;
 			minIdx = i;
 		}
+		i++;
 	}
-	return minIdx;
+	return (minIdx);
 }
 
-int unfit(char* a, char* b, int len) {
+int unfit(char *a, char *b, int len)
+{
+	int	i;
 
-	for (int i = 0; i < len; i++) {
-		if (a[i] != b[i]) {
-			if (*(b + 1)) {
+	i = 0;
+	while (i < len)
+	{
+		if (a[i] != b[i])
+		{
+			if (*(b + 1))
+			{
 				b++;
 				i = -1;
-			} else {
-				return 1;
 			}
+			else
+				return (1);
 		}
+		i++;
 	}
-	return 0;
+	return (0);
 }
 
-int find_largest_match_size(char* key, int ac, char* av[]) {
+int find_largest_match_size(char *key, int ac, char *av[])
+{
 
-	int len = string_length(key);
+	int	len;
+	int	i;
 
-	for (int i = 0; i < ac; i++) {
-		if (unfit(key, av[i], len)) {
-			if (len > 1) {
+	len = string_length(key);
+	i = 0;
+	while (i < ac)
+	{
+		if (unfit(key, av[i], len))
+		{
+			if (len > 1)
+			{
 				len--;
 				i = -1;
-			} else {
-				return -1;
 			}
+			else
+				return (-1);
 		}
+		i++;
 	}
-	return len;
+	return (len);
 }
 
-int main(int ac, char* av[]) {
+int main(int ac, char *av[])
+{
+	int		minIdx;
+	char	*swap;
+	char	*key;
+	int		currIdx;
+	int		maxLen;
+	int		maxIdx;
+	int		tmp;
+	int		i;
 
-	if (ac <= 2) {
+	if (ac <= 2)
+	{
 		if (ac == 2)
 			write(1, av[1], string_length(av[1]));
-		write(1, "\n", 1); 
-		return 0;
+		write(1, "\n", 1);
+		return (0);
 	}
-	int minIdx = get_min_index(ac, av);
-	if (minIdx != 1) {
-		char* tmp = av[minIdx];
+	minIdx = get_min_index(ac, av);
+	if (minIdx != 1)
+	{
+		swap = av[minIdx];
 		av[minIdx] = av[1];
-		av[1] = tmp;
+		av[1] = swap;
 	}
-
-	char* key = av[1];
-	int currIdx = 0;
-	int maxLen = -1, maxIdx = -1;
-
-	for (int i = 2; i < ac; i++) {
-		int tmp = find_largest_match_size(key + currIdx, ac - 2, av + 2);
-		if (maxLen < tmp) {
+	key = av[1];
+	currIdx = 0;
+	maxLen = -1;
+	maxIdx = -1;
+	i = 2;
+	while (i < ac)
+	{
+		tmp = find_largest_match_size(key + currIdx, ac - 2, av + 2);
+		if (maxLen < tmp)
+		{
 			maxLen = tmp;
 			maxIdx = currIdx;
 		}
 		currIdx++;
 		i = 1;
-		if (key[currIdx] == 0)
+		if (!(key[currIdx]))
 			break;
+		i++;
 	}
 	if (maxIdx > -1)
 		write(1, key + maxIdx, maxLen);
 	write(1, "\n", 1);
-	return 0;
+	return (0);
 }
