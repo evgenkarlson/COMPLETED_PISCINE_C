@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/25 21:02:53 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/26 02:01:48 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,31 +49,41 @@ $
 #include <unistd.h>
 #include <stdlib.h>
 
-int string_length(char *s)
+int ft_strlen(char *s)
 {
-	int ret = 0;
-	while (*s++)
-		ret++;
-	return ret;
+	int i;
+
+	i = 0;
+	while (*(s + i))
+		i++;
+	return (i);
 }
 
+/*
+** Поиск в массиве строк строки с наименьшей длинной и возвращение ее индекса.
+*/
 int get_min_index(int ac, char *av[])
 {
 
 	int minLen;
 	int minIdx;
-	int	tmp;
+	int	lenght;
 	int i;
-
-	minLen = ~0u >> 1;
+	
+	/* 
+	** Устанавливаем в переменную 'minLen' максимально возможное значение 
+	** для сравнения с другими строками и поиска индекса строки с наименьшей длинной.
+	** https://stackoverflow.com/questions/26555159/what-does-the-assignment-of-0u-to-a-variable-mean-in-c
+	*/
+	minLen = (~0u >> 1); 
 	minIdx = 1;
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
-		tmp = string_length(av[i]);
-		if (minLen > tmp)
+		lenght = ft_strlen(av[i]);
+		if (minLen > lenght)
 		{
-			minLen = tmp;
+			minLen = lenght;
 			minIdx = i;
 		}
 		i++;
@@ -109,7 +119,7 @@ int find_largest_match_size(char *key, int ac, char *av[])
 	int	len;
 	int	i;
 
-	len = string_length(key);
+	len = ft_strlen(key);
 	i = 0;
 	while (i < ac)
 	{
@@ -128,10 +138,18 @@ int find_largest_match_size(char *key, int ac, char *av[])
 	return (len);
 }
 
+void	ft_swap(char *a, char *b)
+{
+	char *temp;
+
+	temp = a;
+	a = b;
+	b = temp;
+}
+
 int main(int ac, char *av[])
 {
 	int		minIdx;
-	char	*swap;
 	char	*key;
 	int		currIdx;
 	int		maxLen;
@@ -142,38 +160,35 @@ int main(int ac, char *av[])
 	if (ac <= 2)
 	{
 		if (ac == 2)
-			write(1, av[1], string_length(av[1]));
-		write(1, "\n", 1);
-		return (0);
+			write(1, av[1], ft_strlen(av[1]));
 	}
-	minIdx = get_min_index(ac, av);
-	if (minIdx != 1)
+	else
 	{
-		swap = av[minIdx];
-		av[minIdx] = av[1];
-		av[1] = swap;
-	}
-	key = av[1];
-	currIdx = 0;
-	maxLen = -1;
-	maxIdx = -1;
-	i = 2;
-	while (i < ac)
-	{
-		tmp = find_largest_match_size(key + currIdx, ac - 2, av + 2);
-		if (maxLen < tmp)
+		minIdx = get_min_index(ac, av);
+		if (minIdx != 1)
+			ft_swap(av[1], av[minIdx]);
+		key = av[1];
+		currIdx = 0;
+		maxLen = -1;
+		maxIdx = -1;
+		i = 2;
+		while (i < ac)
 		{
-			maxLen = tmp;
-			maxIdx = currIdx;
+			tmp = find_largest_match_size(key + currIdx, ac - 2, av + 2);
+			if (maxLen < tmp)
+			{
+				maxLen = tmp;
+				maxIdx = currIdx;
+			}
+			currIdx++;
+			i = 1;
+			if (!(key[currIdx]))
+				break;
+			i++;
 		}
-		currIdx++;
-		i = 1;
-		if (!(key[currIdx]))
-			break;
-		i++;
+		if (maxIdx > -1)
+			write(1, key + maxIdx, maxLen);
 	}
-	if (maxIdx > -1)
-		write(1, key + maxIdx, maxLen);
 	write(1, "\n", 1);
 	return (0);
 }
