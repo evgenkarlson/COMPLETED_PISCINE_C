@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/26 02:01:48 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/02/26 11:23:46 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ $
 #include <unistd.h>
 #include <stdlib.h>
 
-int ft_strlen(char *s)
+int		ft_strlen(char *s)
 {
 	int i;
 
@@ -62,7 +62,7 @@ int ft_strlen(char *s)
 /*
 ** Поиск в массиве строк строки с наименьшей длинной и возвращение ее индекса.
 */
-int get_min_index(int ac, char *av[])
+int		get_min_index(int ac, char *av[])
 {
 
 	int minLen;
@@ -72,12 +72,12 @@ int get_min_index(int ac, char *av[])
 	
 	/* 
 	** Устанавливаем в переменную 'minLen' максимально возможное значение 
+	** ( https://stackoverflow.com/questions/26555159/what-does-the-assignment-of-0u-to-a-variable-mean-in-c )
 	** для сравнения с другими строками и поиска индекса строки с наименьшей длинной.
-	** https://stackoverflow.com/questions/26555159/what-does-the-assignment-of-0u-to-a-variable-mean-in-c
 	*/
 	minLen = (~0u >> 1); 
 	minIdx = 1;
-	i = 0;
+	i = 1;
 	while (i < ac)
 	{
 		lenght = ft_strlen(av[i]);
@@ -91,7 +91,7 @@ int get_min_index(int ac, char *av[])
 	return (minIdx);
 }
 
-int unfit(char *a, char *b, int len)
+int		unfit(char *a, char *b, int len)
 {
 	int	i;
 
@@ -113,7 +113,7 @@ int unfit(char *a, char *b, int len)
 	return (0);
 }
 
-int find_largest_match_size(char *key, int ac, char *av[])
+int		find_largest_match_size(char *key, int ac, char *av[])
 {
 
 	int	len;
@@ -147,7 +147,8 @@ void	ft_swap(char *a, char *b)
 	b = temp;
 }
 
-int main(int ac, char *av[])
+
+int		main(int ac, char *av[])
 {
 	int		minIdx;
 	char	*key;
