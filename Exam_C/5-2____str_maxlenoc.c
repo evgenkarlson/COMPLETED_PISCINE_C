@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/01 17:46:05 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/01 20:22:07 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,36 +90,39 @@ int		find_indx_min_str(int ac, char *av[])
 	return (minIdx);
 }
 
-int		find_fragment(char *a, char *b, int len)
+/* Функция ищет идентичный фрагмент строки в другой строке */
+int		find_fragment(char *fragment, char *str, int len)
 {
 	int	i;
 
-	i = 0;
-	while (i < len)
+	i = -1;
+	while (++i < len)
 	{
-		if (a[i] != b[i])
+		if (fragment[i] != str[i])
 		{
-			if (!b[1])
+			if (!str[1])
 				return (0);
-			b++;
+			str++;
 			i = -1;
 		}
-		i++;
 	}
 	return (1);
 }
 
-int		find_largest_match_size(char *key, int ac, char *av[])
+/* Функция ищет идентичный фрагмент строки в массиве строк
+** Если фрагмент строки в массиве строк не найден то фрагмент
+** уменьшается с конца и поиск начинается заново */
+int		largest_match_size(char *fragment, int ac, char *av[])
 {
 
 	int	len;
 	int	i;
 
-	len = ft_strlen(key);
+	len = ft_strlen(fragment);
 	i = -1;
 	while (++i < ac)
 	{
-		if (!find_fragment(key, av[i], len))
+		if (!find_fragment(fragment, av[i], len))
 		{
 			if (len > 1)
 			{
@@ -144,12 +147,11 @@ void	ft_swap(char **a, char **b)
 
 int		ft_str_maxlenoc(int ac, char *av[])
 {
-	char	*key;
-	int		currIdx;
-	int		maxLen;
-	int		maxIdx;
+	char	*fragment;
+	int		index;
+	int		max_len;
+	int		max_index;
 	int		tmp;
-	int		i;
 
 	if (ac == 1)
 		write(1, av[1], ft_strlen(av[1]));
@@ -158,27 +160,28 @@ int		ft_str_maxlenoc(int ac, char *av[])
 		tmp = find_indx_min_str(ac, av);
 		if (tmp != 1)
 			ft_swap(&av[0], &av[tmp]);
-		key = av[0];
-		currIdx = 0;
-		maxLen = -1;
-		maxIdx = -1;
-		i = 1;
-		while (i < ac)
+		fragment = av[0];
+		index = 0;
+		max_index = 0;
+		max_len = -1;
+		ac--;
+		av++;
+		while (*(fragment + index))
 		{
-			tmp = find_largest_match_size(key + currIdx, ac - 1, av + 1);
-			if (maxLen < tmp)
+			/* ЦИкл запускает функцию largest_match_size, которая
+			** ищет идентичный фрагмент строки в массиве строк
+			** Если фрагмент строки в массиве строк не найден то фрагмент
+			** уменьшается с вначале и поиск начинается заново */
+			tmp = largest_match_size(fragment + index, ac, av);
+			if (max_len < tmp)
 			{
-				maxLen = tmp;
-				maxIdx = currIdx;
+				max_len = tmp;
+				max_index = index;
 			}
-			currIdx++;
-			i = 0;
-			if (!*(key + currIdx))
-				break;
-			i++;
+			index++;
 		}
-		if (maxIdx > -1)
-			write(1, key + maxIdx, maxLen);
+		if (max_index > -1)
+			write(1, fragment + max_index, max_len);
 	}
 	write(1, "\n", 1);
 	return (0);
