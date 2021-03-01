@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/01 20:22:07 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/02 02:54:54 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,13 +124,10 @@ int		largest_match_size(char *fragment, int ac, char *av[])
 	{
 		if (!find_fragment(fragment, av[i], len))
 		{
-			if (len > 1)
-			{
-				len--;
-				i = -1;
-			}
-			else
+			if (len <= 1)
 				return (-1);
+			len--;
+			i = -1;
 		}
 	}
 	return (len);
@@ -168,10 +165,11 @@ int		ft_str_maxlenoc(int ac, char *av[])
 		av++;
 		while (*(fragment + index))
 		{
-			/* ЦИкл запускает функцию largest_match_size, которая
+			/* Цикл запускает функцию 'largest_match_size', которая
 			** ищет идентичный фрагмент строки в массиве строк
-			** Если фрагмент строки в массиве строк не найден то фрагмент
-			** уменьшается с вначале и поиск начинается заново */
+			** Если совпадения с фрагментом строки в массиве строк
+			** не найдено то фрагмент уменьшается с вначале и цикл
+			** начинается заново */
 			tmp = largest_match_size(fragment + index, ac, av);
 			if (max_len < tmp)
 			{
