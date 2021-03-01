@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/26 11:23:46 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/01 17:14:30 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ $>./str_maxlenoc | cat -e
 $
 
 
-
 ** ************************************************************************** */
 /* ************************************************************************** */
 
@@ -62,7 +61,7 @@ int		ft_strlen(char *s)
 /*
 ** Поиск в массиве строк строки с наименьшей длинной и возвращение ее индекса.
 */
-int		get_min_index(int ac, char *av[])
+int		find_indx_min_str(int ac, char *av[])
 {
 
 	int minLen;
@@ -91,7 +90,7 @@ int		get_min_index(int ac, char *av[])
 	return (minIdx);
 }
 
-int		unfit(char *a, char *b, int len)
+int		find_fragment(char *a, char *b, int len)
 {
 	int	i;
 
@@ -106,11 +105,11 @@ int		unfit(char *a, char *b, int len)
 				i = -1;
 			}
 			else
-				return (1);
+				return (0);
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int		find_largest_match_size(char *key, int ac, char *av[])
@@ -120,10 +119,10 @@ int		find_largest_match_size(char *key, int ac, char *av[])
 	int	i;
 
 	len = ft_strlen(key);
-	i = 0;
-	while (i < ac)
+	i = -1;
+	while (++i < ac)
 	{
-		if (unfit(key, av[i], len))
+		if (!find_fragment(key, av[i], len))
 		{
 			if (len > 1)
 			{
@@ -133,24 +132,21 @@ int		find_largest_match_size(char *key, int ac, char *av[])
 			else
 				return (-1);
 		}
-		i++;
 	}
 	return (len);
 }
 
-void	ft_swap(char *a, char *b)
+void	ft_swap(char **a, char **b)
 {
 	char *temp;
 
-	temp = a;
-	a = b;
-	b = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-
-int		main(int ac, char *av[])
+int		ft_str_maxlenoc(int ac, char *av[])
 {
-	int		minIdx;
 	char	*key;
 	int		currIdx;
 	int		maxLen;
@@ -158,32 +154,29 @@ int		main(int ac, char *av[])
 	int		tmp;
 	int		i;
 
-	if (ac <= 2)
-	{
-		if (ac == 2)
-			write(1, av[1], ft_strlen(av[1]));
-	}
+	if (ac == 1)
+		write(1, av[1], ft_strlen(av[1]));
 	else
 	{
-		minIdx = get_min_index(ac, av);
-		if (minIdx != 1)
-			ft_swap(av[1], av[minIdx]);
-		key = av[1];
+		tmp = find_indx_min_str(ac, av);
+		if (tmp != 1)
+			ft_swap(&av[0], &av[tmp]);
+		key = av[0];
 		currIdx = 0;
 		maxLen = -1;
 		maxIdx = -1;
-		i = 2;
+		i = 1;
 		while (i < ac)
 		{
-			tmp = find_largest_match_size(key + currIdx, ac - 2, av + 2);
+			tmp = find_largest_match_size(key + currIdx, ac - 1, av + 1);
 			if (maxLen < tmp)
 			{
 				maxLen = tmp;
 				maxIdx = currIdx;
 			}
 			currIdx++;
-			i = 1;
-			if (!(key[currIdx]))
+			i = 0;
+			if (!*(key + currIdx))
 				break;
 			i++;
 		}
@@ -191,5 +184,14 @@ int		main(int ac, char *av[])
 			write(1, key + maxIdx, maxLen);
 	}
 	write(1, "\n", 1);
+	return (0);
+}
+
+int		main(int ac, char *av[])
+{
+	if (ac >= 2)
+		ft_str_maxlenoc(ac - 1, av + 1);
+	else
+		write(1, "\n", 1);
 	return (0);
 }
