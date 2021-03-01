@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/01 17:14:30 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/01 17:46:05 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,10 @@ int		find_fragment(char *a, char *b, int len)
 	{
 		if (a[i] != b[i])
 		{
-			if (*(b + 1))
-			{
-				b++;
-				i = -1;
-			}
-			else
+			if (!b[1])
 				return (0);
+			b++;
+			i = -1;
 		}
 		i++;
 	}
