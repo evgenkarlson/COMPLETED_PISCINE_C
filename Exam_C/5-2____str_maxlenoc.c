@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/02 18:54:43 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/02 19:05:02 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ int		ft_str_maxlenoc(int ac, char *av[])
 	int		tmp;
 
 	if (ac == 1)
-		write(1, av[1], ft_strlen(av[1]));
+		write(1, av[0], ft_strlen(av[0]));
 	else
 	{
 		tmp = find_indx_min_str(ac, av);
