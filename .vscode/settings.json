@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "fcntl.h": "c",
-        "fcntl2.h": "c",
-        "stat.h": "c",
-        "struct_timespec.h": "c",
-        "types.h": "c"
-    }
-}
