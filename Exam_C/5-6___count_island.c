@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/05 00:56:16 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/05 00:57:15 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,13 +132,10 @@ void	flood_fill_2(char *map, int i, int width, int size, char replacer)
 
 	if ((i > width) && (map[i - width] == 'X'))
 		floodfill(map, i - width, width, size, replacer);
-
 	if ((i < size - width - 1) && map[i + width] == 'X')
 		floodfill(map, i + width, width, size, replacer);
-
 	if (i && (i % width > 0) && map[i - 1] == 'X')
 		floodfill(map, i - 1, width, size, replacer);
-
 	if (i && (i % width < width - 1) && map[i + 1] == 'X')
 		floodfill(map, i + 1, width, size, replacer);
 }
@@ -149,13 +146,10 @@ void	flood_fill(char *map, int i, int width, int size, char replacer)
 	map[i] = replacer;
 	if ((i > width) && (map[i - width] == 'X'))
 		flood_fill(map, i - width, width, size, replacer);
-
 	if (((i + width) < (size - 1)) && (map[i + width] == 'X'))
 		flood_fill(map, i + width, width, size, replacer);
-
 	if (((i - 1) >= 0) && (map[i - 1] == 'X'))
 		flood_fill(map, i - 1, width, size, replacer);
-		
 	if (((i + 1) < (size - 1)) && (map[i + 1] == 'X'))
 		flood_fill(map, i + 1, width, size, replacer);
 }
