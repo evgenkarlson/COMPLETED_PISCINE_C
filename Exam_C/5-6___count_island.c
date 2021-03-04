@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/02/23 01:52:10 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/04 18:24:06 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,72 +126,70 @@ $>
 void	flood_fill(char *map, int i, char c, int width, int total_b)
 {
 	map[i] = c;
-	if (i > width && map[i - width] == 'X')
+	if ((i > width) && (map[i - width] == 'X'))
 		flood_fill(map, i - width, c, width, total_b);
-	if (i + width < total_b - 1 && map[i + width] == 'X')
+
+	if (((i + width) < (total_b - 1)) && (map[i + width] == 'X'))
 		flood_fill(map, i + width, c, width, total_b);
-	if (i - 1 >= 0 && map[i - 1] == 'X')
+
+	if (((i - 1) >= 0) && (map[i - 1] == 'X'))
 		flood_fill(map, i - 1, c, width, total_b);
-	if (i + 1 < total_b - 1 && map[i + 1] == 'X')
+
+	if (((i + 1) < (total_b - 1)) && (map[i + 1] == 'X'))
 		flood_fill(map, i + 1, c, width, total_b);
 }
 
-int	main(int ac, char **av)
+int		count_island(char **av)
 {
-	if (ac != 2)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	char map[102400] = {0};
-	int fd = open(av[1], O_RDONLY);
-	int total_b = read(fd, map, 102400);
+	char	map[102400] = {0};
+	int		fd;
+	int		total_b;
+	int		width;
+	int		i;
+	int		height;
+	char	replacer;
 
-	if (total_b <= 0)
+	if (((fd = open(av[0], O_RDONLY)) != -1) && ((total_b = read(fd, map, 102400)) != -1))
 	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	int width = 1;
-	int i = 0;
-	while (map[i] != '\n')
-	{
-	 	i++;
-		width++;
-	}
-	int height = 0;
-	for (int i = 0; i < total_b; i++)
-	{
-		if (map[i] != 'X' && map[i] != '.' && map[i] != '\n' && map[i] != '\0')
+		// Cчитаем ширину карты используя первую строку файла
+		width = 0;
+		while (map[width++] != '\n');
+		// Cчитаем высоту карты и проверяем наличие в ней лишних символов
+		height = 0;
+		i = -1;
+		while (++i < total_b)
 		{
-			write(1, "\n", 1);
-        	return (0);
+			if (map[i] != '.' && map[i] != 'X' && map[i] != '\n' && map[i] != '\0')
+				return (0);
+			if (map[i] == '\n')
+				height++;
 		}
-		if (map[i] == '\n')
-			height++;
-	}
-
-	if (height * width != total_b)
-	{
-		write(1, "\n", 1);
-		return (0);
-	}
-	char replacer = '0';
-	for (int i = 0; i < total_b; i++)
-	{
-		
-		if (map[i] == 'X') 
+		// Проверяем размер карты
+		if (height * width == total_b)
 		{
-			flood_fill(map, i, replacer, width, total_b);
-			replacer++;
+			replacer = '0';
+			i = -1;
+			// запускаем цикл, который будет искать острова
+			while (++i < total_b)
+			{
+				if (map[i] == 'X') 
+					flood_fill(map, i, replacer++, width, total_b);
+			}
+			/* Если количество найденых островов находиться в диапазоне 
+			** от 1 до 10 то печатаем карту */
+			if (replacer <= ('9' + 1))
+				write(1, map, total_b - 1);
 		}
 	}
-	if (replacer > ':')
-	{
-		write(1, "\n", 1);
-        return (0);
-	}
-	write(1, map, total_b);
+	return (0);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac == 2)
+		count_island(av + 1);
+	write(1, "\n", 1);
+	return (0);
 }
 
 
