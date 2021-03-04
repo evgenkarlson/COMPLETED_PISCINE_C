@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/05 00:55:06 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/05 00:56:16 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,15 +321,15 @@ char	**file_to_arr(char *file)
 	return (map);
 }
 
-void	flood_fill(char **map, int x, int y, char c)
+void	floodfill(char **map, int x, int y, char c)
 {
 	if (y < 0 || x < 0 || !map[y] || !map[y][x] || map[y][x] != 'X')
 		return ;
 	map[y][x] = c;
-	flood_fill(map, x + 1, y, c);
-	flood_fill(map, x - 1, y, c);
-	flood_fill(map, x, y + 1, c);
-	flood_fill(map, x, y - 1, c);
+	floodfill(map, x + 1, y, c);
+	floodfill(map, x - 1, y, c);
+	floodfill(map, x, y + 1, c);
+	floodfill(map, x, y - 1, c);
 }
 
 void	count_island(char *file)
@@ -351,7 +351,7 @@ void	count_island(char *file)
 			while (map[y][++x])
 			{
 				if (map[y][x] == 'X')
-					flood_fill(map, x, y, replace++);
+					floodfill(map, x, y, replace++);
 			}
 		}
 		/* Если количество найденых островов находиться в диапазоне 
