@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/04 20:04:14 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/05 00:55:06 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ $>
 #include <fcntl.h>
 
 #define LIM 102400
+
 /*
 void	flood_fill_2(char *map, int i, int width, int size, char replacer)
 {
@@ -142,6 +143,7 @@ void	flood_fill_2(char *map, int i, int width, int size, char replacer)
 		floodfill(map, i + 1, width, size, replacer);
 }
 */
+
 void	flood_fill(char *map, int i, int width, int size, char replacer)
 {
 	map[i] = replacer;
@@ -214,6 +216,7 @@ int		main(int ac, char **av)
 }
 
 
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 /* ************************************************************************** */
@@ -225,134 +228,144 @@ int		main(int ac, char **av)
 #include <fcntl.h>
 #include <stdlib.h>
 
-void	count_island(char **i, int x, int y, char c);
-void	sefsrg(char **i);
-char	**cread(int fd);
-
-void		count_island(char **i, int x, int y, char c)
+void	ft_putstr(char *str)
 {
-	if (y < 0 || x < 0 || !i[y] || !i[y][x] || i[y][x] != 'X')
-		return ;
-	i[y][x] = c;
-	count_island(i, x + 1, y, c);
-	count_island(i, x - 1, y, c);
-	count_island(i, x, y + 1, c);
-	count_island(i, x, y - 1, c);
-}
+	int i;
 
-void		sefsrg(char **i)
-{
-	int		x;
-	int		y;
-	char	c;
-
-	y = 0;
-	c = '0';
-	while (i[y])
-	{
-		x = 0;
-		while (i[y][x])
-		{
-			if (i[y][x] == 'X')
-				count_island(i, x, y, c++);
-			write(1, i[y] + x, 1);
-			x++;
-		}
-		y++;
-		if (x > 0)
-			write(1, "\n", 1);
-	}
-}
-
-int			read_first_line(int fd, char **r)
-{
-	int		i = 0;
-
-	r[0] = malloc(sizeof(char) * 1300);
-	while (read(fd, r[0] + i, 1) > 0)
-	{
-		if (r[0][i] == '\n')
-		{
-			r[0][i] = 0;
-			return (i);
-		}
-		else if (r[0][i] != '.' && r[0][i] != 'X')
-			return (-1);
-		i++;
-	}
-	return (-1);
-}
-
-int			read_one_line(int fd, int len, char **r)
-{
-	int		readed;
-
-	*r = malloc(sizeof(char) * (len + 10));
-	readed = read(fd, *r, len + 1);
-	if (readed == -1)
-		return (-1);
-	if (readed == 0)
-		return (0);
-	if (readed == 1 && **r == '\n')
-	{
-		**r = 0;
-		return (0);
-	}
-	if (readed < len)
-		return (-1);
-	if (r[0][len] != '\n')
-		return (-1);
-	r[0][len] = 0;
-	readed -= 2;
-	while (readed >= 0)
-	{
-		if (r[0][readed] != 'X' && r[0][readed] != '.')
-			return (-1);
-		readed--;
-	}
-	return (1);
-}
-
-char		**cread(int fd)
-{
-	char	**result;
-	int		i;
-	int		linelen;
-	int		ret;
-
-	result = malloc(sizeof(char *) * 100000);
 	i = 0;
-	linelen = read_first_line(fd, result);
-	if (linelen < 1)
-		return (0);
-	i++;
-	while (1)
-	{
-		ret = read_one_line(fd, linelen, result + i);
-		if (ret == -1)
-			return (0);
-		if (ret == 0)
-			break ;
+	while (*(str + i))
 		i++;
+	write(1, str, i);
+}
+
+void	ft_putmap(char **map)
+{
+	int y;
+
+	y = -1;
+	while (map[++y])
+		ft_putstr(map[y]);
+}
+
+int		ft_size(char *file, char c)
+{
+	int		fd;
+	char	buffer;
+	int		size;
+	int		r;
+
+	size = 0;
+	if ((fd = open(file, O_RDONLY)) == -1)
+		return (0);
+	else
+	{
+		while ((r = read(fd, &buffer, 1)))
+		{
+			if (r == -1)
+				break;
+			if (buffer == c)
+				break;
+			size++;
+		}
+		if (close(fd) == -1)
+			return (0);
 	}
-	return (result);
+	return (size);
+}
+
+char	**file_to_arr(char *file)
+{
+	char	**map;
+	int		fd;
+	int		size;
+	int		width;
+	int		height;
+	int		y;
+	int		x;
+
+	map = (void *)0;
+	// Считаем размер файла с картой и ширину строки и количество строк.
+	// И выделим память для указателей которые будут хранить адреса строк
+	if ((size = ft_size(file, '\0')) &&	(width = ft_size(file, '\n') + 1) \
+		&& (map = (char **)malloc(sizeof(char **) * ((size/ width) + 1))))
+{
+		// выделим память для каждой строки
+		height = size / width;
+		y = -1;
+		while (++y < height)
+		{
+			if (!(map[y] = (char *)malloc(sizeof(char) * (width + 1))))
+				return ((void *)0);
+			map[y][width] = '\0';
+		}
+		// сохраняем карту в массив
+		if (((fd = open(file, O_RDONLY))) == -1)
+			return ((void *)0);
+		y = -1;
+		while (++y < height)
+		{
+			x = -1;
+			while (((read(fd, &map[y][++x], 1)) != -1))
+			{
+				if (map[y][x] == '\n')
+				{
+					map[y][x + 1] = '\0';
+					break;
+				}
+			}
+		}
+		if (close(fd) == -1)
+			return ((void *)0);
+		map[y] = (void *)0;
+	}
+	return (map);
+}
+
+void	flood_fill(char **map, int x, int y, char c)
+{
+	if (y < 0 || x < 0 || !map[y] || !map[y][x] || map[y][x] != 'X')
+		return ;
+	map[y][x] = c;
+	flood_fill(map, x + 1, y, c);
+	flood_fill(map, x - 1, y, c);
+	flood_fill(map, x, y + 1, c);
+	flood_fill(map, x, y - 1, c);
+}
+
+void	count_island(char *file)
+{
+	char	**map;
+	int		y;
+	int		x;
+	char	replace;
+
+	// сохраняем карту в массив
+	if ((map = file_to_arr(file)))
+	{
+		replace = '0';
+		y = -1;
+		// запускаем цикл, который будет искать в массиве острова
+		while (map[++y])
+		{
+			x = -1;
+			while (map[y][++x])
+			{
+				if (map[y][x] == 'X')
+					flood_fill(map, x, y, replace++);
+			}
+		}
+		/* Если количество найденых островов находиться в диапазоне 
+		** от 1 до 10 то печатаем карту */
+		if (replace <= ('9' + 1))
+			ft_putmap(map);
+	}
+	else
+		ft_putstr("\n");
 }
 
 int		main(int ac, char **av)
 {
-	int		fd;
-	char	**a;
-
-	if (ac > 1)
-	{
-		if ((fd = open(av[1], O_RDONLY)) != -1)
-		{
-			if ((a = cread(fd)))
-				sefsrg(a);
-			close(fd);
-		}
-	}
-	write(1, "\n", 1);
+	if (ac == 2)
+		count_island(*(av + 1));
 	return (0);
 }
-
