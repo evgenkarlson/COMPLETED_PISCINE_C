@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/04 18:24:06 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/04 20:04:14 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,33 +123,53 @@ $>
 #include <unistd.h>
 #include <fcntl.h>
 
-void	flood_fill(char *map, int i, char c, int width, int total_b)
+#define LIM 102400
+/*
+void	flood_fill_2(char *map, int i, int width, int size, char replacer)
 {
-	map[i] = c;
-	if ((i > width) && (map[i - width] == 'X'))
-		flood_fill(map, i - width, c, width, total_b);
+	map[i] = replacer;
 
-	if (((i + width) < (total_b - 1)) && (map[i + width] == 'X'))
-		flood_fill(map, i + width, c, width, total_b);
+	if ((i > width) && (map[i - width] == 'X'))
+		floodfill(map, i - width, width, size, replacer);
+
+	if ((i < size - width - 1) && map[i + width] == 'X')
+		floodfill(map, i + width, width, size, replacer);
+
+	if (i && (i % width > 0) && map[i - 1] == 'X')
+		floodfill(map, i - 1, width, size, replacer);
+
+	if (i && (i % width < width - 1) && map[i + 1] == 'X')
+		floodfill(map, i + 1, width, size, replacer);
+}
+*/
+void	flood_fill(char *map, int i, int width, int size, char replacer)
+{
+	map[i] = replacer;
+	if ((i > width) && (map[i - width] == 'X'))
+		flood_fill(map, i - width, width, size, replacer);
+
+	if (((i + width) < (size - 1)) && (map[i + width] == 'X'))
+		flood_fill(map, i + width, width, size, replacer);
 
 	if (((i - 1) >= 0) && (map[i - 1] == 'X'))
-		flood_fill(map, i - 1, c, width, total_b);
-
-	if (((i + 1) < (total_b - 1)) && (map[i + 1] == 'X'))
-		flood_fill(map, i + 1, c, width, total_b);
+		flood_fill(map, i - 1, width, size, replacer);
+		
+	if (((i + 1) < (size - 1)) && (map[i + 1] == 'X'))
+		flood_fill(map, i + 1, width, size, replacer);
 }
 
-int		count_island(char **av)
+int		count_island(char *file)
 {
-	char	map[102400] = {0};
+	char	map[LIM] = {0};
 	int		fd;
-	int		total_b;
+	int		size;
 	int		width;
-	int		i;
 	int		height;
+	int		i;
 	char	replacer;
 
-	if (((fd = open(av[0], O_RDONLY)) != -1) && ((total_b = read(fd, map, 102400)) != -1))
+	if (((fd = open(file, O_RDONLY)) != -1) \
+		&& ((size = read(fd, map, LIM)) != -1))
 	{
 		// Cчитаем ширину карты используя первую строку файла
 		width = 0;
@@ -157,28 +177,29 @@ int		count_island(char **av)
 		// Cчитаем высоту карты и проверяем наличие в ней лишних символов
 		height = 0;
 		i = -1;
-		while (++i < total_b)
+		while (++i < size)
 		{
-			if (map[i] != '.' && map[i] != 'X' && map[i] != '\n' && map[i] != '\0')
+			if (map[i] != '.' && map[i] != 'X' \
+				&& map[i] != '\n' && map[i] != '\0')
 				return (0);
 			if (map[i] == '\n')
 				height++;
 		}
 		// Проверяем размер карты
-		if (height * width == total_b)
+		if (height * width == size)
 		{
 			replacer = '0';
 			i = -1;
 			// запускаем цикл, который будет искать острова
-			while (++i < total_b)
+			while (++i < size)
 			{
 				if (map[i] == 'X') 
-					flood_fill(map, i, replacer++, width, total_b);
+					flood_fill(map, i, width, size, replacer++);
 			}
 			/* Если количество найденых островов находиться в диапазоне 
 			** от 1 до 10 то печатаем карту */
 			if (replacer <= ('9' + 1))
-				write(1, map, total_b - 1);
+				write(1, map, size - 1);
 		}
 	}
 	return (0);
@@ -187,7 +208,7 @@ int		count_island(char **av)
 int		main(int ac, char **av)
 {
 	if (ac == 2)
-		count_island(av + 1);
+		count_island(*(av + 1));
 	write(1, "\n", 1);
 	return (0);
 }
@@ -195,6 +216,9 @@ int		main(int ac, char **av)
 
 /* ************************************************************************** */
 /* ************************************************************************** */
+/* ************************************************************************** */
+/* ************************************************************************** */
+
 
 
 #include <unistd.h>
@@ -321,98 +345,14 @@ int		main(int ac, char **av)
 
 	if (ac > 1)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd != -1)
+		if ((fd = open(av[1], O_RDONLY)) != -1)
 		{
-			a = cread(fd);
-			close(fd);
-			if (a != 0)
-			{
+			if ((a = cread(fd)))
 				sefsrg(a);
-				return (0);
-			}
+			close(fd);
 		}
 	}
 	write(1, "\n", 1);
 	return (0);
 }
 
-
-
-/* ************************************************************************** */
-/* ************************************************************************** */
-
-
-#include <fcntl.h>
-#include <stdlib.h>
-#include <unistd.h>
-
-#define LIM 100000
-
-int errorCheck(char buf[LIM], int size, int width, int height) {
-
-	if (size / height != width) {
-		write(1, "\n", 1);
-		return 0;
-	}
-
-	for (int i = 0; i < size; i++) {
-		if (buf[i] != '.' && buf[i] != 'X' && buf[i] != '\n')
-			return 0;
-	}
-	
-	return 1;
-}
-
-void floodFill(char buf[LIM], int size, int width, int height, int i, char replacer) {
-
-	buf[i] = replacer;
-
-	if ((i > width) && (buf[i - width] == 'X'))
-		floodFill(buf, size, width, height, i - width, replacer);
-
-	if ((i < size - width - 1) && buf[i + width] == 'X')
-		floodFill(buf, size, width, height, i + width, replacer);
-
-	if (i && (i % width > 0) && buf[i - 1] == 'X')
-		floodFill(buf, size, width, height, i - 1, replacer);
-
-	if (i && (i % width < width - 1) && buf[i + 1] == 'X')
-		floodFill(buf, size, width, height, i + 1, replacer);
-}
-
-void countIsland(char* file) {
-	
-	char buf[LIM] = {0};
-	int fd = open(file, O_RDONLY);
-
-	int size = read(fd, buf, LIM);
-	if (size < 0) {
-		write(1, "\n", 1);
-		return;
-	}
-
-	int width = 1;
-	for (int i = 0; buf[i] != '\n'; i++)
-		width++;
-
-	int height = size / width;
-
-	if (!errorCheck(buf, size, width, height))
-		return;
-
-	char replacer = '0';
-	for (int i = 0; i < size; i++) {
-		if (buf[i] == 'X') {
-			floodFill(buf, size, width, height, i, replacer);
-			replacer++;
-		}
-	}
-	write(1, buf, size);
-}
-
-int main(int ac, char* av[]) {
-	if (ac == 2)
-		countIsland(av[1]);
-	return 0;
-}
