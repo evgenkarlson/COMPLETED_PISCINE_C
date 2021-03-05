@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/05 13:01:58 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/05 13:02:40 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,15 @@ $>
 
 #define LIM 102400
 
-void	floodfill(char *map, int width, int pos, int size, char replace)
+void	flood_fill(char *map, int width, int pos, int size, char replace)
 {
 	if (pos < 0 || pos >= size || !map[pos] || map[pos] != 'X')
 		return ;
 	map[pos] = replace;
-	floodfill(map, width, pos + 1, size, replace);
-	floodfill(map, width, pos - 1, size, replace);
-	floodfill(map, width, pos + width, size, replace);
-	floodfill(map, width, pos - width, size, replace);
+	flood_fill(map, width, pos + 1, size, replace);
+	flood_fill(map, width, pos - 1, size, replace);
+	flood_fill(map, width, pos + width, size, replace);
+	flood_fill(map, width, pos - width, size, replace);
 }
 
 int		count_island(char *file)
@@ -176,7 +176,7 @@ int		count_island(char *file)
 				while (++j < width)
 				{
 					if (map[(i * width) + j] == 'X')
-						floodfill(map, width, (i * width) + j, size, replacer++);
+						flood_fill(map, width, (i * width) + j, size, replacer++);
 				}
 			}
 			/* Если количество найденых островов находиться в диапазоне 
