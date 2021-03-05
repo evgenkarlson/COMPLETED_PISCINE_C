@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/03/05 01:03:22 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/05 13:01:58 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,52 +120,35 @@ $>
 /* ************************************************************************** */
 
 
+
 #include <unistd.h>
 #include <fcntl.h>
 
 #define LIM 102400
 
-/*
-void	flood_fill_2(char *map, int i, int width, int size, char replacer)
+void	floodfill(char *map, int width, int pos, int size, char replace)
 {
-	map[i] = replacer;
-
-	if ((i > width) && (map[i - width] == 'X'))
-		floodfill(map, i - width, width, size, replacer);
-	if ((i < size - width - 1) && map[i + width] == 'X')
-		floodfill(map, i + width, width, size, replacer);
-	if (i && (i % width > 0) && map[i - 1] == 'X')
-		floodfill(map, i - 1, width, size, replacer);
-	if (i && (i % width < width - 1) && map[i + 1] == 'X')
-		floodfill(map, i + 1, width, size, replacer);
-}
-*/
-
-void	flood_fill(char *map, int i, int width, int size, char replacer)
-{
-	map[i] = replacer;
-	if ((i > width) && (map[i - width] == 'X'))
-		flood_fill(map, i - width, width, size, replacer);
-	if (((i + width) < (size - 1)) && (map[i + width] == 'X'))
-		flood_fill(map, i + width, width, size, replacer);
-	if (((i - 1) >= 0) && (map[i - 1] == 'X'))
-		flood_fill(map, i - 1, width, size, replacer);
-	if (((i + 1) < (size - 1)) && (map[i + 1] == 'X'))
-		flood_fill(map, i + 1, width, size, replacer);
+	if (pos < 0 || pos >= size || !map[pos] || map[pos] != 'X')
+		return ;
+	map[pos] = replace;
+	floodfill(map, width, pos + 1, size, replace);
+	floodfill(map, width, pos - 1, size, replace);
+	floodfill(map, width, pos + width, size, replace);
+	floodfill(map, width, pos - width, size, replace);
 }
 
 int		count_island(char *file)
 {
 	char	map[LIM] = {0};
-	int		fd;
+	int		j;
 	int		size;
 	int		width;
 	int		height;
 	int		i;
 	char	replacer;
 
-	if (((fd = open(file, O_RDONLY)) != -1) \
-		&& ((size = read(fd, map, LIM)) != -1))
+	if (((j = open(file, O_RDONLY)) != -1) \
+		&& ((size = read(j, map, LIM)) != -1))
 	{
 		// Cчитаем ширину карты используя первую строку файла
 		width = 0;
@@ -184,16 +167,20 @@ int		count_island(char *file)
 		// Проверяем размер карты
 		if (height * width == size)
 		{
+			// запускаем цикл, который будет искать острова
 			replacer = '0';
 			i = -1;
-			// запускаем цикл, который будет искать острова
-			while (++i < size)
+			while (++i < height)
 			{
-				if (map[i] == 'X') 
-					flood_fill(map, i, width, size, replacer++);
+				j = -1;
+				while (++j < width)
+				{
+					if (map[(i * width) + j] == 'X')
+						floodfill(map, width, (i * width) + j, size, replacer++);
+				}
 			}
 			/* Если количество найденых островов находиться в диапазоне 
-			** от 1 до 10 то печатаем карту */
+			// ** от 1 до 10 то печатаем карту */
 			if (replacer <= ('9' + 1))
 				write(1, map, size - 1);
 		}
@@ -208,7 +195,6 @@ int		main(int ac, char **av)
 	write(1, "\n", 1);
 	return (0);
 }
-
 
 
 /* ************************************************************************** */
