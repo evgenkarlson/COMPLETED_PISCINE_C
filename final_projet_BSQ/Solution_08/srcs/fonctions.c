@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fonctions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pcrosnie <pcrosnie@student.42.fr>          +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/21 13:19:53 by pcrosnie          #+#    #+#             */
-/*   Updated: 2015/09/22 19:53:11 by cmutti           ###   ########.fr       */
+/*   Updated: 2021/03/10 00:24:57 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,9 @@ void	ft_putnbr(int nb)
 		nb = -nb;
 	}
 	if (nb >= 10)
-	{
 		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
-	}
 	else
-	{
-		nb = nb + '0';
-		ft_putchar(nb);
-	}
+		ft_putchar(nb + '0');
 }
 
 void	ft_putstr(char *str)
@@ -42,11 +36,9 @@ void	ft_putstr(char *str)
 	int i;
 
 	i = 0;
-	while (str[i])
-	{
-		ft_putchar(str[i]);
+	while (*(str + i))
 		i++;
-	}
+	write(1, str, i);
 }
 
 int		ft_strlen(char *str)
@@ -54,10 +46,8 @@ int		ft_strlen(char *str)
 	int i;
 
 	i = 0;
-	while (str[i])
-	{
+	while (*(str + i))
 		i++;
-	}
 	return (i);
 }
 
@@ -68,10 +58,33 @@ int		ft_atoi(char *str)
 
 	nb = 0;
 	i = 0;
-	while (str[i] <= 57 && str[i] >= 48)
+	while (*(str + i) <= 57 && *(str + i) >= 48)
 	{
-		nb = nb * 10 + str[i] - '0';
+		nb = (nb * 10) + (str[i] - '0');
 		i++;
 	}
 	return (nb);
+}
+
+void	ft_strcpy(char *dest, char *src)
+{
+	int	i;
+
+	i = 0;
+	while (*(src + i))
+	{
+		*(dest + i) = *(src + i);
+		i++;
+	}
+	*(dest + i) = src[i];
+}
+
+void	ft_put_result(char *str, int start)
+{
+	int		i;
+
+	i = start;
+	while (*(str + i))
+		i++;
+	write(1, &str[start], i - start);
 }

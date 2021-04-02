@@ -6,26 +6,11 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/23 05:44:36 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/01/01 16:52:09 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/09 20:44:46 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bsq.h"
-
-t_uns			list_length(t_coord **begin)
-{
-	t_coord		*list;
-	t_uns		i;
-
-	list = *begin;
-	i = 0;
-	while (list)
-	{
-		i++;
-		list = list->next;
-	}
-	return (i);
-}
 
 t_square		*square_init(void)
 {

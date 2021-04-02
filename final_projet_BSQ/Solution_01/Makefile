@@ -15,19 +15,13 @@ NAME	=	bsq
 SOURCES	=	./src/main.c \
 			./src/algo_bsq.c \
 			./src/display.c \
-			./src/grid.c \
 			./src/struct_gestion.c \
-			./src/bsq.c \
-			./src/input.c \
 			./src/read.c
 
 OBJECTS	=	./main.o \
 			./algo_bsq.o \
 			./display.o \
-			./grid.o \
 			./struct_gestion.o \
-			./bsq.o \
-			./input.o \
 			./read.o
 
 FLAGS	=	-Werror -Wall -Wextra

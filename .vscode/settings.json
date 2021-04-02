@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "fcntl.h": "c",
+        "features.h": "c",
+        "limits": "cpp",
+        "*.tcc": "cpp",
+        "types.h": "c",
+        "uio.h": "c",
+        "libgen.h": "c",
+        "errno.h": "c"
+    }
+}

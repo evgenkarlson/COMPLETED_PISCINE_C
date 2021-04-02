@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/23 05:38:47 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/01/01 17:06:06 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/03/10 01:51:39 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define __BSQ_H
 # include <stdlib.h>
 # include <unistd.h>
-# include <sys/types.h>
-# include <sys/uio.h>
+// # include <sys/types.h>
+// # include <sys/uio.h>
 # include <fcntl.h>
 # include <stdio.h>
 
@@ -43,15 +43,13 @@ typedef struct			s_coord
 	struct s_coord		*next;
 }						t_coord;
 
-void					bsq(int *argc, char **argv);
+void					bsq(char *file);
 t_uns					read_file(char *file);
-t_uns					read_stdin();
-t_uns					prepare_read(int *fd);
-t_uns					ft_read(int *fd, char *buffer, t_grid *grid, t_coord *xy);
+t_uns					prepare_read(int fd);
+t_uns					ft_read(int fd, char *buffer, t_grid *grid, t_coord *xy);
 t_uns					ft_read_char(t_coord *xy, char *buffer, t_grid *grid, t_coord **begin);
 t_grid					create_struct_grid();
 t_uns					first_line(char *buffer, t_grid *grid);
-t_uns					check_first_line(t_grid *grid);
 short					check_bomb(t_uns *x, t_uns *y, t_uns l, t_coord **list);
 t_square				*algo_bsq(t_coord **list, t_grid *grid);
 t_coord					*create_mine(t_coord *xy);

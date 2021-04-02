@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bool.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fyusuf-a <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 14:10:20 by fyusuf-a          #+#    #+#             */
-/*   Updated: 2019/08/20 14:11:02 by fyusuf-a         ###   ########.fr       */
+/*   Updated: 2021/03/10 01:30:24 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BOOL_H
 # define FT_BOOL_H
 
-typedef	enum {
+typedef	enum
+{
 	false,
 	true,
 }	t_bool;

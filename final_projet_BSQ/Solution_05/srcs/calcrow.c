@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calcrow.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaranti <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 09:10:38 by etaranti          #+#    #+#             */
-/*   Updated: 2020/11/12 09:52:00 by etaranti         ###   ########.fr       */
+/*   Updated: 2021/03/13 13:37:45 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,16 +97,16 @@ int		ft_lsrow(int fd, char *file)
 int		ft_rowlen(char *str, int fd)
 {
 	int		i;
-	char	buffer[1];
+	char	buffer;
 
 	i = 0;
 	if (fd != 0)
 		if ((fd = open(str, O_RDONLY)) == -1)
 			return (0);
-	while (read(fd, buffer, 1))
+	while (read(fd, &buffer, 1))
 	{
 		i++;
-		if (*buffer == '\n')
+		if (buffer == '\n')
 			break ;
 	}
 	close(fd);

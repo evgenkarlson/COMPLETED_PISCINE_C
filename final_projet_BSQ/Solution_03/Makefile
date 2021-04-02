@@ -1,4 +1,4 @@
-NAME = BSQ
+NAME = bsq
 SRC = *.c
 FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
@@ -9,3 +9,4 @@ clean:
 	$(RM) *.o
 fclean: clean
 		$(RM) $(NAME)
+re : fclean all
