@@ -113,17 +113,19 @@
 
 # Полезные ссылки #
 
-- https://www.xspdf.com/resolution/55548198.html
+- https://www.youtube.com/watch?v=FO7VXDfS8Gk
 
-- https://afteracademy.com/blog/maximal-square
+- https://www.youtube.com/watch?v=_Lf1looyJMU
 
-- https://tutorialspoint.dev/data-structure/matrix-archives/maximum-size-rectangle-binary-sub-matrix-1s
+- https://www.youtube.com/watch?v=RElcqtFYTm0
 
-- [Максимальный размер прямоугольника динамического программирования всех единиц](https://youtu.be/g8bSdXCG-lA)
+- https://www.youtube.com/watch?v=oPrpoVdRLtg
 
-- [Максимальный Прямоугольник](https://youtu.be/PrNAjqoo83k)
+- https://www.youtube.com/watch?v=aYnEO53H4lw
 
-- [Максимальная сумма прямоугольника в 2D-матрице - Применение алгоритма Кадане (динамическое программирование)](https://youtu.be/-FgseNO-6Gk)
+- https://www.youtube.com/watch?v=vI4PE4JdadE
 
-- [Максимальная Суб Квадратной Матрицы](https://youtu.be/_Lf1looyJMU)
+- https://www.youtube.com/watch?v=dAVF2NpC3j4
+
+- https://www.youtube.com/watch?v=gdDm8Bdgb1E
 
