@@ -6,11 +6,11 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/19 17:59:22 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/04/14 15:00:32 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include "../includes/ft.h"
 
 void	ft_putchar(char c)
 {
