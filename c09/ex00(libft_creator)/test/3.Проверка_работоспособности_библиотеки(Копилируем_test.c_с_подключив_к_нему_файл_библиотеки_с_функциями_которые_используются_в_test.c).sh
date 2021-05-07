@@ -30,24 +30,9 @@ gcc -o program.out test.c ./libft.a && chmod +x ./program.out && ./program.out
 #  gcc test.c -L. -lft -o program.out && chmod +x ./program.out && ./program.out
 #
 #
-#  gcc test.c -L . -lft -o program.out && chmod +x ./program.out && ./program.out
-#
-#
-#  gcc test.c -L./ -lft -o program.out && chmod +x ./program.out && ./program.out
-#
-#
-#  gcc test.c -L ./ -lft -o program.out && chmod +x ./program.out && ./program.out
-#
-#
-#  gcc test.c -L'.' -lft -o program.out && chmod +x ./program.out && ./program.out
+#  gcc test.c -L './' -lft -o program.out && chmod +x ./program.out && ./program.out
 #
 #
 #  gcc test.c -L '.' -lft -o program.out && chmod +x ./program.out && ./program.out
-#
-#
-#  gcc test.c -L'./' -lft -o program.out && chmod +x ./program.out && ./program.out
-#
-#
-#  gcc test.c -L './' -lft -o program.out && chmod +x ./program.out && ./program.out
 #
 ################################################################################

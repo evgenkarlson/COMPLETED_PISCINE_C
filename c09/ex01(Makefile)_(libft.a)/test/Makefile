@@ -137,10 +137,10 @@ $(NAME): $(OBJS)
 	@echo "$(CYAN)>>>   CHECK LIBRARY. \033[0m"
 	@echo "$(CYAN)Make sure the '$(NAME)' library works $(NOC)"
 	@echo "$(CYAN)compile the test program using the generated libft.a library $(NOC)"
-	$(CC) $(CFLAGS) -o test test.c $(NAME)
+	$(CC) $(CFLAGS) -o program.out test.c $(NAME)
 	@echo "==============================================================="
 	@echo "$(CYAN)>>>   CHECK PROGRAM './test' $(NOC)"
-	./test
+	./program.out
 	@echo "==============================================================="
 
 #=================================================#
@@ -158,7 +158,7 @@ clean:
 fclean: clean
 	@echo "==============================================================="
 	@echo "$(RED)(╯°□°）╯︵ ┻━┻  $(NAME) remove!$(NOC)"
-	/bin/rm -f $(NAME)
+	/bin/rm -f $(NAME) program.out
 	@echo "==============================================================="
 
 #=================================================#

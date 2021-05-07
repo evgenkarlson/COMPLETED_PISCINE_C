@@ -48,7 +48,7 @@ int		main(void)
 **  ИЛИ ТАК
 **
 **
-** Для компиляции нашего основного файла main.c надо сообщить компилятору, 
+** Для компиляции нашего основного файла 'test.c' надо сообщить компилятору, 
 ** что надо использовать библиотеки. Чтобы компилятор знал где искать библиотеки 
 ** ему надо сообщить каталог, в котором они содержатся и список этих билиотек. 
 ** Каталог с библиотеками указывается ключом `-L`, в нашем случае библиотека 
@@ -57,7 +57,28 @@ int		main(void)
 ** указывается название библиотеки без префикса lib и окончания .a. В нашем 
 ** случае этот ключ будет выглядеть, как `-lft`. Теперь все одной командой:
 **
-** gcc test.c -L -lft -o program.out && chmod +x ./program.out && ./program.out
+** gcc test.c -L. -lft -o program.out && chmod +x ./program.out && ./program.out
+**
+**
+** gcc test.c -L . -lft -o program.out && chmod +x ./program.out && ./program.out
+**
+**
+** gcc test.c -L./ -lft -o program.out && chmod +x ./program.out && ./program.out
+**
+**
+** gcc test.c -L ./ -lft -o program.out && chmod +x ./program.out && ./program.out
+**
+**
+** gcc test.c -L'.' -lft -o program.out && chmod +x ./program.out && ./program.out
+**
+**
+** gcc test.c -L '.' -lft -o program.out && chmod +x ./program.out && ./program.out
+**
+**
+** gcc test.c -L'./' -lft -o program.out && chmod +x ./program.out && ./program.out
+**
+**
+** gcc test.c -L './' -lft -o program.out && chmod +x ./program.out && ./program.out
 **
 **
 ** ************************************************************************** */

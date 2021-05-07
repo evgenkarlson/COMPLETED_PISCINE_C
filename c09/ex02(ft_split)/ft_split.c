@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/01/23 21:31:00 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2020/11/29 01:13:23 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,28 +108,6 @@ int		ft_wordcount(char *str, char *charset)
 	return (count);
 }
 
-int		ft_wordcount(char *str, char *charset)
-{
-	int	count;
-	int	flag;
-
-	count = 0;
-	flag = 1;
-	while (*str)
-	{
-		if (ft_is_space(*str, charset))
-			flag = 1;
-		if (!ft_is_space(*str, charset))
-		{
-			if (flag)
-				count++;
-			flag = 0;
-		}
-		str++;
-	}
-	return (count);
-}
-
 */
 
 char	*create_word(char *str, int i, int j)
@@ -158,12 +136,12 @@ char	**ft_split(char *str, char *charset)
 	int		i;
 	int		words;
 
-	index = 0;
 	if ((words = ft_wordcount(str, charset)))
 	{
 		if (!str || ((arr = (char **)malloc(sizeof(char *) * (words + 1))) == ((void *)0)))
 			return ((void *)0);
 		i = 0;
+		index = 0;
 		while (index < words)
 		{
 			while (ft_is_space(str[i], charset) && (str[i]))
@@ -171,8 +149,9 @@ char	**ft_split(char *str, char *charset)
 			j = i;
 			while (!(ft_is_space(str[j], charset)) && (str[j]))
 				j++;
-			arr[index++] = create_word(str, i, j);
+			arr[index] = create_word(str, i, j);
 			i = j + 1;
+			index++;
 		}
 	}
 	else
@@ -216,65 +195,6 @@ int   ft_wordcount(char *str, char *charset)
 	}
 	return (count);
 }
-/*
-int   ft_wordcount(char *str, char *charset)
-{
-	int		words;
-
-	words = 0;
-	while (*str)
-	{
-		if (!(words) && !(ft_is_space(*str, charset)))
-			words++;
-		else if (ft_is_space(*(str - 1), charset) && !(ft_is_space(*str, charset)))
-			words++;
-		str++;
-	}
-	return (words);
-}
-
-int		count_words(char *str, char *charset)
-{
-	int		i;
-	int		count;
-
-	count = 0;
-	i = 0;
-	while (str[i])
-	{
-		while (ft_is_space(str[i], charset))
-			i++;
-		if (str[i])
-			count++;
-		while (str[i] && !(ft_is_space(str[i], charset)))
-			i++;
-	}
-	return (count);
-}
-
-int		ft_wordcount(char *str, char *charset)
-{
-	int	count;
-	int	flag;
-
-	count = 0;
-	flag = 1;
-	while (*str)
-	{
-		if (ft_is_space(*str, charset))
-			flag = 1;
-		if (!ft_is_space(*str, charset))
-		{
-			if (flag)
-				count++;
-			flag = 0;
-		}
-		str++;
-	}
-	return (count);
-}
-
-*/
 
 int		ft_wordlen(char *str, char *charset)
 {
@@ -318,6 +238,122 @@ char	**ft_split(char *str, char *charset)
 	return (arr);
 }
 
+
+/* ************************************************************************** */
+/* ************************************************************************** */
+
+
+#include <stdlib.h>
+
+
+int		*ft_memccpy(void *dest, const void *src, int c, size_t n)
+{
+	while (n-- && (dest != src))
+	{
+		if (((*(UCHAR *)dest++) = (*(const UCHAR *)src++)) == (UCHAR)c)
+			return (dest);
+	}
+	return ((void *)0);
+}
+
+int		ft_strlcpy(char *dst, const char *src, size_t dstsize)
+{
+	if (!dst || !src || ((dstsize - 1) > (~0u >> 1)))
+		return (0);
+	if (dstsize > 1)
+		ft_memccpy(dst, src, '\0', dstsize - 1);
+	dst[dstsize - 1] = '\0';
+	return (ft_strlen(src));
+}
+
+int		*ft_calloc(size_t nmemb, size_t size)
+{
+	void *p;
+	
+	if (!(p = malloc(nmemb * size)))
+		return ((void *)0);
+	ft_bzero(p, (nmemb * size));
+	return(p);
+}
+
+int		ft_word_count(const char *s, char c)
+{
+	int	 i;
+	int	 count;
+
+	count = 0;
+	i = -1;
+	if (s[0] && (s[0] != c) && !(count))
+		count++;
+	while (s[++i])
+	{
+		if ((s[i] != c) && (s[i - 1] == c))
+			count++;
+		while (s[i] && (s[i] != c))
+			i++;
+	}
+	return (count);
+}
+
+/*
+size_t	ft_word_count(const char *str, char charset)
+{
+	size_t	count;
+
+	count = 0;
+	while (*str)
+	{
+		while (*str && (*str == charset))
+			str++;
+		if (*str && !(*str == charset))
+		{
+			count++;
+			while (*str && !(*str == charset))
+				str++;
+		}
+	}
+	return (count);
+}
+*/
+
+char			**ft_split(char const *s, char c)
+{
+	char	**array;
+	int		i;
+	int		index_str;
+	int		length;
+	int		item_count;
+
+	i = 0;
+	index_str = 0;
+	length = 0;
+	if (!(item_count = ft_word_count(s, c)))
+		return ((void *)0);
+	if (!(array = (char **)ft_calloc(item_count, sizeof(char *))))
+		return ((void *)0);
+	while (index_str < item_count)
+	{
+		if (s[i] && s[i] != c)
+			length++;
+		else if (s[i] == c || s[i] == '\0')
+		{
+			if (length)
+			{
+				if (!(array[index_str] = (char *)ft_calloc(length + 1, \
+															sizeof(char))))
+					return ((void *)0);
+				ft_strlcpy(array[index_str], (s + i - length), length + 1);
+				index_str++;
+				length = 0;
+			}
+		}
+		i++;
+	}
+	array[index_str] = (void *)0;
+	return (array);
+}
+
+
 /* ************************************************************************** */
 /* ************************************************************************** */
 
@@ -351,66 +387,6 @@ int   ft_wordcount(char *str, char *charset)
 	}
 	return (count);
 }
-/*
-int   ft_wordcount(char *str, char *charset)
-{
-	int		words;
-
-	words = 0;
-	while (*str)
-	{
-		if (!(words) && !(ft_is_space(*str, charset)))
-			words++;
-		else if (ft_is_space(*(str - 1), charset) && !(ft_is_space(*str, charset)))
-			words++;
-		str++;
-	}
-	return (words);
-}
-
-int		count_words(char *str, char *charset)
-{
-	int		i;
-	int		count;
-
-	count = 0;
-	i = 0;
-	while (str[i])
-	{
-		while (ft_is_space(str[i], charset))
-			i++;
-		if (str[i])
-			count++;
-		while (str[i] && !(ft_is_space(str[i], charset)))
-			i++;
-	}
-	return (count);
-}
-
-int		ft_wordcount(char *str, char *charset)
-{
-	int	count;
-	int	flag;
-
-	count = 0;
-	flag = 1;
-	while (*str)
-	{
-		if (ft_is_space(*str, charset))
-			flag = 1;
-		if (!ft_is_space(*str, charset))
-		{
-			if (flag)
-				count++;
-			flag = 0;
-		}
-		str++;
-	}
-	return (count);
-}
-
-*/
-
 
 char  *ft_create_word(char *str, char *charset)
 {
@@ -564,65 +540,6 @@ int   ft_wordcount(char *str, char *charset)
 	}
 	return (count);
 }
-/*
-int   ft_wordcount(char *str, char *charset)
-{
-	int		words;
-
-	words = 0;
-	while (*str)
-	{
-		if (!(words) && !(ft_is_space(*str, charset)))
-			words++;
-		else if (ft_is_space(*(str - 1), charset) && !(ft_is_space(*str, charset)))
-			words++;
-		str++;
-	}
-	return (words);
-}
-
-int		count_words(char *str, char *charset)
-{
-	int		i;
-	int		count;
-
-	count = 0;
-	i = 0;
-	while (str[i])
-	{
-		while (ft_is_space(str[i], charset))
-			i++;
-		if (str[i])
-			count++;
-		while (str[i] && !(ft_is_space(str[i], charset)))
-			i++;
-	}
-	return (count);
-}
-
-int		ft_wordcount(char *str, char *charset)
-{
-	int	count;
-	int	flag;
-
-	count = 0;
-	flag = 1;
-	while (*str)
-	{
-		if (ft_is_space(*str, charset))
-			flag = 1;
-		if (!ft_is_space(*str, charset))
-		{
-			if (flag)
-				count++;
-			flag = 0;
-		}
-		str++;
-	}
-	return (count);
-}
-
-*/
 
 int		ft_len_word(char *str, int i, char *charset)
 {
