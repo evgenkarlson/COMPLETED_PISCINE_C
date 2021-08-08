@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Doyourjob.c                                        :+:      :+:    :+:   */
+/*   do_your_job.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cromalde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:05:02 by cromalde          #+#    #+#             */
-/*   Updated: 2020/11/01 20:34:13 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/08/08 21:12:52 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,9 @@ int		doyourstuff(int board[4][4], int *input)
 {
 	int row;
 	int col;
-	int i;
 	int n;
 
 	n = 1;
-	i = 0;
 	if ((lookfor0(board, &row, &col) == 0) && (checkboard(board, input) == 1))
 		return (1);
 	while (n <= 4)

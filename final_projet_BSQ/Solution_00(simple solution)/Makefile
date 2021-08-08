@@ -12,24 +12,23 @@
 
 NAME := bsq
 CC := gcc
-CFLAGS := -Wall -Werror -Wextra -c
-LFLAGS	= -Wall -Werror -Wextra -o
+FLAGS := -Wall -Werror -Wextra
 SRC_DIR := ./srcs/
-OBJ_DIR	= ./obj/
+OBJ_DIR	:= ./obj/
 SRC_FILES := main.c\
 			bsq.c \
-			ft_cfg_first_line.c \
+			ft_cfg_and_check.c \
 			ft_save_fmap_to_arr.c \
 			ft_conv_char_arr_to_num.c \
-			ft_min.c \
-			ft_find_coord_nearest_square.c \
-			ft_paint_over_the_square.c \
+			ft_find_coord_nearest_squar.c \
+			ft_paint_over_the_squar.c \
 			ft_destroy.c \
 			ft_put_map.c \
 			ft_putchar.c \
 			ft_putstr.c \
 			ft_putnbr.c \
 			ft_stdin.c
+
 OBJ_FILES = $(SRC_FILES:.c=.o)
 SRCS = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJS = $(addprefix $(OBJ_DIR), $(OBJ_FILES))
@@ -42,16 +41,17 @@ obj: $(SRCS)
 	@mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	$(CC) $(CFLAGS) $< -o $@ $(HEADER)
+	$(CC) $(FLAGS) -c $< -o $@ $(HEADER)
 
 $(NAME): $(OBJS)
-	$(CC) $(LFLAGS) $(NAME) $(OBJS) $(HEADER)
+	$(CC) $(FLAGS) -o $(NAME) $(OBJS) $(HEADER)
+#	$(CC) $(FLAGS) $(OBJS) -o $(NAME) $(HEADER)
 
 clean:
 	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@$(RM) $(NAME)
 
 re: fclean all
 
@@ -59,3 +59,6 @@ re: fclean all
 
 #norm :
 #	norminette -R CheckForbiddenSourceHeader */*.[ch]
+
+# символ '@' перед программой ставится для скрытия информации отображающейся этой программой
+

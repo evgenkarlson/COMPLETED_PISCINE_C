@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cromalde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/31 09:22:06 by cromalde          #+#    #+#             */
-/*   Updated: 2020/11/01 22:13:20 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/08/08 21:12:54 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,10 @@ int		checkinput(char *arg, int *input)
 int		main(int argc, char **argv)
 {
 	int input[16];
-	int i;
-	int k;
 
-	i = 0;
-	k = 0;
 	if (argc == 2)
 	{
-		i = checkinput(argv[1], input);
-		if (i == 16)
+		if (checkinput(argv[1], input) == 16)
 			initboard(input);
 		else
 			write(1, "\nERROR\n\n", 8);
@@ -91,3 +86,29 @@ int		main(int argc, char **argv)
 		write(1, "\nERR - Inserire UN solo argomento\n\n", 35);
 	return (0);
 }
+/*
+>   gcc -Werror -Wall -Wextra ./main.c ./beforestart.c ./checkboard.c ./do_your_job.c ./print.c -o ./main.out -I . && chmod +x ./main.out && ./main.out "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+>
+>
+>         "4 3 2 1 1 2 2 2 4 3 2 1 1 2 2 2"
+>	
+>
+>       UP        RIGHT       LEFT        DOWN
+>    "4 3 2 1    1 2 2 2    4 3 2 1     1 2 2 2"
+>
+>
+>                     4 3 2 1
+>                    ---------
+>                  4| 1 2 3 4 |1
+>                  3| 2 3 4 1 |2
+>                  2| 3 4 1 2 |2
+>                  1| 4 1 2 3 |2
+>                    ---------
+>                     1 2 2 2
+>
+>
+>  Каждая цифра внутри квадрата обозначает высоту здания(от 1 до 4).
+>
+>  Каждая цифра снаружи квадрата отображает количество зданий,
+>  видимых на линии со стороны каждой цифры-подсказки
+*/

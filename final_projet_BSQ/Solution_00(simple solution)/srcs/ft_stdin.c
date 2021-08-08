@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:59:15 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/04/09 15:01:35 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/08/08 21:25:53 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ void	ft_stdin(void)
 		if (r == -1)
 		{
 			ft_putstr("Input read error: \n");
-			break;
+			break ;
 		}
-		else
-			write(1, &buffer, 1);
+		write(1, &buffer, 1);
 	}
 }

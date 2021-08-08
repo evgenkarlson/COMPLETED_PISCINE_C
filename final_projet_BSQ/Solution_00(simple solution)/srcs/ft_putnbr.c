@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:57:09 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/04/09 15:01:42 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/08/08 21:26:01 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,28 @@
 
 void		ft_putnbr(int nbr)
 {
-	if (nbr < 0)
+	int	count;
+	int	temp;
+
+	if (nbr == -2147483648)
+	{
+		ft_putchar('-');
+		ft_putchar('2');
+		nbr = 147483648;
+	}
+	else if (nbr < 0)
 	{
 		ft_putchar('-');
 		nbr = -nbr;
 	}
-	if (nbr >= 10)
-		ft_putnbr(nbr / 10);
-	ft_putchar((nbr % 10) + '0');
+	temp = nbr;
+	count = 1;
+	while ((temp /= 10))
+		count *= 10;
+	while (count)
+	{
+		ft_putchar((nbr / count) + '0');
+		nbr %= count;
+		count /= 10;
+	}
 }

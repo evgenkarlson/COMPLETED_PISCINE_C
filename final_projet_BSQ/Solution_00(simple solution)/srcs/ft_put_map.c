@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 14:58:26 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/04/09 15:05:29 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/08/08 21:26:03 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void		ft_put_map(t_unc **map_char)
 {
-	int	i;
-	int j;
+	size_t	y;
+	size_t	x;
 
-	i = -1;
-	while (map_char[++i])
+	y = -1;
+	while (map_char[++y])
 	{
-		j = -1;
-		while (map_char[i][++j])
-			ft_putchar((char)map_char[i][j]);
+		x = -1;
+		while (map_char[y][++x])
+			ft_putchar((char)map_char[y][x]);
 	}
 }

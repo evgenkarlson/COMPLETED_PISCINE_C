@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   beforestart.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cromalde <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 20:05:18 by cromalde          #+#    #+#             */
-/*   Updated: 2020/11/01 21:43:20 by cromalde         ###   ########.fr       */
+/*   Updated: 2021/08/08 21:12:48 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	lookfor1(int board[4][4], int *input)
 			board[pos - 12][3] = 4;
 		pos++;
 	}
-	return ;
+	lookfor4_0(board, input);
 }
 
 int		initboard(int *input)
@@ -106,7 +106,6 @@ int		initboard(int *input)
 		rig++;
 	}
 	lookfor1(board, input);
-	lookfor4_0(board, input);
 	if ((doyourstuff(board, input)) == 1)
 		stampa(board);
 	else

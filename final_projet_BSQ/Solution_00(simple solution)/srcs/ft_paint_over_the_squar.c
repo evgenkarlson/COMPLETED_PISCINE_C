@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_find_coord_nearest_square.c                     :+:      :+:    :+:   */
+/*   ft_paint_over_the_squar.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/09 15:02:07 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2021/04/09 15:05:04 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/08/08 21:26:07 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/bsq.h"
 
-void		ft_find_coord_nearest_square(t_uns **map_num, t_mapcfg *grid_config, t_square *final_result)
+void	ft_paint_over_the_squar(t_unc **map_char, t_mapcfg *grid_config, \
+								t_square *final_result)
 {
-	int	i;
-	int j;
+	int	y;
+	int	x;
 
-	i = -1;
-	while (++i < grid_config->y)
+	y = final_result->y - 1;
+	while (++y < (final_result->y + final_result->size))
 	{
-		j = -1;
-		while (++j < grid_config->x)
+		x = final_result->x - 1;
+		while (++x < (final_result->x + final_result->size))
 		{
-			if ((map_num[i][j] == 1) && (i > 0 && j > 0))
-			{
-				map_num[i][j] += ft_min(map_num[i - 1][j], map_num[i][j - 1], map_num[i - 1][j - 1]);
-				if (map_num[i][j] > final_result->size)
-				{
-					final_result->size = map_num[i][j];
-					final_result->y = i + 1 - final_result->size;
-					final_result->x = j + 1 - final_result->size;
-				}
-			}
+			if (map_char[y][x] == grid_config->char_empty)
+				map_char[y][x] = grid_config->char_square;
 		}
 	}
 }
