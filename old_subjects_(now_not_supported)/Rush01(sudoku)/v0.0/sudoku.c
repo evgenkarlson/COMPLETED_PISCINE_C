@@ -14,29 +14,29 @@
 
 int	sudoku(char **tab, int position)
 {
-	int		x;
 	int		y;
+	int		x;
 	char	nb;
 
 	nb = '0';
-	x = position / 9;
-	y = position % 9;
+	y = position / 9;
+	x = position % 9;
 	if (position == 90)
 		return (1);
-	if (tab[x][y] != '.')
+	if (tab[y][x] != '.')
 		return (sudoku(tab, position + 1));
 	while (++nb <= '9')
 	{
-		if (check_line(tab, nb, x) + check_column(tab, nb, y) == 2)
+		if (check_line(tab, nb, y) + check_column(tab, nb, x) == 2)
 		{
-			if (check_block(tab, x, y, nb) == 1)
+			if (check_block(tab, y, x, nb) == 1)
 			{
-				tab[x][y] = nb;
+				tab[y][x] = nb;
 				if (sudoku(tab, position + 1))
 					return (1);
 			}
 		}
 	}
-	tab[x][y] = '.';
+	tab[y][x] = '.';
 	return (0);
 }
