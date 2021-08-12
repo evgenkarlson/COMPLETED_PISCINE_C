@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 17:38:56 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/19 15:02:55 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/08/12 12:28:40 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,18 @@ int	sudoku(char **tab, int position)
 	nb = '0';
 	y = position / 9;
 	x = position % 9;
-	if (position == 90)
+	if (position == 80)
 		return (1);
 	if (tab[y][x] != '.')
 		return (sudoku(tab, position + 1));
 	while (++nb <= '9')
 	{
-		if (check_line(tab, nb, y) + check_column(tab, nb, x) == 2)
+		if (check_line(tab, nb, y) && check_column(tab, nb, x) && \
+			check_block(tab, y, x, nb))
 		{
-			if (check_block(tab, y, x, nb) == 1)
-			{
-				tab[y][x] = nb;
-				if (sudoku(tab, position + 1))
-					return (1);
-			}
+			tab[y][x] = nb;
+			if (sudoku(tab, position + 1))
+				return (1);
 		}
 	}
 	tab[y][x] = '.';

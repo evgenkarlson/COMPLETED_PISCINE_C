@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/09/12 11:27:30 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/19 15:02:01 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/08/12 12:29:03 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,19 @@ void	ft_putstr(char *str)
 
 void	display(char **tab)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
-	i = 1;
-	while (i <= 9)
+	i = -1;
+	while (++i < 9)
 	{
-		j = 0;
-		while (tab[i][j] != '\0')
+		j = -1;
+		while (tab[i][++j])
 		{
 			ft_putchar(tab[i][j]);
 			if (j != 8)
 				ft_putchar(' ');
-			j++;
 		}
 		ft_putchar('\n');
-		i++;
 	}
 }
