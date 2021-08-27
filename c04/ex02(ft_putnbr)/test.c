@@ -16,7 +16,6 @@
 /*  gcc -Wall -Werror -Wextra test.c && chmod +x ./a.out && ./a.out           */
 /* ************************************************************************** */
 
-
 #include <unistd.h>
 
 void	ft_putchar(char c)			/* функция вывода символа */
