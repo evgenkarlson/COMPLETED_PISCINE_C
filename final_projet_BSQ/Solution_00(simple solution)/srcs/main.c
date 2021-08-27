@@ -18,12 +18,16 @@ int	main(int argc, char **argv)
 {
 	int	i;
 
-	if (argc >= 2)
+	if (argc > 1)
 	{
 		i = 1;
 		g_progname = argv[0];
 		while (i < argc)
+		{
 			bsq(argv[i++]);
+			if (i < argc)
+				ft_putchar('\n');
+		}
 	}
 	else
 		ft_stdin();

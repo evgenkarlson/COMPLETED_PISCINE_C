@@ -6,7 +6,7 @@
 /*   By: evgenkarlson <RTFM@42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/14 12:33:14 by evgenkarlson      #+#    #+#             */
-/*   Updated: 2020/10/11 23:56:10 by evgenkarlson     ###   ########.fr       */
+/*   Updated: 2021/08/17 00:09:07 by evgenkarlson     ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ int		ft_pow(int nb, int power)
 	int	result;
 
 	result = 1;
-	if(power < 0)
+	if (power < 0)
 		return (0);
-	if(power == 0)
+	if (power == 0)
 		return (1);
 	while (power--)
 		result *= nb;

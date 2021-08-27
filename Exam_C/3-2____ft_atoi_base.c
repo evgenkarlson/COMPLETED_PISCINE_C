@@ -89,9 +89,7 @@ int		ft_atoi_base(const char *str, int str_base)
 		while (--i >= 0)
 		{
 			if ((ft_ctoi(str[i]) != -1) && (ft_ctoi(str[i]) < str_base))
-			{
 				num += ft_ctoi(str[i]) * ft_pow(str_base, pow++);
-			}
 		}
 		return (num * negative);
 	}
